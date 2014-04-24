@@ -16,6 +16,7 @@ import javax.swing.JTextPane;
 
 import bsh.ClassPathException;
 import bsh.Interpreter;
+import bsh.UtilEvalError;
 import bsh.Variable;
 import bsh.util.ClassBrowser;
 import bsh.util.JConsole;
@@ -101,7 +102,12 @@ public class BEASTStudio extends JSplitPane {
 		Variable [] vars = interpreter.getNameSpace().getDeclaredVariables();
 		String str = "";
 		for (Variable v : vars) {
-			str += v.getName() + "\n";
+			try {
+				str += v.getName() + " " + v.getValue().toString() + "\n";
+			} catch (UtilEvalError e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		historyPane.setText(str);
 		

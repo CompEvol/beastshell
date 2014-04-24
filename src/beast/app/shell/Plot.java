@@ -34,6 +34,11 @@ public class Plot extends BEASTObject {
 		x = xInput.get();
 		y = yInput.get();
 		Chart chart = new ChartBuilder().xAxisTitle(xAxisInput.get()).yAxisTitle(yAxisInput.get()).width(600).height(400).build();
+		
+		chart.getStyleManager().setXAxisMax(getMax(x));
+		chart.getStyleManager().setYAxisMax(getMax(y));
+		chart.getStyleManager().setXAxisMin(getMin(x));
+		chart.getStyleManager().setYAxisMin(getMin(y));
 		chart.addSeries(seriesNameInput.get(), x, y);
 	    JPanel chartPanel = new XChartPanel(chart);
 	    if (studio != null) {
@@ -56,6 +61,22 @@ public class Plot extends BEASTObject {
 	    	}
 	    }
 	    
+	}
+
+	private double getMin(List<Double> x2) {
+		double max = x2.get(0);
+		for (double x : x2) {
+			max = Math.max(max, x);
+		}
+		return max;
+	}
+
+	private double getMax(List<Double> x2) {
+		double min = x2.get(0);
+		for (double x : x2) {
+			min = Math.min(min, x);
+		}
+		return min;
 	}
 
 }
