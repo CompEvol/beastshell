@@ -1,0 +1,8 @@
+help() {
+	beast.app.shell.Help.help();
+}
+
+help(cmd) {
+	beast.app.shell.Help.help(cmd);
+}
+

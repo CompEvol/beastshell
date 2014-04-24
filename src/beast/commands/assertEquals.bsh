@@ -1,0 +1,9 @@
+print("loading assertEquals.bsh");
+
+assertEquals(expected, value) {
+	test.beast.BTest.assertEquals(expected, value);
+}
+
+assertEquals(expected, value, tolerance) {
+	test.beast.BTest.assertEquals(expected, value, tolerance);
+}
