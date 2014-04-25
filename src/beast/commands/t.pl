@@ -1165,6 +1165,7 @@ print "$cmd $args{$cmd} $arity\n";
 
 sub printBody {
 	$body = shift;
+	$body0 = $body;
 	$arg0 = $a;
 	if ($arg0 =~ /^x/) {
 	$body =~ s/\(x/(i/;
@@ -1177,7 +1178,7 @@ sub printBody {
 		}
 		return result;
 	} else {
-		return '.$body.'
+		return '.$body0.'
 	}
 ';} elsif ($arg0 =~ /^p/) {
 	$body =~ s/\(p/(i/;
@@ -1190,7 +1191,7 @@ sub printBody {
 		}
 		return result;
 	} else {
-		return '.$body.'
+		return '.$body0.'
 	}
 ';
 	} else {
