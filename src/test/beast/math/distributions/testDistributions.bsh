@@ -23,8 +23,8 @@ ERROR = 0.0001;
 
 
 // test dnbeta 
-	assertEquals(dbeta(x=0.5, shape1=20.0, shape2=20.0, ncp=1.0, log=false), 5.000253, ERROR);
-	assertEquals(dbeta(x=0.8, shape1=40.0, shape2=20.0, ncp=0.5,  log=true), -0.670098, ERROR);
+	assertEquals(dnbeta(x=0.5, shape1=20.0, shape2=20.0, ncp=1.0, log=false), 5.000253, ERROR);
+	assertEquals(dnbeta(x=0.8, shape1=40.0, shape2=20.0, ncp=0.5,  log=true), -0.670098, ERROR);
 
 
 // test binom 

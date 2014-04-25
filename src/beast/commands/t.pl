@@ -264,7 +264,7 @@ $s='f("stop", Conditions.class, 0, 11, 2);
 
 /* Mathematical Functions of Three Numeric (+ 1-2 int) Variables */
 
-    f("dbeta", Distributionss.class, 1, 11, 3 + 1);
+    f("dbeta", Distributions.class, 1, 11, 3 + 1);
     f("pbeta", Distributions.class, 2, 11, 3 + 2);
     f("qbeta", Distributions.class, 3, 11, 3 + 2);
 
@@ -931,7 +931,7 @@ $args{'dbeta'} = "{x, a, b, give_log}, {x, a, b}   ";
 $args{'dbinom'} = "{x, n, p, give_log}, {x, n, p}   ";
 $args{'dcauchy'} = "{x, location, scale, give_log}, {x, location, scale}   ";
 $args{'dchisq'} = "{x, df, give_log}, {x, df}     ";
-$args{'dexp'} = "{x, scale, give_log}, {x, scale}     ";
+$args{'dexp'} = "{x, rate, give_log}, {x, rate}     ";
 $args{'df'} = "{x, m, n, give_log}, {x, m, n}   ";
 $args{'dgamma'} = "{x, shape, scale, give_log}, {x, shape, scale}   ";
 $args{'dgeom'} = "{x, p, give_log}, {x, p}     ";
@@ -1086,7 +1086,7 @@ if ($line =~ /f\((.*),(.*),(.*),(.*),(.*),(.*)\)/) {
 	$class = trim($class);	
 	$class = $map{$class};
 	if ($class ne '') {
-#		print "$k $line\n";
+		print "$k $line\n";
 		generateCmd($cmd, $class, $arity);
 	}
 } else {
@@ -1098,6 +1098,7 @@ sub generateCmd {
 	open(FOUT,">$cmd.bsh") or die "cannot open file $cmd.bsh for writing";
 print "$cmd $args{$cmd} $arity\n";
 	if ($arity =~/(.*)\+(.*)/) {
+
 		$args = $1;
 		$opts = $2;
 		$args=trim($args);

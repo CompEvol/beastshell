@@ -282,18 +282,18 @@ public class Distributions {
   }
 
    //@Internal
-  public static double dexp(final double x, final double mean, boolean log) {
-    return d(new ExponentialDistributionImpl(mean), x, log);
+  public static double dexp(final double x, final double rate, boolean log) {
+    return d(new ExponentialDistributionImpl(1.0/rate), x, log);
   }
 
    //@Internal
-  public static double pexp(final double q, final double mean, boolean lowerTail, boolean logP) {
-    return p(new ExponentialDistributionImpl(mean), q, lowerTail, logP);
+  public static double pexp(final double q, final double rate, boolean lowerTail, boolean logP) {
+    return p(new ExponentialDistributionImpl(1.0/rate), q, lowerTail, logP);
   }
 
    //@Internal
-  public static double qexp(final double p, final double mean, boolean lowerTail, boolean logP) {
-    return q(new ExponentialDistributionImpl(mean), p, lowerTail, logP);
+  public static double qexp(final double p, final double rate, boolean lowerTail, boolean logP) {
+    return q(new ExponentialDistributionImpl(1.0/rate), p, lowerTail, logP);
   }
 
    //@Internal
