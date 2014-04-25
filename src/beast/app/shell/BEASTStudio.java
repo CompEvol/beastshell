@@ -28,7 +28,10 @@ public class BEASTStudio extends JSplitPane {
 	JSplitPane splitpaneright;
 
 	JTabbedPane helpPaneTab;
-	JTextPane historyPane;
+	JTabbedPane rightUpperPaneTab;
+	JTextPane variablesPane;
+	HistoryPanel historyPane;
+	
 	JPanel plotPane;
 	JConsole console;
 	JTextPane helpPane;
@@ -71,8 +74,16 @@ public class BEASTStudio extends JSplitPane {
 		
 
 		splitpaneright = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-		historyPane = new JTextPane();
-		JScrollPane historyScrollPane = new JScrollPane(historyPane); 
+		variablesPane = new JTextPane();
+		
+		rightUpperPaneTab = new JTabbedPane();
+		rightUpperPaneTab.addTab("Variables", variablesPane);
+		
+		historyPane = new HistoryPanel();
+		rightUpperPaneTab.addTab("History", historyPane);
+		
+		
+		JScrollPane historyScrollPane = new JScrollPane(rightUpperPaneTab); 
 		splitpaneright.add(historyScrollPane);
 		
 		plotPane = new JPanel();
@@ -109,7 +120,7 @@ public class BEASTStudio extends JSplitPane {
 				e.printStackTrace();
 			}
 		}
-		historyPane.setText(str);
+		variablesPane.setText(str);
 		
 	}
 	

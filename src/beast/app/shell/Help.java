@@ -65,7 +65,7 @@ help(beast.util.TreeParser);
 		}
 		if (o instanceof BEASTObject) {
 			try {
-				String help = m_docMaker.getHTML(o.getClass().getName(), false);
+				String help = m_docMaker.getHTML(o.getClass().getName(), true);
 				showHelp(help);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
