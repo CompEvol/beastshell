@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
@@ -21,6 +22,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 
 import beast.util.AddOnManager;
 
@@ -33,7 +37,7 @@ public class HistoryPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private JTextField textField;
-	JTextPane textPane;
+	RSyntaxTextArea /*JTextArea*/ textPane;
 	Image image;
 	BEASTStudio studio = null;
 	List<String> history;
@@ -43,7 +47,10 @@ public class HistoryPanel extends JPanel {
 		history = new ArrayList<String>();
 		setLayout(new BorderLayout());
 		
-		textPane = new JTextPane();
+		textPane = new RSyntaxTextArea();
+		textPane.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+		textPane.setCodeFoldingEnabled(true);
+		textPane.setAntiAliasingEnabled(true);
 		add(textPane, BorderLayout.CENTER);
 		
 		JToolBar toolBar = new JToolBar();
@@ -118,7 +125,7 @@ public class HistoryPanel extends JPanel {
 	final static String BACKUP_FILE = "beastshell.history";
 	
 	void loadBackup() {
-		File backup = new File(AddOnManager.getAddOnUserDir() + "/beastshell/" + BACKUP_FILE);
+		File backup = new File(AddOnManager.getPackageUserDir() + "/beastshell/" + BACKUP_FILE);
 		if (backup.exists()) {
 			try {
 		        BufferedReader fin = new BufferedReader(new FileReader(backup));
@@ -138,11 +145,11 @@ public class HistoryPanel extends JPanel {
 	}
 
 	public void saveBackup() {
-		File backupdir = new File(AddOnManager.getAddOnUserDir() + "/beastshell/");
+		File backupdir = new File(AddOnManager.getPackageUserDir() + "/beastshell/");
 		if (!backupdir.exists()) {
 			backupdir.mkdirs();
 		}
-		File backup = new File(AddOnManager.getAddOnUserDir() + "/beastshell/" + BACKUP_FILE);
+		File backup = new File(AddOnManager.getPackageUserDir() + "/beastshell/" + BACKUP_FILE);
 		try {
 	        FileWriter outfile = new FileWriter(backup);
 	        for (String s : history) {

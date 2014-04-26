@@ -22,7 +22,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
 
-import beast.app.draw.ModelBuilder;
 import beast.app.util.Utils;
 import bsh.ClassPathException;
 import bsh.Interpreter;
