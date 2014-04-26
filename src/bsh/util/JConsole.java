@@ -48,6 +48,7 @@ import javax.swing.*;
 
 // Things that are not in the core packages
 
+import beast.app.shell.HistoryPanel;
 import bsh.util.NameCompletion;
 
 /**
@@ -80,11 +81,12 @@ public class JConsole extends JScrollPane
 
     private int	cmdStart = 0;
 	private	Vector history = new Vector();
+	public HistoryPanel historyPanel = null;
 	private	String startedLine;
 	private	int histLine = 0;
 
     private JPopupMenu menu;
-    private JTextPane text;
+    public JTextPane text;
     private DefaultStyledDocument doc;
 
 	NameCompletion nameCompletion;
@@ -404,6 +406,9 @@ public class JConsole extends JScrollPane
 			s = ";\n";
 		else {
 			history.addElement( s );
+			if (historyPanel != null) {
+				historyPanel.add(s);
+			}
 			s = s +"\n";
 		}
 

@@ -1,19 +1,29 @@
 package beast.app.shell;
 
+import jam.framework.DocumentFrame;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.reflect.Method;
+import java.net.URL;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
 
+import beast.app.draw.ModelBuilder;
+import beast.app.util.Utils;
 import bsh.ClassPathException;
 import bsh.Interpreter;
 import bsh.UtilEvalError;
@@ -22,6 +32,9 @@ import bsh.util.ClassBrowser;
 import bsh.util.JConsole;
 
 public class BEASTStudio extends JSplitPane {
+	public final static String ICONPATH = "beastapp/shell/icons/";
+	public final static String VERSION = "0.0.1";
+	
 	private static final long serialVersionUID = 1L;
 
 	JSplitPane splitpaneleft;
@@ -79,7 +92,7 @@ public class BEASTStudio extends JSplitPane {
 		rightUpperPaneTab = new JTabbedPane();
 		rightUpperPaneTab.addTab("Variables", variablesPane);
 		
-		historyPane = new HistoryPanel();
+		historyPane = new HistoryPanel(this);
 		rightUpperPaneTab.addTab("History", historyPane);
 		
 		
@@ -93,6 +106,7 @@ public class BEASTStudio extends JSplitPane {
 		
 		add(splitpaneleft);
 		add(splitpaneright);
+		console.historyPanel = historyPane;
 
 		//JSplitPane hsplitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 //		hsplitpane.add(splitpane);
@@ -124,12 +138,31 @@ public class BEASTStudio extends JSplitPane {
 		
 	}
 	
+	void doAbout() {
+		JOptionPane.showMessageDialog(frame, "BEAST shell version " + VERSION);
+	}
+	
+	void doQuit() {
+        if (!quit()) {
+            return;
+        }
+        historyPane.saveBackup();
+        frame.dispose();
+        //intances--;
+        //if (intances == 0) {
+            System.exit(0);
+        //}
+	}
+	
+	JFrame frame;
+	
 	public static void main(String[] args) {
 		bsh.util.Util.startSplashScreen();
 		
-		final JFrame frame = new JFrame();
+		JFrame frame = new JFrame();
 		final BEASTStudio studio = new BEASTStudio(args);
 		studio.setup();
+		studio.frame = frame;
 		
 		Plot.studio = studio;
 		Help.studio = studio;
@@ -144,18 +177,62 @@ public class BEASTStudio extends JSplitPane {
 		studio.splitpaneright.setDividerLocation(0.5);
 		frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                if (!studio.quit()) {
-                    return;
-                }
-                JFrame frame = (JFrame) e.getSource();
-                frame.dispose();
-                //intances--;
-                //if (intances == 0) {
-                    System.exit(0);
-                //}
+            	studio.doQuit();
             }
         });
 
+        if (Utils.isMac()) {
+            // set up application about-menu for Mac
+            // Mac-only stuff
+            try {
+                URL url = ClassLoader.getSystemResource(BEASTStudio.ICONPATH + "beauti.png");
+                Icon icon = null;
+                if (url != null) {
+                    icon = new ImageIcon(url);
+                } else {
+                    System.err.println("Unable to find image: " + BEASTStudio.ICONPATH + "beauti.png");
+                }
+                jam.framework.Application application = new jam.framework.MultiDocApplication(null, "BEAUti", "about", icon) {
+
+                    @Override
+                    protected JFrame getDefaultFrame() {
+                        return null;
+                    }
+
+                    @Override
+                    public void doQuit() {
+                        studio.doQuit();
+                    }
+
+                    @Override
+                    public void doAbout() {
+                       studio.doAbout();
+                    }
+
+                    @Override
+                    public DocumentFrame doOpenFile(File file) {
+                        return null;
+                    }
+
+                    @Override
+                    public DocumentFrame doNew() {
+                        return null;
+                    }
+                };
+                jam.mac.Utils.macOSXRegistration(application);
+            } catch (Exception e) {
+                // ignore
+            }
+            try {
+                Class<?> class_ = Class.forName("jam.maconly.OSXAdapter");
+                Method method = class_.getMethod("enablePrefs", boolean.class);
+                method.invoke(null, false);
+            } catch (java.lang.Exception e) {
+                // ignore
+            }
+        }
+		
+		
 		studio.interpreter = new Interpreter( studio.console );
 		studio.interpreter.studio = studio;
 		bsh.util.Util.endSplashScreen();
