@@ -1,13 +1,18 @@
 package beast.app.shell;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JPanel;
 
+import org.fife.ui.rsyntaxtextarea.Theme;
+
 import com.xeiam.xchart.BitmapEncoder;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.ChartBuilder;
+import com.xeiam.xchart.StyleManager;
+import com.xeiam.xchart.StyleManager.ChartTheme;
 import com.xeiam.xchart.XChartPanel;
 import com.xeiam.xchart.BitmapEncoder.BitmapFormat;
 
@@ -23,6 +28,7 @@ public class Plot extends BEASTObject {
 	public Input<String> xAxisInput = new Input<String>("xAxis","label of the x-axis", "X");
 	public Input<String> yAxisInput = new Input<String>("yAxis","label of the y-axis", "Y");
 	public Input<String> outputInput = new Input<String>("output","one of gif, png, bmp, jpg. Creates file /tmp/x.<ext>");
+	public Input<Style> styleInput = new Input<Style>("style", "style used for drawin the chart", new Style());
 	
 	static BEASTStudio studio = null;
 	
@@ -33,7 +39,9 @@ public class Plot extends BEASTObject {
 	public void initAndValidate() throws Exception {
 		x = xInput.get();
 		y = yInput.get();
-		Chart chart = new ChartBuilder().xAxisTitle(xAxisInput.get()).yAxisTitle(yAxisInput.get()).width(600).height(400).build();
+		ChartTheme theme = styleInput.get().themeInput.get();
+		Chart chart = new ChartBuilder().xAxisTitle(xAxisInput.get()).yAxisTitle(yAxisInput.get()).width(600).height(400).theme(theme).build();
+		styleInput.get().setStyleOf(chart);
 		
 		chart.getStyleManager().setXAxisMax(getMax(x));
 		chart.getStyleManager().setYAxisMax(getMax(y));
