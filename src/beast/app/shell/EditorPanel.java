@@ -1,22 +1,15 @@
 package beast.app.shell;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -167,65 +160,9 @@ public class EditorPanel extends JPanel {
 		}
 	}
 
-//	void addTab(String title, JComponent tabBody) {
-//		tabbedPane.addTab(title, tabBody);
-//		int index = tabbedPane.indexOfTab(title);
-//		JPanel pnlTab = new JPanel(new GridBagLayout());
-//		pnlTab.setOpaque(false);
-//		JLabel lblTitle = new JLabel(title);
-//		JButton btnClose = new JButton("x");
-//
-//		GridBagConstraints gbc = new GridBagConstraints();
-//		gbc.gridx = 0;
-//		gbc.gridy = 0;
-//		gbc.weightx = 1;
-//
-//		pnlTab.add(lblTitle, gbc);
-//
-//		gbc.gridx++;
-//		gbc.weightx = 0;
-//		pnlTab.add(btnClose, gbc);
-//
-//		tabbedPane.setTabComponentAt(index, pnlTab);
-//
-//		btnClose.addActionListener(new MyCloseActionHandler(tabBody));
-//	}
-//
-//	public class MyCloseActionHandler implements ActionListener {
-//		private JComponent tabComponent;
-//
-//		public MyCloseActionHandler(JComponent tabName) {
-//			this.tabComponent = tabName;
-//		}
-//
-//		public void actionPerformed(ActionEvent evt) {
-//			RSyntaxTextArea textArea = (RSyntaxTextArea) tabComponent;
-//			for (int i = 0; i < tabbedPane.getTabCount(); i++) {
-//				if (tabbedPane.getComponent(i) == tabComponent) {
-//					fileNames.remove(i);
-//					break;
-//				}
-//			}
-//		}
-//	}
-
 	void addTab(String title, final JComponent panel) {
-		tabbedPane.add(panel);
-		JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
-		titlePanel.setOpaque(false);
-		JLabel titleLbl = new JLabel(title);
-		titleLbl.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
-		titlePanel.add(titleLbl);
-		JButton closeButton = new JButton("x");
-
-		closeButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				tabbedPane.remove(panel);
-			}
-		});
-		titlePanel.add(closeButton);
-		
-		tabbedPane.setTabComponentAt(tabbedPane.indexOfComponent(panel), titlePanel);
+		tabbedPane.addTab(title, panel);
+		int i = tabbedPane.indexOfComponent(panel);
+		tabbedPane.setTabComponentAt(i, new ButtonTabComponent(this));
 	}
 }
