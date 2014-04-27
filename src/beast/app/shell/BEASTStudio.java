@@ -23,12 +23,16 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
 
 import beast.app.util.Utils;
+import bsh.BshClassManager;
 import bsh.ClassPathException;
 import bsh.Interpreter;
+import bsh.NameSource;
 import bsh.UtilEvalError;
 import bsh.Variable;
+import bsh.classpath.ClassManagerImpl;
 import bsh.util.ClassBrowser;
 import bsh.util.JConsole;
+import bsh.util.NameCompletionTable;
 
 public class BEASTStudio extends JSplitPane {
 	public final static String ICONPATH = "beastapp/shell/icons/";
@@ -36,6 +40,7 @@ public class BEASTStudio extends JSplitPane {
 	
 	private static final long serialVersionUID = 1L;
 
+	JFrame frame;
 	JSplitPane splitpaneleft;
 	JSplitPane splitpaneright;
 
@@ -58,6 +63,9 @@ public class BEASTStudio extends JSplitPane {
 	private void setup() {
 		splitpaneleft = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 		helpPaneTab = new JTabbedPane();
+		EditorPanel editorPanel = new EditorPanel();
+		helpPaneTab.addTab("Editors", editorPanel);
+		
 		helpPane = new JTextPane();
 		helpPane.setEditable(false);
 		helpPane.setContentType("text/html");
@@ -83,7 +91,7 @@ public class BEASTStudio extends JSplitPane {
 		
 		console = new JConsole(); 
 		splitpaneleft.add(console);
-		
+	
 
 		splitpaneright = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 		variablesPane = new JTextPane();
@@ -153,7 +161,24 @@ public class BEASTStudio extends JSplitPane {
         //}
 	}
 	
-	JFrame frame;
+	private void setNameCompletion() {
+        // Access to read classpath is protected 
+        try {
+	        NameCompletionTable nct = new NameCompletionTable();
+	        nct.add( interpreter.getNameSpace() );
+	        try {
+	        	BshClassManager bcm = interpreter.getNameSpace().getClassManager();
+	            if (bcm != null ) {
+	            	 NameSource classNamesSource = ((ClassManagerImpl) bcm).getClassPath();
+	                 nct.add( classNamesSource );
+	            }
+	        } catch ( ClassPathException e ) {
+	                throw new RuntimeException("classpath exception in name compl:"+e);
+	        }
+	        console.setNameCompletion( nct );
+        // end setup name completion
+        } catch ( SecurityException e ) { }
+	}
 	
 	public static void main(String[] args) {
 		bsh.util.Util.startSplashScreen();
@@ -234,6 +259,7 @@ public class BEASTStudio extends JSplitPane {
 		
 		studio.interpreter = new Interpreter( studio.console );
 		studio.interpreter.studio = studio;
+		studio.setNameCompletion();
 		bsh.util.Util.endSplashScreen();
 		studio.interpreter.run();
 	}

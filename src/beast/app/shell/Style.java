@@ -17,38 +17,43 @@ import beast.core.BEASTObject;
 import beast.core.Description;
 import beast.core.Input;
 
-@Description("Specifies all details of the style of a chart\n" + 
-		"Chart style  (chartType, chartBackgroundColor, chartFontColor, chartPadding), \n"  + 
-		"Chart title  (chartTitleFont, isChartTitleVisible, isChartTitleBoxVisible, chartTitleBoxBackgroundColor, chartTitleBoxBorderColor, chartTitlePadding), \n"  + 
-		"Chart legend  (isLegendVisible, legendBackgroundColor, legendBorderColor, legendFont, legendPadding, legendSeriesLineLength, legendPosition), \n"  + 
-		"Chart axes  (xAxisTitleVisible, yAxisTitleVisible, axisTitleFont, xAxisTicksVisible, yAxisTicksVisible, axisTickLabelsFont, axisTickMarkLength, axisTickPadding, axisTickMarksColor, axisTickMarksStroke, axisTickLabelsColor, isAxisTicksLineVisible, isAxisTicksMarksVisible, plotPadding, axisTitlePadding, xAxisTickMarkSpacingHint, yAxisTickMarkSpacingHint, isXAxisLogarithmic, isYAxisLogarithmic, xAxisMin, xAxisMax, yAxisMin, yAxisMax, axisTickSpaceRatio), \n"  + 
+@Description("Specifies all details of the style of a chart<br>\n" + 
+		"Chart style  (chartType, chartBackgroundColor, chartFontColor, chartPadding), <br>\n"  + 
+		"Chart title  (chartTitleFont, isChartTitleVisible, isChartTitleBoxVisible, chartTitleBoxBackgroundColor, chartTitleBoxBorderColor, chartTitlePadding), <br>\n"  + 
+		"Chart legend  (isLegendVisible, legendBackgroundColor, legendBorderColor, legendFont, legendPadding, legendSeriesLineLength, legendPosition), <br>\n"  + 
+		"Chart axes  (xAxisTitleVisible, yAxisTitleVisible, axisTitleFont, xAxisTicksVisible, yAxisTicksVisible, axisTickLabelsFont, axisTickMarkLength, axisTickPadding, axisTickMarksColor, axisTickMarksStroke, axisTickLabelsColor, isAxisTicksLineVisible, isAxisTicksMarksVisible, plotPadding, axisTitlePadding, xAxisTickMarkSpacingHint, yAxisTickMarkSpacingHint, isXAxisLogarithmic, isYAxisLogarithmic, xAxisMin, xAxisMax, yAxisMin, yAxisMax, axisTickSpaceRatio), <br>\n"  + 
 		"Chart plot area  (isPlotGridLinesVisible, plotBackgroundColor, plotBorderColor, isPlotBorderVisible, isPlotTicksMarksVisible, plotGridLinesColor, plotGridLinesStroke), \n"  + 
-		"Bar charts  (barWidthPercentage, isBarsOverlapped), \n"  + 
-		"Line, scatter, area charts  (markerSize), \n"  + 
-		"Error bars  (errorBarsColor), and \n"  + 
-		"Formatting  (datePattern, locale, timezone, normalDecimalPattern, scientificDecimalPattern)"  
+		"Bar charts  (barWidthPercentage, isBarsOverlapped), <br>\n"  + 
+		"Line, scatter, area charts  (markerSize), <br>\n"  + 
+		"Error bars  (errorBarsColor), and <br>\n"  + 
+		"Formatting  (datePattern, locale, timezone, normalDecimalPattern, scientificDecimalPattern)<br>"  
 )
 public class Style extends BEASTObject {
 	public Input<ChartTheme> themeInput = new Input<ChartTheme>("theme", "default theme for drawing a chart, one of " + 
 			Arrays.toString(ChartTheme.values()), ChartTheme.XChart, ChartTheme.values());
 	
-	public Input<ChartType> chartTypeInput = new Input<ChartType>("chartType", "Chart style : chart type");
+	public Input<ChartType> chartTypeInput = new Input<ChartType>("chartType", "Chart style : chart type, one of " + 
+			Arrays.toString(ChartType.values()) + " (default Line)", ChartType.Line, ChartType.values());
 	public Input<Color> chartBackgroundColorInput = new Input<Color>("chartBackgroundColor", "Chart style : chart background color");
 	public Input<Color> chartFontColorInput = new Input<Color>("chartFontColor", "Chart style : chart font color");
 	public Input<Integer> chartPaddingInput = new Input<Integer>("chartPadding", "Chart style : chart padding");
+
 	public Input<Font> chartTitleFontInput = new Input<Font>("chartTitleFont", "Chart title : chart title font");
 	public Input<Boolean> isChartTitleVisibleInput = new Input<Boolean>("isChartTitleVisible", "Chart title : is chart title visible");
 	public Input<Boolean> isChartTitleBoxVisibleInput = new Input<Boolean>("isChartTitleBoxVisible", "Chart title : is chart title box visible");
 	public Input<Color> chartTitleBoxBackgroundColorInput = new Input<Color>("chartTitleBoxBackgroundColor", "Chart title : chart title box background color");
 	public Input<Color> chartTitleBoxBorderColorInput = new Input<Color>("chartTitleBoxBorderColor", "Chart title : chart title box border color");
 	public Input<Integer> chartTitlePaddingInput = new Input<Integer>("chartTitlePadding", "Chart title : chart title padding");
+	
 	public Input<Boolean> isLegendVisibleInput = new Input<Boolean>("isLegendVisible", "Chart legend : is legend visible");
 	public Input<Color> legendBackgroundColorInput = new Input<Color>("legendBackgroundColor", "Chart legend : legend background color");
 	public Input<Color> legendBorderColorInput = new Input<Color>("legendBorderColor", "Chart legend : legend border color");
 	public Input<Font> legendFontInput = new Input<Font>("legendFont", "Chart legend : legend font");
 	public Input<Integer> legendPaddingInput = new Input<Integer>("legendPadding", "Chart legend : legend padding");
 	public Input<Integer> legendSeriesLineLengthInput = new Input<Integer>("legendSeriesLineLength", "Chart legend : legend series line length");
-	public Input<LegendPosition> legendPositionInput = new Input<LegendPosition>("legendPosition", "Chart legend : legend position");
+	public Input<LegendPosition> legendPositionInput = new Input<LegendPosition>("legendPosition", "Chart legend : legend position, one of " + 
+			Arrays.toString(LegendPosition.values()) + " (default OutsideE)", LegendPosition.OutsideE, LegendPosition.values());
+
 	public Input<Boolean> xAxisTitleVisibleInput = new Input<Boolean>("xAxisTitleVisible", "Chart axes : x axis title visible");
 	public Input<Boolean> yAxisTitleVisibleInput = new Input<Boolean>("yAxisTitleVisible", "Chart axes : y axis title visible");
 	public Input<Font> axisTitleFontInput = new Input<Font>("axisTitleFont", "Chart axes : axis title font");
@@ -73,6 +78,7 @@ public class Style extends BEASTObject {
 	public Input<Double> yAxisMinInput = new Input<Double>("yAxisMin", "Chart axes : y axis min");
 	public Input<Double> yAxisMaxInput = new Input<Double>("yAxisMax", "Chart axes : y axis max");
 	public Input<Double> axisTickSpaceRatioInput = new Input<Double>("axisTickSpaceRatio", "Chart axes : axis tick space ratio");
+
 	public Input<Boolean> isPlotGridLinesVisibleInput = new Input<Boolean>("isPlotGridLinesVisible", "Chart plot area : is plot grid lines visible");
 	public Input<Color> plotBackgroundColorInput = new Input<Color>("plotBackgroundColor", "Chart plot area : plot background color");
 	public Input<Color> plotBorderColorInput = new Input<Color>("plotBorderColor", "Chart plot area : plot border color");
@@ -80,10 +86,14 @@ public class Style extends BEASTObject {
 	public Input<Boolean> isPlotTicksMarksVisibleInput = new Input<Boolean>("isPlotTicksMarksVisible", "Chart plot area : is plot ticks marks visible");
 	public Input<Color> plotGridLinesColorInput = new Input<Color>("plotGridLinesColor", "Chart plot area : plot grid lines color");
 	public Input<Stroke> plotGridLinesStrokeInput = new Input<Stroke>("plotGridLinesStroke", "Chart plot area : plot grid lines stroke");
+	
 	public Input<Double> barWidthPercentageInput = new Input<Double>("barWidthPercentage", "Bar charts : bar width percentage");
 	public Input<Boolean> isBarsOverlappedInput = new Input<Boolean>("isBarsOverlapped", "Bar charts : is bars overlapped");
+	
 	public Input<Integer> markerSizeInput = new Input<Integer>("markerSize", "Line, scatter, area charts : marker size");
+	
 	public Input<Color> errorBarsColorInput = new Input<Color>("errorBarsColor", "Error bars : error bars color");
+
 	public Input<String> datePatternInput = new Input<String>("datePattern", "Formatting : date pattern");
 	public Input<Locale> localeInput = new Input<Locale>("locale", "Formatting : locale");
 	public Input<TimeZone> timezoneInput = new Input<TimeZone>("timezone", "Formatting : timezone");

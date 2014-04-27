@@ -47,6 +47,7 @@ public class Plot extends BEASTObject {
 		chart.getStyleManager().setYAxisMax(getMax(y));
 		chart.getStyleManager().setXAxisMin(getMin(x));
 		chart.getStyleManager().setYAxisMin(getMin(y));
+		
 		chart.addSeries(seriesNameInput.get(), x, y);
 	    JPanel chartPanel = new XChartPanel(chart);
 	    if (studio != null) {
