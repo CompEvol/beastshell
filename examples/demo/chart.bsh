@@ -43,5 +43,24 @@ style = new Style(yAxisMin=0.8, yAxisMax=1000, isYAxisLogarithmic=true, errorBar
 new Plot(series= series,  style=style);
 pause();
 
+// ErrorBarTest
 
+xData = c( 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 );
+yData1 = c( 100, 100, 100, 50, 50, 50, 50 );
+errdata = c( 50, 20, 10, 50, 40, 20, 10 );
+
+yData2 = c( 50, 80, 90, 0, 10, 30, 40 );
+yData3 = c( 150, 120, 110, 100, 90, 70, 60 );
+
+
+series1 = new Series(x=xData, y=yData1, error=errdata, seriesName="Error bar test data", lc=Color.blue, linestyle="solid", mc=Color.green, m="DIAMOND");
+series2 = new Series(x=xData, y=yData2, seriesName="Y+error", lc=Color.blue, linestyle="dash_dash", mc=Color.red, m="NONE");
+series3 = new Series(x=xData, y=yData3, seriesName="Y-error", lc=Color.blue, linestyle="dash_dash", mc=Color.red, m="NONE");
+style = new Style(yAxisMin=0, yAxisMax=150, errorBarsColor=Color.black);
+
+plot = new Plot(series= series1,  style=style);
+plot.add(series2);
+plot.add(series3);
+
+pause();
 

@@ -93,7 +93,10 @@ public class Plot extends BEASTObject {
 		    JPanel chartPanel = new XChartPanel(chart);
 		    if (studio != null) {
 		    	studio.plotPane.addChart(chart);
-		    	studio.plotPane.repaint();
+		    }
+	    } else {
+		    if (studio != null) {
+		    	studio.plotPane.update();
 		    }
 	    }
 	    if (outputInput.get() != null) {
