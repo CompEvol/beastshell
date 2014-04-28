@@ -49,7 +49,7 @@ public class BEASTStudio extends JSplitPane {
 	JTextPane variablesPane;
 	HistoryPanel historyPane;
 	
-	JPanel plotPane;
+	ChartPanel plotPane;
 	JConsole console;
 	JTextPane helpPane;
 	ClassBrowser classBrowser;
@@ -106,7 +106,7 @@ public class BEASTStudio extends JSplitPane {
 		JScrollPane historyScrollPane = new JScrollPane(rightUpperPaneTab); 
 		splitpaneright.add(historyScrollPane);
 		
-		plotPane = new JPanel();
+		plotPane = new ChartPanel();
 		JScrollPane plotScrollPane = new JScrollPane(plotPane); 
 		splitpaneright.add(plotScrollPane);
 		
