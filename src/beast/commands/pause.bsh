@@ -1,0 +1,8 @@
+
+pause() {
+    print("Press enter to continue");
+    this.interpreter.in.read();
+
+//    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//    br.readLine();
+}

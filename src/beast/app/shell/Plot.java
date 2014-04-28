@@ -1,17 +1,13 @@
 package beast.app.shell;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 
 import javax.swing.JPanel;
 
-import org.fife.ui.rsyntaxtextarea.Theme;
-
 import com.xeiam.xchart.BitmapEncoder;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.ChartBuilder;
-import com.xeiam.xchart.StyleManager;
 import com.xeiam.xchart.StyleManager.ChartTheme;
 import com.xeiam.xchart.XChartPanel;
 import com.xeiam.xchart.BitmapEncoder.BitmapFormat;
@@ -19,28 +15,27 @@ import com.xeiam.xchart.BitmapEncoder.BitmapFormat;
 import beast.core.BEASTObject;
 import beast.core.Description;
 import beast.core.Input;
+import beast.core.Input.Validate;
 
 @Description("Creates a chart of data")
 public class Plot extends BEASTObject {
-	public Input<List<Double>> xInput = new Input<List<Double>>("x","x-axis of data, if y is specified", new ArrayList<Double>());
-	public Input<List<Double>> yInput = new Input<List<Double>>("y","y-axis of data, if specified", new ArrayList<Double>());
-	public Input<String> seriesNameInput = new Input<String>("seriesName","name of the series", "series 1");
-	public Input<String> xAxisInput = new Input<String>("xAxis","label of the x-axis", "X");
-	public Input<String> yAxisInput = new Input<String>("yAxis","label of the y-axis", "Y");
-	public Input<String> outputInput = new Input<String>("output","one of gif, png, bmp, jpg. Creates file /tmp/x.<ext>");
+	public Input<Series> seriesInput = new Input<Series>("series", "series to be be plotted initialy", Validate.REQUIRED);
 	public Input<Style> styleInput = new Input<Style>("style", "style used for drawin the chart", new Style());
+	public Input<String> outputInput = new Input<String>("output","one of gif, png, bmp, jpg. Creates file /tmp/x.<ext>");
 	
 	static BEASTStudio studio = null;
 	
 	List<Double> x;
 	List<Double> y;
+	Chart chart;
 	
 	@Override
 	public void initAndValidate() throws Exception {
-		x = xInput.get();
-		y = yInput.get();
+		Series series = seriesInput.get();
+		x = series.xInput.get();
+		y = series.yInput.get();
 		ChartTheme theme = styleInput.get().themeInput.get();
-		Chart chart = new ChartBuilder().xAxisTitle(xAxisInput.get()).yAxisTitle(yAxisInput.get()).width(600).height(400).theme(theme).build();
+		chart = new ChartBuilder().xAxisTitle(series.xAxisInput.get()).yAxisTitle(series.yAxisInput.get()).width(600).height(400).theme(theme).build();
 		styleInput.get().setStyleOf(chart);
 		
 		chart.getStyleManager().setXAxisMax(getMax(x));
@@ -48,7 +43,13 @@ public class Plot extends BEASTObject {
 		chart.getStyleManager().setXAxisMin(getMin(x));
 		chart.getStyleManager().setYAxisMin(getMin(y));
 		
-		chart.addSeries(seriesNameInput.get(), x, y);
+		com.xeiam.xchart.Series series1 = chart.addSeries(series.seriesNameInput.get(), x, y);
+		series1.setLineColor(series.getLineColor());
+	    series1.setLineStyle(series.getlineStyle());
+	    series1.setMarkerColor(series.getMarkerColor());
+	    series1.setMarker(series.getMarker());
+
+		
 	    JPanel chartPanel = new XChartPanel(chart);
 	    if (studio != null) {
 	    	studio.plotPane.removeAll();
@@ -86,6 +87,14 @@ public class Plot extends BEASTObject {
 			min = Math.min(min, x);
 		}
 		return min;
+	}
+	
+	public void add(Series series) {
+		com.xeiam.xchart.Series series1 = chart.addSeries(series.seriesNameInput.get(), series.xInput.get(), series.yInput.get());		
+		series1.setLineColor(series.getLineColor());
+	    series1.setLineStyle(series.getlineStyle());
+	    series1.setMarkerColor(series.getMarkerColor());
+	    series1.setMarker(series.getMarker());
 	}
 
 }

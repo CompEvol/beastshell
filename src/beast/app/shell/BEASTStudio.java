@@ -162,6 +162,10 @@ public class BEASTStudio extends JSplitPane {
 	}
 	
 	private void setNameCompletion() {
+		if (true) {
+			// TODO: enable auto completion
+			return;
+		}
         // Access to read classpath is protected 
         try {
 	        NameCompletionTable nct = new NameCompletionTable();

@@ -1,0 +1,34 @@
+// Linechar 01
+import com.xeiam.xchart.*;
+import beast.app.shell.*;
+import java.awt.*;
+
+xData = new ArrayList<Integer>();
+yData = new ArrayList<Double>();
+for (i = -3; i <= 3; i++) {      
+    xData.add(i);
+    yData.add(Math.pow(10, i));
+}
+ser0 = new Series(x=xData, y=yData, seriesName="10^x");
+style = style=new Style(isChartTitleVisible=false, legendPosition="InsideNW", isYAxisLogarithmic=true);
+new Plot(series= ser0,  style=style);
+pause();
+
+// Linechar 02
+
+ // generates sine data
+int size = 30;
+xData = new ArrayList<Integer>();
+yData = new ArrayList<Double>();
+for (int i = 0; i <= size; i++) {
+  double radians = (Math.PI / (size / 2) * i);
+  xData.add(i - size / 2);
+  yData.add(size * Math.sin(radians));
+}
+
+
+series = new Series(x=xData, y=yData, seriesName="y=sin(x)", lc=Color.blue, linestyle="dash_dash", mc=Color.green, m="SQUARE");
+
+new Plot(series=serise, style=new Style(isChartTitleVisible=false, isLegendVisible=false));
+pause();
+

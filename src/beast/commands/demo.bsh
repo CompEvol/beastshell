@@ -1,0 +1,31 @@
+
+demo(String file) {
+    fileBsh = file + ".bsh";
+    if (!(new File(file)).exists() && !(new File(fileBsh)).exists()) {
+        file = "examples/demo/".file;
+        fileBsh = "examples/demo/".fileBsh;
+        if (!(new File(file)).exists() && !(new File(fileBsh)).exists()) {
+            file = AddOnManager.getAddOnUserDir() +"/" + file;
+            fileBsh = AddOnManager.getAddOnUserDir() +"/" + fileBsh;
+        }
+    }
+    if (!(new File(file)).exists()) {
+        file = fileBsh;
+    }
+
+	BufferedReader fin = new BufferedReader(new FileReader(file));
+	StringBuffer buf = new StringBuffer();
+	String str = null;
+	while (fin.ready()) {
+		str = fin.readLine();
+        if (str.matches("pause();")) {
+            eval(buf.toString();
+            pause();
+            buf = new StringBuffer();
+        } else {
+		    buf.append(str);
+		    buf.append('\n');
+        }
+	}
+	fin.close();
+}

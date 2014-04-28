@@ -36,8 +36,11 @@ package bsh;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
 import beast.core.BEASTObject;
+import beast.core.Input;
 
 /**
 	New object, new array, or inner class style allocation with body.
@@ -109,8 +112,52 @@ class BSHAllocationExpression extends SimpleNode
 		        // values.length == names.length;
 		        
 				Object[] args2 = new Object[names.length * 2];
+				BEASTObject bo = (BEASTObject) Class.forName(type.getName()).newInstance();
 		        for (int i = 0; i < names.length; i++) {
 		        	args2[i*2] = names[i];
+		        	if (args[i].getClass().isArray()) {
+		        		// convert to list
+		        		List list = new ArrayList();
+		        		for (Object o : (Object []) args[i]) {
+		        			list.add(o);
+		        		}
+		        		args[i] = list;
+		        	}
+	        		// attempt to convert to correct type
+	        		Input<?> input = bo.getInput(names[i].toString());
+	        		Class inputType = input.getType();
+	        		if (inputType == null) {
+	        			input.determineClass(bo);
+	        			inputType = input.getType();
+	        		}
+	        		if (args[i] instanceof List) {
+	        			List list = (List) args[i];
+	        			if (list.size() > 0) {
+	        				Object v = list.get(0);
+		        			if (inputType == Integer.class && v instanceof Double) {
+		        				List list2 = new ArrayList();
+		        				for (Object o : list) {
+		        					list2.add((int) (double) ((Double) o));
+		        				}
+		        				args[i] = list2;
+		        			} else if (inputType == Double.class && (v instanceof Integer)) {
+		        				List list2 = new ArrayList();
+		        				for (Object o : list) {
+		        					list2.add(new Double((int) (Integer) o));
+		        				}
+		        				args[i] = list2;
+		        			}
+	        				
+	        			}
+	        		} else {
+	        			if (inputType == Integer.class && args[i] instanceof Double) {
+	        				args[i] = (int) (double) ((Double) args[i]);
+	        			} else if (inputType == Double.class && (args[i] instanceof Integer)) {
+	        				args[i] = new Double((int) (Integer) args[i]);
+	        			}
+	        		}
+	        		// end type conversion
+
 		        	args2[i*2+1] = args[i];
 		        }
 		        

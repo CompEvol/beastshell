@@ -34,6 +34,7 @@ public class Style extends BEASTObject {
 	
 	public Input<ChartType> chartTypeInput = new Input<ChartType>("chartType", "Chart style : chart type, one of " + 
 			Arrays.toString(ChartType.values()) + " (default Line)", ChartType.Line, ChartType.values());
+	
 	public Input<Color> chartBackgroundColorInput = new Input<Color>("chartBackgroundColor", "Chart style : chart background color");
 	public Input<Color> chartFontColorInput = new Input<Color>("chartFontColor", "Chart style : chart font color");
 	public Input<Integer> chartPaddingInput = new Input<Integer>("chartPadding", "Chart style : chart padding");
@@ -99,6 +100,64 @@ public class Style extends BEASTObject {
 	public Input<TimeZone> timezoneInput = new Input<TimeZone>("timezone", "Formatting : timezone");
 	public Input<String> normalDecimalPatternInput = new Input<String>("normalDecimalPattern", "Formatting : normal decimal pattern");
 	public Input<String> scientificDecimalPatternInput = new Input<String>("scientificDecimalPattern", "Formatting : scientific decimal pattern");
+
+	// shorter named synonymous inputs
+	public Input<Color> chartBackgroundColorInput2 = new Input<Color>("cbc", "Chart style : chart background color -- synonym with chartBackgroundColor");
+	public Input<Color> chartFontColorInput2 = new Input<Color>("cfc", "Chart style : chart font color -- synonym with chartFontColor");
+	public Input<Integer> chartPaddingInput2 = new Input<Integer>("cp", "Chart style : chart padding -- synonym with chartPadding");
+	public Input<Font> chartTitleFontInput2 = new Input<Font>("ctf", "Chart title : chart title font -- synonym with chartTitleFont");
+	public Input<Boolean> isChartTitleVisibleInput2 = new Input<Boolean>("ictv", "Chart title : is chart title visible -- synonym with isChartTitleVisible");
+	public Input<Boolean> isChartTitleBoxVisibleInput2 = new Input<Boolean>("ictbv", "Chart title : is chart title box visible -- synonym with isChartTitleBoxVisible");
+	public Input<Color> chartTitleBoxBackgroundColorInput2 = new Input<Color>("ctbbc", "Chart title : chart title box background color -- synonym with chartTitleBoxBackgroundColor");
+	public Input<Color> chartTitleBoxBorderColorInput2 = new Input<Color>("ctbbco", "Chart title : chart title box border color -- synonym with chartTitleBoxBorderColor");
+	public Input<Integer> chartTitlePaddingInput2 = new Input<Integer>("ctp", "Chart title : chart title padding -- synonym with chartTitlePadding");
+	public Input<Boolean> isLegendVisibleInput2 = new Input<Boolean>("ilv", "Chart legend : is legend visible -- synonym with isLegendVisible");
+	public Input<Color> legendBackgroundColorInput2 = new Input<Color>("lbc", "Chart legend : legend background color -- synonym with legendBackgroundColor");
+	public Input<Color> legendBorderColorInput2 = new Input<Color>("lbco", "Chart legend : legend border color -- synonym with legendBorderColor");
+	public Input<Font> legendFontInput2 = new Input<Font>("lf", "Chart legend : legend font -- synonym with legendFont");
+	public Input<Integer> legendPaddingInput2 = new Input<Integer>("lp", "Chart legend : legend padding -- synonym with legendPadding");
+	public Input<Integer> legendSeriesLineLengthInput2 = new Input<Integer>("lsll", "Chart legend : legend series line length -- synonym with legendSeriesLineLength");
+	//public Input<LegendPosition> legendPositionInput2 = new Input<LegendPosition>("lpo", "Chart legend : legend position -- synonym with legendPosition");
+	public Input<Boolean> xAxisTitleVisibleInput2 = new Input<Boolean>("xatv", "Chart axes : x axis title visible -- synonym with xAxisTitleVisible");
+	public Input<Boolean> yAxisTitleVisibleInput2 = new Input<Boolean>("yatv", "Chart axes : y axis title visible -- synonym with yAxisTitleVisible");
+	public Input<Font> axisTitleFontInput2 = new Input<Font>("atf", "Chart axes : axis title font -- synonym with axisTitleFont");
+	public Input<Boolean> xAxisTicksVisibleInput2 = new Input<Boolean>("xatvi", "Chart axes : x axis ticks visible -- synonym with xAxisTicksVisible");
+	public Input<Boolean> yAxisTicksVisibleInput2 = new Input<Boolean>("yatvi", "Chart axes : y axis ticks visible -- synonym with yAxisTicksVisible");
+	public Input<Font> axisTickLabelsFontInput2 = new Input<Font>("atlf", "Chart axes : axis tick labels font -- synonym with axisTickLabelsFont");
+	public Input<Integer> axisTickMarkLengthInput2 = new Input<Integer>("atml", "Chart axes : axis tick mark length -- synonym with axisTickMarkLength");
+	public Input<Integer> axisTickPaddingInput2 = new Input<Integer>("atp", "Chart axes : axis tick padding -- synonym with axisTickPadding");
+	public Input<Color> axisTickMarksColorInput2 = new Input<Color>("atmc", "Chart axes : axis tick marks color -- synonym with axisTickMarksColor");
+	public Input<Stroke> axisTickMarksStrokeInput2 = new Input<Stroke>("atms", "Chart axes : axis tick marks stroke -- synonym with axisTickMarksStroke");
+	public Input<Color> axisTickLabelsColorInput2 = new Input<Color>("atlc", "Chart axes : axis tick labels color -- synonym with axisTickLabelsColor");
+	public Input<Boolean> isAxisTicksLineVisibleInput2 = new Input<Boolean>("iatlv", "Chart axes : is axis ticks line visible -- synonym with isAxisTicksLineVisible");
+	public Input<Boolean> isAxisTicksMarksVisibleInput2 = new Input<Boolean>("iatmv", "Chart axes : is axis ticks marks visible -- synonym with isAxisTicksMarksVisible");
+	public Input<Integer> plotPaddingInput2 = new Input<Integer>("pp", "Chart axes : plot padding -- synonym with plotPadding");
+	public Input<Integer> axisTitlePaddingInput2 = new Input<Integer>("atpa", "Chart axes : axis title padding -- synonym with axisTitlePadding");
+	public Input<Integer> xAxisTickMarkSpacingHintInput2 = new Input<Integer>("xatmsh", "Chart axes : x axis tick mark spacing hint -- synonym with xAxisTickMarkSpacingHint");
+	public Input<Integer> yAxisTickMarkSpacingHintInput2 = new Input<Integer>("yatmsh", "Chart axes : y axis tick mark spacing hint -- synonym with yAxisTickMarkSpacingHint");
+	public Input<Boolean> isXAxisLogarithmicInput2 = new Input<Boolean>("ixal", "Chart axes : is x axis logarithmic -- synonym with isXAxisLogarithmic");
+	public Input<Boolean> isYAxisLogarithmicInput2 = new Input<Boolean>("iyal", "Chart axes : is y axis logarithmic -- synonym with isYAxisLogarithmic");
+	public Input<Double> xAxisMinInput2 = new Input<Double>("xam", "Chart axes : x axis min -- synonym with xAxisMin");
+	public Input<Double> xAxisMaxInput2 = new Input<Double>("xama", "Chart axes : x axis max -- synonym with xAxisMax");
+	public Input<Double> yAxisMinInput2 = new Input<Double>("yam", "Chart axes : y axis min -- synonym with yAxisMin");
+	public Input<Double> yAxisMaxInput2 = new Input<Double>("yama", "Chart axes : y axis max -- synonym with yAxisMax");
+	public Input<Double> axisTickSpaceRatioInput2 = new Input<Double>("atsr", "Chart axes : axis tick space ratio -- synonym with axisTickSpaceRatio");
+	public Input<Boolean> isPlotGridLinesVisibleInput2 = new Input<Boolean>("ipglv", "Chart plot area : is plot grid lines visible -- synonym with isPlotGridLinesVisible");
+	public Input<Color> plotBackgroundColorInput2 = new Input<Color>("pbc", "Chart plot area : plot background color -- synonym with plotBackgroundColor");
+	public Input<Color> plotBorderColorInput2 = new Input<Color>("pbco", "Chart plot area : plot border color -- synonym with plotBorderColor");
+	public Input<Boolean> isPlotBorderVisibleInput2 = new Input<Boolean>("ipbv", "Chart plot area : is plot border visible -- synonym with isPlotBorderVisible");
+	public Input<Boolean> isPlotTicksMarksVisibleInput2 = new Input<Boolean>("iptmv", "Chart plot area : is plot ticks marks visible -- synonym with isPlotTicksMarksVisible");
+	public Input<Color> plotGridLinesColorInput2 = new Input<Color>("pglc", "Chart plot area : plot grid lines color -- synonym with plotGridLinesColor");
+	public Input<Stroke> plotGridLinesStrokeInput2 = new Input<Stroke>("pgls", "Chart plot area : plot grid lines stroke -- synonym with plotGridLinesStroke");
+	public Input<Double> barWidthPercentageInput2 = new Input<Double>("bwp", "Bar charts : bar width percentage -- synonym with barWidthPercentage");
+	public Input<Boolean> isBarsOverlappedInput2 = new Input<Boolean>("ibo", "Bar charts : is bars overlapped -- synonym with isBarsOverlapped");
+	public Input<Integer> markerSizeInput2 = new Input<Integer>("ms", "Line, scatter, area charts : marker size -- synonym with markerSize");
+	public Input<Color> errorBarsColorInput2 = new Input<Color>("ebc", "Error bars : error bars color -- synonym with errorBarsColor");
+	public Input<String> datePatternInput2 = new Input<String>("dp", "Formatting : date pattern -- synonym with datePattern");
+	public Input<Locale> localeInput2 = new Input<Locale>("l", "Formatting : locale -- synonym with locale");
+	public Input<TimeZone> timezoneInput2 = new Input<TimeZone>("t", "Formatting : timezone -- synonym with timezone");
+	public Input<String> normalDecimalPatternInput2 = new Input<String>("ndp", "Formatting : normal decimal pattern -- synonym with normalDecimalPattern");
+	public Input<String> scientificDecimalPatternInput2 = new Input<String>("sdp", "Formatting : scientific decimal pattern -- synonym with scientificDecimalPattern");
 
 	public void initAndValidate() throws Exception {};
 		
@@ -274,6 +333,176 @@ public class Style extends BEASTObject {
 		}
 		if (scientificDecimalPatternInput.get() != null) {
 		    style.setScientificDecimalPattern(scientificDecimalPatternInput.get());
-		}		
+		}
+		
+		if (chartBackgroundColorInput2.get() != null) {
+		    style.setChartBackgroundColor(chartBackgroundColorInput2.get());
+		}
+		if (chartFontColorInput2.get() != null) {
+		    style.setChartFontColor(chartFontColorInput2.get());
+		}
+		if (chartPaddingInput2.get() != null) {
+		    style.setChartPadding(chartPaddingInput2.get());
+		}
+		if (chartTitleFontInput2.get() != null) {
+		    style.setChartTitleFont(chartTitleFontInput2.get());
+		}
+		if (isChartTitleVisibleInput2.get() != null) {
+		    style.setChartTitleVisible(isChartTitleVisibleInput2.get());
+		}
+		if (isChartTitleBoxVisibleInput2.get() != null) {
+		    style.setChartTitleBoxVisible(isChartTitleBoxVisibleInput2.get());
+		}
+		if (chartTitleBoxBackgroundColorInput2.get() != null) {
+		    style.setChartTitleBoxBackgroundColor(chartTitleBoxBackgroundColorInput2.get());
+		}
+		if (chartTitleBoxBorderColorInput2.get() != null) {
+		    style.setChartTitleBoxBorderColor(chartTitleBoxBorderColorInput2.get());
+		}
+		if (chartTitlePaddingInput2.get() != null) {
+		    style.setChartTitlePadding(chartTitlePaddingInput2.get());
+		}
+		if (isLegendVisibleInput2.get() != null) {
+		    style.setLegendVisible(isLegendVisibleInput2.get());
+		}
+		if (legendBackgroundColorInput2.get() != null) {
+		    style.setLegendBackgroundColor(legendBackgroundColorInput2.get());
+		}
+		if (legendBorderColorInput2.get() != null) {
+		    style.setLegendBorderColor(legendBorderColorInput2.get());
+		}
+		if (legendFontInput2.get() != null) {
+		    style.setLegendFont(legendFontInput2.get());
+		}
+		if (legendPaddingInput2.get() != null) {
+		    style.setLegendPadding(legendPaddingInput2.get());
+		}
+		if (legendSeriesLineLengthInput2.get() != null) {
+		    style.setLegendSeriesLineLength(legendSeriesLineLengthInput2.get());
+		}
+//		if (legendPositionInput2.get() != null) {
+//		    style.setLegendPosition(legendPositionInput2.get());
+//		}
+		if (xAxisTitleVisibleInput2.get() != null) {
+		    style.setXAxisTitleVisible(xAxisTitleVisibleInput2.get());
+		}
+		if (yAxisTitleVisibleInput2.get() != null) {
+		    style.setYAxisTitleVisible(yAxisTitleVisibleInput2.get());
+		}
+		if (axisTitleFontInput2.get() != null) {
+		    style.setAxisTitleFont(axisTitleFontInput2.get());
+		}
+		if (xAxisTicksVisibleInput2.get() != null) {
+		    style.setXAxisTicksVisible(xAxisTicksVisibleInput2.get());
+		}
+		if (yAxisTicksVisibleInput2.get() != null) {
+		    style.setYAxisTicksVisible(yAxisTicksVisibleInput2.get());
+		}
+		if (axisTickLabelsFontInput2.get() != null) {
+		    style.setAxisTickLabelsFont(axisTickLabelsFontInput2.get());
+		}
+		if (axisTickMarkLengthInput2.get() != null) {
+		    style.setAxisTickMarkLength(axisTickMarkLengthInput2.get());
+		}
+		if (axisTickPaddingInput2.get() != null) {
+		    style.setAxisTickPadding(axisTickPaddingInput2.get());
+		}
+		if (axisTickMarksColorInput2.get() != null) {
+		    style.setAxisTickMarksColor(axisTickMarksColorInput2.get());
+		}
+		if (axisTickMarksStrokeInput2.get() != null) {
+		    style.setAxisTickMarksStroke(axisTickMarksStrokeInput2.get());
+		}
+		if (axisTickLabelsColorInput2.get() != null) {
+		    style.setAxisTickLabelsColor(axisTickLabelsColorInput2.get());
+		}
+		if (isAxisTicksLineVisibleInput2.get() != null) {
+		    style.setAxisTicksLineVisible(isAxisTicksLineVisibleInput2.get());
+		}
+		if (isAxisTicksMarksVisibleInput2.get() != null) {
+		    style.setAxisTicksMarksVisible(isAxisTicksMarksVisibleInput2.get());
+		}
+		if (plotPaddingInput2.get() != null) {
+		    style.setPlotPadding(plotPaddingInput2.get());
+		}
+		if (axisTitlePaddingInput2.get() != null) {
+		    style.setAxisTitlePadding(axisTitlePaddingInput2.get());
+		}
+		if (xAxisTickMarkSpacingHintInput2.get() != null) {
+		    style.setXAxisTickMarkSpacingHint(xAxisTickMarkSpacingHintInput2.get());
+		}
+		if (yAxisTickMarkSpacingHintInput2.get() != null) {
+		    style.setYAxisTickMarkSpacingHint(yAxisTickMarkSpacingHintInput2.get());
+		}
+		if (isXAxisLogarithmicInput2.get() != null) {
+		    style.setXAxisLogarithmic(isXAxisLogarithmicInput2.get());
+		}
+		if (isYAxisLogarithmicInput2.get() != null) {
+		    style.setYAxisLogarithmic(isYAxisLogarithmicInput2.get());
+		}
+		if (xAxisMinInput2.get() != null) {
+		    style.setXAxisMin(xAxisMinInput2.get());
+		}
+		if (xAxisMaxInput2.get() != null) {
+		    style.setXAxisMax(xAxisMaxInput2.get());
+		}
+		if (yAxisMinInput2.get() != null) {
+		    style.setYAxisMin(yAxisMinInput2.get());
+		}
+		if (yAxisMaxInput2.get() != null) {
+		    style.setYAxisMax(yAxisMaxInput2.get());
+		}
+		if (axisTickSpaceRatioInput2.get() != null) {
+		    style.setAxisTickSpaceRatio(axisTickSpaceRatioInput2.get());
+		}
+		if (isPlotGridLinesVisibleInput2.get() != null) {
+		    style.setPlotGridLinesVisible(isPlotGridLinesVisibleInput2.get());
+		}
+		if (plotBackgroundColorInput2.get() != null) {
+		    style.setPlotBackgroundColor(plotBackgroundColorInput2.get());
+		}
+		if (plotBorderColorInput2.get() != null) {
+		    style.setPlotBorderColor(plotBorderColorInput2.get());
+		}
+		if (isPlotBorderVisibleInput2.get() != null) {
+		    style.setPlotBorderVisible(isPlotBorderVisibleInput2.get());
+		}
+		if (isPlotTicksMarksVisibleInput2.get() != null) {
+		    style.setPlotTicksMarksVisible(isPlotTicksMarksVisibleInput2.get());
+		}
+		if (plotGridLinesColorInput2.get() != null) {
+		    style.setPlotGridLinesColor(plotGridLinesColorInput2.get());
+		}
+		if (plotGridLinesStrokeInput2.get() != null) {
+		    style.setPlotGridLinesStroke(plotGridLinesStrokeInput2.get());
+		}
+		if (barWidthPercentageInput2.get() != null) {
+		    style.setBarWidthPercentage(barWidthPercentageInput2.get());
+		}
+		if (isBarsOverlappedInput2.get() != null) {
+		    style.setBarsOverlapped(isBarsOverlappedInput2.get());
+		}
+		if (markerSizeInput2.get() != null) {
+		    style.setMarkerSize(markerSizeInput2.get());
+		}
+		if (errorBarsColorInput2.get() != null) {
+		    style.setErrorBarsColor(errorBarsColorInput2.get());
+		}
+		if (datePatternInput2.get() != null) {
+		    style.setDatePattern(datePatternInput2.get());
+		}
+		if (localeInput2.get() != null) {
+		    style.setLocale(localeInput2.get());
+		}
+		if (timezoneInput2.get() != null) {
+		    style.setTimezone(timezoneInput2.get());
+		}
+		if (normalDecimalPatternInput2.get() != null) {
+		    style.setNormalDecimalPattern(normalDecimalPatternInput2.get());
+		}
+		if (scientificDecimalPatternInput2.get() != null) {
+		    style.setScientificDecimalPattern(scientificDecimalPatternInput2.get());
+		}
+
 	}
 }
