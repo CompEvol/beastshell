@@ -2,6 +2,7 @@ package beast.app.shell;
 
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 
 import beast.app.util.Utils;
@@ -89,7 +91,7 @@ public class ChartPanel extends JPanel {
 			}
 		});
 		toolBar.add(btnExport);
-		panel = new JPanel(); 
+		panel = new JPanel();
 		add(panel, BorderLayout.CENTER);
 		update();
 	}
@@ -97,32 +99,30 @@ public class ChartPanel extends JPanel {
 	protected void doExport() {
 		File file = Utils.getSaveFile("Save chart as", new File("."), "Image file (*.pdf, *.png, *.jpg, *.bmp)", "pdf", "png", "jpg", "bmp");
 		if (file != null) {
-			JPanel m_Panel = panel;
-
 				String sFileName = file.getAbsolutePath();
 				if (sFileName != null && !sFileName.equals("")) {
                     if (sFileName.toLowerCase().endsWith(".pdf")) {
                     	try {
                     	com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
                     	PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(sFileName));
-                    	doc.setPageSize(new com.itextpdf.text.Rectangle(m_Panel.getWidth(), m_Panel.getHeight()));
+                    	doc.setPageSize(new com.itextpdf.text.Rectangle(panel.getWidth(), panel.getHeight()));
                     	doc.open();
                     	PdfContentByte cb = writer.getDirectContent();
-                    	Graphics2D g = new PdfGraphics2D(cb, m_Panel.getWidth(), m_Panel.getHeight());
+                    	Graphics2D g = new PdfGraphics2D(cb, panel.getWidth(), panel.getHeight());
                     	 
 						BufferedImage bi;
-						bi = new BufferedImage(m_Panel.getWidth(), m_Panel.getHeight(), BufferedImage.TYPE_INT_RGB);
+						bi = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_RGB);
 						//g = bi.getGraphics();
 						g.setPaintMode();
 						g.setColor(getBackground());
-						g.fillRect(0, 0, m_Panel.getWidth(), m_Panel.getHeight());
-						m_Panel.paint(g);
-						//m_Panel.printAll(g);
+						g.fillRect(0, 0, panel.getWidth(), panel.getHeight());
+						panel.paint(g);
+						//panel.printAll(g);
 
                     	g.dispose();
                     	doc.close();
                     	} catch (Exception e) {
-							JOptionPane.showMessageDialog(m_Panel, "Export may have failed: " + e.getMessage());
+							JOptionPane.showMessageDialog(panel, "Export may have failed: " + e.getMessage());
 						}
                         repaint();
                     	return;
@@ -130,12 +130,12 @@ public class ChartPanel extends JPanel {
 							|| sFileName.toLowerCase().endsWith(".bmp")) {
 						BufferedImage bi;
 						Graphics g;
-						bi = new BufferedImage(m_Panel.getWidth(), m_Panel.getHeight(), BufferedImage.TYPE_INT_RGB);
+						bi = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_RGB);
 						g = bi.getGraphics();
 						g.setPaintMode();
 						g.setColor(getBackground());
-						g.fillRect(0, 0, m_Panel.getWidth(), m_Panel.getHeight());
-						m_Panel.printAll(g);
+						g.fillRect(0, 0, panel.getWidth(), panel.getHeight());
+						panel.printAll(g);
 						try {
 							if (sFileName.toLowerCase().endsWith(".png")) {
 								ImageIO.write(bi, "png", new File(sFileName));
@@ -184,6 +184,10 @@ public class ChartPanel extends JPanel {
 			panel.add(new XChartPanel(charts.get(current)));
 		}
 		panel.repaint();
+		// force repaint the hard way
+		Dimension dim = getSize();
+		setSize(dim.width + 1, dim.height);
+		setSize(dim.width, dim.height);
 	}
 	
 	public void addChart(Chart chart) {

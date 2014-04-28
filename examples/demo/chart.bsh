@@ -10,7 +10,7 @@ for (i = -3; i <= 3; i++) {
     yData.add(Math.pow(10, i));
 }
 ser0 = new Series(x=xData, y=yData, seriesName="10^x");
-style = style=new Style(isChartTitleVisible=false, legendPosition="InsideNW", isYAxisLogarithmic=true);
+style = new Style(isChartTitleVisible=false, legendPosition="InsideNW", isYAxisLogarithmic=true);
 new Plot(series= ser0,  style=style);
 pause();
 
@@ -31,4 +31,17 @@ series = new Series(x=xData, y=yData, seriesName="y=sin(x)", lc=Color.blue, line
 
 new Plot(series=serise, style=new Style(isChartTitleVisible=false, isLegendVisible=false));
 pause();
+
+// Linechar 06
+
+xData = c(0, 1, 2, 3, 4, 5, 6);
+yData = c(100, 100, 100, 60, 10, 10, 10 );
+errdata = c( 50, 20, 10, 52, 9, 2, 1 );
+
+series = new Series(x=xData, y=yData, error=errdata, seriesName="Error bar\ntest data", lc=Color.blue, linestyle="solid", mc=Color.green, m="DIAMOND");
+style = new Style(yAxisMin=0.8, yAxisMax=1000, isYAxisLogarithmic=true, errorBarsColor=Color.black);
+new Plot(series= series,  style=style);
+pause();
+
+
 

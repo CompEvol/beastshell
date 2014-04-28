@@ -12,14 +12,16 @@ import com.xeiam.xchart.SeriesMarker;
 import beast.core.BEASTObject;
 import beast.core.Description;
 import beast.core.Input;
+import beast.core.Input.Validate;
 
 @Description("Contains a series to be used in a plot")
 public class Series extends BEASTObject {
 	public Input<String> seriesNameInput = new Input<String>("seriesName","name of the series", "series 1");
 	public Input<String> xAxisInput = new Input<String>("xAxis","label of the x-axis", "X");
 	public Input<String> yAxisInput = new Input<String>("yAxis","label of the y-axis", "Y");
-	public Input<List<Double>> xInput = new Input<List<Double>>("x","x-axis of data, if y is specified", new ArrayList<Double>());
-	public Input<List<Double>> yInput = new Input<List<Double>>("y","y-axis of data, if specified", new ArrayList<Double>());
+	public Input<List<Double>> xInput = new Input<List<Double>>("x","x-axis of data, if not specified, takes values [0,... sizeof(y)]", new ArrayList<Double>());
+	public Input<List<Double>> yInput = new Input<List<Double>>("y","y-axis of data, must be specified", new ArrayList<Double>(), Validate.REQUIRED);
+	public Input<List<Double>> erroBarsInput = new Input<List<Double>>("error","represent errors in y, ", new ArrayList<Double>());
 
 	enum LineStyle {
 		  none,

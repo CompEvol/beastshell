@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.JToolBar;
@@ -51,7 +52,7 @@ public class HistoryPanel extends JPanel {
 		textPane.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
 		textPane.setCodeFoldingEnabled(true);
 		textPane.setAntiAliasingEnabled(true);
-		add(textPane, BorderLayout.CENTER);
+		add(new JScrollPane(textPane), BorderLayout.CENTER);
 		
 		JToolBar toolBar = new JToolBar();
 		add(toolBar, BorderLayout.NORTH);

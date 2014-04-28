@@ -152,8 +152,9 @@ class BSHAllocationExpression extends SimpleNode
 	        		} else {
 	        			if (inputType == Integer.class && args[i] instanceof Double) {
 	        				args[i] = (int) (double) ((Double) args[i]);
-	        			} else if (inputType == Double.class && (args[i] instanceof Integer)) {
-	        				args[i] = new Double((int) (Integer) args[i]);
+	        			} else if (inputType == Double.class && (args[i] instanceof Primitive && 
+	        					((Primitive)args[i]).getValue() instanceof Integer)) {
+	        				args[i] = new Double((int) ((Primitive) args[i]).getValue());
 	        			}
 	        		}
 	        		// end type conversion

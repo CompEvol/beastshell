@@ -16,7 +16,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
@@ -46,7 +45,7 @@ public class BEASTStudio extends JSplitPane {
 
 	JTabbedPane helpPaneTab;
 	JTabbedPane rightUpperPaneTab;
-	JTextPane variablesPane;
+	VariablesPanel variablesPane;
 	HistoryPanel historyPane;
 	
 	ChartPanel plotPane;
@@ -94,7 +93,7 @@ public class BEASTStudio extends JSplitPane {
 	
 
 		splitpaneright = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-		variablesPane = new JTextPane();
+		variablesPane = new VariablesPanel();
 		
 		rightUpperPaneTab = new JTabbedPane();
 		rightUpperPaneTab.addTab("Variables", variablesPane);
@@ -132,17 +131,7 @@ public class BEASTStudio extends JSplitPane {
 
 	public void update() {
 		Variable [] vars = interpreter.getNameSpace().getDeclaredVariables();
-		String str = "";
-		for (Variable v : vars) {
-			try {
-				str += v.getName() + " " + v.getValue().toString() + "\n";
-			} catch (UtilEvalError e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		variablesPane.setText(str);
-		
+		variablesPane.update(vars);
 	}
 	
 	void doAbout() {
@@ -198,11 +187,9 @@ public class BEASTStudio extends JSplitPane {
 		frame.setLayout(new BorderLayout());
 		frame.add(studio, BorderLayout.CENTER);
 		studio.setSize(1024, 768);
-		frame.setSize(new Dimension(1024, 768));
+		frame.setSize(new Dimension(2024, 1024));
 		frame.setVisible(true);
 		studio.setDividerLocation(0.5);
-		studio.splitpaneleft.setDividerLocation(0.3);
-		studio.splitpaneright.setDividerLocation(0.5);
 		frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
             	studio.doQuit();
@@ -264,6 +251,8 @@ public class BEASTStudio extends JSplitPane {
 		studio.interpreter = new Interpreter( studio.console );
 		studio.interpreter.studio = studio;
 		studio.setNameCompletion();
+		studio.splitpaneleft.setDividerLocation(0.3);
+		studio.splitpaneright.setDividerLocation(0.5);
 		bsh.util.Util.endSplashScreen();
 		studio.interpreter.run();
 	}
