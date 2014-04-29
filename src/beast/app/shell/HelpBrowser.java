@@ -1,8 +1,14 @@
 package beast.app.shell;
 
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +22,11 @@ import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
 import beast.app.DocMaker;
+import beast.app.beauti.BeautiDoc;
 
 public class HelpBrowser extends JPanel implements HyperlinkListener {
     private static final long serialVersionUID = 1L;
+    final static String INITIAL_PAGE = "docs/index.html";
     /**
      * generates HTML pages *
      */
@@ -27,6 +35,7 @@ public class HelpBrowser extends JPanel implements HyperlinkListener {
      * browser stack *
      */
     List<String> pages = new ArrayList<String>();
+    
     int currentPage = 0;
 
     JEditorPane editorPane;
@@ -45,6 +54,8 @@ public class HelpBrowser extends JPanel implements HyperlinkListener {
         editorPane = new JEditorPane();
         editorPane.setEditable(false);
         editorPane.setContentType("text/html");
+        editorPane.setEditorKit(JEditorPane.createEditorKitForContentType("text/html"));
+
         editorPane.addHyperlinkListener(this);
 
         JScrollPane scroller = new JScrollPane(editorPane);
@@ -91,6 +102,15 @@ public class HelpBrowser extends JPanel implements HyperlinkListener {
 		add(toolBar, BorderLayout.NORTH);
         add(scroller, BorderLayout.CENTER);
 
+        try {
+			String text = BeautiDoc.load(new File(INITIAL_PAGE));
+			setText(text);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        
+        
     } // c'tor
     
     public void setText(String sHTML) {
@@ -127,18 +147,40 @@ public class HelpBrowser extends JPanel implements HyperlinkListener {
                 String sPlugin = link.getDescription();
                 sPlugin = sPlugin.replaceAll(".html", "");
                 // update browser stack
-                currentPage++;
-                while (currentPage < pages.size()) {
-                    pages.remove(currentPage);
-                }
+                //currentPage++;
+                //while (currentPage < pages.size()) {
+                //    pages.remove(currentPage);
+                //}
                 try {
                     String sHTML = docMaker.getHTML(sPlugin, false);
                     pages.add(sHTML);
+                    updateState();
                 } catch (Exception e) {
                     // ignore
-                    System.err.println("HelpBrowser: Something is wrong: " + e.getClass().getName() + " " + e.getMessage());
-                }                
-                updateState();
+//                    System.err.println("HelpBrowser: Something is wrong: " + e.getClass().getName() + " " + e.getMessage());
+ //               }                
+ //           } else {
+                	
+            	 if (link.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                     if (Desktop.isDesktopSupported()) {
+                         try {
+                        	 URI uri = link.getURL().toURI();
+                             Desktop.getDesktop().browse(uri);
+                         } catch (IOException e1) {
+                             // TODO Auto-generated catch block
+                             e1.printStackTrace();
+                         } catch (URISyntaxException e1) {
+                             // TODO Auto-generated catch block
+                             e1.printStackTrace();
+                         }
+                     }
+                 }
+            }
+            }
+            if (type == HyperlinkEvent.EventType.ENTERED) {
+//            	URL url = link.getURL();
+//            	String sHTML = BeautiDoc.load(new File());
+//                pages.add(sHTML);
             }
         } catch (Exception e) {
             // ignore

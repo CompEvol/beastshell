@@ -17,19 +17,19 @@
 		<!-- Single page build -->
 		<!--
 		-->
-		<style style="xsl/manual.xsl" in="manual.xml" out="${bshmanual}.html">
+		<xslt style="xsl/manual.xsl" in="manual.xml" out="${bshmanual}.html">
 			<param name="imagedir" expression="${imagedir}"/>
-		</style>
+		</xslt>
 
 		<!-- multi-page build -->
 		<mkdir dir="html"/>
 		<!--
 		-->
-		<style style="xsl/manual.xsl" in="manual.xml" out="xsl.log">
+		<xslt style="xsl/manual.xsl" in="manual.xml" out="xsl.log">
 			<param name="imagedir" expression="${imagedir}"/>
 			<param name="multipage" expression="true"/>
 			<param name="pagesdir" expression="html"/>
-		</style>
+		</xslt>
 		<copy file="html/contents.html" tofile="html/index.html"/>
 	</target>   
 

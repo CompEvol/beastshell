@@ -377,7 +377,7 @@ $s='f("stop", Conditions.class, 0, 11, 2);
     f("sample", Sampling.class, 0, 11, 4);
 
     f("RNGkind", RNG.class, 0, 11, 2);
-    f("set.seed", RNG.class, 0, 11, 3);
+    f("set_seed", RNG.class, 0, 11, 3);
 
 /* Data Summaries */
 /* sum, min, max, prod, range are group generic and so need to eval args */
@@ -927,7 +927,7 @@ $map{'org.apache.commons.math.special.Gamma.class'}='org.apache.commons.math.spe
 $args{'bd0'} = "{x, np}, {x, np}      ";
 $args{'beta'} = "{a, b}, {a, b}      ";
 $args{'choose'} = "{n, k}, {n, k}      ";
-$args{'dbeta'} = "{x, a, b, give_log}, {x, a, b}   ";
+$args{'dbeta'} = "{x, a, sb, give_log}, {x, a, b}   ";
 $args{'dbinom'} = "{x, n, p, give_log}, {x, n, p}   ";
 $args{'dcauchy'} = "{x, location, scale, give_log}, {x, location, scale}   ";
 $args{'dchisq'} = "{x, df, give_log}, {x, df}     ";
@@ -1016,7 +1016,7 @@ $args{'rgeom'} = "{p}, {p}        ";
 $args{'rhyper'} = "{nn1in, nn2in, kkin}, {nn1in, nn2in, kkin}    ";
 $args{'rlnorm'} = "{meanlog, sdlog}, {meanlog, sdlog}      ";
 $args{'rlogis'} = "{location, scale}, {location, scale}      ";
-$args{'rmultinom'} = "{n, []prob, K, []rN}, {n, []prob, K, []rN}  ";
+$args{'rmultinom'} = "{n, prob, K, rN}, {n, prob, K, rN}  ";
 $args{'rnbinom'} = "{size, prob}, {size, prob}      ";
 $args{'rnchisq'} = "{df, lambda}, {df, lambda}      ";
 $args{'rnorm'} = "{mu, sigma}, {mu, sigma}      ";

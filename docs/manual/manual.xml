@@ -35,7 +35,7 @@
   <!ENTITY contents SYSTEM "contents.xml">
 
   <!-- I can't figure out how to move this to the included bshcommands file -->
-  <!ENTITY bshcommands-bshdoc SYSTEM "bshcommands-bshdoc.xml">
+  <!ENTITY bshcommands-bshdoc SYSTEM "bshdoc.xml">
 ]>
 
 <manual>

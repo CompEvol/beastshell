@@ -83,7 +83,6 @@ public class BEASTStudio extends JSplitPane {
 		rightLowerPaneTab = new JTabbedPane();
 		
 		helpPane = new HelpBrowser();
-		helpPane.setText("<html><h1>Help</h1>Help info goes here</html>");
 		rightLowerPaneTab.addTab("Help", helpPane);
 
 		classBrowser = new ClassBrowser();

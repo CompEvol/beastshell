@@ -14,7 +14,7 @@
 # e.g. Win
 #DEFAULTBSH=`cygpath --windows $HOME/pkg/bsh-1.3a1.jar`
 # e.g. Unix
-DEFAULTBSH=/home/pat/bin/bsh-1.3a1.jar
+DEFAULTBSH=/home/pat/bin/bsh-1.3a1.jar:../build/:../../beast2/build/
 
 name=`basename $0`
 if [ $name = "bshd" ]; then
@@ -41,10 +41,10 @@ then
 	# Have bsh
 	java $debug bsh.Interpreter $* 
 else
-	if [ ! -f $DEFAULTBSH ]; then
-		echo "BeanShell not found at path: $DEFAULTBSH"
-		exit;
-	fi
+#	if [ ! -f $DEFAULTBSH ]; then
+#		echo "BeanShell not found at path: $DEFAULTBSH"
+#		exit;
+#	fi
 
 	# Don't have bsh
 	# Cygwin doesn't like an extra leading path separator, avoid it
