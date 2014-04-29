@@ -1,5 +1,6 @@
+// run a demonstration
 
-demo(String file) {
+demo(file) {
     fileBsh = file + ".bsh";
     if (!(new File(file)).exists() && !(new File(fileBsh)).exists()) {
         file = "examples/demo/".file;
@@ -12,19 +13,16 @@ demo(String file) {
     if (!(new File(file)).exists()) {
         file = fileBsh;
     }
-
-	BufferedReader fin = new BufferedReader(new FileReader(file));
-	StringBuffer buf = new StringBuffer();
-	String str = null;
+	fin = new BufferedReader(new FileReader(file));
+	buf = "";
 	while (fin.ready()) {
 		str = fin.readLine();
-        if (str.matches("pause();")) {
-            eval(buf.toString();
+        if (str.indexOf("pause();") >= 0) {
+            eval(buf);
             pause();
-            buf = new StringBuffer();
+            buf = "";
         } else {
-		    buf.append(str);
-		    buf.append('\n');
+		    buf = buf + str + "\n";
         }
 	}
 	fin.close();

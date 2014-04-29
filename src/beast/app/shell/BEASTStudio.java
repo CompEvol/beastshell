@@ -26,7 +26,6 @@ import bsh.BshClassManager;
 import bsh.ClassPathException;
 import bsh.Interpreter;
 import bsh.NameSource;
-import bsh.UtilEvalError;
 import bsh.Variable;
 import bsh.classpath.ClassManagerImpl;
 import bsh.util.ClassBrowser;
@@ -43,14 +42,16 @@ public class BEASTStudio extends JSplitPane {
 	JSplitPane splitpaneleft;
 	JSplitPane splitpaneright;
 
-	JTabbedPane helpPaneTab;
+	//JTabbedPane helpPaneTab;
 	JTabbedPane rightUpperPaneTab;
+	JTabbedPane rightLowerPaneTab;
 	VariablesPanel variablesPane;
 	HistoryPanel historyPane;
+	EditorPanel editorPanel;
 	
 	ChartPanel plotPane;
 	JConsole console;
-	JTextPane helpPane;
+	HelpBrowser helpPane;
 	ClassBrowser classBrowser;
 	Interpreter interpreter;
 
@@ -61,32 +62,8 @@ public class BEASTStudio extends JSplitPane {
 
 	private void setup() {
 		splitpaneleft = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-		helpPaneTab = new JTabbedPane();
-		EditorPanel editorPanel = new EditorPanel();
-		helpPaneTab.addTab("Editors", editorPanel);
-		
-		helpPane = new JTextPane();
-		helpPane.setEditable(false);
-		helpPane.setContentType("text/html");
-		helpPaneTab.addTab("Help", helpPane);
-		String s = "<html><h1>Help</h1>Help info goes here</html>";
-		try {
-			helpPane.read(new StringReader(s), null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		classBrowser = new ClassBrowser();
-		try {
-			classBrowser.init();
-		} catch (ClassPathException e) {
-			e.printStackTrace();
-		}
-		helpPaneTab.addTab("Class Browser", classBrowser);
-
-		JScrollPane helpScrollPane = new JScrollPane(helpPaneTab); 
-		splitpaneleft.add(helpScrollPane);
+		editorPanel = new EditorPanel();
+		splitpaneleft.add(editorPanel);
 		
 		console = new JConsole(); 
 		splitpaneleft.add(console);
@@ -101,14 +78,30 @@ public class BEASTStudio extends JSplitPane {
 		historyPane = new HistoryPanel(this);
 		rightUpperPaneTab.addTab("History", historyPane);
 		
+		splitpaneright.add(rightUpperPaneTab);
 		
-		JScrollPane historyScrollPane = new JScrollPane(rightUpperPaneTab); 
-		splitpaneright.add(historyScrollPane);
+		rightLowerPaneTab = new JTabbedPane();
 		
+		helpPane = new HelpBrowser();
+		helpPane.setText("<html><h1>Help</h1>Help info goes here</html>");
+		rightLowerPaneTab.addTab("Help", helpPane);
+
+		classBrowser = new ClassBrowser();
+		try {
+			classBrowser.init();
+		} catch (ClassPathException e) {
+			e.printStackTrace();
+		}
+		rightLowerPaneTab.addTab("Class Browser", classBrowser);
+
 		plotPane = new ChartPanel();
-		JScrollPane plotScrollPane = new JScrollPane(plotPane); 
-		splitpaneright.add(plotScrollPane);
+		JScrollPane plotScrollPane = new JScrollPane(plotPane);
+		rightLowerPaneTab.addTab("Plots", plotScrollPane);
 		
+		
+		
+		splitpaneright.add(rightLowerPaneTab);
+
 		
 		add(splitpaneleft);
 		add(splitpaneright);
@@ -143,6 +136,7 @@ public class BEASTStudio extends JSplitPane {
             return;
         }
         historyPane.saveBackup();
+        editorPanel.saveStatus();
         frame.dispose();
         //intances--;
         //if (intances == 0) {

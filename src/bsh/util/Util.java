@@ -60,7 +60,7 @@ public class Util
 	*/
 	public static void startSplashScreen() 
 	{
-		int width=275,height=148;
+		int width=325,height=148;
 		Window win=new Window( new Frame() );
         win.pack();
         BshCanvas can=new BshCanvas();

@@ -28,6 +28,8 @@ public class Plot extends BEASTObject {
 	static BEASTStudio studio = null;
 	
 	Chart chart = null;
+	public Chart getChart() {return chart;}
+	
 	
 	@Override
 	public void initAndValidate() throws Exception {

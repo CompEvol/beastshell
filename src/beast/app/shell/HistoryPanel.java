@@ -15,8 +15,6 @@ import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;

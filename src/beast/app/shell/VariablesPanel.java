@@ -3,7 +3,6 @@ package beast.app.shell;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -16,7 +15,7 @@ import bsh.Variable;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
-public class VariablesPanel extends JPanel {
+public class VariablesPanel extends JSplitPane {
 	private static final long serialVersionUID = 1L;
 
 	private JTable table;
@@ -26,6 +25,7 @@ public class VariablesPanel extends JPanel {
 	JTextPane textPane;
 	
 	public VariablesPanel() {
+		super(JSplitPane.VERTICAL_SPLIT);
 		data = new Object[0][2];
 		model = new AbstractTableModel() {
 			private static final long serialVersionUID = 1L;
@@ -58,13 +58,13 @@ public class VariablesPanel extends JPanel {
 		add(table);
 		scrollPane = new JScrollPane(table);
 		add(scrollPane);
-		//scrollPane.setSize(200, 100);
+		//table.setSize(200, 200);
 		
-		JSplitPane splitter = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-		splitter.add(scrollPane);
+		//JSplitPane splitter = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+		//add(scrollPane);
 		textPane = new JTextPane();
-		splitter.add(textPane);
-		add(splitter);
+		add(new JScrollPane(textPane));
+		//add(splitter);
 		
 		
 		table.addMouseListener(new MouseListener() {

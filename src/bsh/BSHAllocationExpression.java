@@ -118,8 +118,18 @@ class BSHAllocationExpression extends SimpleNode
 		        	if (args[i].getClass().isArray()) {
 		        		// convert to list
 		        		List list = new ArrayList();
-		        		for (Object o : (Object []) args[i]) {
-		        			list.add(o);
+		        		if (args[i] instanceof int[]) {
+			        		for (int o : (int []) args[i]) {
+			        			list.add(o);
+			        		}		        			
+		        		} else if (args[i] instanceof double[]) {
+			        		for (double o : (double []) args[i]) {
+			        			list.add(o);
+			        		}		        			
+		        		} else {
+			        		for (Object o : (Object []) args[i]) {
+			        			list.add(o);
+			        		}
 		        		}
 		        		args[i] = list;
 		        	}
@@ -150,8 +160,9 @@ class BSHAllocationExpression extends SimpleNode
 	        				
 	        			}
 	        		} else {
-	        			if (inputType == Integer.class && args[i] instanceof Double) {
-	        				args[i] = (int) (double) ((Double) args[i]);
+	        			if (inputType == Integer.class && (args[i] instanceof Primitive && 
+	        					((Primitive)args[i]).getValue() instanceof Double)) {
+	        				args[i] = (int) (double) (((Primitive) args[i]).getValue());
 	        			} else if (inputType == Double.class && (args[i] instanceof Primitive && 
 	        					((Primitive)args[i]).getValue() instanceof Integer)) {
 	        				args[i] = new Double((int) ((Primitive) args[i]).getValue());

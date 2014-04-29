@@ -1,3 +1,14 @@
+// simple chart
+import com.xeiam.xchart.*;
+import beast.app.shell.*;
+
+xData = c(-3, -2, -1, 0, 1, 2, 3);
+yData = c(0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0);
+
+new Plot(series = new Series(x=xData, y=yData, seriesName="10^x"));
+
+
+
 // Linechar 01
 import com.xeiam.xchart.*;
 import beast.app.shell.*;

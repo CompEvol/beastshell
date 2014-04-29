@@ -1,14 +1,10 @@
 package beast.app.shell;
 
 
-import javax.swing.JEditorPane;
 
 import beast.app.DocMaker;
-import beast.app.draw.HelpBrowser;
 import beast.core.BEASTObject;
 import bsh.ClassIdentifier;
-import bsh.ClassPathException;
-import bsh.util.ClassBrowser;
 
 public class Help {
 	/**
@@ -72,7 +68,7 @@ help(beast.util.TreeParser);
 				e.printStackTrace();
 			}
 		} else {
-			studio.helpPaneTab.setSelectedIndex(1);
+			studio.rightLowerPaneTab.setSelectedIndex(1);
 			studio.classBrowser.setClist(o.getClass().getPackage().getName());
 			studio.classBrowser.setMlist(o.getClass().getSimpleName());
 			//showHelp("No help available for " + o);
@@ -90,7 +86,7 @@ help(beast.util.TreeParser);
 			}
 		} else {
 			studio.helpPane.setText(string);
-			studio.helpPaneTab.setSelectedIndex(0);
+			studio.rightLowerPaneTab.setSelectedIndex(0);
 		}
 	}
 
