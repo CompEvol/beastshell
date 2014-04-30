@@ -143,20 +143,34 @@ class BSHAllocationExpression extends SimpleNode
 	        		if (args[i] instanceof List) {
 	        			List list = (List) args[i];
 	        			if (list.size() > 0) {
-	        				Object v = list.get(0);
-		        			if (inputType == Integer.class && v instanceof Double) {
-		        				List list2 = new ArrayList();
-		        				for (Object o : list) {
-		        					list2.add((int) (double) ((Double) o));
-		        				}
+	        				List list2 = new ArrayList();
+	        				for (Object o : list) {
+	        					if (o == null) {
+	        						list2.add(o);
+	        					} else if (inputType == Integer.class && o instanceof Double) {
+		        					list2.add(new Integer((int) (double) ((Double) o)));
+			        			} else if (inputType == Double.class && (o instanceof Integer)) {
+			        				list2.add(new Double((int) (Integer) o));
+			        			} else if (o instanceof Primitive) {
+			        				list2.add(((Primitive)o).getValue());
+	        					} else { 
+			        				list2.add(o);
+			        			}
+	        				}
+//	        				Object v = list.get(0);
+//		        			if (inputType == Integer.class && v instanceof Double) {
+//		        				List list2 = new ArrayList();
+//		        				for (Object o : list) {
+//		        					list2.add((int) (double) ((Double) o));
+//		        				}
+//		        				args[i] = list2;
+//		        			} else if (inputType == Double.class && (v instanceof Integer)) {
+//		        				List list2 = new ArrayList();
+//		        				for (Object o : list) {
+//		        					list2.add(new Double((int) (Integer) o));
+//		        				}
 		        				args[i] = list2;
-		        			} else if (inputType == Double.class && (v instanceof Integer)) {
-		        				List list2 = new ArrayList();
-		        				for (Object o : list) {
-		        					list2.add(new Double((int) (Integer) o));
-		        				}
-		        				args[i] = list2;
-		        			}
+//		        			}
 	        				
 	        			}
 	        		} else {
@@ -175,7 +189,8 @@ class BSHAllocationExpression extends SimpleNode
 		        
 				return constructObject( type, args2, callstack, interpreter );
 			} catch (Exception e) {
-				System.err.println(e.getMessage());
+				interpreter.print(e.getMessage());
+				//System.err.println(e.getMessage());
 				// continue with the default assignment
 			}
 		}

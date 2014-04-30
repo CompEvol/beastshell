@@ -1,13 +1,11 @@
 package beast.app.shell;
 
 import java.awt.BorderLayout;
-import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,19 +20,23 @@ import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
 import beast.app.DocMaker;
-import beast.app.beauti.BeautiDoc;
+import beast.util.AddOnManager;
 
 public class HelpBrowser extends JPanel implements HyperlinkListener {
     private static final long serialVersionUID = 1L;
-    final static String INITIAL_PAGE = "docs/index.html";
+    final static String INITIAL_PAGE = "doc/html/index.html";
+    final static String BEAST_DOC_DIR = AddOnManager.getPackageUserDir() + "/beastshell/doc/BeastObjects/";
+    
+    
     /**
      * generates HTML pages *
      */
     static DocMaker docMaker;
+    static boolean docsGenerated = false;
     /**
      * browser stack *
      */
-    List<String> pages = new ArrayList<String>();
+    List<Object> pages = new ArrayList<Object>();
     
     int currentPage = 0;
 
@@ -45,9 +47,13 @@ public class HelpBrowser extends JPanel implements HyperlinkListener {
 
 
     public HelpBrowser() {
+    	
     	setLayout(new BorderLayout());
         if (docMaker == null) {
-            docMaker = new DocMaker();
+        	if (!new File(BEAST_DOC_DIR).exists()) {
+        		new File(BEAST_DOC_DIR).mkdirs();
+        	}
+            docMaker = new DocMaker(new String[]{BEAST_DOC_DIR});
         }
 
         // initialise JEditorPane
@@ -103,20 +109,34 @@ public class HelpBrowser extends JPanel implements HyperlinkListener {
         add(scroller, BorderLayout.CENTER);
 
         try {
-			String text = BeautiDoc.load(new File(INITIAL_PAGE));
-			setText(text);
+        	String path = new File(".").getAbsolutePath();
+        	if (new File(path  + "/" + INITIAL_PAGE).exists()) {
+            	setURL(new URL("file://" + path  + "/" + INITIAL_PAGE));
+        	} else {
+            	setURL(new URL("file://" + AddOnManager.getPackageUserDir() + "/beastshell/" + INITIAL_PAGE));
+        	}
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
         
         
     } // c'tor
     
+    public void setURL(URL url) {
+    	while (pages.size() > currentPage + 1) {
+        	pages.remove(pages.size() - 1);
+    	}
+    	pages.add(url);
+    	currentPage = pages.size() - 1;
+        updateState();
+    }
+
     public void setText(String sHTML) {
+    	while (pages.size() > currentPage + 1) {
+        	pages.remove(pages.size() - 1);
+    	}
     	pages.add(sHTML);
     	currentPage = pages.size() - 1;
-    	editorPane.setText(sHTML);
         updateState();
     }
 
@@ -141,61 +161,91 @@ public class HelpBrowser extends JPanel implements HyperlinkListener {
 
     @Override
     public void hyperlinkUpdate(HyperlinkEvent link) {
-        try {
+//        try {
             HyperlinkEvent.EventType type = link.getEventType();
             if (type == HyperlinkEvent.EventType.ACTIVATED) {
-                String sPlugin = link.getDescription();
-                sPlugin = sPlugin.replaceAll(".html", "");
-                // update browser stack
-                //currentPage++;
-                //while (currentPage < pages.size()) {
-                //    pages.remove(currentPage);
-                //}
+            	// check whether it is help on a BEASTObject
+                String beastObject = link.getDescription();
+                if (beastObject.equals("BEASTObjectDocs")) {
+                    // magic initialisation of DocHelper
+                	try {
+                		if (!docsGenerated) {
+                			docMaker.generateDocs();
+                			docsGenerated = true;
+                		}
+						setURL(new URL("file://" + BEAST_DOC_DIR + "/contents.html"));
+						return;
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                }
+                beastObject = beastObject.replaceAll(".html", "");
+				Class c = null;
                 try {
-                    String sHTML = docMaker.getHTML(sPlugin, false);
-                    pages.add(sHTML);
-                    updateState();
-                } catch (Exception e) {
-                    // ignore
-//                    System.err.println("HelpBrowser: Something is wrong: " + e.getClass().getName() + " " + e.getMessage());
- //               }                
- //           } else {
+                	c = Class.forName(beastObject);
+				} catch (ClassNotFoundException e1) {
+					c = null;
+				}
+                if (c != null) {
+                    try {
+                    	setText(docMaker.getHTML(beastObject, false));
+                    } catch (Exception e) {
+                    }
+                } else {
                 	
-            	 if (link.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                     if (Desktop.isDesktopSupported()) {
-                         try {
-                        	 URI uri = link.getURL().toURI();
-                             Desktop.getDesktop().browse(uri);
-                         } catch (IOException e1) {
-                             // TODO Auto-generated catch block
-                             e1.printStackTrace();
-                         } catch (URISyntaxException e1) {
-                             // TODO Auto-generated catch block
-                             e1.printStackTrace();
-                         }
-                     }
-                 }
+                	// check whether it is a regular page on the file system
+                	String docPage = link.getDescription();
+                	if (new File(docPage).exists()) {
+                    	String path = new File(".").getAbsolutePath();
+                       	try {
+							setURL(new URL("file://" + path  + "/" + docPage));
+						} catch (MalformedURLException e) {
+							e.printStackTrace();
+						}
+                       	return;
+                	} else if(new File(AddOnManager.getPackageUserDir() + "/beastshell/" + docPage).exists()) {
+                    	try {
+							setURL(new URL("file://" + AddOnManager.getPackageUserDir() + "/beastshell/" + docPage));
+						} catch (MalformedURLException e) {
+							e.printStackTrace();
+						}
+                       	return;
+                	}
+                	
+                	// check whether it is a BeastShell command
+                	// TODO
+                	
+                	// give up, it is probably an external link then
+					setURL(link.getURL());
+                	
+                }
+
+                	
             }
-            }
-            if (type == HyperlinkEvent.EventType.ENTERED) {
-//            	URL url = link.getURL();
-//            	String sHTML = BeautiDoc.load(new File());
-//                pages.add(sHTML);
-            }
-        } catch (Exception e) {
+//        } catch (Exception e) {
             // ignore
-            System.err.println(e.getMessage());
-        }
+//            System.err.println(e.getMessage());
+//        }
     } // hyperlinkUpdate
 
     /**
      * change html text and enable/disable buttons (where appropriate) *
      */
     void updateState() {
-        String sHTML = pages.get(currentPage);
-        editorPane.setText(sHTML);
+        Object page = pages.get(currentPage);
+        if (page instanceof String) {
+        	editorPane.setText((String) page);
+        } else if (page instanceof URL) {
+	        try {
+	        	editorPane.setPage((URL) page);
+	        } catch (IOException e) {
+	        	editorPane.setText(e.getMessage());
+	        }
+        }
         btnPrev.setEnabled(currentPage > 0);
         btnNext.setEnabled(currentPage < pages.size() - 1);
     } // updateState
+
 
 }

@@ -34,12 +34,12 @@ public class Series extends BEASTObject {
 	
 	public Input<LineStyle> lineStyleInput = new Input<LineStyle>("linestyle", "stroke used for drawing series line, one of " + Arrays.toString(LineStyle.values()), LineStyle.solid, LineStyle.values());
 	public Input<BasicStroke> lineStyleInput2 = new Input<BasicStroke>("ls", "stroke used for drawing series line -- overrides basicStroke");
-	public Input<Color> LineColorInput = new Input<Color>("lineColor", "colour used for drawing series line", Color.black);
-	public Input<Color> LineColorInput2 = new Input<Color>("lc", "colour used for drawing series line -- synonym with lineColor", Color.black);
+	public Input<Color> LineColorInput = new Input<Color>("lineColor", "colour used for drawing series line");
+	public Input<Color> LineColorInput2 = new Input<Color>("lc", "colour used for drawing series line -- synonym with lineColor");
 	public Input<SeriesMarker> MarkerInput = new Input<SeriesMarker>("marker","one of " + Arrays.toString(SeriesMarker.values()), SeriesMarker.DIAMOND, SeriesMarker.values());
 	public Input<SeriesMarker> MarkerInput2 = new Input<SeriesMarker>("m","one of " + Arrays.toString(SeriesMarker.values()), null, SeriesMarker.values());
 
-	public Input<Color> MarkerColorInput = new Input<Color>("markerColor","colour used for drawing marker", Color.blue);
+	public Input<Color> MarkerColorInput = new Input<Color>("markerColor","colour used for drawing marker");
 	public Input<Color> MarkerColorInput2 = new Input<Color>("mc","colour used for drawing marker -- synonym with markerColor");
 
 	

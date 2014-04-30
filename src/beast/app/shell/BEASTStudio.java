@@ -86,6 +86,9 @@ public class BEASTStudio extends JSplitPane {
 		rightLowerPaneTab.addTab("Help", helpPane);
 
 		classBrowser = new ClassBrowser();
+		//TODO: let the splitter pane determine size
+		classBrowser.setMaximumSize(new Dimension(768,2048));
+
 		try {
 			classBrowser.init();
 		} catch (ClassPathException e) {
@@ -93,7 +96,7 @@ public class BEASTStudio extends JSplitPane {
 		}
 		rightLowerPaneTab.addTab("Class Browser", classBrowser);
 
-		plotPane = new ChartPanel();
+		plotPane = new ChartPanel(this);
 		JScrollPane plotScrollPane = new JScrollPane(plotPane);
 		rightLowerPaneTab.addTab("Plots", plotScrollPane);
 		
@@ -246,6 +249,7 @@ public class BEASTStudio extends JSplitPane {
 		studio.setNameCompletion();
 		studio.splitpaneleft.setDividerLocation(0.3);
 		studio.splitpaneright.setDividerLocation(0.5);
+		studio.setDividerLocation(0.5);
 		bsh.util.Util.endSplashScreen();
 		studio.interpreter.run();
 	}

@@ -38,8 +38,10 @@ public class ChartPanel extends JPanel {
 	JButton btnExport;
 	JButton btnClear;
 	JPanel panel;
+	BEASTStudio studio;
 	
-	public ChartPanel() {
+	public ChartPanel(BEASTStudio studio) {
+		this.studio = studio;
 		charts = new ArrayList<Chart>();
 		
 		setLayout(new BorderLayout());
@@ -187,6 +189,9 @@ public class ChartPanel extends JPanel {
 		Dimension dim = getSize();
 		setSize(dim.width + 1, dim.height);
 		setSize(dim.width, dim.height);
+		if (studio.rightLowerPaneTab.getTabCount() >= 3) {
+			studio.rightLowerPaneTab.setSelectedIndex(2);
+		}
 	}
 	
 	public void addChart(Chart chart) {

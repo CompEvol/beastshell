@@ -21,7 +21,7 @@ public class c {
 	}
 
 	/**
-		Implement dir( String directory ) command.
+		Implement c(Object ... values) command.
 	*/
 	public static List invoke( 
 		Interpreter env, CallStack callstack, Object ... objects ) 

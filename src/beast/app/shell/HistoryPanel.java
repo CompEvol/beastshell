@@ -2,6 +2,7 @@ package beast.app.shell;
 
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -118,7 +119,18 @@ public class HistoryPanel extends JPanel {
 		btnNewButton_2.setIcon(new ImageIcon(HistoryPanel.class.getResource("/beast/app/shell/icons/clear.png")));
 		toolBar.add(btnNewButton_2);
 		
-		loadBackup();
+		new Thread() {
+			@Override
+			public void run() {
+				try {
+					new Thread().wait(20000);
+				} catch (Exception e) {}	
+				loadBackup();
+			}
+		}.run();
+		
+		//TODO: let the splitter pane determine size
+		setMaximumSize(new Dimension(768,2048));
 	}
 
 	final static String BACKUP_FILE = "beastshell.history";

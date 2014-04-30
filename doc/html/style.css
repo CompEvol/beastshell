@@ -1,6 +1,6 @@
 /** orignally from the R intro **/
 
-a.summary-letter {text-decoration: none}
+a {text-decoration: none}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -24,7 +24,11 @@ span.nolinebreak {white-space:nowrap}
 span.roman {font-family:serif; font-weight:normal}
 span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
-body {margin-left: 5%; margin-right: 5%;}
+body {
+	margin-left: 5%; 
+	margin-right: 5%;	
+	font-family: sans-serif
+}
 
 H1 {             
     background: white;
@@ -39,7 +43,7 @@ H2 {
     color: rgb(40%, 40%, 40%);
     font-family: monospace;
     font-size: x-large;
-    text-align: center
+    /*text-align: center*/
 }
 
 H3 {
@@ -68,10 +72,14 @@ ul {
 li {
     margin-top: 0.25ex;
     margin-bottom: 0.25ex;
+	font-family: inherit
 }
 p {
     margin-top: 0.6ex;
     margin-bottom: 1.2ex;
+}
+pre {
+	background: lightgray;
 }
 
 

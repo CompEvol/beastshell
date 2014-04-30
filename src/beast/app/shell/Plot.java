@@ -1,6 +1,8 @@
 package beast.app.shell;
 
 
+
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +12,10 @@ import javax.swing.JPanel;
 import com.xeiam.xchart.BitmapEncoder;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.ChartBuilder;
+import com.xeiam.xchart.SeriesMarker;
 import com.xeiam.xchart.StyleManager.ChartTheme;
+import com.xeiam.xchart.internal.style.SeriesColorMarkerLineStyle;
+import com.xeiam.xchart.internal.style.SeriesColorMarkerLineStyleCycler;
 import com.xeiam.xchart.XChartPanel;
 import com.xeiam.xchart.BitmapEncoder.BitmapFormat;
 
@@ -23,12 +28,17 @@ import beast.core.Input.Validate;
 public class Plot extends BEASTObject {
 	public Input<Series> seriesInput = new Input<Series>("series", "series to be be plotted initialy", Validate.REQUIRED);
 	public Input<Style> styleInput = new Input<Style>("style", "style used for drawin the chart", new Style());
+	public Input<String> chartTitleInput = new Input<String>("title","title of the chart");
+	public Input<String> xAxisTitleInput = new Input<String>("xAxisTitle","title for the x-axis");
+	public Input<String> yAxisTitleInput = new Input<String>("yAxisTitle","title for the y-axis");
+
 	public Input<String> outputInput = new Input<String>("output","one of gif, png, bmp, jpg. Creates file /tmp/x.<ext>");
 	
 	static BEASTStudio studio = null;
 	
 	Chart chart = null;
 	public Chart getChart() {return chart;}
+	SeriesColorMarkerLineStyleCycler defaultStyle = new SeriesColorMarkerLineStyleCycler();
 	
 	
 	@Override
@@ -71,7 +81,17 @@ public class Plot extends BEASTObject {
 		if (chart == null) {
 			initial = true;
 			ChartTheme theme = styleInput.get().themeInput.get();
-			chart = new ChartBuilder().xAxisTitle(series.xAxisInput.get()).yAxisTitle(series.yAxisInput.get()).width(600).height(400).theme(theme).build();
+			ChartBuilder builder =	new ChartBuilder().xAxisTitle(series.xAxisInput.get()).yAxisTitle(series.yAxisInput.get()).width(600).height(400).theme(theme);
+			if (chartTitleInput.get() != null) {
+				builder = builder.title(chartTitleInput.get());
+			}
+			if (xAxisTitleInput.get() != null) {
+				builder = builder.xAxisTitle(xAxisTitleInput.get());
+			}
+			if (yAxisTitleInput.get() != null) {
+				builder = builder.yAxisTitle(yAxisTitleInput.get());
+			}
+			chart = builder.build();
 			styleInput.get().setStyleOf(chart);
 			
 //			chart.getStyleManager().setXAxisMax(getMax(x));
@@ -86,9 +106,11 @@ public class Plot extends BEASTObject {
 		} else {
 			series1 = chart.addSeries(series.seriesNameInput.get(), x, y, errors);			
 		}
-		series1.setLineColor(series.getLineColor());
-	    series1.setLineStyle(series.getlineStyle());
-	    series1.setMarkerColor(series.getMarkerColor());
+		SeriesColorMarkerLineStyle style0 =  defaultStyle.getNextSeriesColorMarkerLineStyle();
+		
+		series1.setLineColor(series.getLineColor() == null ? style0.getColor() : series.getLineColor());
+	    series1.setLineStyle(series.getlineStyle() == null ? style0.getStroke() : series.getlineStyle());
+	    series1.setMarkerColor(series.getMarkerColor() == null ? style0.getColor() :series.getMarkerColor());
 	    series1.setMarker(series.getMarker());
 
 	    if (initial) {
