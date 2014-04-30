@@ -12,7 +12,6 @@ import com.xeiam.xchart.StyleManager;
 import com.xeiam.xchart.StyleManager.ChartTheme;
 import com.xeiam.xchart.StyleManager.ChartType;
 import com.xeiam.xchart.StyleManager.LegendPosition;
-import com.xeiam.xchart.internal.style.SeriesColorMarkerLineStyle;
 
 import beast.core.BEASTObject;
 import beast.core.Description;

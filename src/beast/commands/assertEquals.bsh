@@ -1,5 +1,3 @@
-print("loading assertEquals.bsh");
-
 assertEquals(expected, value) {
 	test.beast.BTest.assertEquals(expected, value);
 }

@@ -1005,6 +1005,7 @@ $args{'qt'} = "{p, df, lower_tail, give_log}, {p, df}    ";
 $args{'qtukey'} = "{p, rr, cc, df, lower_tail, log_p}, {p, rr, cc, df}";
 $args{'qunif'} = "{p, a, b, lower_tail, log_p}, {p, a, b}  ";
 $args{'qweibull'} = "{p, shape, scale, lower_tail, log_p}, {p, shape, scale}  ";
+
 $args{'rbeta'} = "{n, aa, bb}, {n, aa, bb}      ";
 $args{'rbinom'} = "{n, nin, pp}, {n, nin, pp}      ";
 $args{'rcauchy'} = "{n, location, scale}, {n, location, scale}      ";

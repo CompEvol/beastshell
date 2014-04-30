@@ -79,21 +79,21 @@ ERROR = 0.0001;
 
 
 // test dnbinom_mu 
-	assertEquals(dnbinom(x=4, size=10, mu=10, log=false),  0.04364014, ERROR);
-	assertEquals(dnbinom(x=6, size=10, mu=10, log=true), -2.572162, ERROR);
+	assertEquals(dnbinom_mu(x=4, size=10, mu=10, log=false),  0.04364014, ERROR);
+	assertEquals(dnbinom_mu(x=6, size=10, mu=10, log=true), -2.572162, ERROR);
 
 // test pnbinom 
-	assertEquals(pnbinom(q=3, size=5, prob=0.5, lower.tail=false, log.p=false), 0.6367187, ERROR);
+	assertEquals(pnbinom(q=3, size=5, prob=0.5, lower.tail=false, logp=false), 0.6367187, ERROR);
 
 
 // test qnbinom 
-	assertEquals(qnbinom(p=0.4, size=900, prob=0.9, lower.tail=true, log.p=false), 97, ERROR);
-	assertEquals(qnbinom(p=0.01, size=900, prob=0.9, lower.tail=true, log.p=false), 76, ERROR);
-	assertEquals(qnbinom(p=0.1, size=900, prob=0.3, lower.tail=true, log.p=true), Double.NaN);
+	assertEquals(qnbinom(p=0.4, size=900, prob=0.9, lower.tail=true, logp=false), 97, ERROR);
+	assertEquals(qnbinom(p=0.01, size=900, prob=0.9, lower.tail=true, logp=false), 76, ERROR);
+	assertEquals(qnbinom(p=0.1, size=900, prob=0.3, lower.tail=true, logp=true), Double.NaN);
 
 
 // test qnbinom_mu 
-	assertEquals(qnbinom(p=0.6, size=20, mu=8, lower.tail=true, log.p=false), 9.0, ERROR);
+	assertEquals(qnbinom(p=0.6, size=20, mu=8, lower.tail=true, logp=false), 9.0, ERROR);
 
 
 // test plogis 
@@ -137,73 +137,73 @@ ERROR = 0.0001;
 	assertEquals(qwilcox(0.1,4, 10, false, false), 29.0, ERROR);
 
 // test pnchisquare 
-	assertEquals(pchisq(q=0.75, df=4, ncp=1, lower.tail=true, log.p=false), 0.03540971, ERROR);
+	assertEquals(pnchisq(q=0.75, df=4, ncp=1, lower.tail=true, logp=false), 0.03540971, ERROR);
 
 
 // test qnchisquare 
-	assertEquals(qchisq(p=0.75, df=4, ncp=1, lower.tail=true, log.p=false), 6.737266, ERROR);
+	assertEquals(qnchisq(p=0.75, df=4, ncp=1, lower.tail=true, logp=false), 6.737266, ERROR);
 
 
 // test pnt 
-	assertEquals(pt(q=1.96, df=20, ncp=2, lower.tail=true, log.p=false), 0.4752101, ERROR);
+	assertEquals(pnt(q=1.96, df=20, ncp=2, lower.tail=true, logp=false), 0.4752101, ERROR);
 
 // test qnt <- function(){
-	assertEquals(qt(p=0.8, df=20, ncp=2, lower.tail=true, log.p=false), 2.965995, ERROR);
+	assertEquals(qnt(p=0.8, df=20, ncp=2, lower.tail=true, logp=false), 2.965995, ERROR);
 
 
 // test dnt <- function(){
-	assertEquals(dt(x=2, df=20, ncp=3, log=false), 0.2435572, ERROR);
+	assertEquals(dnt(x=2, df=20, ncp=3, log=false), 0.2435572, ERROR);
 
 
 // test dnchisq <- function(){
-	assertEquals(dchisq(x=2, df=10, ncp=5, log=false), 0.001017647, ERROR);
-	assertEquals(dchisq(x=5, df=9, ncp=10, log=true), -5.125956, ERROR);
+	assertEquals(dnchisq(x=2, df=10, ncp=5, log=false), 0.001017647, ERROR);
+	assertEquals(dnchisq(x=5, df=9, ncp=10, log=true), -5.125956, ERROR);
 
 
 // test pnbinom_mu <- function(){
-	assertEquals(pnbinom(q=0.25, size=10, mu=4, lower.tail=true, log.p=false),  0.03457161, ERROR);
-	assertEquals(pnbinom(q=0.25, size=10, mu=4, lower.tail=true, log.p=true),  -3.364722, ERROR);
-	assertEquals(pnbinom(q=0.25, size=10, mu=4, lower.tail=false, log.p=false), 0.9654284, ERROR);
+	assertEquals(pnbinom_mu(q=0.25, size=10, mu=4, lower.tail=true, logp=false),  0.03457161, ERROR);
+	assertEquals(pnbinom_mu(q=0.25, size=10, mu=4, lower.tail=true, logp=true),  -3.364722, ERROR);
+	assertEquals(pnbinom_mu(q=0.25, size=10, mu=4, lower.tail=false, logp=false), 0.9654284, ERROR);
 
 // test pnbeta 
-	assertEquals(pbeta(q=0.25, shape1=1, shape2=6, ncp=1, lower.tail=true, log.p=false), 0.6935046, ERROR);
-	assertEquals(pbeta(q=0.25, shape1=1, shape2=6, ncp=1, lower.tail=true, log.p=true), -0.3659974, ERROR);
+	assertEquals(pnbeta(q=0.25, shape1=1, shape2=6, ncp=1, lower.tail=true, logp=false), 0.6935046, ERROR);
+	assertEquals(pnbeta(q=0.25, shape1=1, shape2=6, ncp=1, lower.tail=true, logp=true), -0.3659974, ERROR);
 
 // test dnf 
-	assertEquals(df(x=1, df1=6, df2=6, ncp=1, log=false), 0.4621278, ERROR);
-	assertEquals(df(x=1, df1=6, df2=6, ncp=1, log=true), -0.7719139, ERROR);
+	assertEquals(dnf(x=1, df1=6, df2=6, ncp=1, log=false), 0.4621278, ERROR);
+	assertEquals(dnf(x=1, df1=6, df2=6, ncp=1, log=true), -0.7719139, ERROR);
 
 // test dnf 
-	assertEquals(df(0, 6,6 , 1, false), 0, ERROR);
-	assertEquals(df(1, 6,6 , 1, false), 0.4621278, ERROR);
-	assertEquals(df(2, 6,6 , 1, true), -1.662094, ERROR);
+	assertEquals(dnf(0, 6,6 , 1, false), 0, ERROR);
+	assertEquals(dnf(1, 6,6 , 1, false), 0.4621278, ERROR);
+	assertEquals(dnf(2, 6,6 , 1, true), -1.662094, ERROR);
 
-#
-# qnbeta() and qnf() functions sometimes return different values when compared to
-# original interpreter. This is about accuracy and should be corrected at next level.
-# mhsatman.
+//
+// qnbeta() and qnf() functions sometimes return different values when compared to
+// original interpreter. This is about accuracy and should be corrected at next level.
+// mhsatman.
 
 
 // test qnbeta <- function(){
-	assertEquals(qbeta(p=0.05, shape1=12, shape2=8, ncp=1, lower.tail=true, log.p=false), 0.428099, ERROR);
+	assertEquals(qnbeta(p=0.05, shape1=12, shape2=8, ncp=1, lower.tail=true, logp=false), 0.428099, ERROR);
 
 
 // test qnf <- function(){
-	assertEquals(qf(p=0.05, df1=4, df2=2, ncp=1, lower.tail=true, log.p=false),  0.1835066, ERROR);
+	assertEquals(qnf(p=0.05, df1=4, df2=2, ncp=1, lower.tail=true, logp=false),  0.1835066, ERROR);
 
 
 // test tukeys 
-	#This is confusing. Because location of parameters are replaced in R calls
+	//This is confusing. Because location of parameters are replaced in R calls
 	
-	assertEquals(ptukey(q=5.20, nmeans=14, df=12, nranges=5, lower.tail=true, log.p=false), 0.7342322, ERROR);
-	assertEquals(ptukey(q=4.9, nmeans=21, df=9, nranges=2, lower.tail=T, log.p=T), -0.406227, ERROR);
-	assertEquals(qtukey(p=0.90, nmeans=6, df=3, nranges=4, lower.tail=T, log.p=F), 8.001985, ERROR);
+	assertEquals(ptukey(q=5.20, nranges=5, nmeans=14, df=12, lower.tail=true, logp=false), 0.7342322, ERROR);
+	assertEquals(ptukey(q=4.9, nranges=2, nmeans=21, df=9, lower.tail=true, logp=true), -0.406227, ERROR);
+	assertEquals(qtukey(p=0.90, nranges=4, nmeans=6, df=3, lower.tail=true, logp=false), 8.001985, ERROR);
 
 
 // test chisquareZeroDf 
-	assertEquals(pchisq(0.5, df=0, lower.tail=true, log.p=false), 1);
-	assertEquals(pchisq(0.5, df=0, lower.tail=false, log.p=false), 0);
-	assertEquals(pchisq(0.5, df=0, ncp=0.5, lower.tail=true, log.p=false), 0.8225176, ERROR);
-	assertEquals(qchisq(0.5, df=0, lower.tail=true, log.p=false), 0);
-	assertEquals(qchisq(1, df=0, lower.tail=true, log.p=false), Double.POSITIVE_INFINITY);
+	assertEquals(pchisq(0.5, df=0, lower.tail=true, logp=false), 1);
+	assertEquals(pchisq(0.5, df=0, lower.tail=false, logp=false), 0);
+	assertEquals(pnchisq(0.5, df=0, ncp=0.5, lower.tail=true, logp=false), 0.8225176, ERROR);
+	assertEquals(qchisq(0.5, df=0, lower.tail=true, logp=false), 0);
+	assertEquals(qchisq(1, df=0, lower.tail=true, logp=false), Double.POSITIVE_INFINITY);
 

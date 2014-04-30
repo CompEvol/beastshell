@@ -1,9 +1,10 @@
 // demonstrates various 2D charts
 
-// simple chart
 import com.xeiam.xchart.*;
 import beast.app.shell.*;
 import java.awt.*;
+
+// simple chart
 
 xData = c(-3, -2, -1, 0, 1, 2, 3);
 yData = c(0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0);
@@ -118,14 +119,14 @@ for (int i = 0; i < size; i++) {
 }
 
 style = new Style(chartType="Scatter", legendPosition="InsideN", xatv=false, yatv=false, isXAxisLogarithmic=true);
-new Plot(series=new Series(seriesName="logarithmic data", x=xData, y=yData, marker="CIRCLE"), style=style, chartTitle="Logarithmic Data");
+new Plot(series=new Series(seriesName="logarithmic data", x=xData, y=yData, marker="CIRCLE"), style=style, title="Logarithmic Data");
 
 pause();
 
 // Scatter chart 03
 
 style = new Style(chartType="Scatter");
-new Plot(series=new Series(seriesName="single point(1,1)", x=c(1), y=c(1)), style=style, chartTitle="Single Point");
+new Plot(series=new Series(seriesName="single point(1,1)", x=c(1), y=c(1)), style=style, title="Single Point");
 
 pause();
 
@@ -155,6 +156,9 @@ new Plot(series=series, style=style, title="Score Histogram", xAxisTitle="Score"
 pause();
 
 // Bar chart 02
+import com.xeiam.xchart.*;
+import beast.app.shell.*;
+import java.awt.*;
 
 xData = new ArrayList<Number>();
 yData = new ArrayList<Number>();
@@ -170,38 +174,152 @@ new Plot(series=series, style=style, title="Units Sold Per Year", xAxisTitle="Ye
 
 pause();
 
+// Bar chart 05
+
+style = new Style(theme="GGPlot2", chartType="Bar");
+series1 = new Series(seriesName="fish", x=c("Blue", "Red", "Green", "Yellow"), y=c(-40, 30, 20, 60));
+series2 = new Series(seriesName="worms", x=x, y=c(50, 10, -20, 40 ));
+plot = new Plot(style=style, series=series1, title = "Temperature vs. Color", xAxisTitle ="Color", yAxisTitle ="Temperature");
+plot.add(series2);
+
+pause();
+
+// with missing data
+
+plot = new Plot(style=style, series=series1, title = "Temperature vs. Color", xAxisTitle ="Color", yAxisTitle ="Temperature");
+series3 = new Series(seriesName="archea", x=x, y=c(10, 10, 0, -10 ));
+plot.add(series3);
+
+pause();
+
 // Bar chart 06
 
-getGaussianData(int count) {
+getGaussianData(int count, int seed) {
     data = new ArrayList<Double>(count);
-    r = new Random();
+    r = new Random(seed);
     for (i = 0; i < count; i++) {
       data.add(r.nextGaussian() * 10);
     }
     return data;
 }
 
-Histogram histogram1 = new Histogram(getGaussianData(10000), 30, -30, 30);
-Histogram histogram2 = new Histogram(getGaussianData(5000), 30, -30, 30);
+Histogram histogram1 = new Histogram(getGaussianData(10000, 123), 30, -30, 30);
+Histogram histogram2 = new Histogram(getGaussianData(5000, 123), 30, -30, 30);
 series1 = new Series(seriesName="histogram 1", x=histogram1.getxAxisData(), y=histogram1.getyAxisData());
 series2 = new Series(seriesName="histogram 2", x=histogram2.getxAxisData(), y=histogram2.getyAxisData());
 
 style = new Style(chartType="Bar", barWidthPercentage=0.96, isBarsOverlapped=true,  legendPosition="InsideNW");
 
-plot = new Plot(series=series, style=style, title="Score Histogram", xAxisTitle="Mean", yAxisTitle="Count");
+plot = new Plot(series=series1, style=style, title="Score Histogram", xAxisTitle="Mean", yAxisTitle="Count");
 plot.add(series2);
 
 pause();
 
 // Bar chart 07
 
-Histogram histogram1 = new Histogram(getGaussianData(500), 30);
-Histogram histogram2 = new Histogram(getGaussianData(500), 30);
+Histogram histogram1 = new Histogram(getGaussianData(500, 123), 20, -25, 25);
+Histogram histogram2 = new Histogram(getGaussianData(500, 124), 20, -25, 25);
 series1 = new Series(seriesName="histogram 1", x=histogram1.getxAxisData(), y=histogram1.getyAxisData());
 series2 = new Series(seriesName="histogram 2", x=histogram2.getxAxisData(), y=histogram2.getyAxisData());
 
 style = new Style(chartType="Bar", barWidthPercentage=0.96, legendPosition="InsideNW");
 
-plot = new Plot(series=series, style=style, title="Score Histogram", xAxisTitle="Mean", yAxisTitle="Count");
+plot = new Plot(series=series1, style=style, title="Score Histogram", xAxisTitle="Mean", yAxisTitle="Count");
 plot.add(series2);
+
+pause();
+
+// Date chart 01
+
+generateData(String dateFormat, int n) {
+	xData.clear();
+	yData.clear();
+	random = new Random();
+	sdf = new java.text.SimpleDateFormat(dateFormat);
+	date = null;
+	for (int i = 1; i <= 14; i++) {
+		try {
+		switch(n) {
+		case 0: date = sdf.parse("23:45:31." + (100 * i + random.nextInt(20))); break;
+	   	case  1: date = sdf.parse("23:45:" + (5 * i + random.nextInt(2)) + "." + random.nextInt(1000)); break;
+	   	case  2: date = sdf.parse("08:" + (5 * i + random.nextInt(2)) + ":" + (random.nextInt(2)) + "." + random.nextInt(1000)); break;
+	   	case  3: date = sdf.parse("25-" + (2 * i + random.nextInt(2))); break;
+	   	case  4: date = sdf.parse("02-" + (6 * i + random.nextInt(2))); break;
+	   	case  5: date = sdf.parse("2013-" + (2 * i + random.nextInt(1))); break;
+	   	case  6: date = sdf.parse("" + (2001 + i) + "-" + random.nextInt(12));
+		}
+	 	} catch (ParseException e) {
+	   		e.printStackTrace();
+	 	}
+		xData.add(date);
+	 	yData.add(Math.random() * i);
+	}
+}
+
+xData = new ArrayList<Date>();
+yData = new ArrayList<Double>();
+generateData("HH:mm:ss.S", 0);
+
+style = new Style(isLegendVisible = false);
+series = new Series(seriesName="blah", x=xData, y=yData, marker="NONE");
+new Plot(style=style, series=series, title="Millisecond Scale");
+
+pause();
+
+// Date chart 02
+
+generateData("HH:mm:ss.SSS", 1);
+series = new Series(seriesName="blah", x=xData, y=yData, marker="NONE");
+new Plot(style=style, series=series, title="Seconds Scale");
+
+pause();
+
+// Date chart 03
+
+generateData("HH:mm:ss.SSS", 2);
+series = new Series(seriesName="blah", x=xData, y=yData, marker="NONE");
+new Plot(style=style, series=series, title="Minutes Scale");
+
+pause();
+
+// Date chart 04
+
+generateData("dd-HH", 3);
+series = new Series(seriesName="blah", x=xData, y=yData, marker="NONE");
+new Plot(style=style, series=series, title="Hour Scale");
+
+pause();
+
+// Date chart 05
+
+generateData("MM-dd", 4);
+series = new Series(seriesName="blah", x=xData, y=yData, marker="NONE");
+new Plot(style=style, series=series, title="Day Scale");
+
+pause();
+
+// Date chart 06
+
+generateData("yyyy-MM", 5);
+series = new Series(seriesName="blah", x=xData, y=yData, marker="NONE");
+new Plot(style=style, series=series, title="Month Scale");
+
+pause();
+
+// Date chart 07
+
+generateData("yyyy", 6);
+series = new Series(seriesName="blah", x=xData, y=yData, marker="NONE");
+new Plot(style=style, series=series, title="Year Scale");
+
+pause();
+
+// String labeled chart
+
+x = c("humans","chimp","dog","fruit fly");
+y = c(100, 98, 95, 60);
+
+style = new Style(chartType="Bar", legendPosition="InsideSW");
+series=new Series(seriesName="%DNA", x=x, y=y);
+new Plot(series=series, style=style, title="Percentage DNA in common with homo sapiens", xAxisTitle="Species", yAxisTitle="Number");
 

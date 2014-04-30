@@ -16,6 +16,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
@@ -198,5 +199,24 @@ public class ChartPanel extends JPanel {
 		charts.add(chart);
 		current = charts.size() - 1;
 		update();
+	}
+	
+	@Override
+	public void paintComponents(Graphics g) {
+		try {
+			super.paintComponents(g);
+		} catch (Exception e) {
+			studio.interpreter.getErr().println("Error while drawing: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void paint(Graphics g) {
+		try {
+			super.paint(g);
+		} catch (Exception e) {
+			studio.interpreter.getErr().println("Error while drawing: " + e.getMessage());
+			e.printStackTrace();
+		}
 	}
 }

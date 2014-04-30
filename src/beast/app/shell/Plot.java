@@ -1,8 +1,6 @@
 package beast.app.shell;
 
 
-
-import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +10,6 @@ import javax.swing.JPanel;
 import com.xeiam.xchart.BitmapEncoder;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.ChartBuilder;
-import com.xeiam.xchart.SeriesMarker;
 import com.xeiam.xchart.StyleManager.ChartTheme;
 import com.xeiam.xchart.internal.style.SeriesColorMarkerLineStyle;
 import com.xeiam.xchart.internal.style.SeriesColorMarkerLineStyleCycler;
@@ -65,18 +62,35 @@ public class Plot extends BEASTObject {
 	
 	public void add(Series series) throws IOException {
 		boolean initial = false;
-		List<Double> x;
-		List<Double> y;
+		List<Object> x;
+		List<Number> y;
 		List<Double> errors;
 		x = series.xInput.get();
+		if (x.size() == 1 && x.get(0) instanceof List) {
+			x = (List) x.get(0);
+		}
 		y = series.yInput.get();
 		errors = series.erroBarsInput.get();
 		if (x.size() == 0) {
 			x = new ArrayList<>();
 			for (int i = 0; i < y.size(); i++) {
-				x.add((double) i);
+				x.add(new Double(i));
 			}
 		}
+		if (x.get(0) instanceof Number) {
+			// convert to Double
+			List<Object> list = new ArrayList<>();
+			for (Object o : x) {
+				if (o instanceof Integer){ 
+					list.add(new Double((Integer) o));
+				} else {
+					list.add(o);
+				}
+			}
+			x = list;
+		}
+		
+		
 		
 		if (chart == null) {
 			initial = true;
@@ -106,6 +120,7 @@ public class Plot extends BEASTObject {
 		} else {
 			series1 = chart.addSeries(series.seriesNameInput.get(), x, y, errors);			
 		}
+		
 		SeriesColorMarkerLineStyle style0 =  defaultStyle.getNextSeriesColorMarkerLineStyle();
 		
 		series1.setLineColor(series.getLineColor() == null ? style0.getColor() : series.getLineColor());
