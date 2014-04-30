@@ -1,0 +1,16 @@
+import beast.util.*;
+import beast.app.shell.*;
+
+df = new LogAnalyser(new String[]{"test.log"}, 2000, 10);
+x = df.getTrace("treeLikelihood");
+new Plot(series=new Series(y=x), style= new Style(yAxisMax=max(x), yAxisMin=min(x)));
+
+
+doc = new beast.app.beauti.BeautiDoc();
+doc.beautiConfig = new beast.app.beauti.BeautiConfig();
+series = new Series();
+series.setID("dummy.partition");
+op = new beast.app.draw.BEASTObjectPanel(series, Series.class, doc);
+dialog = new beast.app.draw.BEASTObjectDialog(op, null);
+dialog.showDialog();
+
