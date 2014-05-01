@@ -914,7 +914,7 @@ $map{'Session.class'}='';
 $map{'Sort.class'}='';
 $map{'Split.class'}='';
 $map{'Subsetting.class'}='';
-$map{'Summary.class'}='';
+$map{'Summary.class'}='org.renjin.primitives.Summary';
 $map{'System.class'}='';
 $map{'Text.class'}='';
 $map{'Time.class'}='';
@@ -1058,7 +1058,35 @@ $args{'logGamma'} = "{x} {x}";
 $args{'digamma'} = "{x} {x}";
 $args{'trigamma'} = "{x} {x}";
 
+$args{'sum'} = "{x} {x}";
+$args{'mean'} = "{x} {x}";
+$args{'min'} = "{x} {x}";
+$args{'max'} = "{x} {x}";
+$args{'prod'} = "{x} {x}";
+$args{'range'} = "{x} {x}";
+#$args{'cov'} = "{a b c d} {a b c d}";
+#$args{'cor'} = "{a b c d} {a b c d}";
 
+$args{'cumsum'} = "{x} {x}";
+$args{'cumprod'} = "{x} {x}";
+$args{'cummax'} = "{x} {x}";
+$args{'cummin'} = "{x} {x}";
+
+
+open(FIN, "../../../doc/html/beast/base/00Index.html")or die "Cannot open base/00Index.html";
+while($s = <FIN>) {
+    if ($s =~ /<tr><td width="25%"><a href="(.*).html">(.*)<\/a><\/td>/) {
+        $docmap{$2} = "doc/beast/base/$1.html";
+    }
+}
+close (FIN);
+open(FIN, "../../../doc/html/beast/stats/00Index.html") or die "Cannot open stats/00Index.html";
+while($s = <FIN>) {
+    if ($s =~ /<tr><td width="25%"><a href="(.*).html">(.*)<\/a><\/td>/) {
+        $docmap{$2} = "doc/beast/stats/$1.html";
+    }
+}
+close (FIN);
 
 $k = 0;
 foreach $s (@s) {
@@ -1097,6 +1125,8 @@ if ($line =~ /f\((.*),(.*),(.*),(.*),(.*),(.*)\)/) {
 
 sub generateCmd {
 	open(FOUT,">$cmd.bsh") or die "cannot open file $cmd.bsh for writing";
+print FOUT "// \@see(".$docmap{$cmd}.")\n";
+
 print "$cmd $args{$cmd} $arity\n";
 	if ($arity =~/(.*)\+(.*)/) {
 

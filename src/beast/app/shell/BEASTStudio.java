@@ -20,6 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 import beast.app.util.Utils;
 import bsh.BshClassManager;
@@ -233,14 +235,25 @@ public class BEASTStudio extends JSplitPane {
                 jam.mac.Utils.macOSXRegistration(application);
             } catch (Exception e) {
                 // ignore
-            }
+            } 
             try {
                 Class<?> class_ = Class.forName("jam.maconly.OSXAdapter");
                 Method method = class_.getMethod("enablePrefs", boolean.class);
                 method.invoke(null, false);
             } catch (java.lang.Exception e) {
                 // ignore
-            }
+            } 
+        } else {
+        	try {
+        	    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+        	        if ("Nimbus".equals(info.getName())) {
+        	            UIManager.setLookAndFeel(info.getClassName());
+        	            break;
+        	        }
+        	    }
+        	} catch (Exception e) {
+        	    // If Nimbus is not available, you can set the GUI to another look and feel.
+        	}
         }
 		
 		

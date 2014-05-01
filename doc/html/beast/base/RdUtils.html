@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Utilities for Processing Rd Files</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for RdUtils {base}"><tr><td>RdUtils {base}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Utilities for Processing Rd Files</h2>
+
+<h3>Description</h3>
+
+
+<p>Utilities for converting files in R documentation (Rd) format to other
+formats or create indices from them, and for converting documentation
+in other formats to Rd format.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+R CMD Rdconv [options] file
+R CMD Rd2pdf [options] files
+</pre>
+
+
+<h3>Arguments</h3>
+
+
+<table summary="R argblock">
+<tr valign="top"><td><code>file</code></td>
+<td>
+<p>the path to a file to be processed.</p>
+</td></tr>
+<tr valign="top"><td><code>files</code></td>
+<td>
+<p>a list of file names specifying the R documentation
+sources to use, by either giving the paths to the files, or the path
+to a directory with the sources of a package.</p>
+</td></tr>
+<tr valign="top"><td><code>options</code></td>
+<td>
+<p>further options to control the processing, or for
+obtaining information about usage and version of the utility.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+
+<p><CODE>R CMD Rdconv</CODE> converts Rd format to plain text, HTML or LaTeX
+formats: it can also extract the examples.
+</p>
+<p><CODE>R CMD Rd2pdf</CODE> is the user-level program for producing PDF output
+from Rd sources.  It will make use of the environment variables
+<span class="env">R_PAPERSIZE</span> (set by <CODE>R CMD</CODE>, with a default set when <font face="Courier New,Courier" color="#666666"><b>R</b></font>
+was installed: values for <span class="env">R_PAPERSIZE</span> are <code>a4</code>,
+<code>letter</code>, <code>legal</code> and <code>executive</code>)
+and <span class="env">R_PDFVIEWER</span> (the PDF previewer).  Also,
+<span class="env">RD2PDF_INPUTENC</span> can be set to <code>inputenx</code> to make use of the
+LaTeX package of that name rather than <code>inputenc</code>: this might be
+needed for better support of the UTF-8 encoding.
+</p>
+<p>Use <CODE>R CMD </p>
+<VAR>foo</VAR> --help</CODE> to obtain usage information on utility
+<code><VAR>foo</VAR></code>.
+
+
+<h3>See Also</h3>
+
+
+<p>The chapter &ldquo;Processing Rd format&rdquo; in the &ldquo;Writing <font face="Courier New,Courier" color="#666666"><b>R</b></font>
+Extensions&rdquo; manual.
+</p>
+
+<hr><div align="center">[Package <em>base</em> version 2.16.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import javax.swing.event.HyperlinkListener;
 
 import beast.app.DocMaker;
 import beast.util.AddOnManager;
+import bsh.Interpreter;
 
 public class HelpBrowser extends JPanel implements HyperlinkListener {
     private static final long serialVersionUID = 1L;
@@ -46,8 +48,12 @@ public class HelpBrowser extends JPanel implements HyperlinkListener {
     JButton btnHome;
 
 
+    List<String> importCommands;
     public HelpBrowser() {
-    	
+    	importCommands = new ArrayList<>();
+		importCommands.add("beast/commands/");
+		importCommands.add("bsh/commands/");
+
     	setLayout(new BorderLayout());
         if (docMaker == null) {
         	if (!new File(BEAST_DOC_DIR).exists()) {
@@ -194,27 +200,40 @@ public class HelpBrowser extends JPanel implements HyperlinkListener {
                     }
                 } else {
                 	
-                	// check whether it is a regular page on the file system
-                	String docPage = link.getDescription();
-                	if (new File(docPage).exists()) {
-                    	String path = new File(".").getAbsolutePath();
-                       	try {
-							setURL(new URL("file://" + path  + "/" + docPage));
-						} catch (MalformedURLException e) {
-							e.printStackTrace();
-						}
-                       	return;
-                	} else if(new File(AddOnManager.getPackageUserDir() + "/beastshell/" + docPage).exists()) {
-                    	try {
-							setURL(new URL("file://" + AddOnManager.getPackageUserDir() + "/beastshell/" + docPage));
-						} catch (MalformedURLException e) {
-							e.printStackTrace();
-						}
-                       	return;
-                	}
+                }
                 	
-                	// check whether it is a BeastShell command
-                	// TODO
+            	// check whether it is a regular page on the file system
+            	String docPage = link.getDescription();
+            	if (canLoadPage(docPage)) {
+            		return;
+            	}
+
+            	// check whether it is a BeastShell command
+            	// TODO
+            	for (String path : importCommands) {
+            		String scriptPath = path +"/"+ docPage +".bsh";
+            		InputStream in = Interpreter.class.getResourceAsStream( path );
+            		if (in != null) {
+            			StringBuffer buf = new StringBuffer();
+            			try {
+            				char ch = ' ';
+            				while (ch != '\n') {
+            					ch = (char) in.read();
+            					buf.append(ch);
+            				}
+            				String header = buf.toString();
+            				if (header.indexOf("@see(")>=0) {
+            					header = header.substring(header.indexOf("@see("), header.indexOf(")"));
+                            	if (canLoadPage(header)) {
+                            		return;
+                            	}                					
+            				}
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+            		}
+
                 	
                 	// give up, it is probably an external link then
 					setURL(link.getURL());
@@ -229,7 +248,27 @@ public class HelpBrowser extends JPanel implements HyperlinkListener {
 //        }
     } // hyperlinkUpdate
 
-    /**
+    private boolean canLoadPage(String docPage) {
+    	if (new File(docPage).exists()) {
+        	String path = new File(".").getAbsolutePath();
+           	try {
+				setURL(new URL("file://" + path  + "/" + docPage));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+           	return true;
+    	} else if(new File(AddOnManager.getPackageUserDir() + "/beastshell/" + docPage).exists()) {
+        	try {
+				setURL(new URL("file://" + AddOnManager.getPackageUserDir() + "/beastshell/" + docPage));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+           	return true;
+    	}
+    	return false;
+	}
+
+	/**
      * change html text and enable/disable buttons (where appropriate) *
      */
     void updateState() {

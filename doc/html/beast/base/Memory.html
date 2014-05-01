@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Memory Available for Data Storage</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for Memory {base}"><tr><td>Memory {base}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Memory Available for Data Storage</h2>
+
+<h3>Description</h3>
+
+<p>How <font face="Courier New,Courier" color="#666666"><b>R</b></font> manages its workspace.
+</p>
+
+
+<h3>Details</h3>
+
+<p><font face="Courier New,Courier" color="#666666"><b>R</b></font> has a variable-sized workspace.  There are (rarely-used)
+command-line options to control its minimum size, but no longer any to
+control the maximum size.
+</p>
+<p><font face="Courier New,Courier" color="#666666"><b>R</b></font> maintains separate areas for fixed and variable sized objects.  The
+first of these is allocated as an array of <EM>cons cells</EM> (Lisp
+programmers will know what they are, others may think of them as the
+building blocks of the language itself, parse trees, etc.), and the
+second are thrown on a <EM>heap</EM> of &lsquo;Vcells&rsquo; of 8 bytes each.
+Each cons cell occupies 28 bytes on a 32-bit build of <font face="Courier New,Courier" color="#666666"><b>R</b></font>, (usually) 56
+bytes on a 64-bit build.
+</p>
+<p>The default values are (currently) an initial setting of 350k cons
+cell sand 6Mb of vector heap.  Note that the areas are not actually
+allocated initially: rather these values are the sizes for triggering
+garbage collection.  These values can be set by the command line
+options <span class="option">--min-nsize</span> and <span class="option">--min-vsize</span> (or if they are
+not used, the environment variables <span class="env">R_NSIZE</span> and <span class="env">R_VSIZE</span>)
+when <font face="Courier New,Courier" color="#666666"><b>R</b></font> is started. Thereafter <font face="Courier New,Courier" color="#666666"><b>R</b></font> will grow or shrink the areas
+depending on usage, never decreasing below the initial values.
+</p>
+<p>How much time <font face="Courier New,Courier" color="#666666"><b>R</b></font> spends in the garbage collector will depend on these
+initial settings and on the trade-off the memory manager makes, when
+memory fills up, between collecting garbage to free up unused memory
+and growing these areas.  The strategy used for growth can be
+specified by setting the environment variable <span class="env">R_GC_MEM_GROW</span> to
+an integer value between 0 and 3. This variable is read at
+start-up. Higher values grow the heap more aggressively, thus reducing
+garbage collection time but using more memory.
+</p>
+<p>You can find out the current memory consumption (the heap and cons
+cells used as numbers and megabytes) by typing <code><a href="gc.html">gc</a>()</code> at the
+<font face="Courier New,Courier" color="#666666"><b>R</b></font> prompt.  Note that following <code><a href="gc.html">gcinfo</a>(TRUE)</code>, automatic
+garbage collection always prints memory use statistics.
+</p>
+<p>The command-line option <span class="option">--max-ppsize</span> controls the maximum
+size of the pointer protection stack.  This defaults to 50000, but can
+be increased to allow deep recursion or large and complicated
+calculations to be done.  <EM>Note</EM> that parts of the garbage
+collection process goes through the full reserved pointer protection
+stack and hence becomes slower when the size is increased.  Currently
+the maximum value accepted is 500000.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><EM>An Introduction to R</EM> for more command-line options.
+</p>
+<p><code><a href="Memory-limits.html">Memory-limits</a></code> for the design limitations.
+</p>
+<p><code><a href="gc.html">gc</a></code> for information on the garbage collector and total
+memory usage,  <code><a href="../../utils/html/object.size.html">object.size</a>(a)</code> for the (approximate)
+size of <font face="Courier New,Courier" color="#666666"><b>R</b></font> object <code>a</code>.  <code><a href="memory.profile.html">memory.profile</a></code> for
+profiling the usage of cons cells.
+</p>
+
+<hr><div align="center">[Package <em>base</em> version 3.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>
