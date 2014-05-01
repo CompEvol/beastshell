@@ -1,0 +1,90 @@
+// BeanShell understands standard Java statements,
+// expressions, and method declarations. Statements 
+// and expressions are all of the normal things that
+// you'd say inside a Java method such as variable 
+// declarations and assignments, method calls, loops, 
+// and conditionals. 
+
+show();
+
+foo = "Foo";    
+four = (2 + 2)*2/2;
+print( foo + " = " + four );  // print() is a BeanShell command
+
+pause();
+
+// Do a loop
+for (i=0; i<5; i++)
+    print(i);   
+
+pause();
+
+// Pop up a frame with a button in it
+button = new JButton( "My Button" );
+frame = new JFrame( "My Frame" );
+frame.getContentPane().add( button, "Center" );
+frame.pack();
+frame.setVisible(true);
+
+pause();
+
+
+// You can implement interfaces, just as in Java:
+
+ActionListener scriptedListener = new ActionListener() {
+    actionPerformed( event ) {print("hello world"); }
+}
+button.addActionListener(scriptedListener);
+
+pause();
+
+// You can declare and use methods in BeanShell 
+// just as you would in a Java class.
+
+int addTwoNumbers( int a, int b ) {
+    return a + b;
+}
+
+sum = addTwoNumbers( 5, 7 );  // 12
+print(sum);
+
+pause();
+
+// In BeanShell, as in JavaScript and Perl, 
+// method "closures" allow you to create 
+// scripted objects. You can turn the results 
+// of a method call into an object reference 
+// by having the method return the special 
+// value this. You can then use the reference 
+// to refer to any variables set during the 
+// method call. Useful objects need methods 
+// of course, so in BeanShell scripted methods 
+// may also contain methods at any level. For 
+// example: 
+
+foo() {
+    print("foo");
+    x=5;
+
+    bar() {
+        print("bar");
+    }
+
+    return this;
+}
+
+myfoo = foo();    // prints "foo"
+print( myfoo.x ); // prints "5"
+myfoo.bar();      // prints "bar"
+
+pause();
+
+// Here are a few other examples of BeanShell commands:
+
+//-- source(), run() - Read a bsh script into this interpreter, or run it in a new interpreter
+//-- frame() - Display a GUI component in a Frame or JFrame.
+//-- load(), save() - Load or save serializable objects to a file.
+//-- cd(), cat(), dir(), pwd(), etc. - Unix-like shell commands
+//-- exec() - Run a native application
+//-- javap() - Print the methods and fields of an object, similar to the output of the Java javap command.
+//-- setAccessibility() - Turn on unrestricted access to private and protected components.
