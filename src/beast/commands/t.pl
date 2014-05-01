@@ -1076,14 +1076,14 @@ $args{'cummin'} = "{x} {x}";
 open(FIN, "../../../doc/html/beast/base/00Index.html")or die "Cannot open base/00Index.html";
 while($s = <FIN>) {
     if ($s =~ /<tr><td width="25%"><a href="(.*).html">(.*)<\/a><\/td>/) {
-        $docmap{$2} = "doc/beast/base/$1.html";
+        $docmap{$2} = "doc/html/beast/base/$1.html";
     }
 }
 close (FIN);
 open(FIN, "../../../doc/html/beast/stats/00Index.html") or die "Cannot open stats/00Index.html";
 while($s = <FIN>) {
     if ($s =~ /<tr><td width="25%"><a href="(.*).html">(.*)<\/a><\/td>/) {
-        $docmap{$2} = "doc/beast/stats/$1.html";
+        $docmap{$2} = "doc/html/beast/stats/$1.html";
     }
 }
 close (FIN);

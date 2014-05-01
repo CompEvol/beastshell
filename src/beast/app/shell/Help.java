@@ -2,9 +2,17 @@ package beast.app.shell;
 
 
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import beast.app.DocMaker;
 import beast.core.BEASTObject;
+import beast.util.AddOnManager;
 import bsh.ClassIdentifier;
+import bsh.Interpreter;
 
 public class Help {
 	/**
@@ -47,9 +55,35 @@ help(beast.util.TreeParser);
 			try {
 				// check if it is a class
 				 o = Class.forName((String)o).newInstance();
+				 return;
 			} catch (Exception e) {
 				// TODO: check if it is a command
 				e.printStackTrace();
+            	for (String path : new String[]{"../beast/commands/", "../bsh/commands/"}) {
+            		String scriptPath = path +"/"+ (String) o +".bsh";
+            		InputStream in = Interpreter.class.getResourceAsStream( scriptPath );
+            		if (in != null) {
+            			StringBuffer buf = new StringBuffer();
+            			try {
+            				char ch = ' ';
+            				while (ch != '\n') {
+            					ch = (char) in.read();
+            					buf.append(ch);
+            				}
+            				String header = buf.toString();
+            				if (header.indexOf("@see(")>=0) {
+            					header = header.substring(header.indexOf("@see(") + 5, header.indexOf(")"));
+                            	if (canLoadPage(header)) {
+                        			studio.rightLowerPaneTab.setSelectedIndex(0);
+                            		return;
+                            	}                					
+            				}
+						} catch (IOException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+            		}
+                }
 			}
 		} else if (o instanceof ClassIdentifier) {
 			try {
@@ -68,6 +102,7 @@ help(beast.util.TreeParser);
 				e.printStackTrace();
 			}
 		} else {
+			// show the class browser
 			studio.rightLowerPaneTab.setSelectedIndex(1);
 			studio.classBrowser.setClist(o.getClass().getPackage().getName());
 			studio.classBrowser.setMlist(o.getClass().getSimpleName());
@@ -91,6 +126,27 @@ help(beast.util.TreeParser);
 	}
 
 
+    static boolean canLoadPage(String docPage) {
+    	if (new File(docPage).exists()) {
+        	String path = new File(".").getAbsolutePath();
+           	try {
+           		studio.helpPane.setURL(new URL("file://" + path  + "/" + docPage));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+           	return true;
+    	} else if(new File(AddOnManager.getPackageUserDir() + "/beastshell/" + docPage).exists()) {
+        	try {
+        		studio.helpPane.setURL(new URL("file://" + AddOnManager.getPackageUserDir() + "/beastshell/" + docPage));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+           	return true;
+    	}
+    	return false;
+	}
+	
+	
 	public static void main(String[] args) {
 		Help.help();
 	}
