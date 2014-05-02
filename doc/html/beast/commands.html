@@ -1,284 +1,137 @@
-<html>
-<head>
+<html><head></head>
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
 <h1>BEAST Shell commands</h1>
-
-abs(x)
-
-acos(x)
-
-acosh(x)
-
-asin(x)
-
-asinh(x)
-
-atan2(arg0, arg1)
-
-atan(x)
-
-atanh(x)
-
-beta(a, b)
-
-ceil(arg0)
-
-ceiling(x)
-
-choose(n, k)
-
-cos(x)
-
-cosh(x)
-
-dbeta(x, a, b)
-
-dbinom(x, n, p)
-
-dcauchy(x, location, scale)
-
-dchisq(x, df)
-
-dexp(x, rate)
-
-df(x, m, n)
-
-dgamma(x, shape, scale)
-
-dgeom(x, p)
-
-dhyper(x, r, b, n)
-
-digamma(x)
-
-dlnorm(x, meanlog, sdlog)
-
-dlogis(x, location, scale)
-
-dnbeta(x, a, b, ncp)
-
-dnbinom(x, size, prob)
-
-dnbinom_mu(arg0, arg1, arg2)
-
-dnchisq(x, df, ncp)
-
-dnf(x, df1, df2, ncp)
-
-dnorm(x, mu, sigma)
-
-dnt(x, df, ncp)
-
-dpois(x, lambda)
-
-dsignrank(arg0, arg1)
-
-dt(x, n)
-
-dunif(x, a, b)
-
-dweibull(x, shape, scale)
-
-dwilcox(arg0, arg1, arg2)
-
-exp(x)
-
-expm1(x)
-
-floor(x)
-
-gamma(x)
-
-help()
-
-lbeta()
-
-lchoose(arg0, arg1)
-
-lgamma(x)
-
-log10(x)
-
-log1p(x)
-
-log2(x)
-
-log(x)
-
-logGamma(arg0)
-
-pause()
-
-pbeta(x, pin, qin)
-
-pbinom(x, n, p)
-
-pcauchy(x, location, scale)
-
-pchisq(x, df)
-
-pexp(x, scale)
-
-pf(x, df1, df2)
-
-pgamma(x, alph, scale)
-
-pgeom(x, p)
-
-phyper(x, NR, NB, n)
-
-plnorm(x, meanlog, sdlog)
-
-plogis(x, location, scale)
-
-pnbeta(x, a, b, ncp)
-
-pnbinom(x, size, prob)
-
-pnbinom_mu(arg0, arg1, arg2)
-
-pnchisq(x, df, ncp)
-
-pnf(x, df1, df2, ncp)
-
-pnorm(x, mu, sigma)
-
-pnt(t, df, ncp)
-
-ppois(x, lambda)
-
-psignrank(arg0, arg1)
-
-pt(x, n, give_log)
-
-ptukey(q, rr, cc, df)
-
-punif(x, a, b)
-
-pweibull(x, shape, scale)
-
-pwilcox(arg0, arg1, arg2)
-
-qbeta(p, shape1, shape2)
-
-qbinom(p, n, pr)
-
-qcauchy(p, location, scale)
-
-qchisq(p, df)
-
-qexp(p, scale)
-
-qf(p, df1, df2)
-
-qgamma(p, alpha, beta)
-
-qgeom(p, prob)
-
-qhyper(p, NR, NB, n)
-
-qlnorm(p, meanlog, sdlog)
-
-qlogis(p, location, scale)
-
-qnbeta(p, a, b, ncp)
-
-qnbinom(p, size, prob)
-
-qnbinom_mu(arg0, arg1, arg2)
-
-qnchisq(p, df, ncp)
-
-qnf(p, df1, df2, ncp)
-
-qnorm(p, mu, sigma)
-
-qnt(p, df, ncp)
-
-qpois(p, lambda)
-
-qsignrank(arg0, arg1)
-
-qt(p, df)
-
-qtukey(p, rr, cc, df)
-
-qunif(p, a, b)
-
-qweibull(p, shape, scale)
-
-qwilcox(arg0, arg1, arg2)
-
-rbeta(aa, bb)
-
-rbinom(nin, pp)
-
-rcauchy(location, scale)
-
-rchisq(df)
-
-rexp(scale)
-
-rf(n1, n2)
-
-rgamma(a, scale)
-
-rgeom(p)
-
-rhyper(nn1in, nn2in, kkin)
-
-rlnorm(meanlog, sdlog)
-
-rlogis(location, scale)
-
-rmultinom(n, prob, K, rN)
-
-rnbinom(size, prob)
-
-rnbinom_mu(arg0, arg1, arg2)
-
-rnchisq(df, lambda)
-
-RNGkind(arg0, arg1)
-
-rnorm(mu, sigma)
-
-round(x)
-
-rpois(mu)
-
-rsignrank(arg0, arg1)
-
-rt(df)
-
-runif(a, b)
-
-rweibull(shape, scale)
-
-rwilcox(arg0, arg1, arg2)
-
-sample(arg0, arg1, arg2, arg3)
-
-set_seed(arg0, arg1, arg2)
-
-sign(x)
-
-signif(x)
-
-sin(x)
-
-sinh(x)
-
-sqrt(x)
-
-tan(x)
-
-tanh(x)
-
-trigamma(x)
-
-trunc(x)
+<a href='base/all.html'>all</a>  Are All Values True?</br>
+<a href='base/any.html'>any</a>  Are Some Values True?</br>
+<a href='base/Extremes.html'>pmin</a>  Maxima and Minima</br>
+<a href='base/Extremes.html'>pmax</a>  Maxima and Minima</br>
+<a href='base/Round.html'>round</a>  Rounding of Numbers</br>
+<a href='base/Round.html'>signif</a>  Rounding of Numbers</br>
+<a href='base/Trig.html'>atan</a>  Trigonometric Functions</br>
+<a href='base/Log.html'>log</a>  Logarithms and Exponentials</br>
+<a href='base/Log.html'>log10</a>  Logarithms and Exponentials</br>
+<a href='base/Log.html'>log2</a>  Logarithms and Exponentials</br>
+<a href='base/MathFun.html'>abs</a>  Miscellaneous Mathematical Functions</br>
+<a href='base/Round.html'>floor</a>  Rounding of Numbers</br>
+<a href='base/Round.html'>ceiling</a>  Rounding of Numbers</br>
+<a href='base/MathFun.html'>sqrt</a>  Miscellaneous Mathematical Functions</br>
+<a href='base/sign.html'>sign</a>  Sign Function</br>
+<a href='base/Round.html'>trunc</a>  Rounding of Numbers</br>
+<a href='base/Log.html'>exp</a>  Logarithms and Exponentials</br>
+<a href='base/Log.html'>expm1</a>  Logarithms and Exponentials</br>
+<a href='base/Log.html'>log1p</a>  Logarithms and Exponentials</br>
+<a href='base/Trig.html'>cos</a>  Trigonometric Functions</br>
+<a href='base/Trig.html'>sin</a>  Trigonometric Functions</br>
+<a href='base/Trig.html'>tan</a>  Trigonometric Functions</br>
+<a href='base/Trig.html'>acos</a>  Trigonometric Functions</br>
+<a href='base/Trig.html'>asin</a>  Trigonometric Functions</br>
+<a href='base/Hyperbolic.html'>cosh</a>  Hyperbolic Functions</br>
+<a href='base/Hyperbolic.html'>sinh</a>  Hyperbolic Functions</br>
+<a href='base/Hyperbolic.html'>tanh</a>  Hyperbolic Functions</br>
+<a href='base/Hyperbolic.html'>acosh</a>  Hyperbolic Functions</br>
+<a href='base/Hyperbolic.html'>asinh</a>  Hyperbolic Functions</br>
+<a href='base/Hyperbolic.html'>atanh</a>  Hyperbolic Functions</br>
+<a href='base/Special.html'>lgamma</a>  Special Functions of Mathematics</br>
+<a href='base/Special.html'>gamma</a>  Special Functions of Mathematics</br>
+<a href='base/Special.html'>digamma</a>  Special Functions of Mathematics</br>
+<a href='base/Special.html'>trigamma</a>  Special Functions of Mathematics</br>
+<a href='base/Trig.html'>atan2</a>  Trigonometric Functions</br>
+<a href='base/Special.html'>lbeta</a>  Special Functions of Mathematics</br>
+<a href='base/Special.html'>beta</a>  Special Functions of Mathematics</br>
+<a href='base/Special.html'>lchoose</a>  Special Functions of Mathematics</br>
+<a href='base/Special.html'>choose</a>  Special Functions of Mathematics</br>
+<a href='stats/Chisquare.html) The (non-central'>dchisq</a>  Chi-Squared Distribution</br>
+<a href='stats/Chisquare.html) The (non-central'>pchisq</a>  Chi-Squared Distribution</br>
+<a href='stats/Chisquare.html) The (non-central'>qchisq</a>  Chi-Squared Distribution</br>
+<a href='stats/Exponential.html'>dexp</a>  The Exponential Distribution</br>
+<a href='stats/Exponential.html'>pexp</a>  The Exponential Distribution</br>
+<a href='stats/Exponential.html'>qexp</a>  The Exponential Distribution</br>
+<a href='stats/Geometric.html'>dgeom</a>  The Geometric Distribution</br>
+<a href='stats/Geometric.html'>pgeom</a>  The Geometric Distribution</br>
+<a href='stats/Geometric.html'>qgeom</a>  The Geometric Distribution</br>
+<a href='stats/Poisson.html'>dpois</a>  The Poisson Distribution</br>
+<a href='stats/Poisson.html'>ppois</a>  The Poisson Distribution</br>
+<a href='stats/Poisson.html'>qpois</a>  The Poisson Distribution</br>
+<a href='stats/TDist.html'>dt</a>  The Student t Distribution</br>
+<a href='stats/TDist.html'>pt</a>  The Student t Distribution</br>
+<a href='stats/TDist.html'>qt</a>  The Student t Distribution</br>
+<a href='stats/SignRank.html'>dsignrank</a>  Distribution of the Wilcoxon Signed Rank Statistic</br>
+<a href='stats/SignRank.html'>psignrank</a>  Distribution of the Wilcoxon Signed Rank Statistic</br>
+<a href='stats/SignRank.html'>qsignrank</a>  Distribution of the Wilcoxon Signed Rank Statistic</br>
+<a href='stats/Beta.html'>dbeta</a>  The Beta Distribution</br>
+<a href='stats/Beta.html'>pbeta</a>  The Beta Distribution</br>
+<a href='stats/Beta.html'>qbeta</a>  The Beta Distribution</br>
+<a href='stats/Binomial.html'>dbinom</a>  The Binomial Distribution</br>
+<a href='stats/Binomial.html'>pbinom</a>  The Binomial Distribution</br>
+<a href='stats/Binomial.html'>qbinom</a>  The Binomial Distribution</br>
+<a href='stats/Cauchy.html'>dcauchy</a>  The Cauchy Distribution</br>
+<a href='stats/Cauchy.html'>pcauchy</a>  The Cauchy Distribution</br>
+<a href='stats/Cauchy.html'>qcauchy</a>  The Cauchy Distribution</br>
+<a href='stats/Fdist.html'>df</a>  The F Distribution</br>
+<a href='stats/Fdist.html'>pf</a>  The F Distribution</br>
+<a href='stats/Fdist.html'>qf</a>  The F Distribution</br>
+<a href='stats/GammaDist.html'>dgamma</a>  The Gamma Distribution</br>
+<a href='stats/GammaDist.html'>pgamma</a>  The Gamma Distribution</br>
+<a href='stats/GammaDist.html'>qgamma</a>  The Gamma Distribution</br>
+<a href='stats/Lognormal.html'>dlnorm</a>  The Log Normal Distribution</br>
+<a href='stats/Lognormal.html'>plnorm</a>  The Log Normal Distribution</br>
+<a href='stats/Lognormal.html'>qlnorm</a>  The Log Normal Distribution</br>
+<a href='stats/Logistic.html'>dlogis</a>  The Logistic Distribution</br>
+<a href='stats/Logistic.html'>plogis</a>  The Logistic Distribution</br>
+<a href='stats/Logistic.html'>qlogis</a>  The Logistic Distribution</br>
+<a href='stats/NegBinomial.html'>dnbinom</a>  The Negative Binomial Distribution</br>
+<a href='stats/NegBinomial.html'>pnbinom</a>  The Negative Binomial Distribution</br>
+<a href='stats/NegBinomial.html'>qnbinom</a>  The Negative Binomial Distribution</br>
+<a href='stats/Normal.html'>dnorm</a>  The Normal Distribution</br>
+<a href='stats/Normal.html'>pnorm</a>  The Normal Distribution</br>
+<a href='stats/Normal.html'>qnorm</a>  The Normal Distribution</br>
+<a href='stats/Uniform.html'>dunif</a>  The Uniform Distribution</br>
+<a href='stats/Uniform.html'>punif</a>  The Uniform Distribution</br>
+<a href='stats/Uniform.html'>qunif</a>  The Uniform Distribution</br>
+<a href='stats/Weibull.html'>dweibull</a>  The Weibull Distribution</br>
+<a href='stats/Weibull.html'>pweibull</a>  The Weibull Distribution</br>
+<a href='stats/Weibull.html'>qweibull</a>  The Weibull Distribution</br>
+<a href='stats/Wilcoxon.html'>dwilcox</a>  Distribution of the Wilcoxon Rank Sum Statistic</br>
+<a href='stats/Wilcoxon.html'>pwilcox</a>  Distribution of the Wilcoxon Rank Sum Statistic</br>
+<a href='stats/Wilcoxon.html'>qwilcox</a>  Distribution of the Wilcoxon Rank Sum Statistic</br>
+<a href='stats/Hypergeometric.html'>dhyper</a>  The Hypergeometric Distribution</br>
+<a href='stats/Hypergeometric.html'>phyper</a>  The Hypergeometric Distribution</br>
+<a href='stats/Hypergeometric.html'>qhyper</a>  The Hypergeometric Distribution</br>
+<a href='stats/Tukey.html'>ptukey</a>  The Studentized Range Distribution</br>
+<a href='stats/Tukey.html'>qtukey</a>  The Studentized Range Distribution</br>
+<a href='stats/Chisquare.html) The (non-central'>rchisq</a>  Chi-Squared Distribution</br>
+<a href='stats/Exponential.html'>rexp</a>  The Exponential Distribution</br>
+<a href='stats/Geometric.html'>rgeom</a>  The Geometric Distribution</br>
+<a href='stats/Poisson.html'>rpois</a>  The Poisson Distribution</br>
+<a href='stats/TDist.html'>rt</a>  The Student t Distribution</br>
+<a href='stats/SignRank.html'>rsignrank</a>  Distribution of the Wilcoxon Signed Rank Statistic</br>
+<a href='stats/Beta.html'>rbeta</a>  The Beta Distribution</br>
+<a href='stats/Binomial.html'>rbinom</a>  The Binomial Distribution</br>
+<a href='stats/Cauchy.html'>rcauchy</a>  The Cauchy Distribution</br>
+<a href='stats/Fdist.html'>rf</a>  The F Distribution</br>
+<a href='stats/GammaDist.html'>rgamma</a>  The Gamma Distribution</br>
+<a href='stats/Lognormal.html'>rlnorm</a>  The Log Normal Distribution</br>
+<a href='stats/Logistic.html'>rlogis</a>  The Logistic Distribution</br>
+<a href='stats/NegBinomial.html'>rnbinom</a>  The Negative Binomial Distribution</br>
+<a href='stats/Normal.html'>rnorm</a>  The Normal Distribution</br>
+<a href='stats/Uniform.html'>runif</a>  The Uniform Distribution</br>
+<a href='stats/Weibull.html'>rweibull</a>  The Weibull Distribution</br>
+<a href='stats/Wilcoxon.html'>rwilcox</a>  Distribution of the Wilcoxon Rank Sum Statistic</br>
+<a href='stats/Hypergeometric.html'>rhyper</a>  The Hypergeometric Distribution</br>
+<a href='stats/Multinom.html'>rmultinom</a>  The Multinomial Distribution</br>
+<a href='base/sample.html'>sample</a>  Random Samples and Permutations</br>
+<a href='base/Random.html'>RNGkind</a>  Random Number Generation</br>
+<a href='base/sum.html'>sum</a>  Sum of Vector Elements</br>
+<a href='base/mean.html'>mean</a>  Arithmetic Mean</br>
+<a href='base/Extremes.html'>min</a>  Maxima and Minima</br>
+<a href='base/Extremes.html'>max</a>  Maxima and Minima</br>
+<a href='base/prod.html'>prod</a>  Product of Vector Elements</br>
+<a href='base/range.html'>range</a>  Range of Values</br>
+<a href='base/cumsum.html'>cumsum</a>  Cumulative Sums, Products, and Extremes</br>
+<a href='base/cumsum.html'>cumprod</a>  Cumulative Sums, Products, and Extremes</br>
+<a href='base/cumsum.html'>cummax</a>  Cumulative Sums, Products, and Extremes</br>
+<a href='base/cumsum.html'>cummin</a>  Cumulative Sums, Products, and Extremes</br>
 </body>
 </html>

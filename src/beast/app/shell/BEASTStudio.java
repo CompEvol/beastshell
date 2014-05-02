@@ -7,8 +7,6 @@ import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
 import java.lang.reflect.Method;
 import java.net.URL;
 
@@ -19,7 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
@@ -89,7 +86,8 @@ public class BEASTStudio extends JSplitPane {
 
 		classBrowser = new ClassBrowser();
 		//TODO: let the splitter pane determine size
-		classBrowser.setMaximumSize(new Dimension(768,2048));
+		classBrowser.setMaximumSize(new Dimension(512,2048));
+		classBrowser.setSize(new Dimension(512,512));
 
 		try {
 			classBrowser.init();
@@ -149,10 +147,10 @@ public class BEASTStudio extends JSplitPane {
 	}
 	
 	private void setNameCompletion() {
-		if (true) {
-			// TODO: enable auto completion
-			return;
-		}
+//		if (true) {
+//			// TODO: enable auto completion
+//			return;
+//		}
         // Access to read classpath is protected 
         try {
 	        NameCompletionTable nct = new NameCompletionTable();

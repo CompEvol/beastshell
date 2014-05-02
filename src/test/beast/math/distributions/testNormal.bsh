@@ -1,0 +1,12 @@
+import beast.math.distributions.*;
+import beast.core.parameter.*;
+ERROR=0.0001;
+
+n = new Normal(mean="0.0",sigma="1.0");
+value = new RealParameter(value="0.0");
+assertEquals(n.calcLogP(value), -0.918938, ERROR);
+assertEquals(n.cumulativeProbability(0.25), 0.5987063, ERROR);
+assertEquals(n.inverseCumulativeProbability(0.25),  -0.6744898, ERROR);
+assertEquals(n.inverseCumulativeProbability(0.0),  Double.NEGATIVE_INFINITY);
+
+n = new Beta();

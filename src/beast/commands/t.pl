@@ -1076,17 +1076,27 @@ $args{'cummin'} = "{x} {x}";
 open(FIN, "../../../doc/html/beast/base/00Index.html")or die "Cannot open base/00Index.html";
 while($s = <FIN>) {
     if ($s =~ /<tr><td width="25%"><a href="(.*).html">(.*)<\/a><\/td>/) {
-        $docmap{$2} = "doc/html/beast/base/$1.html";
+        $docmap{$2} = "\@see(doc/html/beast/base/$1.html) ".<FIN>;
+		$docmap{$2}	=~ s/<[^>]+>//g;
     }
 }
 close (FIN);
 open(FIN, "../../../doc/html/beast/stats/00Index.html") or die "Cannot open stats/00Index.html";
 while($s = <FIN>) {
     if ($s =~ /<tr><td width="25%"><a href="(.*).html">(.*)<\/a><\/td>/) {
-        $docmap{$2} = "doc/html/beast/stats/$1.html";
+        $docmap{$2} = "\@see(doc/html/beast/stats/$1.html) ".<FIN>;
+		$docmap{$2}	=~ s/<[^>]+>//g;
     }
 }
 close (FIN);
+
+open(FINDEX,">../../../doc/html/beast/commands.html");
+print FINDEX '<html><head></head>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+<h1>BEAST Shell commands</h1>
+';
 
 $k = 0;
 foreach $s (@s) {
@@ -1098,6 +1108,12 @@ foreach $s (@s) {
 	$k++;
 	}
 }
+
+print FINDEX '</body>
+</html>
+';
+close FINDEX;
+
 sub process {
 	my $line = shift;
 if ($line =~ /f\((.*),(.*),(.*),(.*),(.*),(.*)\)/) {
@@ -1125,7 +1141,13 @@ if ($line =~ /f\((.*),(.*),(.*),(.*),(.*),(.*)\)/) {
 
 sub generateCmd {
 	open(FOUT,">$cmd.bsh") or die "cannot open file $cmd.bsh for writing";
-print FOUT "// \@see(".$docmap{$cmd}.")\n";
+print FOUT "// $docmap{$cmd}\n";
+
+if ($docmap{$cmd} =~ /\@see\(doc\/html\/beast\/(.*)\)(.*)/) {
+	$target = $1;
+	$description = $2;
+	print FINDEX "<a href='$target'>$cmd</a> $description</br>\n";
+}
 
 print "$cmd $args{$cmd} $arity\n";
 	if ($arity =~/(.*)\+(.*)/) {

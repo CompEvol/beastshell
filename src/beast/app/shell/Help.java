@@ -76,7 +76,7 @@ help(beast.util.TreeParser);
                             	if (canLoadPage(header)) {
                         			studio.rightLowerPaneTab.setSelectedIndex(0);
                             		return;
-                            	}                					
+                            	}
             				}
 						} catch (IOException e2) {
 							// TODO Auto-generated catch block
@@ -84,6 +84,14 @@ help(beast.util.TreeParser);
 						}
             		}
                 }
+            	// fall back
+            	String page = "doc/html/beanshell/bshcommands.html#" + (String) o;
+            	if (canLoadPage(page)) {
+        			studio.rightLowerPaneTab.setSelectedIndex(0);
+            		return;
+            	}
+
+			
 			}
 		} else if (o instanceof ClassIdentifier) {
 			try {
@@ -127,7 +135,11 @@ help(beast.util.TreeParser);
 
 
     static boolean canLoadPage(String docPage) {
-    	if (new File(docPage).exists()) {
+    	String page = docPage;
+    	if (page.contains("#")) {
+    		page = page.substring(0, page.indexOf('#'));
+    	}
+    	if (new File(page).exists()) {
         	String path = new File(".").getAbsolutePath();
            	try {
            		studio.helpPane.setURL(new URL("file://" + path  + "/" + docPage));
@@ -135,7 +147,7 @@ help(beast.util.TreeParser);
 				e.printStackTrace();
 			}
            	return true;
-    	} else if(new File(AddOnManager.getPackageUserDir() + "/beastshell/" + docPage).exists()) {
+    	} else if(new File(AddOnManager.getPackageUserDir() + "/beastshell/" + page).exists()) {
         	try {
         		studio.helpPane.setURL(new URL("file://" + AddOnManager.getPackageUserDir() + "/beastshell/" + docPage));
 			} catch (MalformedURLException e) {
