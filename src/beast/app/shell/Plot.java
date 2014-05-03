@@ -41,8 +41,8 @@ import beast.core.Input.Validate;
 		"Line, scatter, area charts  (markerSize), <br>\n"  + 
 		"Error bars  (errorBarsColor), and <br>\n"  + 
 		"Formatting  (datePattern, locale, timezone, normalDecimalPattern, scientificDecimalPattern)<br>")
-public class Plot extends BEASTObject {
-	public Input<Series> seriesInput = new Input<Series>("series", "series to be be plotted initialy", Validate.REQUIRED);
+public class Plot extends Series {
+//	public Input<Series> seriesInput = new Input<Series>("series", "series to be be plotted initialy", Validate.REQUIRED);
 //	public Input<Style> styleInput = new Input<Style>("style", "style used for drawin the chart", new Style());
 	public Input<String> chartTitleInput = new Input<String>("title","title of the chart");
 	public Input<String> xAxisTitleInput = new Input<String>("xAxisTitle","title for the x-axis");
@@ -194,8 +194,7 @@ public class Plot extends BEASTObject {
 	
 	@Override
 	public void initAndValidate() throws Exception {
-		Series series = seriesInput.get();
-		add(series);	    
+		add(this);	    
 	}
 
 	private double getMin(List<Double> x2) {

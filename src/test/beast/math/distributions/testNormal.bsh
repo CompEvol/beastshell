@@ -9,4 +9,7 @@ assertEquals(n.cumulativeProbability(0.25), 0.5987063, ERROR);
 assertEquals(n.inverseCumulativeProbability(0.25),  -0.6744898, ERROR);
 assertEquals(n.inverseCumulativeProbability(0.0),  Double.NEGATIVE_INFINITY);
 
-n = new Beta();
+n = new Beta(alpha="4.0",beta="1.0");
+value = new RealParameter(value="0.0");
+
+

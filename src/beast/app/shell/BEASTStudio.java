@@ -14,7 +14,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
@@ -40,8 +39,7 @@ public class BEASTStudio extends JSplitPane {
 
 	JFrame frame;
 	JSplitPane splitpaneleft;
-	//JSplitPane splitpaneright;
-	JPanel splitpaneright;
+	JSplitPane splitpaneright;
 
 	//JTabbedPane helpPaneTab;
 	JTabbedPane rightUpperPaneTab;
@@ -70,26 +68,26 @@ public class BEASTStudio extends JSplitPane {
 		splitpaneleft.add(console);
 	
 
-		splitpaneright = new JPanel();//new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+		splitpaneright = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 		variablesPane = new VariablesPanel();
 		
 		rightUpperPaneTab = new JTabbedPane();
-		//rightUpperPaneTab.addTab("Variables", variablesPane);
+		rightUpperPaneTab.addTab("Variables", variablesPane);
 		
 		historyPane = new HistoryPanel(this);
-		//rightUpperPaneTab.addTab("History", historyPane);
+		rightUpperPaneTab.addTab("History", historyPane);
 		
 		splitpaneright.add(rightUpperPaneTab);
 		
-		rightLowerPaneTab = rightUpperPaneTab;//new JTabbedPane();
+		rightLowerPaneTab = new JTabbedPane();
 		
 		helpPane = new HelpBrowser();
 		rightLowerPaneTab.addTab("Help", helpPane);
 
 		classBrowser = new ClassBrowser();
 		//TODO: let the splitter pane determine size
-		classBrowser.setMaximumSize(new Dimension(512,1024));
-		classBrowser.setSize(new Dimension(512,1024));
+		classBrowser.setMaximumSize(new Dimension(512,512));
+		classBrowser.setSize(new Dimension(512,512));
 
 		try {
 			classBrowser.init();
@@ -102,15 +100,13 @@ public class BEASTStudio extends JSplitPane {
 		JScrollPane plotScrollPane = new JScrollPane(plotPane);
 		rightLowerPaneTab.addTab("Plots", plotScrollPane);
 		
-		rightUpperPaneTab.addTab("Variables", variablesPane);
-		rightUpperPaneTab.addTab("History", historyPane);
-
+		
 		
 		splitpaneright.add(rightLowerPaneTab);
 
 		
 		add(splitpaneleft);
-		add(new JScrollPane(splitpaneright));
+		add(splitpaneright);
 		console.historyPanel = historyPane;
 
 		//JSplitPane hsplitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
@@ -263,9 +259,15 @@ public class BEASTStudio extends JSplitPane {
 		studio.interpreter.studio = studio;
 		studio.setNameCompletion();
 		studio.splitpaneleft.setDividerLocation(0.3);
-		//studio.splitpaneright.setDividerLocation(0.5);
+		studio.splitpaneright.setDividerLocation(0.5);
 		studio.setDividerLocation(0.7);
 		bsh.util.Util.endSplashScreen();
+//		new Thread() {
+//			public void run() {
+//				try {sleep(15000);}catch (Exception e){}
+//				studio.setDividerLocation(0.7);
+//			};
+//		}.run();
 		studio.interpreter.run();
 	}
 
