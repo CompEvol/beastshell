@@ -38,14 +38,15 @@ help(beast.util.TreeParser);
 "\n" +
 "<h2>Usage:</h2>\n" +
 "\n" +
-"     help(command)\n" +
+"     help(command)<br>\n" +
 "     help(class)\n" +
 "     \n" +
 "<h2>Arguments:</h2>\n" +
 "\n" +
 "    command: show help for a command\n" +
 "\n" +
-"    class: show help for class if it is a BEASTObject\n" +
+"    class: show help for class if it is a BEASTObject<br>\n" +
+"    otherwise show the class browser.\n" +
 "\n" +
 "</html>");
 	}

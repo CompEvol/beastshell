@@ -1,6 +1,7 @@
 package beast.app.shell;
 
 
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Stroke;
@@ -25,10 +26,8 @@ import com.xeiam.xchart.internal.style.SeriesColorMarkerLineStyleCycler;
 import com.xeiam.xchart.XChartPanel;
 import com.xeiam.xchart.BitmapEncoder.BitmapFormat;
 
-import beast.core.BEASTObject;
 import beast.core.Description;
 import beast.core.Input;
-import beast.core.Input.Validate;
 
 @Description("Creates a chart of data<br>" +
 		"and specifies all details of the style of a chart<br>\n" + 
@@ -268,10 +267,11 @@ public class Plot extends Series {
 		}
 		
 		com.xeiam.xchart.Series series1;
+		String name = (seriesNameInput.get() != null ? seriesNameInput.get() : "series" + (initial ? "1" : chart.getSeriesMap().size() + 1));
 		if (errors.size() ==0) { 
-			series1 = chart.addSeries(series.seriesNameInput.get(), x, y);
+			series1 = chart.addSeries(name, x, y);
 		} else {
-			series1 = chart.addSeries(series.seriesNameInput.get(), x, y, errors);			
+			series1 = chart.addSeries(name, x, y, errors);			
 		}
 		
 		SeriesColorMarkerLineStyle style0 =  defaultStyle.getNextSeriesColorMarkerLineStyle();

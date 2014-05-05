@@ -31,10 +31,11 @@ pause();
 
 // You can implement interfaces, just as in Java:
 
-ActionListener scriptedListener = new ActionListener() {
+scriptedListener = new ActionListener() {
     actionPerformed( event ) {print("hello world"); }
 }
-button.addActionListener(scriptedListener);
+
+//button.addActionListener(scriptedListener);
 
 pause();
 

@@ -16,7 +16,7 @@ import beast.core.Input.Validate;
 
 @Description("Contains a series to be used in a plot")
 public class Series extends BEASTObject {
-	public Input<String> seriesNameInput = new Input<String>("seriesName","name of the series", "series 1");
+	public Input<String> seriesNameInput = new Input<String>("seriesName","name of the series");
 	public Input<String> xAxisInput = new Input<String>("xAxis","label of the x-axis", "X");
 	public Input<String> yAxisInput = new Input<String>("yAxis","label of the y-axis", "Y");
 	// x can be a Number like int or double but can also be Date
