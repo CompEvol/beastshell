@@ -77,14 +77,17 @@ class BSHArguments extends SimpleNode
     {
         // evaluate each child
         Object[] args = new Object[jjtGetNumChildren()];
-        for(int i = 0; i < args.length; i++)
-		{
-        	BSHPrimaryExpression lhsNode = (BSHPrimaryExpression)jjtGetChild(i).jjtGetChild(0);
-            args[i] = lhsNode.firstToken.toString();
+        for(int i = 0; i < args.length; i++) {
+			try {
+				BSHPrimaryExpression lhsNode = (BSHPrimaryExpression)jjtGetChild(i).jjtGetChild(0);
+				args[i] = lhsNode.firstToken.toString();
 			if ( args[i] == Primitive.VOID )
 				throw new EvalError( "Undefined argument: " + 
 					((SimpleNode)jjtGetChild(i)).getText(), this, callstack );
-		}
+			} catch (ClassCastException e) {
+				args[i] = null;
+			}
+		} 
 
         return args;
     }

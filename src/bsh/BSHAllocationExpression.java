@@ -113,8 +113,9 @@ class BSHAllocationExpression extends SimpleNode
 		        
 				Object[] args2 = new Object[names.length * 2];
 				BEASTObject bo = (BEASTObject) Class.forName(type.getName()).newInstance();
+				List<Input<?>> inputs = bo.listInputs();
 		        for (int i = 0; i < names.length; i++) {
-		        	args2[i*2] = names[i];
+		        	args2[i*2] = (names[i] != null ? names[i] : inputs.get(i).getName());
 		        	if (args[i].getClass().isArray()) {
 		        		// convert to list
 		        		List list = new ArrayList();
@@ -134,7 +135,12 @@ class BSHAllocationExpression extends SimpleNode
 		        		args[i] = list;
 		        	}
 	        		// attempt to convert to correct type
-	        		Input<?> input = bo.getInput(names[i].toString());
+	        		Input<?> input = null;
+	        		if (names[i] != null) {
+	        			input = bo.getInput(names[i].toString());
+	        		} else {
+	        			input =  inputs.get(i);
+	        		}
 	        		Class inputType = input.getType();
 	        		if (inputType == null) {
 	        			input.determineClass(bo);
