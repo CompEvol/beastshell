@@ -52,7 +52,7 @@ public class BEASTStudio extends JSplitPane {
 	JConsole console;
 	HelpBrowser helpPane;
 	ClassBrowser classBrowser;
-	Interpreter interpreter;
+	public Interpreter interpreter;
 
 	public BEASTStudio(String[] args) {
 		super(JSplitPane.HORIZONTAL_SPLIT);
@@ -64,7 +64,7 @@ public class BEASTStudio extends JSplitPane {
 		editorPanel = new EditorPanel();
 		splitpaneleft.add(editorPanel);
 		
-		console = new JConsole(); 
+		console = new JConsole(this);
 		splitpaneleft.add(console);
 	
 

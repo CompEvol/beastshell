@@ -111,6 +111,19 @@ help(beast.util.TreeParser);
 				e.printStackTrace();
 			}
 		} else {
+			String name = o.getClass().getCanonicalName();
+			name = name.replaceAll("\\.", "/");
+			name = "http://docs.oracle.com/javase/7/docs/api/" + name + ".html";
+			try {
+				URL url = new URL(name);
+				showHelp(url);
+				return;
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 			// show the class browser
 			studio.rightLowerPaneTab.setSelectedIndex(1);
 			studio.classBrowser.setClist(o.getClass().getPackage().getName());
@@ -130,6 +143,19 @@ help(beast.util.TreeParser);
 			}
 		} else {
 			studio.helpPane.setText(string);
+			studio.rightLowerPaneTab.setSelectedIndex(0);
+		}
+	}
+
+	static private void showHelp(URL url) {
+		if (studio == null) {
+			try {
+				System.out.println(url);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			studio.helpPane.setURL(url);
 			studio.rightLowerPaneTab.setSelectedIndex(0);
 		}
 	}

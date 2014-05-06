@@ -41,6 +41,10 @@ import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import java.awt.Cursor;
 import javax.swing.text.*;
@@ -48,7 +52,10 @@ import javax.swing.*;
 
 // Things that are not in the core packages
 
+import beast.app.shell.BEASTStudio;
 import beast.app.shell.HistoryPanel;
+import bsh.EvalError;
+import bsh.Interpreter;
 import bsh.util.NameCompletion;
 
 /**
@@ -95,8 +102,16 @@ public class JConsole extends JScrollPane
 	// hack to prevent key repeat for some reason?
     private boolean gotUp = true;
 
+    public BEASTStudio studio = null;
+    
+    
 	public JConsole() {
 		this(null, null);
+	}
+	
+	public JConsole(BEASTStudio studio) {
+		this(null, null);
+		this.studio = studio;
 	}
 
 	public JConsole( InputStream cin, OutputStream cout )  
@@ -310,29 +325,71 @@ public class JConsole extends JScrollPane
 		}
 	}
 
-	private void doCommandCompletion( String part ) {
+	private void doCommandCompletion(final String part0 ) {
 		if ( nameCompletion == null )
 			return;
 
-		int i=part.length()-1;
+		int i=part0.length()-1;
 
 		// Character.isJavaIdentifierPart()  How convenient for us!! 
-		while ( 
-			i >= 0 && 
-				( Character.isJavaIdentifierPart(part.charAt(i)) 
-				|| part.charAt(i) == '.' )
-		) 
+		while (i >= 0 &&
+				( Character.isJavaIdentifierPart(part0.charAt(i)))) { 
+				//|| part0.charAt(i) == '.' )) { 
 			i--;
+		}
+		
+		String [] complete = new String[0];
+		String part = null;
+		
+		// complete method or member of object
+		if (studio != null && i > 0 && part0.charAt(i) == '.') {
+			String part1 = part0.substring(i+1);
+			int j = i;
+			i--;
+			while (i >= 0 &&
+					( Character.isJavaIdentifierPart(part0.charAt(i)))) { 
+					//|| part0.charAt(i) == '.' )) { 
+				i--;
+			}
+			part = part0.substring(i+1);
+			String name = part0.substring(i+1, j);
+			List<String> candidates = new ArrayList<>();
+			try {
+				Object o = studio.interpreter.get(name);
+				Field [] fields = o.getClass().getDeclaredFields();
+				for (Field field : fields) {
+					String n = field.getName();
+					if (n.startsWith(part1) && !candidates.contains(n)) {
+						candidates.add(n);
+					}
+				}
+				Method [] methods = o.getClass().getDeclaredMethods();
+				for (Method method : methods) {
+					String n = method.getName();
+					if (n.startsWith(part1) && !candidates.contains(n)) {
+						candidates.add(n);
+					}
+				}
+				complete = candidates.toArray(new String[]{});
 
-		part = part.substring(i+1);
+			} catch (EvalError e) {
+				e.printStackTrace();
+				return;
+			}
+			
+			
+		} else {
 
-		if ( part.length() < 2 )  // reasonable completion length
-			return;
+			part = part0.substring(i+1);
+
+			if ( part.length() < 2 )  // reasonable completion length
+				return;
 
 		//System.out.println("completing part: "+part);
 
 		// no completion
-		String [] complete = nameCompletion.completeName(part);
+			complete = nameCompletion.completeName(part);
+		}
 		if ( complete.length == 0 ) {
 			java.awt.Toolkit.getDefaultToolkit().beep();
 			return;
