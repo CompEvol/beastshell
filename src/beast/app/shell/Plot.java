@@ -47,7 +47,7 @@ public class Plot extends Series {
 	public Input<String> xAxisTitleInput = new Input<String>("xAxisTitle","title for the x-axis");
 	public Input<String> yAxisTitleInput = new Input<String>("yAxisTitle","title for the y-axis");
 
-	public Input<String> outputInput = new Input<String>("output","one of gif, png, bmp, jpg. Creates file /tmp/x.<ext>");
+	public Input<String> outputInput = new Input<String>("output","one of gif, png, bmp, jpg. Creates file /tmp/Sample_Chart.<ext>");
 
 	
 	// Specifies all details of the style of a chart

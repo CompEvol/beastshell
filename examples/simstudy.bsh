@@ -1,0 +1,59 @@
+// This script demonstrates a simulation study for the
+// shape parameter in the gamma rate heterogeneity model.
+// Requirements: the file analysis.xml must be in the directory
+// from where this script is run.
+
+import beast.evolution.substitutionmodel.*;
+import beast.evolution.sitemodel.*;
+import beast.evolution.alignment.*;
+import beast.util.*;
+import beast.core.*;
+import com.xeiam.xchart.*;
+import beast.app.shell.*;
+
+Logger.FILE_MODE = beast.core.Logger.LogFileMode.overwrite;
+
+// set up flags for BEAGLE -- YMMV
+beagleFlags = beagle.BeagleFlag.VECTOR_SSE.getMask() | beagle.BeagleFlag.PROCESSOR_CPU.getMask();
+System.setProperty("beagle.preferred.flags", Long.toString(beagleFlags));
+
+// draw gamma shape from the prior (exp(1.0))
+shapes = rexp(1, 1.0);
+estimate = new ArrayList<Double>();
+
+// set up model to draw samples from
+data = new Alignment(
+		sequence=new Sequence(taxon="human",value="?"),
+		sequence=new Sequence(taxon="bonobo",value="?"),
+		sequence=new Sequence(taxon="chimp",value="?")
+	);
+tree = new beast.util.TreeParser(newick="(human:0.2,(chimp:0.15,bonobo:0.15):0.05)", taxa=data, IsLabelledNewick=true);
+hky = new HKY(kappa="5.0", frequencies=new Frequencies(data=data));
+clockmodel = new beast.evolution.branchratemodel.StrictClockModel("1.0");
+
+k = 0;
+for (shape0 : shapes) {
+	sitemodel = new SiteModel(gammaCategoryCount=4, substModel=hky, shape=""+shape0);
+	//sim = new beast.app.seqgen.SequenceSimulator(data=data, tree=tree, sequencelength=10000, outputFileName="gammaShapeSequence.xml", siteModel=sitemodel, branchRateModel=clockmodel);
+	// produce gammaShapeSequence.xml
+	//sim.run();
+	
+	mergewith = new beast.app.seqgen.MergeDataWith(template="analysis.xml", output="analysis-out.xml");
+	sim = new beast.app.seqgen.SequenceSimulator(data=data, tree=tree, sequencelength=10000, outputFileName="gammaShapeSequence.xml", siteModel=sitemodel, branchRateModel=clockmodel, merge=mergewith);
+	// produce gammaShapeSequence.xml and merge with analysis.xml to get analysis-out.xml
+	sim.run();
+
+	// run the analysis
+	mcmc = (new XMLParser()).parseFile(new File("analysis-out.xml"));
+	mcmc.run();
+
+	// grab estimate from the analysis
+	log = new LogAnalyser(new String[]{"SequenceSimulator.log"}, 2000, 10);
+	s = log.getMean("gammaShape");
+	print("iteration: " + (k++) + " shape = " + shape0 + " estimate = " + s);
+	estimate.add(s);
+}
+
+// create scatter plot and save to /tmp/Sample_Chart.png
+p = new Plot(x=shapes, y=estimate, title="Gamma shape\nsimulation", xAxisTitle="original", yAxisTitle="estimate", chartType="Scatter", isYAxisLogarithmic=true, isXAxisLogarithmic=true, output="png");
+
