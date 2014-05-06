@@ -26,13 +26,11 @@ import beast.app.util.Utils;
 import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.xeiam.xchart.Chart;
-import com.xeiam.xchart.XChartPanel;
 
 public class ChartPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	List<Chart> charts;
+	List<JComponent> charts;
 	int current = -1;
 	JButton btnNextChart;
 	JButton btnPrevChart;
@@ -43,7 +41,7 @@ public class ChartPanel extends JPanel {
 	
 	public ChartPanel(BEASTStudio studio) {
 		this.studio = studio;
-		charts = new ArrayList<Chart>();
+		charts = new ArrayList<>();
 		
 		setLayout(new BorderLayout());
 
@@ -94,6 +92,7 @@ public class ChartPanel extends JPanel {
 		});
 		toolBar.add(btnExport);
 		panel = new JPanel();
+		panel.setLayout(new BorderLayout());
 		add(panel, BorderLayout.CENTER);
 		update();
 	}
@@ -183,7 +182,7 @@ public class ChartPanel extends JPanel {
 		btnClear.setEnabled(charts.size() > 0);
 		panel.removeAll();
 		if (current >= 0) {
-			panel.add(new XChartPanel(charts.get(current)));
+			panel.add(charts.get(current), BorderLayout.CENTER);
 		}
 		panel.repaint();
 		// force repaint the hard way
@@ -195,7 +194,7 @@ public class ChartPanel extends JPanel {
 		}
 	}
 	
-	public void addChart(Chart chart) {
+	public void addChart(JComponent chart) {
 		charts.add(chart);
 		current = charts.size() - 1;
 		update();

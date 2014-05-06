@@ -184,7 +184,7 @@ public class Plot extends Series {
 	
 	
 	
-	static BEASTStudio studio = null;
+	public static BEASTStudio studio = null;
 	
 	Chart chart = null;
 	public Chart getChart() {return chart;}
@@ -267,7 +267,7 @@ public class Plot extends Series {
 		}
 		
 		com.xeiam.xchart.Series series1;
-		String name = (seriesNameInput.get() != null ? seriesNameInput.get() : "series" + (initial ? "1" : chart.getSeriesMap().size() + 1));
+		String name = (series.seriesNameInput.get() != null ? series.seriesNameInput.get() : "series" + (initial ? "1" : chart.getSeriesMap().size() + 1));
 		if (errors.size() ==0) { 
 			series1 = chart.addSeries(name, x, y);
 		} else {
@@ -284,7 +284,7 @@ public class Plot extends Series {
 	    if (initial) {
 		    JPanel chartPanel = new XChartPanel(chart);
 		    if (studio != null) {
-		    	studio.plotPane.addChart(chart);
+		    	studio.plotPane.addChart(chartPanel);
 		    }
 	    } else {
 		    if (studio != null) {

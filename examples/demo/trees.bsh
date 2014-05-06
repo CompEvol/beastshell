@@ -1,0 +1,34 @@
+import beast.util.*;
+import beast.app.draw.tree.*;
+import beast.evolution.alignment.*;
+
+data = new Alignment(
+		sequence=new Sequence(taxon="human",value="?"),
+		sequence=new Sequence(taxon="bonobo",value="?"),
+		sequence=new Sequence(taxon="chimp",value="?"),
+		sequence=new Sequence(taxon="urangutan",value="?"),
+		sequence=new Sequence(taxon="gorilla",value="?"),
+		sequence=new Sequence(taxon="siamang",value="?")
+);
+tree = new TreeParser(taxa=data, IsLabelledNewick=true, newick="((urangutan:0.04847887618847128,(gorilla:0.03189934232093919,((chimp:0.011076861832266626,bonobo:0.011076861832266626):0.009810542752873795,human:0.02088740458514042):0.011011937735798769):0.01657953386753209):0.017232517763959114,siamang:0.06571139395243039);");
+
+//treeDrawing = new RootedTreeDrawing(tree=tree, leafLabelOffset=10.0, orientation="left",showLeafLabels=true);
+//data = new Alignment(
+//		sequence=new Sequence(taxon="A",value="?"),
+//		sequence=new Sequence(taxon="B",value="?"),
+//		sequence=new Sequence(taxon="C",value="?"),
+//		sequence=new Sequence(taxon="D",value="?"),
+//		sequence=new Sequence(taxon="E",value="?")
+//);
+//tree = new TreeParser(taxa=data, newick="((((1:0.1,2:0.1):0.1,3:0.2):0.1,4:0.3):0.1,5:0.4);");
+treeDrawing = new RootedTreeDrawing(tree=tree, leafLabelOffset=10.0, orientation="right",showLeafLabels=true);
+pause();
+
+treeDrawing = new RootedTreeDrawing(tree=tree, leafLabelOffset=10.0, orientation="left",showLeafLabels=true);
+pause();
+
+treeDrawing = new RootedTreeDrawing(tree=tree, leafLabelOffset=10.0, orientation="up",showLeafLabels=true);
+pause();
+
+treeDrawing = new RootedTreeDrawing(tree=tree, leafLabelOffset=10.0, orientation="down",showLeafLabels=true);
+pause();

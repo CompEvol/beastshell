@@ -48,7 +48,7 @@ public class BEASTStudio extends JSplitPane {
 	HistoryPanel historyPane;
 	EditorPanel editorPanel;
 	
-	ChartPanel plotPane;
+	public ChartPanel plotPane;
 	JConsole console;
 	HelpBrowser helpPane;
 	ClassBrowser classBrowser;
