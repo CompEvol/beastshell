@@ -30,9 +30,9 @@
 		<fileset dir="${libBEASTShell}" includes="autocomplete.jar"/>
 		<fileset dir="${libBEASTShell}" includes="rsyntaxtextarea.jar"/>
 		<fileset dir="${libBEASTShell}" includes="xchart-2.3.3-SNAPSHOT.jar"/>
+		<fileset dir="${libBEASTShell}" includes="itextpdf-5.2.1.jar"/>
 		<fileset dir="${libBeast2}" includes="junit-4.8.2.jar"/>
 		<fileset dir="${libBeast2}" includes="jam.jar"/>
-		<fileset dir="${libBeast2}" includes="itextpdf-5.2.1.jar"/>
         <pathelement path="${beast2classpath}"/>
 	</path>
 
@@ -127,11 +127,7 @@
 				<attribute name="Built-By" value="${user.name}" />
 			</manifest>
 			<fileset dir="${buildBEASTShell}">
-				<include name="**/*.class" />
-				<include name="**/*.properties" />
-				<include name="**/*.png" />
-				<include name="**/*.jpg" />
-				<include name="**/*.bsh" />
+				<include name="**/*" />
 			</fileset>
 		</jar>
 	</target>
@@ -194,6 +190,12 @@
 		</copy>
 		<copy todir="${Add_on_dir}/lib">
 			<fileset dir="${distBEASTShell}" includes="BEASTShell.addon.jar" />
+		</copy>
+		<copy todir="${Add_on_dir}/lib">
+    		<fileset dir="${libBEASTShell}" includes="autocomplete.jar"/>
+    		<fileset dir="${libBEASTShell}" includes="rsyntaxtextarea.jar"/>
+    		<fileset dir="${libBEASTShell}" includes="xchart-2.3.3-SNAPSHOT.jar"/>
+    		<fileset dir="${libBEASTShell}" includes="itextpdf-5.2.1.jar"/>
 		</copy>
 		<copy todir="${Add_on_dir}">
 			<fileset dir="${distBEASTShell}" includes="BEASTShell.src.jar" />
