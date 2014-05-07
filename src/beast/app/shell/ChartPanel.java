@@ -41,7 +41,7 @@ public class ChartPanel extends JPanel {
 	
 	public ChartPanel(BEASTStudio studio) {
 		this.studio = studio;
-		charts = new ArrayList<>();
+		charts = new ArrayList<JComponent>();
 		
 		setLayout(new BorderLayout());
 

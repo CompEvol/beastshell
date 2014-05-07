@@ -353,7 +353,7 @@ public class JConsole extends JScrollPane
 			}
 			part = part0.substring(i+1);
 			String name = part0.substring(i+1, j);
-			List<String> candidates = new ArrayList<>();
+			List<String> candidates = new ArrayList();
 			try {
 				Object o = studio.interpreter.get(name);
 				Field [] fields = o.getClass().getDeclaredFields();

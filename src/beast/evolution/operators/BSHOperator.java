@@ -1,5 +1,6 @@
 package beast.evolution.operators;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,6 @@ import beast.core.Function;
 import beast.core.Input;
 import beast.core.NamedFunction;
 import beast.core.Operator;
-import bsh.EvalError;
 import bsh.Interpreter;
 
 @Description("Operator specified using BEASTScript " +
@@ -29,14 +29,7 @@ public class BSHOperator extends Operator {
 
 	@Override
 	public double proposal() {
-		NamedFunction.evalFunctionInputs(interpreter, functionInputs.get());
-		try {
-			double logHR = (double) interpreter.eval("proposal()");
-			return logHR;
-		} catch (EvalError e) {
-			e.printStackTrace();
-			throw new RuntimeException("BSHOperator.operator() failed: " + e.getMessage());
-		}
+		return NamedFunction.evalFunction(interpreter, functionInputs.get(), "proposal");
 	}
 
 }

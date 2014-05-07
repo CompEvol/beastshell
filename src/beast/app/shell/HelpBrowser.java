@@ -50,7 +50,7 @@ public class HelpBrowser extends JPanel implements HyperlinkListener {
 
     List<String> importCommands;
     public HelpBrowser() {
-    	importCommands = new ArrayList<>();
+    	importCommands = new ArrayList<String>();
 		importCommands.add("beast/commands/");
 		importCommands.add("bsh/commands/");
 

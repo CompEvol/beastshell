@@ -224,14 +224,14 @@ public class Plot extends Series {
 		y = series.yInput.get();
 		errors = series.erroBarsInput.get();
 		if (x.size() == 0) {
-			x = new ArrayList<>();
+			x = new ArrayList<Object>();
 			for (int i = 0; i < y.size(); i++) {
 				x.add(new Double(i));
 			}
 		}
 		if (x.get(0) instanceof Number) {
 			// convert to Double
-			List<Object> list = new ArrayList<>();
+			List<Object> list = new ArrayList();
 			for (Object o : x) {
 				if (o instanceof Integer){ 
 					list.add(new Double((Integer) o));

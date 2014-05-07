@@ -89,7 +89,7 @@ public class VariablesPanel extends JSplitPane {
 			public void mouseClicked(MouseEvent e) {
 				int i = table.getSelectedRow();
 				if (data[i][1].getClass().isArray()) {
-	        		List list = new ArrayList<>();
+	        		List list = new ArrayList();
 	        		for (Object o : (Object []) data[i][1]) {
 	        			list.add(o);
 	        		}

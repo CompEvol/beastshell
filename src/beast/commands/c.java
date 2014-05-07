@@ -17,7 +17,7 @@ public class c {
 	*/
 	public static List invoke( Interpreter env, CallStack callstack ) 
 	{
-		return new ArrayList<>();
+		return new ArrayList();
 	}
 
 	/**
@@ -26,7 +26,7 @@ public class c {
 	public static List invoke( 
 		Interpreter env, CallStack callstack, Object ... objects ) 
 	{
-		List list = new ArrayList<>();
+		List list = new ArrayList();
 		for (Object o : objects) {
 			list.add(o);
 		}
