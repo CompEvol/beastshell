@@ -38,6 +38,7 @@ public class TreeDrawingGrid extends beast.core.Runnable {
     public Input<String> pdflatexPath = new Input<String>("pdflatexPath", "the path to pdflatex; if provided then will be run automatically", "");
     public Input<CaptionLocation> captionLocationInput = new Input<CaptionLocation>("captionPosition", "the position of caption relative to tree bounds. Valid values are "
             + Arrays.toString(CaptionLocation.values()) + " (default 'south')", CaptionLocation.south, CaptionLocation.values());
+    public Input<Color> bgColorInput = new Input<Color>("bg", "color used for background, default white", Color.white);
 
     /**
      * The maximum root height of trees
@@ -65,6 +66,12 @@ public class TreeDrawingGrid extends beast.core.Runnable {
      * Paints the subcomponents in a grid to the given graphics object
      */
     public void paint(Graphics2D g) {
+		Color oldBackground = ((Graphics2D) g).getBackground();
+		((Graphics2D) g).setBackground(bgColorInput.get());
+		Rectangle r = g.getClipBounds();
+		g.clearRect(r.x, r.y, r.width, r.height);
+		((Graphics2D) g).setBackground(oldBackground);
+		g.setClip(r.x, r.y, r.width, r.height);
 
         int cSpacer = columnSpacer.get();
         int rSpacer = rowSpacer.get();

@@ -41,6 +41,8 @@ public class RootedTreeDrawing extends AbstractTreeDrawing {
 
     public Input<Boolean> rootAlignedInput = new Input<Boolean>("isRootAligned", "true if the trees should be aligned by root instead of tips (default is false).", false);
 
+    public Input<Color> bgColorInput = new Input<Color>("bg", "color used for background, not specified means background is not cleared");
+    
     private TreeIntervals treeIntervals;
     TreeComponent treeComponent;
 

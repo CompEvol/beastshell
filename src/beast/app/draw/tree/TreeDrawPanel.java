@@ -21,7 +21,8 @@ public class TreeDrawPanel extends JPanel {
 	
 	@Override
 	public void paint(Graphics g) {
-		grid.paint((Graphics2D) g);
+		Graphics2D g2d = new SmartGraphics2D((Graphics2D) g);
+		grid.paint(g2d);
 	}
 
 	public static void main(String[] args) throws Exception {

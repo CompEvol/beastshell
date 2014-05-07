@@ -11,19 +11,17 @@ import beast.util.TreeParser;
 
 import javax.swing.*;
 
-import viz.DensiTree;
 
 import java.awt.*;
 import java.awt.geom.*;
 import java.text.NumberFormat;
 import java.util.*;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * @author Alexei Drummond
  */
-public class TreeComponent extends JPanel {
+public class TreeComponent extends JComponent {
 
     RootedTreeDrawing treeDrawing;
     TreeDrawingOrientation orientation = TreeDrawingOrientation.UP;
@@ -429,26 +427,21 @@ public class TreeComponent extends JPanel {
     	super.paintComponents(g);
     	setSize(500, 500);
 		g.setClip(0,  0,  getWidth(), getHeight());
-		Color oldBackground = ((Graphics2D) g).getBackground();
-		((Graphics2D) g).setBackground(Color.white);
-		Rectangle r = g.getClipBounds();
-		g.clearRect(r.x, r.y, r.width, r.height);
-		((Graphics2D) g).setBackground(oldBackground);
-		g.setClip(r.x, r.y, r.width, r.height);
+		if (treeDrawing.bgColorInput.get() != null) {
+			Color oldBackground = ((Graphics2D) g).getBackground();
+			((Graphics2D) g).setBackground(treeDrawing.bgColorInput.get());
+			Rectangle r = g.getClipBounds();
+			g.clearRect(r.x, r.y, r.width, r.height);
+		}
 
 
         Graphics2D g2d;
-//        if (!(g instanceof TikzGraphics2D)) {
         g2d = new SmartGraphics2D((Graphics2D) g);
-//        } else {
-//            g2d = (Graphics2D) g;
-//        }
 
-            g.setColor(Color.black);
+        g.setColor(Color.black);
         Tree tree = treeDrawing.getTree();
 
         draw(treeDrawing, tree.getRoot(), g2d);
-        //Logger.getLogger("beast-graphics").exiting(this.getClass().getName(), "paintComponent");
     }
 
     public static void main(String[] args) throws Exception {

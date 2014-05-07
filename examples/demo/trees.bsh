@@ -1,6 +1,9 @@
 import beast.util.*;
+import beast.core.parameter.*;
 import beast.app.draw.tree.*;
 import beast.evolution.alignment.*;
+import beast.evolution.tree.*;
+import beast.evolution.tree.coalescent.*;
 
 data = new Alignment(
 		sequence=new Sequence(taxon="human",value="?"),
@@ -31,4 +34,82 @@ treeDrawing = new RootedTreeDrawing(tree=tree, leafLabelOffset=10.0, orientation
 pause();
 
 treeDrawing = new RootedTreeDrawing(tree=tree, leafLabelOffset=10.0, orientation="down",showLeafLabels=true);
+pause();
+
+treeDrawing = new RootedTreeDrawing(tree=tree, leafLabelOffset=10.0, orientation="down",showLeafLabels=true,
+branchStyle="line");
+pause();
+
+
+taxa = new ArrayList<Taxon>();
+for (i : new String[]{"A","B","C","D","E","F","G"}) {
+	a = new Taxon(); 
+	a.setID(i);
+	taxa.add(a);
+}
+taxonset = new TaxonSet(taxon=taxa);
+tree= new beast.evolution.tree.RandomTree(taxonset=taxonset, populationModel= new ConstantPopulation(popSize="1.33"));
+
+drawing = new RootedTreeDrawing(tree=tree, orientation="right",
+                 showLeafLabels=true, lineThickness=3, rotateTree="ladderizeRight",
+                 leafTimesDecorator= new NodeTimesDecorator(labels="t_7=0", fontSize="normalsize"),
+                 internalNodeTimesDecorator = new NodeTimesDecorator(labels="t_6,t_5,t_4,t_3,t_2,t_1", fontSize="normalsize")
+);
+
+pause();
+
+
+taxa = new ArrayList<Taxon>();
+for (i = 0; i < 15; i++) {
+	a = new Taxon(); 
+	a.setID((char)(65 + i)+"");
+	taxa.add(a);
+}
+taxonset = new TaxonSet(taxon=taxa);
+tree1 = new TreeParser(taxonset=taxonset, IsLabelledNewick=true, 
+	newick="((((A:1.5,B:1.5):1.5,((C:1,D:1):1,E:2):1):10, (((F:1,G:1):1,H:2):1,(I:1.5,J:1.5):1.5):10):10,(((K:1,L:1):1,O:2):1,(M:1.5,N:1.5):1.5):20)");
+tree2 = new TreeParser(taxonset=taxonset, IsLabelledNewick=true, 
+	newick="((((A:20.5,B:20.5):1.5,((C:20,D:20):1,E:21):1):1, (((F:20,G:20):1,H:21):1,(I:20.5,J:20.5):1.5):1):1,((K:20.5,L:20.5):1.5,((M:20,N:20):1,O:2):1):1);");
+tree3 = new TreeParser(taxonset=taxonset, IsLabelledNewick=true, 
+	newick="((A:10,B:10):10,C:20);");
+
+
+r1 = new RootedTreeDrawing(tree=tree1, showLeafLabels=false,
+                     lineThickness=2, leafLabelOffset=10,
+                     orientation="down", nodePositioning="triangulated", branchStyle="line", 
+                     caption="(a) sequences too close");
+r2 = new RootedTreeDrawing(tree=tree2, showLeafLabels=false,
+                     lineThickness=2, leafLabelOffset=10,
+                     orientation="down", nodePositioning="triangulated", branchStyle="line", 
+                     caption="(b) sequences too diverse");
+r3 = new RootedTreeDrawing(tree=tree3, showLeafLabels=false,
+                     lineThickness=2, leafLabelOffset=10,
+                     orientation="down", nodePositioning="triangulated", branchStyle="line", 
+                     caption="(c) insufficient sequences");
+td = new TreeDrawingGrid(oneScale=true, width=150, height=150,
+         strideLength=3, captionPosition="north",
+         isHorizontalStride=true, columnSpacer=20, rowSpacer=30,
+         treeDrawing = r1, treeDrawing = r2, treeDrawing = r3);
+pause();
+
+// structured coalescent -- requires beastii
+colors = new ArrayList();
+for (c : new String[]{"pink","green","127,127,255","orange"}) {
+	colors.add(new ColorPlugin(c));
+}
+ct = new ColorTable(color=colors);
+
+
+popSizesMigrationRates=new RealParameter(dimension=4, minordimension=2, value="1000 0.00025 0.00025 1000");
+sampleSizes=new IntegerParameter(dimension=2, value="15");
+tree = new beast.evolution.tree.coalescent.StructuredCoalescentTree(
+ popSizesMigrationRates=popSizesMigrationRates, 
+ sampleSizes=sampleSizes
+);
+
+new RootedTreeDrawing(tree=tree, orientation="right",
+     showLeafLabels=false, lineThickness=3.25, rotateTree="ladderizeRight",
+     colorTrait="deme", traitColorTable=ct, bg=Color.white
+     );
+
 pause();
