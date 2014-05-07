@@ -90,4 +90,22 @@ public class NamedFunction extends CalculationNode implements Function {
 
 	}
 
+	public static void evalVoidFunction(Interpreter interpreter, List<Function> functions, String name, double arg) {
+		NamedFunction.evalFunctionInputs(interpreter, functions);
+		try {
+			interpreter.eval(name + "(" + arg + ")");
+		} catch (EvalError e) {
+			throw new RuntimeException(name + " failed: " + e.getMessage());
+		}
+	}
+
+	public static void evalVoidFunction(Interpreter interpreter, List<Function> functions, String name) {
+		NamedFunction.evalFunctionInputs(interpreter, functions);
+		try {
+			interpreter.eval(name + "()");
+		} catch (EvalError e) {
+			throw new RuntimeException(name + " failed: " + e.getMessage());
+		}
+
+	}
 }

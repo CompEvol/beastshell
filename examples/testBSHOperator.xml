@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood" version="2.0">
 
-<!-- demonstrates BSHDistribution and BSHOperator -->
+<!-- demonstrates BSHDistribution, BSHLogger and BSHOperator -->
 
     <data
 id="alignment"
@@ -131,6 +131,7 @@ name="alignment"/>
         <parameter idref="birthRate.t:alignment" name="log"/>
         <parameter idref="kappa.s:alignment" name="log"/>
         <parameter idref="freqParameter.s:alignment" name="log"/>
+		<log idref='kappaSquared'/>
     </logger>
 
     <logger id="screenlog" logEvery="1000">
@@ -138,6 +139,20 @@ name="alignment"/>
         <log arg="@posterior" id="ESS.0" spec="util.ESS"/>
         <log idref="likelihood"/>
         <log idref="prior"/>
+		<log spec='BSHLogger' id='kappaSquared'>
+			<x spec='NamedFunction' term='param' function="@kappa.s:alignment"/>
+<![CDATA[
+	init() {
+		out.print("kappa^2\t");
+	}
+	log(sample) {
+		out.print(param.getValue()*param.getValue() + "\t");
+	}
+	close() {
+		// nothing to do
+	}
+]]>
+		</log>
     </logger>
 
     <logger fileName="$(tree).trees" id="treelog.t:alignment" logEvery="1000" mode="tree">
