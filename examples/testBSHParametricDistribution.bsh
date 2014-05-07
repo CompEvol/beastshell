@@ -1,0 +1,37 @@
+import beast.math.distributions.*;
+import beast.app.shell.*;
+
+// specify new paramatric distribution
+
+p = new BSHParametricDistribution (
+	value = "cumulativeProbability(x) {return (x < 0 ? 0 : (x > 1 ? 1 : x));};\n" +
+		"density(x) {return (x<0||x>1?0:1);};\n" +
+		"inverseCumulativeProbability(p) {return (p<0 ? 0 : (p > 1 ? 1 : p));};\n"
+	);
+
+x = new ArrayList();
+for (i = 0; i < 30; i++) {
+	x.add(p.cumulativeProbability((i-10.0)/10));
+}
+
+plot = new Plot(y=x);
+
+x = new ArrayList();
+for (i = 0; i < 30; i++) {
+	x.add(p.density((i-10.0)/10));
+}
+plot.add(new Series(y=x));
+
+print(p.logDensity(-3));  // -Infinity
+print(p.logDensity(3));   // -Infinity
+print(p.logDensity(0.5)); // 0.0
+
+
+print(p.inverseCumulativeProbability(0));  // 0.0
+print(p.inverseCumulativeProbability(1));   // 1.0
+print(p.inverseCumulativeProbability(0.5)); // median = 0.5
+print(p.inverseCumulativeProbability(0.025)); // upper of 95%hpd =0.025
+print(p.inverseCumulativeProbability(0.975)); // lower of 95%hpd =0.975
+
+
+

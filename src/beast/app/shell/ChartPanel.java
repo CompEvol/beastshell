@@ -189,7 +189,7 @@ public class ChartPanel extends JPanel {
 		Dimension dim = getSize();
 		setSize(dim.width + 1, dim.height);
 		setSize(dim.width, dim.height);
-		if (studio.rightLowerPaneTab.getTabCount() >= 3) {
+		if (studio.rightLowerPaneTab.getTabCount() >= 2) {
 			studio.rightLowerPaneTab.setSelectedIndex(1);
 		}
 	}
