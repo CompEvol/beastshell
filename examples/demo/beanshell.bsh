@@ -1,3 +1,5 @@
+// a quick primer on BeanShell syntax
+
 // BeanShell understands standard Java statements,
 // expressions, and method declarations. Statements 
 // and expressions are all of the normal things that

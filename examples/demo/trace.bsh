@@ -1,3 +1,5 @@
+// demonstrates how to interactively inspect traces
+
 import beast.util.*;
 import beast.app.shell.*;
 

@@ -28,6 +28,7 @@ public abstract class AbstractTreeDrawing extends BEASTObject {
     public Input<RotateTree> rotateTreeInput = new Input<RotateTree>("rotateTree", "policy for rotating tree nodes before drawing. Valid values are "
             + Arrays.toString(RotateTree.values()), RotateTree.none, RotateTree.values());
     public Input<String> captionInput = new Input<String>("caption", "caption for tree figure", "");
+    public Input<Color> bgColorInput = new Input<Color>("bg", "color used for background, not specified means background is not cleared");
 
     public final Tree getTree() {
         return treeInput.get();

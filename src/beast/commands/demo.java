@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import beast.app.shell.Plot;
 import beast.util.AddOnManager;
 import bsh.CallStack;
 import bsh.Interpreter;
@@ -79,7 +80,7 @@ public class demo {
 				env.println(str);
 				if (str.indexOf("pause();") >= 0) {
 					env.eval(buf);
-					if (JOptionPane.showConfirmDialog(null, "Continue?", "Demo " + file, JOptionPane.YES_NO_OPTION) != 0){
+					if (JOptionPane.showConfirmDialog(Plot.studio.editorPanel, "Continue?", "Demo " + file, JOptionPane.YES_NO_OPTION) != 0){
 						return;
 					}
 					buf = "";

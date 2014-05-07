@@ -1,11 +1,14 @@
 package beast.app.draw.tree;
 
+import beast.app.shell.Plot;
 import beast.evolution.tree.Node;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+
+import javax.swing.JComponent;
 
 /**
  * @author Alexei Drummond
@@ -18,8 +21,32 @@ public class UnrootedTreeDrawing extends AbstractTreeDrawing {
     double maxX = Double.MIN_VALUE;
     double maxY = Double.MIN_VALUE;
 
+    
+    
     public void initAndValidate() {
+    	if (Plot.studio != null) {
+	    	final UnrootedTreeDrawing treeDrawing = this;
+	    	JComponent p = new JComponent() {
+	    		@Override
+	    		public void paintComponent(Graphics g) {
+		        	setSize(500, 500);
+		    		g.setClip(0,  0,  getWidth(), getHeight());
+		    		if (treeDrawing.bgColorInput.get() != null) {
+		    			Color oldBackground = ((Graphics2D) g).getBackground();
+		    			((Graphics2D) g).setBackground(treeDrawing.bgColorInput.get());
+		    			Rectangle r = g.getClipBounds();
+		    			g.clearRect(r.x, r.y, r.width, r.height);
+		    		}
+		    		
+	    			super.paintComponents(g);
 
+	    			SmartGraphics2D g2d = new SmartGraphics2D((Graphics2D) g);
+	    			treeDrawing.paintTree(g2d);
+	    		}
+			};
+			Plot.studio.plotPane.addChart(p);
+    	}
+    	setBounds(new Rectangle(50, 50, 400, 400));
     }
 
     void setTipValues(Node node) {
@@ -77,7 +104,6 @@ public class UnrootedTreeDrawing extends AbstractTreeDrawing {
 
     @Override
     public void paintTree(Graphics2D g) {
-
         paintNode(getTree().getRoot(), g);
     }
 
@@ -156,4 +182,5 @@ public class UnrootedTreeDrawing extends AbstractTreeDrawing {
     public void setRootHeightForCanonicalScaling(double maxRootHeight) {
         //TODO not sure what exactly to do here
     }
+
 }

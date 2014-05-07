@@ -1,3 +1,4 @@
+// demonstrates various trees and how to display them
 import beast.util.*;
 import beast.core.parameter.*;
 import beast.app.draw.tree.*;
@@ -15,15 +16,6 @@ data = new Alignment(
 );
 tree = new TreeParser(taxa=data, IsLabelledNewick=true, newick="((urangutan:0.04847887618847128,(gorilla:0.03189934232093919,((chimp:0.011076861832266626,bonobo:0.011076861832266626):0.009810542752873795,human:0.02088740458514042):0.011011937735798769):0.01657953386753209):0.017232517763959114,siamang:0.06571139395243039);");
 
-//treeDrawing = new RootedTreeDrawing(tree=tree, leafLabelOffset=10.0, orientation="left",showLeafLabels=true);
-//data = new Alignment(
-//		sequence=new Sequence(taxon="A",value="?"),
-//		sequence=new Sequence(taxon="B",value="?"),
-//		sequence=new Sequence(taxon="C",value="?"),
-//		sequence=new Sequence(taxon="D",value="?"),
-//		sequence=new Sequence(taxon="E",value="?")
-//);
-//tree = new TreeParser(taxa=data, newick="((((1:0.1,2:0.1):0.1,3:0.2):0.1,4:0.3):0.1,5:0.4);");
 treeDrawing = new RootedTreeDrawing(tree=tree, leafLabelOffset=10.0, orientation="right",showLeafLabels=true);
 pause();
 
@@ -92,6 +84,14 @@ td = new TreeDrawingGrid(oneScale=true, width=150, height=150,
          treeDrawing = r1, treeDrawing = r2, treeDrawing = r3);
 pause();
 
+// unrooted tree
+
+tree1 = new TreeParser(taxonset=taxonset, IsLabelledNewick=true, newick="((A:1.0,B:2.0):0.75,(C:2.5,D:0.75):0.5);");
+new UnrootedTreeDrawing(tree=tree1, showLeafLabels="true",
+                     lineThickness="3", leafLabelOffset="10", caption="(b)",
+                     bg=Color.orange);
+pause();
+                     
 // structured coalescent -- requires beastii
 colors = new ArrayList();
 for (c : new String[]{"pink","green","127,127,255","orange"}) {
@@ -113,3 +113,5 @@ new RootedTreeDrawing(tree=tree, orientation="right",
      );
 
 pause();
+
+
