@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import beast.app.shell.BEASTStudio;
 import beast.app.shell.Plot;
 import beast.util.AddOnManager;
 import bsh.CallStack;
@@ -26,9 +27,12 @@ public class demo {
 	public static void invoke(Interpreter env, CallStack callstack) {
 		List<String> demos = new ArrayList<String>();
 		File file = new File(DEMO_DIR);
-		collectDemos(file, demos);
-		file = new File(AddOnManager.getPackageUserDir() + "/beastshell/" + DEMO_DIR);
-		collectDemos(file, demos);
+		if (file.exists()) {
+			collectDemos(file, demos);
+		} else {
+			file = new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + DEMO_DIR);
+			collectDemos(file, demos);
+		}
 		for (String msg : demos) {
 			env.println(msg);
 		}
@@ -65,8 +69,8 @@ public class demo {
 			file = DEMO_DIR + file;
 			fileBsh = DEMO_DIR + fileBsh;
 			if (!(new File(file)).exists() && !(new File(fileBsh)).exists()) {
-				file = AddOnManager.getPackageUserDir() + "/" + file;
-				fileBsh = AddOnManager.getPackageUserDir() + "/" + fileBsh;
+				file = AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + file;
+				fileBsh = AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + fileBsh;
 			}
 		}
 		if (!(new File(file)).exists()) {

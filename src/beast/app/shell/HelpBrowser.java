@@ -27,7 +27,7 @@ import bsh.Interpreter;
 public class HelpBrowser extends JPanel implements HyperlinkListener {
     private static final long serialVersionUID = 1L;
     final static String INITIAL_PAGE = "doc/html/index.html";
-    final static String BEAST_DOC_DIR = AddOnManager.getPackageUserDir() + "/beastshell/doc/BeastObjects/";
+    final static String BEAST_DOC_DIR = AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + "doc/BeastObjects/";
     
     
     /**
@@ -119,7 +119,7 @@ public class HelpBrowser extends JPanel implements HyperlinkListener {
         	if (new File(path  + "/" + INITIAL_PAGE).exists()) {
             	setURL(new URL("file://" + path  + "/" + INITIAL_PAGE));
         	} else {
-            	setURL(new URL("file://" + AddOnManager.getPackageUserDir() + "/beastshell/" + INITIAL_PAGE));
+            	setURL(new URL("file://" + AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + INITIAL_PAGE));
         	}
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -257,9 +257,9 @@ public class HelpBrowser extends JPanel implements HyperlinkListener {
 				e.printStackTrace();
 			}
            	return true;
-    	} else if(new File(AddOnManager.getPackageUserDir() + "/beastshell/" + docPage).exists()) {
+    	} else if(new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + docPage).exists()) {
         	try {
-				setURL(new URL("file://" + AddOnManager.getPackageUserDir() + "/beastshell/" + docPage));
+				setURL(new URL("file://" + AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + docPage));
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}

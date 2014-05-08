@@ -33,6 +33,7 @@ import bsh.util.NameCompletionTable;
 
 public class BEASTStudio extends JSplitPane {
 	public final static String ICONPATH = "beastapp/shell/icons/";
+	public final static String PACKAGENAME = "/BEASTShell/";
 	public final static String VERSION = "0.0.1";
 	
 	private static final long serialVersionUID = 1L;

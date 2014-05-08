@@ -174,9 +174,9 @@ help(beast.util.TreeParser);
 				e.printStackTrace();
 			}
            	return true;
-    	} else if(new File(AddOnManager.getPackageUserDir() + "/beastshell/" + page).exists()) {
+    	} else if(new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + page).exists()) {
         	try {
-        		studio.helpPane.setURL(new URL("file://" + AddOnManager.getPackageUserDir() + "/beastshell/" + docPage));
+        		studio.helpPane.setURL(new URL("file://" + AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + docPage));
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}

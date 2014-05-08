@@ -346,7 +346,7 @@ public class EditorPanel extends JPanel implements ActionListener {
 	final static String STATUS_FILE = "editors.dat";
 	
 	private void restoreEditors() {
-		File backup = new File(AddOnManager.getPackageUserDir() + "/beastshell/" + STATUS_FILE);
+		File backup = new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + STATUS_FILE);
 		if (backup.exists()) {
 			try {
 		        BufferedReader fin = new BufferedReader(new FileReader(backup));
@@ -364,11 +364,11 @@ public class EditorPanel extends JPanel implements ActionListener {
 	}
 	
 	public void saveStatus() {
-		File backupdir = new File(AddOnManager.getPackageUserDir() + "/beastshell/");
+		File backupdir = new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME);
 		if (!backupdir.exists()) {
 			backupdir.mkdirs();
 		}
-		File backup = new File(AddOnManager.getPackageUserDir() + "/beastshell/" + STATUS_FILE);
+		File backup = new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + STATUS_FILE);
 		try {
 	        FileWriter outfile = new FileWriter(backup);
 	        for (String s : fileNames) {

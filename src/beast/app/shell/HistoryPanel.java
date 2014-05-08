@@ -136,7 +136,7 @@ public class HistoryPanel extends JPanel {
 	final static String BACKUP_FILE = "beastshell.history";
 	
 	void loadBackup() {
-		File backup = new File(AddOnManager.getPackageUserDir() + "/beastshell/" + BACKUP_FILE);
+		File backup = new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + BACKUP_FILE);
 		if (backup.exists()) {
 			try {
 		        BufferedReader fin = new BufferedReader(new FileReader(backup));
@@ -156,11 +156,11 @@ public class HistoryPanel extends JPanel {
 	}
 
 	public void saveBackup() {
-		File backupdir = new File(AddOnManager.getPackageUserDir() + "/beastshell/");
+		File backupdir = new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME);
 		if (!backupdir.exists()) {
 			backupdir.mkdirs();
 		}
-		File backup = new File(AddOnManager.getPackageUserDir() + "/beastshell/" + BACKUP_FILE);
+		File backup = new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + BACKUP_FILE);
 		try {
 	        FileWriter outfile = new FileWriter(backup);
 	        for (String s : history) {
