@@ -10,6 +10,7 @@ import beast.core.Input;
 import beast.core.NamedFunction;
 import beast.core.Operator;
 import bsh.Interpreter;
+import bsh.This;
 
 @Description("Operator specified using BEASTScript " +
 		"double proposal() must be specified.")

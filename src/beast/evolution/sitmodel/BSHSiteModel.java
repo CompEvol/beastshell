@@ -41,22 +41,12 @@ public class BSHSiteModel extends SiteModelInterface.Base {
 
 	@Override
 	public int getCategoryOfSite(int site, Node node) {
-		try {
-			interpreter.set("node", node);
-			return (int) NamedFunction.evalFunction(interpreter, functionInputs.get(), "getCategoryOfSite", site);
-		} catch (EvalError e) {
-			throw new RuntimeException("getCategoryOfSite failed: " + e.getMessage());
-		}
+		return (int) NamedFunction.evalFunction(interpreter, functionInputs.get(), "getCategoryOfSite", site, node);
 	}
 
 	@Override
 	public double getRateForCategory(int category, Node node) {
-		try {
-			interpreter.set("node", node);
-			return NamedFunction.evalFunction(interpreter, functionInputs.get(), "getRateForCategory", category);
-		} catch (EvalError e) {
-			throw new RuntimeException("getRateForCategory failed: " + e.getMessage());
-		}
+		return NamedFunction.evalFunction(interpreter, functionInputs.get(), "getRateForCategory", category, node);
 	}
 
 	@Override
@@ -66,12 +56,7 @@ public class BSHSiteModel extends SiteModelInterface.Base {
 	
 	@Override
 	public double getProportionForCategory(int category, Node node) {
-		try {
-			interpreter.set("node", node);
-			return NamedFunction.evalFunction(interpreter, functionInputs.get(), "getProportionForCategory", category);
-		} catch (EvalError e) {
-			throw new RuntimeException("getProportionForCategory failed: " + e.getMessage());
-		}
+		return NamedFunction.evalFunction(interpreter, functionInputs.get(), "getProportionForCategory", category, node);
 	}
 
 	@Override

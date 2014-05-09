@@ -5,6 +5,8 @@ import java.util.List;
 import beast.core.Input.Validate;
 import bsh.EvalError;
 import bsh.Interpreter;
+import bsh.Primitive;
+import bsh.This;
 
 @Description("Wraps a function in a name, so it can be identified in a BEASTShell script object")
 public class NamedFunction extends CalculationNode implements Function {
@@ -57,11 +59,31 @@ public class NamedFunction extends CalculationNode implements Function {
 	}
 
 	
-	public static double evalFunction(Interpreter interpreter, List<Function> functions, String name, double arg) {
+//	public static double evalFunction(Interpreter interpreter, List<Function> functions, String name, double arg) {
+//		NamedFunction.evalFunctionInputs(interpreter, functions);
+//		try {
+//			double result = - 1;
+//			Object o = interpreter.eval(name + "(" + arg + ")");
+//			if (o instanceof Number) {
+//				result = ((Number) o).doubleValue();
+//			} else {
+//				throw new RuntimeException(name + " failed: expected a number as result");
+//			}
+//			return result;
+//		} catch (EvalError e) {
+//			throw new RuntimeException(name + " failed: " + e.getMessage());
+//		}
+//	}
+
+	public static double evalFunction(Interpreter interpreter, List<Function> functions, String name, Object... args) {
 		NamedFunction.evalFunctionInputs(interpreter, functions);
 		try {
 			double result = - 1;
-			Object o = interpreter.eval(name + "(" + arg + ")");
+			This _this = interpreter.getNameSpace().getThis(interpreter);
+			Object o = _this.invokeMethod(name, args);
+			if (o instanceof Primitive) {
+				o = ((Primitive)o).getValue();
+			}
 			if (o instanceof Number) {
 				result = ((Number) o).doubleValue();
 			} else {
@@ -71,38 +93,23 @@ public class NamedFunction extends CalculationNode implements Function {
 		} catch (EvalError e) {
 			throw new RuntimeException(name + " failed: " + e.getMessage());
 		}
-	}
-
-	public static double evalFunction(Interpreter interpreter, List<Function> functions, String name) {
-		NamedFunction.evalFunctionInputs(interpreter, functions);
-		try {
-			double result = - 1;
-			Object o = interpreter.eval(name + "()");
-			if (o instanceof Number) {
-				result = ((Number) o).doubleValue();
-			} else {
-				throw new RuntimeException(name + " failed: expected a number as result");
-			}
-			return result;
-		} catch (EvalError e) {
-			throw new RuntimeException(name + " failed: " + e.getMessage());
-		}
 
 	}
 
-	public static void evalVoidFunction(Interpreter interpreter, List<Function> functions, String name, double arg) {
-		NamedFunction.evalFunctionInputs(interpreter, functions);
-		try {
-			interpreter.eval(name + "(" + arg + ")");
-		} catch (EvalError e) {
-			throw new RuntimeException(name + " failed: " + e.getMessage());
-		}
-	}
+//	public static void evalVoidFunction(Interpreter interpreter, List<Function> functions, String name, double arg) {
+//		NamedFunction.evalFunctionInputs(interpreter, functions);
+//		try {
+//			interpreter.eval(name + "(" + arg + ")");
+//		} catch (EvalError e) {
+//			throw new RuntimeException(name + " failed: " + e.getMessage());
+//		}
+//	}
 
-	public static void evalVoidFunction(Interpreter interpreter, List<Function> functions, String name) {
+	public static void evalVoidFunction(Interpreter interpreter, List<Function> functions, String name, Object... args) {
 		NamedFunction.evalFunctionInputs(interpreter, functions);
 		try {
-			interpreter.eval(name + "()");
+			This _this = interpreter.getNameSpace().getThis(interpreter);
+			_this.invokeMethod(name, args);
 		} catch (EvalError e) {
 			throw new RuntimeException(name + " failed: " + e.getMessage());
 		}

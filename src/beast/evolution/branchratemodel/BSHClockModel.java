@@ -13,7 +13,7 @@ import bsh.EvalError;
 import bsh.Interpreter;
 
 @Description("Branch rate model specified using BEASTScript "+
-		"getRateForBranch() must be specified, node and meanrate are globals. ")
+		"getRateForBranch(node, meanrate) must be specified. ")
 public class BSHClockModel extends Base {
 	public Input<List<Function>> functionInputs = new Input<List<Function>>("x", "function values used by the clock model", new ArrayList<Function>()); 
 	public Input<String> valueInput = new Input<String>("value", "script specifying the various functions required for an clock model"); 
@@ -30,13 +30,7 @@ public class BSHClockModel extends Base {
 
 	@Override
 	public double getRateForBranch(Node node) {
-		try {
-			interpreter.set("node", node);
-			interpreter.set("meanrate", meanRateInput.get().getValue());
-			return NamedFunction.evalFunction(interpreter, functionInputs.get(), "getRateForBranch");
-		} catch (EvalError e) {
-			throw new RuntimeException("getProportionForCategory failed: " + e.getMessage());
-		}
+		return NamedFunction.evalFunction(interpreter, functionInputs.get(), "getRateForBranch", node, meanRateInput.get().getValue());
 	}
 
 }

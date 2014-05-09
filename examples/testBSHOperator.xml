@@ -142,13 +142,13 @@ name="alignment"/>
 		<log spec='BSHLogger' id='kappaSquared'>
 			<x spec='NamedFunction' term='param' function="@kappa.s:alignment"/>
 <![CDATA[
-	init() {
+	init(out) {
 		out.print("kappa^2\t");
 	}
-	log(sample) {
+	log(sample, out) {
 		out.print(param.getValue()*param.getValue() + "\t");
 	}
-	close() {
+	close(out) {
 		// nothing to do
 	}
 ]]>

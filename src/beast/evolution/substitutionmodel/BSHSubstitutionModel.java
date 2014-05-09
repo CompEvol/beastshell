@@ -16,7 +16,7 @@ import bsh.Interpreter;
 
 
 @Description("Substitution model specified using BEASTScript "+
-		"getTransitionProbabilities(startTime, endTime, rate) must be specified (and node and matrix are global variables). ")
+		"getTransitionProbabilities(node, fStartTime, fEndTime, fRate, matrix) must be specified. ")
 public class BSHSubstitutionModel extends SubstitutionModel.Base {
 	public Input<List<Function>> functionInputs = new Input<List<Function>>("x", "function values used by the substitution model", new ArrayList<Function>()); 
 	public Input<String> valueInput = new Input<String>("value", "script specifying the various functions required for a substitution model"); 
@@ -33,15 +33,7 @@ public class BSHSubstitutionModel extends SubstitutionModel.Base {
 
 	@Override
 	public void getTransitionProbabilities(Node node, double fStartTime, double fEndTime, double fRate, double[] matrix) {
-		NamedFunction.evalFunctionInputs(interpreter, functionInputs.get());
-		try {
-			interpreter.set("node", node);
-			interpreter.set("matrix", matrix);
-			interpreter.eval("getTransitionProbabilities("+fStartTime+","+fEndTime+","+fRate+")");
-		} catch (EvalError e) {
-			throw new RuntimeException("getTransitionProbabilities failed: " + e.getMessage());
-		}
-		
+		NamedFunction.evalVoidFunction(interpreter, functionInputs.get(), "getTransitionProbabilities", node, fStartTime, fEndTime, fRate, matrix);
 	}
 
 	@Override
