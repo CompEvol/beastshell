@@ -1,4 +1,4 @@
-package beast.evolution.tree;
+package beast.shell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import beast.core.Description;
 import beast.core.Function;
 import beast.core.Input;
-import beast.core.NamedFunction;
+import beast.evolution.tree.TreeDistribution;
 import bsh.Interpreter;
 
 @Description("Substitution model specified using BEASTScript "+

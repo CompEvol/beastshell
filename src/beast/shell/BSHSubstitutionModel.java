@@ -1,4 +1,4 @@
-package beast.evolution.substitutionmodel;
+package beast.shell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.List;
 import beast.core.Description;
 import beast.core.Function;
 import beast.core.Input;
-import beast.core.NamedFunction;
 import beast.evolution.datatype.DataType;
 import beast.evolution.substitutionmodel.EigenDecomposition;
 import beast.evolution.substitutionmodel.SubstitutionModel;
+import beast.evolution.substitutionmodel.SubstitutionModel.Base;
 import beast.evolution.tree.Node;
 import bsh.EvalError;
 import bsh.Interpreter;

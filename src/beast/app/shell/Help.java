@@ -12,7 +12,6 @@ import beast.app.DocMaker;
 import beast.core.BEASTObject;
 import beast.util.AddOnManager;
 import bsh.ClassIdentifier;
-import bsh.Interpreter;
 
 public class Help {
 	/**

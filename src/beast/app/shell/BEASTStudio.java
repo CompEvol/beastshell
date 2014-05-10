@@ -23,7 +23,6 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import beast.app.util.Utils;
 import bsh.BshClassManager;
 import bsh.ClassPathException;
-import bsh.Interpreter;
 import bsh.NameSource;
 import bsh.Variable;
 import bsh.classpath.ClassManagerImpl;

@@ -1,9 +1,14 @@
-package beast.core;
+package beast.shell;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import beast.core.Description;
+import beast.core.Distribution;
+import beast.core.Function;
+import beast.core.Input;
+import beast.core.State;
 import bsh.Interpreter;
 
 @Description("Distribution specified using BEASTScript "+

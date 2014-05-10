@@ -1,9 +1,14 @@
-package beast.core;
+package beast.shell;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import beast.core.BEASTObject;
+import beast.core.Description;
+import beast.core.Function;
+import beast.core.Input;
+import beast.core.Loggable;
 import bsh.EvalError;
 import bsh.Interpreter;
 

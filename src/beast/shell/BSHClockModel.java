@@ -1,4 +1,4 @@
-package beast.evolution.branchratemodel;
+package beast.shell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import beast.core.Description;
 import beast.core.Function;
 import beast.core.Input;
-import beast.core.NamedFunction;
+import beast.evolution.branchratemodel.BranchRateModel;
 import beast.evolution.branchratemodel.BranchRateModel.Base;
 import beast.evolution.tree.Node;
 import bsh.EvalError;

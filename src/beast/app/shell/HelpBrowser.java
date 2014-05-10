@@ -22,7 +22,6 @@ import javax.swing.event.HyperlinkListener;
 
 import beast.app.DocMaker;
 import beast.util.AddOnManager;
-import bsh.Interpreter;
 
 public class HelpBrowser extends JPanel implements HyperlinkListener {
     private static final long serialVersionUID = 1L;

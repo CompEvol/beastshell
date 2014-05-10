@@ -1,4 +1,4 @@
-package beast.evolution.sitmodel;
+package beast.shell;
 
 
 import java.util.ArrayList;
@@ -7,7 +7,6 @@ import java.util.List;
 import beast.core.Description;
 import beast.core.Function;
 import beast.core.Input;
-import beast.core.NamedFunction;
 import beast.evolution.sitemodel.SiteModelInterface;
 import beast.evolution.tree.Node;
 import bsh.EvalError;

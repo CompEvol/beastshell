@@ -9,10 +9,10 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import beast.app.shell.BEASTStudio;
+import bsh.Interpreter;
 import beast.app.shell.Plot;
 import beast.util.AddOnManager;
 import bsh.CallStack;
-import bsh.Interpreter;
 
 public class demo {
 	final static String DEMO_DIR = "examples/demo/";

@@ -1,10 +1,15 @@
-package beast.core;
+package beast.shell;
 
 import java.util.List;
 
+import bsh.Interpreter;
+import beast.core.BEASTObject;
+import beast.core.CalculationNode;
+import beast.core.Description;
+import beast.core.Function;
+import beast.core.Input;
 import beast.core.Input.Validate;
 import bsh.EvalError;
-import bsh.Interpreter;
 import bsh.Primitive;
 import bsh.This;
 
