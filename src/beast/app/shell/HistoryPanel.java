@@ -36,7 +36,7 @@ import java.awt.event.ActionEvent;
 public class HistoryPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	private JTextField textField;
+	private JTextField textSearchField;
 	RSyntaxTextArea /*JTextArea*/ textPane;
 	Image image;
 	BEASTStudio studio = null;
@@ -82,17 +82,18 @@ public class HistoryPanel extends JPanel {
 		toolBar.add(btnNewButton_1);
 		
 		image = new ImageIcon(HistoryPanel.class.getResource("/beast/app/shell/icons/search.png")).getImage();
-		textField = new JTextField() {
+		textSearchField = new JTextField() {
 	            protected void paintComponent(Graphics g) {  
 	                super.paintComponent(g);  
-	                int y = (getHeight() - image.getHeight(null))/2;  
-	                g.drawImage(image, 10, y, this);
+	                int y = (getHeight() - image.getHeight(null))/2;
+	                int x = getWidth() - 17;
+	                g.drawImage(image, x, y, this);
 	            }  
 	        };  
-		textField.setToolTipText("filter history by matching expression");
-		toolBar.add(textField);
-		textField.setColumns(8);
-		textField.getDocument().addDocumentListener(new DocumentListener() {
+		textSearchField.setToolTipText("filter history by matching expression");
+		toolBar.add(textSearchField);
+		textSearchField.setColumns(8);
+		textSearchField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void removeUpdate(DocumentEvent e) {
                 filter();
@@ -112,7 +113,7 @@ public class HistoryPanel extends JPanel {
 		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText("");
+				textSearchField.setText("");
 			}
 		});
 		btnNewButton_2.setToolTipText("clear filter history");
@@ -181,7 +182,7 @@ public class HistoryPanel extends JPanel {
 	}
 	
 	void filter() {
-		String filter = textField.getText();
+		String filter = textSearchField.getText();
 		if (filter.equals("")) {
 	        StringBuffer buf = new StringBuffer();
 	        for (String s : history) {

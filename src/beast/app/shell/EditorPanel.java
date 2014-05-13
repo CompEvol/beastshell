@@ -105,13 +105,13 @@ public class EditorPanel extends JPanel implements ActionListener {
 
 		JButton prevButton = new JButton("");
 		prevButton.setToolTipText("Find Previous");
-		prevButton.setIcon(new ImageIcon(EditorPanel.class.getResource("/beast/app/shell/icons/prev.png")));
+		prevButton.setIcon(new ImageIcon(EditorPanel.class.getResource("/beast/app/shell/icons/finddown.png")));
 		prevButton.setActionCommand("FindPrev");
 		prevButton.addActionListener(this);
 		toolBar.add(prevButton);
 
 		final JButton nextButton = new JButton("");
-		nextButton.setIcon(new ImageIcon(EditorPanel.class.getResource("/beast/app/shell/icons/next.png")));
+		nextButton.setIcon(new ImageIcon(EditorPanel.class.getResource("/beast/app/shell/icons/findup.png")));
 		nextButton.setToolTipText("Find Next");
 		nextButton.setActionCommand("FindNext");
 		nextButton.addActionListener(this);
