@@ -2,7 +2,9 @@ package beast.app.shell.treetable;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.Map;
 
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreePath;
@@ -14,7 +16,7 @@ import javax.swing.tree.TreePath;
 /**
  * Tree model for script object inspection.
  */
-class VariableModel implements TreeTableModel {
+public class VariableModel implements TreeTableModel {
 
     /**
      * Serializable magic number.
@@ -41,6 +43,10 @@ class VariableModel implements TreeTableModel {
      * The root node.
      */
     private VariableNode root;
+    
+    public void setScope(Object scope) {
+        this.root = new VariableNode(scope, "this");
+    }
 
     /**
      * Creates a new VariableModel.
@@ -176,6 +182,21 @@ class VariableModel implements TreeTableModel {
         case 0: // Name
             return node.toString();
         case 1: // Value
+        	if (node.object == null) {
+        		return "null";
+        	}
+        	if (node.object instanceof Collection) {
+        		Collection c = (Collection) node.object;
+        		Object [] o = c.toArray();
+        		String result = Arrays.toString(o);
+        		return result;
+        	}
+        	if (node.object.getClass().isArray()) {
+        		Object [] o = (Object []) node.object;
+        		String result = Arrays.toString(o);
+        		return result;
+        	}
+        	
             String result;
             try {
                 result = getValue(node).toString();//debugger.objectToString(getValue(node));
@@ -213,25 +234,32 @@ class VariableModel implements TreeTableModel {
         } else {
             Arrays.sort(ids, new Comparator<Object>() {
                     public int compare(Object l, Object r)
-                    {
-                        if (l instanceof String) {
-                            if (r instanceof Integer) {
-                                return -1;
-                            }
-                            return ((String)l).compareToIgnoreCase((String)r);
-                        } else {
-                            if (r instanceof String) {
-                                return 1;
-                            }
-                            int lint = ((Integer)l).intValue();
-                            int rint = ((Integer)r).intValue();
-                            return lint - rint;
-                        }
+                    {	
+                    	return (l.toString()).compareToIgnoreCase(r.toString());
                     }
             });
+//                        if (l instanceof String) {
+//                            if (r instanceof Integer) {
+//                                return -1;
+//                            }
+//                            return ((String)l).compareToIgnoreCase((String)r);
+//                        } else {
+//                            if (r instanceof String) {
+//                                return 1;
+//                            }
+//                            int lint = ((Integer)l).intValue();
+//                            int rint = ((Integer)r).intValue();
+//                            return lint - rint;
+//                        }
+//                    }
+//            });*/
             children = new VariableNode[ids.length];
             for (int i = 0; i != ids.length; ++i) {
-                children[i] = new VariableNode(value, ids[i]);
+                if (value instanceof Map) {
+                	children[i] = new VariableNode(((Map)value).get(ids[i]), ids[i]);
+                } else {
+                	children[i] = new VariableNode(value, ids[i]);
+                }
             }
         }
         node.children = children;
@@ -240,6 +268,14 @@ class VariableModel implements TreeTableModel {
 
     // RRB: list children of an object as VariableNode
     private Object[] getObjectIds(Object value) {
+    	if (value instanceof Number || value instanceof String || value instanceof Boolean) {
+    		return new Object[0];
+    	}
+    	
+    	if (value instanceof Map) {
+    		return ((Map) value).keySet().toArray();
+    	}
+    	
     	Field [] fields= value.getClass().getFields();
     	Object [] objects = new Object[fields.length];
     	for (int i = 0; i < fields.length; i++) {
@@ -261,7 +297,7 @@ class VariableModel implements TreeTableModel {
      */
     public Object getValue(VariableNode node) {
         try {
-            return node.object.toString();//debugger.getObjectProperty(node.object, node.id);
+            return node.object;//debugger.getObjectProperty(node.object, node.id);
         } catch (Exception exc) {
             return "undefined";
         }
@@ -301,8 +337,9 @@ class VariableModel implements TreeTableModel {
          */
         @Override
         public String toString() {
-            return id instanceof String
-                ? (String) id : "[" + ((Integer) id).intValue() + "]";
+        	return id.toString();
+//            return id instanceof String
+//                ? (String) id : "[" + ((Integer) id).intValue() + "]";
         }
     }
 }

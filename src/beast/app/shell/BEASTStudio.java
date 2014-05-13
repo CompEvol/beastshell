@@ -255,7 +255,7 @@ public class BEASTStudio extends JSplitPane {
         }
 		
 		
-		studio.interpreter = new Interpreter( studio.console );
+		studio.interpreter = new Interpreter(studio.console, studio);
 		studio.interpreter.studio = studio;
 		studio.setNameCompletion();
 		studio.splitpaneleft.setDividerLocation(0.3);

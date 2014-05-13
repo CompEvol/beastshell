@@ -44,8 +44,10 @@ public class Interpreter
 	public BEASTStudio studio = null;
 	bsh.Interpreter interpreter;
 
-	public Interpreter(JConsole console) {
+	public Interpreter(JConsole console, BEASTStudio studio) {
 		interpreter = new bsh.Interpreter(console);
+		this.studio = studio;
+		interpreter.studio = studio;
 	}
 
 	public Object get(String name) throws EvalError {

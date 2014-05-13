@@ -38,13 +38,18 @@ import javax.swing.event.*;
 import javax.swing.tree.*;
 import javax.swing.table.*;
 
+import beast.core.parameter.RealParameter;
+
 import java.awt.Dimension;
 import java.awt.Component;
 import java.awt.Graphics;
 
 import java.awt.event.MouseEvent;
 
+import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This example shows how to create a simple JTreeTable component,
@@ -64,14 +69,24 @@ public class JTreeTable extends JTable {
     /** A subclass of JTree. */
     protected TreeTableCellRenderer tree;
 
+    AbstractTableModel tablemodel;
+    TreeTableModel treeTableModel;
+    
+    public void update() {
+        tablemodel = new TreeTableModelAdapter(treeTableModel, tree);
+        super.setModel(tablemodel);
+    }
+    
     public JTreeTable(TreeTableModel treeTableModel) {
         super();
+        this.treeTableModel = treeTableModel;
 
         // Create the tree. It will be used as a renderer and editor.
         tree = new TreeTableCellRenderer(treeTableModel);
 
         // Install a tableModel representing the visible rows in the tree.
-        super.setModel(new TreeTableModelAdapter(treeTableModel, tree));
+        tablemodel = new TreeTableModelAdapter(treeTableModel, tree);
+        super.setModel(tablemodel);
 
         // Force the JTable and JTree to share their row selection models.
         ListToTreeSelectionModelWrapper selectionWrapper = new
@@ -387,4 +402,23 @@ public class JTreeTable extends JTable {
             }
         }
     }
+    
+    
+    public static void main(String[] args) throws Exception {
+		JFrame frame = new JFrame();
+		Map<String, Object> scope = new HashMap<>();
+		scope.put("x", new Double(3));
+		scope.put("y", new Double(4.3));
+		scope.put("z", new Double[]{1.0,2.0,3.0});
+		scope.put("A", new ArrayList<Double>());
+		scope.put("B", "AAAAAA");
+		scope.put("C", new RealParameter("3.14"));
+		VariableModel treeTableModel = new VariableModel(scope);
+		JTreeTable treetable = new JTreeTable(treeTableModel);
+		frame.add(treetable);
+		frame.setSize(1024,768);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
 }

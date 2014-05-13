@@ -3,147 +3,59 @@ package beast.app.shell;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextPane;
 
-import beast.app.shell.treetable.JTreeTable;
-import beast.app.shell.treetable.TreeTableModel;
 import bsh.UtilEvalError;
 import bsh.Variable;
 import javax.swing.JTable;
-import javax.swing.event.TreeModelListener;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.tree.TreePath;
 
 public class VariablesPanel extends JSplitPane {
 	private static final long serialVersionUID = 1L;
 
-	private JTreeTable table;
+	private JTable table;
 	JScrollPane scrollPane;
 	Object[][] data;
-	TreeTableModel model;
+	AbstractTableModel model;
 	JTextPane textPane;
 	
 	public VariablesPanel() {
 		super(JSplitPane.VERTICAL_SPLIT);
 		data = new Object[0][2];
-		model = new TreeTableModel() {
-			
+		model = new AbstractTableModel() {
+			private static final long serialVersionUID = 1L;
+
 			@Override
-			public void valueForPathChanged(TreePath path, Object newValue) {
-				// TODO Auto-generated method stub
-				
+			public Object getValueAt(int rowIndex, int columnIndex) {
+				return data[rowIndex][columnIndex];
 			}
 			
 			@Override
-			public void removeTreeModelListener(TreeModelListener l) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public boolean isLeaf(Object node) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-			
-			@Override
-			public Object getRoot() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public int getIndexOfChild(Object parent, Object child) {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-			
-			@Override
-			public int getChildCount(Object parent) {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-			
-			@Override
-			public Object getChild(Object parent, int index) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public void addTreeModelListener(TreeModelListener l) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void setValueAt(Object aValue, Object node, int column) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public boolean isCellEditable(Object node, int column) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-			
-			@Override
-			public Object getValueAt(Object node, int column) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public String getColumnName(int column) {
-				// TODO Auto-generated method stub
-				return null;
+			public int getRowCount() {
+				return data.length;
 			}
 			
 			@Override
 			public int getColumnCount() {
-				// TODO Auto-generated method stub
-				return 0;
+				return 2;
 			}
 			
 			@Override
-			public Class<?> getColumnClass(int column) {
-				// TODO Auto-generated method stub
-				return null;
+			public String getColumnName(int column) {
+				if (column == 0) {
+					return "name";
+				}
+				return "value";
 			}
 		};
-//		() {
-//			private static final long serialVersionUID = 1L;
-//
-//			@Override
-//			public Object getValueAt(int rowIndex, int columnIndex) {
-//				return data[rowIndex][columnIndex];
-//			}
-//			
-//			@Override
-//			public int getRowCount() {
-//				return data.length;
-//			}
-//			
-//			@Override
-//			public int getColumnCount() {
-//				return 2;
-//			}
-//			
-//			@Override
-//			public String getColumnName(int column) {
-//				if (column == 0) {
-//					return "name";
-//				}
-//				return "value";
-//			}
-//		};
 		
-		table = new JTreeTable(model);
+		table = new JTable(model);
 		
 		add(table);
 		scrollPane = new JScrollPane(table);
@@ -206,6 +118,15 @@ public class VariablesPanel extends JSplitPane {
 				e.printStackTrace();
 			}
 		}
+		
+        Arrays.sort(data, new Comparator<Object>() {
+            public int compare(Object o1, Object o2)
+            {	
+            	String left = ((Object[])o1)[0].toString();
+            	String right = ((Object[])o2)[0].toString();
+            	return (left).compareToIgnoreCase(right);
+            }
+        });
 		model.fireTableDataChanged();
 	}
 
