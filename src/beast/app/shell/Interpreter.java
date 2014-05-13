@@ -33,21 +33,59 @@
 
 package beast.app.shell;
 
+import java.io.InputStream;
 import java.io.PrintStream;
 
+import javax.script.Bindings;
+import javax.script.ScriptContext;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import bsh.BshScriptEngineFactory;
+import bsh.CallStack;
 import bsh.EvalError;
+import bsh.InterpreterError;
 import bsh.NameSpace;
+import bsh.ParseException;
+import bsh.Primitive;
+import bsh.TargetError;
+import bsh.TokenMgrError;
 import bsh.util.JConsole;
 
 public class Interpreter 
 {
 	public BEASTStudio studio = null;
-	bsh.Interpreter interpreter;
+	//bsh.Interpreter interpreter;
+	
+	ScriptEngine interpreter;
+	JConsole console;
 
-	public Interpreter(JConsole console, BEASTStudio studio) {
-		interpreter = new bsh.Interpreter(console);
+	PrintStream err;
+	PrintStream out;
+	
+	public Interpreter(JConsole console, BEASTStudio studio, String engineName) {
+        ScriptEngineManager factory = new ScriptEngineManager();
+        interpreter = engineName.equals("beastshell") ? 
+        		new BshScriptEngineFactory().getScriptEngine() : 
+        		factory.getEngineByName(engineName);
+		//interpreter = new bsh.Interpreter(console);
 		this.studio = studio;
-		interpreter.studio = studio;
+		this.console = console;
+		//interpreter.studio = studio;
+		err = console.getErr();
+		out = console.getOut();
+		console.interpreter = interpreter;
+		
+		System.setErr(err);
+		System.setOut(out);
+		try {
+			interpreter.eval("printBanner()");
+		} catch (ScriptException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Object get(String name) throws EvalError {
@@ -55,15 +93,29 @@ public class Interpreter
 	}
 
 	public PrintStream getErr() {
-		return interpreter.getErr();
+		return console.getErr();
 	}
 
 	public void run() {
-		interpreter.run();
+		InputStream in = console.getInputStream();
+		while (true) {
+			try {
+				byte c = (byte) in.read();
+				int len = in.available();
+				byte [] bytes = new byte[len + 1];
+				bytes[0] = c;
+				in.read(bytes, 1, len);
+				String s = new String(bytes);
+				interpreter.eval(s);
+				studio.update();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
-	public NameSpace getNameSpace() {
-		return interpreter.getNameSpace();
+	public Bindings getNameSpace() {
+		return interpreter.getBindings(ScriptContext.ENGINE_SCOPE);
 	}
 	
 }

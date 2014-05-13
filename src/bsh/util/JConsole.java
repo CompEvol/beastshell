@@ -47,6 +47,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import java.awt.Cursor;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptException;
 import javax.swing.text.*;
 import javax.swing.*;
 
@@ -55,7 +58,6 @@ import javax.swing.*;
 import beast.app.shell.BEASTStudio;
 import beast.app.shell.HistoryPanel;
 import bsh.EvalError;
-import bsh.Interpreter;
 import bsh.util.NameCompletion;
 
 /**
@@ -518,6 +520,7 @@ public class JConsole extends JScrollPane
 	}
 
 	String ZEROS = "000";
+	public ScriptEngine interpreter = null;
 
 	private	void acceptLine( String	line ) 
 	{
@@ -532,6 +535,15 @@ public class JConsole extends JScrollPane
 		} 
 		line = buf.toString();
 		// End unicode patch
+		if (interpreter != null) {
+			try {
+				interpreter.eval(line);
+				studio.update();
+			} catch (ScriptException e) {
+				e.printStackTrace();
+			}
+			return;
+		}
 
 		if (outPipe == null )
 			print("Console internal	error: cannot output ...", Color.red);

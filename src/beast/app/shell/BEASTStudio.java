@@ -10,6 +10,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
 
+import javax.script.Bindings;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -125,7 +126,7 @@ public class BEASTStudio extends JSplitPane {
 	}
 
 	public void update() {
-		Variable [] vars = interpreter.getNameSpace().getDeclaredVariables();
+		Bindings vars = interpreter.getNameSpace();//.getDeclaredVariables();
 		variablesPane.update(vars);
 	}
 	
@@ -146,6 +147,8 @@ public class BEASTStudio extends JSplitPane {
         //}
 	}
 	
+	BshClassManager bcm = BshClassManager.createClassManager( null);
+	
 	private void setNameCompletion() {
 //		if (true) {
 //			// TODO: enable auto completion
@@ -156,7 +159,7 @@ public class BEASTStudio extends JSplitPane {
 	        NameCompletionTable nct = new NameCompletionTable();
 	        nct.add( interpreter.getNameSpace() );
 	        try {
-	        	BshClassManager bcm = interpreter.getNameSpace().getClassManager();
+	        	//BshClassManager bcm = interpreter.getNameSpace().getClassManager();
 	            if (bcm != null ) {
 	            	 NameSource classNamesSource = ((ClassManagerImpl) bcm).getClassPath();
 	                 nct.add( classNamesSource );
@@ -254,8 +257,7 @@ public class BEASTStudio extends JSplitPane {
         	}
         }
 		
-		
-		studio.interpreter = new Interpreter(studio.console, studio);
+		studio.interpreter = new Interpreter(studio.console, studio, "beastshell");
 		studio.interpreter.studio = studio;
 		studio.setNameCompletion();
 		studio.splitpaneleft.setDividerLocation(0.3);
