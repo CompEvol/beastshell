@@ -184,7 +184,7 @@ $s='f("stop", Conditions.class, 0, 11, 2);
     f("log2", MathExt.class, 2, 1, 1);
     f("abs", MathExt.class, 6, 1, 1);
     f("floor", Math.class, 1, 1, 1);
-    f("ceiling", Math.class, "ceil", 2, 1, 1);
+    f("ceiling", MathExt.class, "ceil", 2, 1, 1);
     f("sqrt", Math.class, 3, 1, 1);
     f("sign", MathExt.class, 4, 1, 1);
     f("trunc", MathExt.class, 5, 1, -1);
@@ -206,7 +206,7 @@ $s='f("stop", Conditions.class, 0, 11, 2);
     f("asinh", MathExt.class, 34, 1, 1);
     f("atanh", MathExt.class, 35, 1, 1);
 
-    f("lgamma", org.apache.commons.math.special.Gamma.class, "logGamma", 40, 1, 1);
+    f("lgamma", MathExt.class, "logGamma", 40, 1, 1);
     f("gamma", MathExt.class, 41, 1, 1);
 
     f("digamma", org.apache.commons.math.special.Gamma.class, 42, 1, 1);
@@ -958,7 +958,7 @@ $args{'ftrunc'} = "{x}, {x}        ";
 $args{'gamma'} = "{x}, {x}        ";
 $args{'imax2'} = "{x, y}, {x, y}      ";
 $args{'imin2'} = "{x, y}, {x, y}      ";
-$args{'lbeta'} = "{a, b}, null       ";
+$args{'lbeta'} = "{a, b}, {a, b}";
 $args{'lgammacor'} = "{x}, {x}        ";
 $args{'lgamma'} = "{x}, {x}        ";
 $args{'pbeta'} = "{x, pin, qin, lower_tail, log_p}, {x, pin, qin}  ";
@@ -1030,7 +1030,7 @@ $args{'stirlerr'} = "{n}, {n}        ";
 $args{'wilcox'} = "{x, m, n, lower_tail, log_p}, {x, m, n}  ";
 
 $args{'round'} = "{x} {x}";
-$args{'signif'} = "{x} {x}";
+$args{'signif'} = "{x d} {x d}";
 $args{'atan'} = "{x} {x}";
 $args{'log'} = "{x} {x}";
 $args{'log10'} = "{x} {x}";
@@ -1146,7 +1146,7 @@ print FOUT "// $docmap{$cmd}\n";
 if ($docmap{$cmd} =~ /\@see\(doc\/html\/beast\/(.*)\)(.*)/) {
 	$target = $1;
 	$description = $2;
-	print FINDEX "<a href='$target'>$cmd</a> $description</br>\n";
+	print FINDEX "<a href='$target'>$cmd</a> $description<p>\n";
 }
 
 print "$cmd $args{$cmd} $arity\n";
@@ -1225,8 +1225,8 @@ sub printBody {
 	$body =~ s/\(x/(i/;
 	$body =~ s/;//;
 		print FOUT '
-	if (x instanceof List || x.getClass().isArray()) {
-		List<Double> result = new ArrayList<Double>();
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
 		for (i : x) {
 			result.add('.$body.');
 		}
@@ -1238,8 +1238,8 @@ sub printBody {
 	$body =~ s/\(p/(i/;
 	$body =~ s/;//;
 		print FOUT '
-	if (p instanceof List || p.getClass().isArray()) {
-		List<Double> result = new ArrayList<Double>();
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
 		for (i : p) {
 			result.add('.$body.');
 		}

@@ -1535,5 +1535,9 @@ public class NameSpace implements Serializable, BshClassManager.Listener, NameSo
 		}
 		return new ArrayList<T>(list);
 	}
+	
+	public List<String> getImportedCommands() {
+		return importedCommands;
+	}
 
 }

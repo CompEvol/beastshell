@@ -520,10 +520,13 @@ public class JConsole extends JScrollPane
 	}
 
 	String ZEROS = "000";
-	public ScriptEngine interpreter = null;
 
 	private	void acceptLine( String	line ) 
 	{
+		if (line.startsWith("?")) {
+			line = line.trim();
+			line = "help(\"" + line.substring(1) +"\");\n";
+		}
 		// Patch to handle Unicode characters
 		// Submitted by Daniel Leuck
 		StringBuilder buf = new StringBuilder(); 
@@ -535,15 +538,6 @@ public class JConsole extends JScrollPane
 		} 
 		line = buf.toString();
 		// End unicode patch
-		if (interpreter != null) {
-			try {
-				interpreter.eval(line);
-				studio.update();
-			} catch (ScriptException e) {
-				e.printStackTrace();
-			}
-			return;
-		}
 
 		if (outPipe == null )
 			print("Console internal	error: cannot output ...", Color.red);

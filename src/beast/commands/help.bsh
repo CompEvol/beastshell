@@ -1,3 +1,5 @@
+// @see(doc/html/beast/commands/help.html) provide help on commands, BEASTObjects and Java-classes
+
 help() {
 	beast.app.shell.Help.help();
 }

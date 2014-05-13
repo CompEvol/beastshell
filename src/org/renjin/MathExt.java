@@ -27,6 +27,8 @@ import org.apache.commons.math.util.MathUtils;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -46,7 +48,6 @@ public class MathExt {
  public static double gamma(double x) {
     return Math.exp(Gamma.logGamma(x));
   }
-
   
   //@Builtin
  public static double sign(double x) {
@@ -213,9 +214,30 @@ public class MathExt {
   
   
   
-  //@Builtin("trunc")
-  
-  public static double truncate(double x){
-    return Math.floor(x);
-  }
+	// @Builtin("trunc")
+
+	public static double truncate(double x) {
+		return Math.floor(x);
+	}
+
+	// @Builtin
+	public static double ceiling(double x) {
+		return Math.ceil(x);
+	}
+
+	public static double ceil(double x) {
+		return Math.ceil(x);
+	}
+
+	public static List<Double> ceil(List<Number> x) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (Number i : x) {
+			result.add(Math.ceil(i.doubleValue()));
+		}
+		return result;
+	}
+	
+	public static double lgamma(double x) {
+		return Gamma.logGamma(x);
+	}
 }

@@ -5,6 +5,7 @@ package beast.app.shell;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -12,6 +13,7 @@ import beast.app.DocMaker;
 import beast.core.BEASTObject;
 import beast.util.AddOnManager;
 import bsh.ClassIdentifier;
+import bsh.EvalError;
 
 public class Help {
 	/**
@@ -53,13 +55,25 @@ help(beast.util.TreeParser);
 	static public void help(Object o) {
 		if (o instanceof String) {
 			try {
+				Object target = studio.interpreter.get((String)o);
+				if (target != null) {
+					help(target);
+					return;
+				}
+			} catch (EvalError e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			try {
 				// check if it is a class
 				 o = Class.forName((String)o).newInstance();
 				 return;
 			} catch (Exception e) {
 				// TODO: check if it is a command
 				e.printStackTrace();
-            	for (String path : new String[]{"../beast/commands/", "../bsh/commands/"}) {
+				//
+            	for (String path : studio.interpreter.getNameSpace().getImportedCommands()) {
             		String scriptPath = path +"/"+ (String) o +".bsh";
             		InputStream in = Interpreter.class.getResourceAsStream( scriptPath );
             		if (in != null) {
@@ -78,9 +92,24 @@ help(beast.util.TreeParser);
                             		return;
                             	}
             				}
+            				
 						} catch (IOException e2) {
 							// TODO Auto-generated catch block
 							e2.printStackTrace();
+						}
+            		} else {
+            			// it may be a Java-class command
+            			path = path.replaceAll("/", ".");
+            			if (path.startsWith(".")) {
+            				path = path.substring(1);
+            			}
+           				 try {
+							o = Class.forName(path + "." +(String)o).newInstance();
+							Method method = o.getClass().getMethod("usage");
+							String help = (String) method.invoke(o);
+							studio.helpPane.setText(help);
+							return;
+						} catch (Exception e1) {
 						}
             		}
                 }

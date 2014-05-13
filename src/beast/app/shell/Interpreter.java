@@ -46,6 +46,8 @@ public class Interpreter
 
 	public Interpreter(JConsole console, BEASTStudio studio) {
 		interpreter = new bsh.Interpreter(console);
+		interpreter.setShowResults(true);
+		
 		this.studio = studio;
 		interpreter.studio = studio;
 	}
