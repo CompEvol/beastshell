@@ -7,11 +7,12 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import javax.script.Bindings;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextPane;
 
+import bsh.UtilEvalError;
+import bsh.Variable;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
@@ -104,19 +105,18 @@ public class VariablesPanel extends JSplitPane {
 	}
 	
 	
-	public void update(Bindings vars) {
-		data = new Object[vars.size()][2];
+	public void update(Variable[] vars) {
+		data = new Object[vars.length][2];
 		int k = 0;
-		for (Object key : vars.keySet()) {
-			Object value = vars.get(key);
-			//try {
-				data[k][0] = key.toString();//v.getName(); 
-				data[k][1] = value;//v.getValue();//.toString();
+		for (Variable v : vars) {
+			try {
+				data[k][0] = v.getName(); 
+				data[k][1] = v.getValue();//.toString();
 				k++;
-			//} catch (UtilEvalError e) {
+			} catch (UtilEvalError e) {
 				// TODO Auto-generated catch block
-			//	e.printStackTrace();
-			//}
+				e.printStackTrace();
+			}
 		}
 		
         Arrays.sort(data, new Comparator<Object>() {
