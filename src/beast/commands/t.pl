@@ -1058,19 +1058,19 @@ $args{'logGamma'} = "{x} {x}";
 $args{'digamma'} = "{x} {x}";
 $args{'trigamma'} = "{x} {x}";
 
-$args{'sum'} = "{x} {x}";
-$args{'mean'} = "{x} {x}";
-$args{'min'} = "{x} {x}";
-$args{'max'} = "{x} {x}";
-$args{'prod'} = "{x} {x}";
-$args{'range'} = "{x} {x}";
+$args{'sum'} = "{x rmna} {x}";
+$args{'mean'} = "{x rmna} {x}";
+$args{'min'} = "{x rmna} {x}";
+$args{'max'} = "{x rmna} {x}";
+$args{'prod'} = "{x rmna} {x}";
+$args{'range'} = "{x rmna} {x}";
 #$args{'cov'} = "{a b c d} {a b c d}";
 #$args{'cor'} = "{a b c d} {a b c d}";
 
-$args{'cumsum'} = "{x} {x}";
-$args{'cumprod'} = "{x} {x}";
-$args{'cummax'} = "{x} {x}";
-$args{'cummin'} = "{x} {x}";
+$args{'cumsum'} = "{x rmna} {x}";
+$args{'cumprod'} = "{x rmna} {x}";
+$args{'cummax'} = "{x rmna} {x}";
+$args{'cummin'} = "{x rmna} {x}";
 
 
 open(FIN, "../../../doc/html/beast/base/00Index.html")or die "Cannot open base/00Index.html";
@@ -1151,7 +1151,6 @@ if ($docmap{$cmd} =~ /\@see\(doc\/html\/beast\/(.*)\)(.*)/) {
 
 print "$cmd $args{$cmd} $arity\n";
 	if ($arity =~/(.*)\+(.*)/) {
-
 		$args = $1;
 		$opts = $2;
 		$args=trim($args);
@@ -1161,6 +1160,7 @@ print "$cmd $args{$cmd} $arity\n";
 			$a .= "arg$i, ";
 		}
 		$a =~ s/, $//;
+
 		if ($args{$cmd} ne '') {
 			$args{$cmd} =~ /.*}.*{([^}]*)}/;
 			$a = $1;
@@ -1222,6 +1222,13 @@ sub printBody {
 	$body0 = $body;
 	$arg0 = $a;
 	if ($arg0 =~ /^x/) {
+		if ($args{$cmd} =~ /rmna/) {
+		$body =~ s/\(x/(x, false/;
+		$body =~ s/;//;
+		print FOUT ' 
+		return '.$body.';
+';
+		} else {
 	$body =~ s/\(x/(i/;
 	$body =~ s/;//;
 		print FOUT '
@@ -1234,7 +1241,8 @@ sub printBody {
 	} else {
 		return '.$body0.'
 	}
-';} elsif ($arg0 =~ /^p/) {
+'; }
+} elsif ($arg0 =~ /^p/) {
 	$body =~ s/\(p/(i/;
 	$body =~ s/;//;
 		print FOUT '

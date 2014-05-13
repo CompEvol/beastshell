@@ -1,0 +1,66 @@
+// quick test that all functions run without throwing exceptions
+all(c(true,false));
+all(c(true,true));
+any(c(true,true));
+any(c(true,false));
+x = c(true,false);
+abs(x);
+y = c(1,2,3);
+
+abs(y);
+round(y);
+signif(y, 3);
+log(y);
+log10(y);
+log2(y);
+log1p(x);
+sqrt(y);
+ceiling(y);
+ceil(y);
+floor(y);
+exp(y);
+expm1(y);
+
+cos(y);
+sin(y);
+tan(y);
+acos(y);
+asin(y);
+cosh(y);
+sinh(y);
+tanh(y);
+acosh(y);
+asinh(y);
+atanh(y);
+tan2(1,1);
+
+lgamma(y);
+gamma(y);
+digamma(y);
+trdigamma(y);
+trigamma(y);
+
+lbeta(y);
+lbeta(1,1);
+lbeta(0.1,0.1);
+beta(0.5,0.5);
+
+choose(2, 10);
+choose(10,2);
+choose(10,3);
+choose(10,4);
+lchoose(10,4);
+
+sum(y);
+min(y);
+min(y);
+max(y);
+prod(y);
+range(y);
+mean(y);
+cumprod(y);
+cumpmin(y);
+cummin(y);
+cummax(y);
+
+
