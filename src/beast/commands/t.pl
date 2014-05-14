@@ -1101,6 +1101,20 @@ print FINDEX '<html><head></head>
 </head>
 <body>
 <h1>BEAST Shell commands</h1>
+<h1>BEAST Commands</h1>
+
+Some useful commands are
+<table style="background:lightgrey">
+<tr><td>c</td><td>construct a list of objecst, e.g. <tt>x=c(1,1.5,2,2.4)</tt></td></tr>
+<tr><td>demo</td><td>demonstrate some BEASTShell capabilities in BEASTStudio</td></tr>
+<tr><td>help</td><td>provide online help</td></tr>
+<tr><td>assertEquals</td><td>handy for testing, e.g. <tt>assertEquals(dbeta(0.4, 5, 1, false), 0.128, 0.0001);</tt></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+</table>
+
+Further, there are a whole set of math and distribution functions ported from R.
+This is the complete list:
 <table>
 ';
 

@@ -1,0 +1,51 @@
+// various ways to calculate the length of a tree
+import beast.util.*;
+
+// implementation that recurses through the (presumed binary) tree
+len(node) {
+	if (node.isLeaf()) {
+		return node.getLength();
+	} else {
+		return len(node.getLeft()) + len(node.getRight()) + node.getLength();
+	}
+}
+
+tree = new beast.util.TreeParser(newick="(1:0.2,(2:0.15,3:0.15):0.05)");
+// 0.55
+len(tree.getRoot());
+
+tree2 = new beast.util.TreeParser(newick="(1:0.2,((2:0.1):0.1))", singlechild=true);
+// following fails -- due to single child node
+// len(tree2.getRoot());
+
+// implementation that recurses through the (potentially non-binary) tree
+len2(node) {
+	if (node.isLeaf()) {
+		return node.getLength();
+	} else {
+		len = node.getLength();
+		for (child : node.getChildren()) {
+			len += len2(child);
+		}
+		return len;
+	}
+}
+
+// 0.55
+len2(tree.getRoot());
+// 0.40
+len2(tree2.getRoot());
+
+// implementation that loops over the nodes
+len3(tree) {
+	len = 0;
+	for (node : tree.getNodesAsArray()) {
+		len += node.getLength();
+	}
+	len;
+}
+
+// 0.55
+len3(tree);
+// 0.40
+len3(tree2);
