@@ -979,7 +979,7 @@ $args{'pnf'} = "{x, df1, df2, ncp, lower_tail, log_p}, {x, df1, df2, ncp}";
 $args{'pnorm'} = "{x, mu, sigma, lower_tail, log_p}, {x, mu, sigma}  ";
 $args{'pnt'} = "{t, df, ncp, lower_tail, give_log}, {t, df, ncp}  ";
 $args{'ppois'} = "{x, lambda, lower_tail, log_p}, {x, lambda}    ";
-$args{'pt'} = "{x, n, lower_tail, /*log_p*/give_log}, {x, n, /*log_p*/give_log}   ";
+$args{'pt'} = "{x, n, lower_tail, give_log}, {x, n}   ";
 $args{'ptukey'} = "{q, rr, cc, df, lower_tail, log_p}, {q, rr, cc, df}";
 $args{'punif'} = "{x, a, b, lower_tail, log_p}, {x, a, b}  ";
 $args{'pweibull'} = "{x, shape, scale, lower_tail, log_p}, {x, shape, scale}  ";
@@ -1017,7 +1017,7 @@ $args{'rgeom'} = "{n, p}, {n, p}        ";
 $args{'rhyper'} = "{n, nn1in, nn2in, kkin}, {n, nn1in, nn2in, kkin}    ";
 $args{'rlnorm'} = "{n, meanlog, sdlog}, {n, meanlog, sdlog}      ";
 $args{'rlogis'} = "{n, location, scale}, {n, location, scale}      ";
-$args{'rmultinom'} = "{n, n, prob, K, rN}, {n, n, prob, K, rN}  ";
+$args{'rmultinom'} = "{n, prob, K, rN}, {n, prob, K, rN}  ";
 $args{'rnbinom'} = "{n, size, prob}, {n, size, prob}      ";
 $args{'rnchisq'} = "{n, df, lambda}, {n, df, lambda}      ";
 $args{'rnorm'} = "{n, mu, sigma}, {n, mu, sigma}      ";
@@ -1027,7 +1027,11 @@ $args{'runif'} = "{n, a, b}, {n, a, b}      ";
 $args{'rweibull'} = "{n, shape, scale}, {n, shape, scale}      ";
 $args{'sign'} = "{x}, {x}        ";
 $args{'stirlerr'} = "{n}, {n}        ";
-$args{'wilcox'} = "{x, m, n, lower_tail, log_p}, {x, m, n}  ";
+
+$args{'dwilcox'} = "{x, m, n, log_p}, {x, m, n}  ";
+$args{'pwilcox'} = "{x, m, n, lower_tail, log_p}, {x, m, n}  ";
+$args{'qwilcox'} = "{x, m, n, lower_tail, log_p}, {x, m, n}  ";
+$args{'rwilcox'} = "{n, m, n2}, {n, m, n2}  ";
 
 $args{'round'} = "{x} {x}";
 $args{'signif'} = "{x d} {x d}";
@@ -1091,11 +1095,13 @@ while($s = <FIN>) {
 close (FIN);
 
 open(FINDEX,">../../../doc/html/beast/commands.html");
+open(FTEST,">/tmp/testCommands.bsh");
 print FINDEX '<html><head></head>
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
 <h1>BEAST Shell commands</h1>
+<table>
 ';
 
 $k = 0;
@@ -1109,7 +1115,9 @@ foreach $s (@s) {
 	}
 }
 
-print FINDEX '</body>
+close FTEST;
+print FINDEX '</table>
+</body>
 </html>
 ';
 close FINDEX;
@@ -1146,7 +1154,20 @@ print FOUT "// $docmap{$cmd}\n";
 if ($docmap{$cmd} =~ /\@see\(doc\/html\/beast\/(.*)\)(.*)/) {
 	$target = $1;
 	$description = $2;
-	print FINDEX "<a href='$target'>$cmd</a> $description<p>\n";
+	print FINDEX "<tr><td><a href='$target'>$cmd</a></td><td>$description</td></tr>\n";
+
+	@aa = split("}",$args{$cmd});
+	$aa[0] =~ s/{//;
+	$aa[1] =~ s/{//;
+	@aa0 = split("\s+",$aa[0]);
+	$aa0 = $#aa0;
+	@aa1 = split("\s+",$aa[1]);
+	$aa1 = $#aa1;
+	print FTEST "$cmd($aa[0]);\n";
+	if ($aa0 != $aa1) {
+		print FTEST "$cmd($aa[1]);\n";
+	}
+
 }
 
 print "$cmd $args{$cmd} $arity\n";

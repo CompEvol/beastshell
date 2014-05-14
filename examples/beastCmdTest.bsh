@@ -5,7 +5,20 @@ any(c(true,true));
 any(c(true,false));
 x = c(true,false);
 abs(x);
-y = c(1,2,3);
+x = c(1,2,3);
+y = x;
+df = 2;
+give_log= false;
+lower_tail= false;
+log_p = false;
+p=0.5;
+q=0.5;
+rate = 1.0;
+location=3;
+scale = 1.0;
+lambda=1.0;
+n=2;
+a=2;b=3;
 
 abs(y);
 round(y);
@@ -63,4 +76,111 @@ cumpmin(y);
 cummin(y);
 cummax(y);
 
+dchisq(x, df, give_log);
+pchisq(x, df, lower_tail, log_p);
+qchisq(p, df, lower_tail, log_p);
 
+dexp(x, rate, give_log);
+pexp(x, scale, lower_tail, log_p);
+qexp(p, scale, lower_tail, log_p);
+
+dgeom(x, p, give_log);
+pgeom(x, p, lower_tail, log_p);
+qgeom(p, q, lower_tail, log_p);
+
+dpois(x, lambda, give_log);
+ppois(x, lambda, lower_tail, log_p);
+qpois(p, lambda, lower_tail, log_p);
+
+dt(x, n, give_log);
+pt(x, n, lower_tail, /*log_p*/give_log);
+qt(p, df, lower_tail, give_log);
+
+
+dbeta(x, a, b);
+dbeta(x, a, b, give_log);
+pbeta(x, 0.5, 0.5, lower_tail, log_p);
+qbeta(p, 0.5, 0.5, lower_tail, log_p);
+
+dbinom(x, n, p, give_log);
+pbinom(x, n, p, lower_tail, log_p);
+loqbinom(p, n, 0.5, lower_tail, log_p);
+
+dcauchy(x, location, scale, give_log);
+pcauchy(x, location, scale, lower_tail, log_p);
+qcauchy(p, location, scale, lower_tail, log_p);
+
+m=2;
+df(x, m, n, give_log);
+df(x, m, n, give_log);
+df1 = 2, df2=3;
+pf(x, df1, df2, lower_tail, log_p);
+qf(p, df1, df2, lower_tail, log_p);
+
+shape=1.0;
+alpha = 2; beta = 3;
+dgamma(x, shape, scale, give_log);
+pgamma(x, alpha, scale, lower_tail, log_p);
+qgamma(p, alpha, beta, lower_tail, log_p);
+
+meanlog=1.0;sdlog=0.5;
+dlnorm(x, meanlog, sdlog, give_log);
+plnorm(x, meanlog, sdlog, lower_tail, log_p);
+qlnorm(p, meanlog, sdlog, lower_tail, log_p);
+
+dlogis(x, location, scale, give_log);
+plogis(x, location, scale, lower_tail, log_p);
+qlogis(p, location, scale, lower_tail, log_p);
+
+size=3; prob=0.5;
+dnbinom(x, size, prob, give_log);
+pnbinom(x, size, prob, lower_tail, log_p);
+qnbinom(p, size, prob, lower_tail, log_p);
+
+mu=1.0;sigma=0.5;
+dnorm(x, mu, sigma, give_log);
+pnorm(x, mu, sigma, lower_tail, log_p);
+qnorm(p, mu, sigma, lower_tail, log_p);
+
+dunif(x, a, b, give_log);
+punif(x, a, b, lower_tail, log_p);
+qunif(p, a, b, lower_tail, log_p);
+
+dweibull(x, shape, scale, give_log);
+pweibull(x, shape, scale, lower_tail, log_p);
+qweibull(p, shape, scale, lower_tail, log_p);
+
+rr = 5; cc=3;
+ptukey(q, rr, cc, df, lower_tail, log_p);
+qtukey(p, rr, cc, df, lower_tail, log_p);
+
+r=2; n=5; NR=2; NB=3;
+dhyper(x, r, b, n, give_log);
+phyper(x, NR, NB, n, lower_tail, log_p);
+qhyper(p, NR, NB, n, lower_tail, log_p);
+
+dwilcox(x, m, n, log_p);
+pwilcox(x, m, n, lower_tail, log_p);
+qwilcox(x, m, n, lower_tail, log_p);
+
+rchisq(n, df);
+rexp(n, scale);
+rgeom(n, p);
+rpois(n, mu);
+rt(n, df);
+rbeta(n, a, b);
+rbinom(n, 6, 0.4);
+rcauchy(n, location, scale);
+rf(n, 10, 10);
+rgamma(n, a, scale);
+rlnorm(n, meanlog, sdlog);
+rlogis(n, location, scale);
+rnbinom(n, size, prob);
+rnorm(n, mu, sigma);
+runif(n, a, b);
+rweibull(n, shape, scale);
+rhyper(n, 2, 3, 1);
+rwilcox(n, 2, 4);
+
+rmultinom(n, n, prob, K, rN);
+rsignrank();

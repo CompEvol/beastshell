@@ -18,15 +18,22 @@ bsh % demo("chart");
 </pre>
 </p>
 
-<h3>Help</h3>
-<p>To get help on a command, use <tt>bsh % help("cmd");</tt> e.g. 
+<h2>Getting Help</h2>
+<p>To get help on a command, use <tt>help("cmd");</tt> of alternatively <tt>?cmd<?tt> e.g. 
 <pre>bsh % help("print");
+bsh % ?print
 bsh % help("dnorm");
+bsh % ?dnorm
 </pre></p>
 <p></p>
-<p>To get help on a BEASTObject, use <tt>bsh % help(BEASTObject);</tt> e.g. <pre>bsh %  help(beast.util.MCMC);</pre></p>
+<p>To get help on a BEASTObject, use <tt>help(BEASTObject);</tt> e.g. <pre>bsh %  ?beast.core.MCMC</pre>
+or, if you already created an MCMC object, asking help for the object will have the same results:
+<pre>bsh % tree = new beast.evolution.tree.Tree()
+bsh % ?tree
+</pre>
+</p>
 <p></p>
-<p>To get help on any other class, use <tt>bsh % help(Class);</tt> e.g. <pre>bsh %  help(java.util.ArrayList);</pre></p>
+<p>To get help on any other class, use <tt>help(Class);</tt> e.g. <pre>bsh %  help(java.util.ArrayList);</pre></p>
 
 </body>
 

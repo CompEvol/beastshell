@@ -336,9 +336,10 @@ public class Distributions {
     return p(new PoissonDistributionImpl(lambda), q, lowerTail, logP);
   }
 
-//  public static double qpois(double p, double lambda, boolean lowerTail, boolean logP)  {
-//    return q(new PoissonDistributionImpl(lambda), p, lowerTail, logP);
-//  }
+  public static double qpois(double p, double lambda, boolean lowerTail, boolean logP)  {
+    return q(new PoissonDistributionImpl(lambda), p, lowerTail, logP);
+  }
+  
    //@Internal
   public static double dbinom(final double x, final int size, final double prob, boolean log) {
     return d(new BinomialDistributionImpl(size, prob), x, log);
@@ -492,9 +493,9 @@ public class Distributions {
     return p(new HypergeometricDistributionImpl((int) (whiteBalls + blackBalls), (int) whiteBalls, (int) sampleSize), q, lowerTail, logP);
   }
 
-//  public static double qhyper(double p,double m, double n, double k, boolean lowerTail, boolean logP)  {
-//    return q(new HypergeometricDistributionImpl((int)m, (int)n, (int)k), p, lowerTail, logP);
-//  }
+  public static double qhyper(double p,double m, double n, double k, boolean lowerTail, boolean logP)  {
+    return q(new HypergeometricDistributionImpl((int)m, (int)n, (int)k), p, lowerTail, logP);
+  }
   /*
   public static double dgeom(final int x, final double p, final boolean log) {
   if (log) {
