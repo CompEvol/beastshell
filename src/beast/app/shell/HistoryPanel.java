@@ -32,8 +32,10 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class HistoryPanel extends JPanel {
+public class HistoryPanel extends JPanel implements KeyListener {
 	private static final long serialVersionUID = 1L;
 
 	private JTextField textSearchField;
@@ -197,6 +199,25 @@ public class HistoryPanel extends JPanel {
 	        	}
 	        }
 	        textPane.setText(buf.toString());
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (e.isControlDown() && e.getKeyCode() == 70) {
+			textSearchField.requestFocus();
 		}
 	}
 }

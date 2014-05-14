@@ -1,9 +1,13 @@
 package beast.app.shell;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -22,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
 
 import org.fife.ui.autocomplete.AutoCompletion;
 import org.fife.ui.autocomplete.BasicCompletion;
@@ -35,11 +40,12 @@ import beast.app.beauti.BeautiDoc;
 import beast.app.util.Utils;
 import beast.util.AddOnManager;
 
-public class EditorPanel extends JPanel implements ActionListener {
+public class EditorPanel extends JPanel implements ActionListener, KeyListener {
 	private static final long serialVersionUID = 1L;
 	JTabbedPane tabbedPane;
 	List<String> fileNames;
 	JTextField searchField;
+	Image image;
 	private JCheckBox regexCB;
 	private JCheckBox matchCaseCB;
 	
@@ -100,18 +106,26 @@ public class EditorPanel extends JPanel implements ActionListener {
 		toolBar.addSeparator();
 
 		// Create a toolbar with searching options.
-		searchField = new JTextField(30);
+		image = new ImageIcon(HistoryPanel.class.getResource("/beast/app/shell/icons/search.png")).getImage();
+		searchField = new JTextField(30) {
+            protected void paintComponent(Graphics g) {  
+                super.paintComponent(g);  
+                int y = (getHeight() - image.getHeight(null))/2;
+                int x = getWidth() - 17;
+                g.drawImage(image, x, y, this);
+            }  
+        };  
 		toolBar.add(searchField);
 
 		JButton prevButton = new JButton("");
 		prevButton.setToolTipText("Find Previous");
-		prevButton.setIcon(new ImageIcon(EditorPanel.class.getResource("/beast/app/shell/icons/finddown.png")));
+		prevButton.setIcon(new ImageIcon(EditorPanel.class.getResource("/beast/app/shell/icons/findup.png")));
 		prevButton.setActionCommand("FindPrev");
 		prevButton.addActionListener(this);
 		toolBar.add(prevButton);
 
 		final JButton nextButton = new JButton("");
-		nextButton.setIcon(new ImageIcon(EditorPanel.class.getResource("/beast/app/shell/icons/findup.png")));
+		nextButton.setIcon(new ImageIcon(EditorPanel.class.getResource("/beast/app/shell/icons/finddown.png")));
 		nextButton.setToolTipText("Find Next");
 		nextButton.setActionCommand("FindNext");
 		nextButton.addActionListener(this);
@@ -128,6 +142,7 @@ public class EditorPanel extends JPanel implements ActionListener {
 		toolBar.add(matchCaseCB);
 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		add(tabbedPane, BorderLayout.CENTER);
 		
 		restoreEditors();
@@ -158,7 +173,19 @@ public class EditorPanel extends JPanel implements ActionListener {
 		}
 		SearchResult result = SearchEngine.find(textPane, context);
 		if (!result.wasFound()) {
-			JOptionPane.showMessageDialog(this, "Text not found");
+          SwingUtilities.invokeLater(new Runnable() {
+	          @Override 
+	          public void run() {
+				searchField.setBackground(Color.RED);
+				searchField.paintImmediately(0,  0, searchField.getWidth(), searchField.getHeight());
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e1) {
+				}
+				searchField.setBackground(Color.WHITE);
+				searchField.paintImmediately(0,  0, searchField.getWidth(), searchField.getHeight());
+	          }
+	      });
 		}
 
 	}
@@ -182,6 +209,7 @@ public class EditorPanel extends JPanel implements ActionListener {
 		textPane.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
 		textPane.setCodeFoldingEnabled(true);
 		textPane.setAntiAliasingEnabled(true);
+		textPane.addKeyListener(this);
 		
 	    CompletionProvider provider = createCompletionProvider();
 	    AutoCompletion ac = new AutoCompletion(provider);
@@ -191,7 +219,37 @@ public class EditorPanel extends JPanel implements ActionListener {
 		fileNames.add(null);
 	}
 
-	 /**
+		
+		@Override
+		public void keyTyped(java.awt.event.KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void keyReleased(java.awt.event.KeyEvent e) {
+			if (e.isControlDown() && e.getKeyCode() == 70) {
+				searchField.requestFocus();
+			}
+			if (e.isControlDown() && e.getKeyCode() == 71) {
+				doSearchReplace();
+			}
+			
+		}
+
+		@Override
+		public void keyPressed(java.awt.event.KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	
+		private void doSearchReplace() {
+			SearchDialog dlg = new SearchDialog(this, getCurrentTextPane());
+			dlg.setVisible(true);
+			//dlg.dispose();
+		}
+
+		/**
 	    * Create a simple provider that adds some Java-related completions.
 	    * 
 	    * @return The completion provider.
@@ -282,6 +340,7 @@ public class EditorPanel extends JPanel implements ActionListener {
 			textPane.setCodeFoldingEnabled(true);
 			textPane.setAntiAliasingEnabled(true);
 			textPane.setText(text);
+			textPane.addKeyListener(this);
 			
 		    CompletionProvider provider = createCompletionProvider();
 		    AutoCompletion ac = new AutoCompletion(provider);

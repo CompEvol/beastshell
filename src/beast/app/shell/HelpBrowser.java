@@ -84,8 +84,8 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
     private final JPanel panel = new JPanel(new BorderLayout());
     private final JLabel lblStatus = new JLabel();
 
-    private final JButton btnGo = new JButton("Go");
-    private final JTextField txtURL = new JTextField();
+    //private final JButton btnGo = new JButton("Go");
+    //private final JTextField txtURL = new JTextField();
     private final JProgressBar progressBar = new JProgressBar();     
     
 
@@ -171,7 +171,7 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
 	                g.drawImage(image, x, y, this);
 	            }  
 	        };  
-	        searchField.setToolTipText("filter history by matching expression");
+	        searchField.setToolTipText("search help page by matching text");
 		toolBar.add(searchField);
 		searchField.setColumns(8);
 		searchField.addActionListener(this);
@@ -261,36 +261,36 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
     private void initComponents() {
         createScene();
  
-        ActionListener al = new ActionListener() {
-            @Override 
-            public void actionPerformed(ActionEvent e) {
-                loadURL(txtURL.getText());
-            }
-        };
- 
-        btnGo.addActionListener(al);
-        txtURL.addActionListener(al);
+//        ActionListener al = new ActionListener() {
+//            @Override 
+//            public void actionPerformed(ActionEvent e) {
+//                loadURL(txtURL.getText());
+//            }
+//        };
+// 
+//        btnGo.addActionListener(al);
+//        txtURL.addActionListener(al);
   
         progressBar.setPreferredSize(new Dimension(150, 18));
         progressBar.setStringPainted(true);
   
-        JPanel topBar = new JPanel(new BorderLayout(5, 0));
-        topBar.setBorder(BorderFactory.createEmptyBorder(3, 5, 3, 5));
-        topBar.add(txtURL, BorderLayout.CENTER);
-        topBar.add(btnGo, BorderLayout.EAST);
+//        JPanel topBar = new JPanel(new BorderLayout(5, 0));
+//        topBar.setBorder(BorderFactory.createEmptyBorder(3, 5, 3, 5));
+//        topBar.add(txtURL, BorderLayout.CENTER);
+//        topBar.add(btnGo, BorderLayout.EAST);
  
         JPanel statusBar = new JPanel(new BorderLayout(5, 0));
         statusBar.setBorder(BorderFactory.createEmptyBorder(3, 5, 3, 5));
         statusBar.add(lblStatus, BorderLayout.CENTER);
         statusBar.add(progressBar, BorderLayout.EAST);
  
-        panel.add(topBar, BorderLayout.NORTH);
+        //panel.add(topBar, BorderLayout.NORTH);
         panel.add(jfxPanel, BorderLayout.CENTER);
         panel.add(statusBar, BorderLayout.SOUTH);
         
         //getContentPane().add(panel);
-        
-        setPreferredSize(new Dimension(1024, 600));
+        jfxPanel.setPreferredSize(new Dimension(400, 400));
+        setPreferredSize(new Dimension(400, 400));
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //pack();
 
@@ -318,54 +318,55 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
 								public void handleEvent(org.w3c.dom.events.Event evt) {
 									String href = ((Element)evt.getTarget()).getAttribute("href");
 									goToLink(href);
-                                    System.out.println("KLIKNIETO!!!" + href);
 								}
                             };
 
                             org.w3c.dom.Document doc = engine.getDocument();
                             Element el = doc.getElementById("a");
                             NodeList lista = doc.getElementsByTagName("a");
-                            System.out.println("Liczba elementow: "+ lista.getLength());
                             for (int i=0; i<lista.getLength(); i++)
                                 ((org.w3c.dom.events.EventTarget)lista.item(i)).addEventListener("click", listener, false);
                         }
                     }                	
                 	
-//                	@Override
-//                    public void changed(ObservableValue<? extends String> observable, String oldValue, final String newValue) {
+
+                });
+                engine.titleProperty().addListener(new ChangeListener<String>() {
+                	@Override
+                  public void changed(ObservableValue<? extends String> observable, String oldValue, final String newValue) {
+                      SwingUtilities.invokeLater(new Runnable() {
+                          @Override 
+                          public void run() {
+                        	  lblStatus.setText(newValue);
+                          }
+                      });
+                  }				
+                });
+ 
+//                engine.setOnStatusChanged(new EventHandler<WebEvent<String>>() {
+//                    @Override 
+//                    public void handle(final WebEvent<String> event) {
 //                        SwingUtilities.invokeLater(new Runnable() {
 //                            @Override 
 //                            public void run() {
-//                                //SimpleSwingBrowser.this.setTitle(newValue);
-//                                System.out.println(newValue);
+//                                lblStatus.setText(event.getData());
+//                                System.out.println(event.getData());
 //                            }
 //                        });
 //                    }
-                });
- 
-                engine.setOnStatusChanged(new EventHandler<WebEvent<String>>() {
-                    @Override 
-                    public void handle(final WebEvent<String> event) {
-                        SwingUtilities.invokeLater(new Runnable() {
-                            @Override 
-                            public void run() {
-                                lblStatus.setText(event.getData());
-                            }
-                        });
-                    }
-                });
- 
-                engine.locationProperty().addListener(new ChangeListener<String>() {
-                    @Override
-                    public void changed(ObservableValue<? extends String> ov, String oldValue, final String newValue) {
-                        SwingUtilities.invokeLater(new Runnable() {
-                            @Override 
-                            public void run() {
-                                txtURL.setText(newValue);
-                            }
-                        });
-                    }
-                });
+//                });
+// 
+//                engine.locationProperty().addListener(new ChangeListener<String>() {
+//                    @Override
+//                    public void changed(ObservableValue<? extends String> ov, String oldValue, final String newValue) {
+//                        SwingUtilities.invokeLater(new Runnable() {
+//                            @Override 
+//                            public void run() {
+//                                txtURL.setText(newValue);
+//                            }
+//                        });
+//                    }
+//                });
  
                 engine.getLoadWorker().workDoneProperty().addListener(new ChangeListener<Number>() {
                     @Override
@@ -416,9 +417,21 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
 						if (e.isControlDown() && e.getKeyCode() == 70) {
 							searchField.requestFocus();
 						}
+						if (e.isAltDown() && e.getKeyCode() == 37) {
+							goPrev();
+						}
+						if (e.isAltDown() && e.getKeyCode() == 39) {
+							goNext();
+						}
+						if (e.getKeyCode() == 109) {
+							zoomOut();
+						}
+						if (e.getKeyCode() == 107) {
+							zoomIn();
+						}
 						
 					}
-					
+
 					@Override
 					public void keyPressed(java.awt.event.KeyEvent e) {
 						// TODO Auto-generated method stub
@@ -429,7 +442,7 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
             }
         });
     }
- 
+    
     public void loadURL(final String url) {
         Platform.runLater(new Runnable() {
             @Override 
@@ -443,6 +456,7 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
                 engine.load(tmp);
             }
         });
+        zoom(zoom);
     }
 
     public void loadContent(final String content) {
@@ -452,6 +466,7 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
                 engine.loadContent(content);
             }
         });
+        zoom(zoom);
     }
 
     private static String toURL(String str) {
@@ -489,7 +504,7 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
 	}
 
     
-    public String goPrev()
+    public void goPrev()
     {    
       final WebHistory history=engine.getHistory();
       ObservableList<WebHistory.Entry> entryList=history.getEntries();
@@ -498,10 +513,11 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
 //      Out(entryList.toString().replace("],","]\n"));
 
       Platform.runLater(new Runnable() { public void run() { history.go(-1); } });
-      return entryList.get(currentIndex>0?currentIndex-1:currentIndex).getUrl();
+      entryList.get(currentIndex>0?currentIndex-1:currentIndex).getUrl();
+      zoom(zoom);
     }
 
-    public String goNext()
+    public void goNext()
     {    
       final WebHistory history=engine.getHistory();
       ObservableList<WebHistory.Entry> entryList=history.getEntries();
@@ -510,7 +526,8 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
 //      Out(entryList.toString().replace("],","]\n"));
 
       Platform.runLater(new Runnable() { public void run() { history.go(1); } });
-      return entryList.get(currentIndex<entryList.size()-1?currentIndex+1:currentIndex).getUrl();
+      entryList.get(currentIndex<entryList.size()-1?currentIndex+1:currentIndex).getUrl();
+      zoom(zoom);
     }    
     
 //	private void goPrev() {
@@ -658,5 +675,27 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
         }
     } // updateState
 
+
+    double zoom = 1.0;
+    
+	private void zoomIn() {
+		zoom(zoom * 1.1);
+	}
+
+	private void zoomOut() {
+		zoom(zoom /1.1);
+		
+	}
+    
+	void zoom(double _zoom) {
+		this.zoom = _zoom;
+		
+        Platform.runLater(new Runnable() {
+            @Override 
+            public void run() {
+				engine.executeScript("document.body.style.zoom=" + zoom);
+            }
+        });
+	}
 
 }

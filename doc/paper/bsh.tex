@@ -17,10 +17,10 @@ a package for Bayesian hierarchical clustering. BEASTStudio is a GUI that
 supports BEASTShell through a shell environment, variable inspector, editors, 
 online interactive help and a set of commands and graphical components for 
 visualising graphs and tree hierarchies.
-This facilitates simulations studies for hierarchical clustering models,
+This facilitates experimentation and simulations studies for hierarchical clustering models,
 interactive exploration of properties of hierarchies produced by a BEAST 
-analysis, flexible extensions of Bayesian hierarchical clustering through 
-BEAST Shell scripts and unit tests.
+analysis, flexible extensions of Bayesian hierarchical clustering models 
+through BEAST Shell scripts and aids in creating unit tests.
 
 BEASTShell is hosted on GitHub and details on installation can be found at
 \url{https://github.com/CompEvol/beastshell}.
@@ -49,7 +49,10 @@ all Inputs have been defined. BEAST Objects have the {\tt initAndValidate} metho
 called after all Inputs of a BEAST Object have been set. This makes it cumbersome to
 initialise BEASTObjects in Java programs, and consequently makes it tedious to perform
 tasks like setting up simulations studies and analysing results for a specific hierarchical
-clustering analysis. The goal of BEASTShell is to make these tasks easier.
+clustering analysis. Due to the nature of model based hierarchical clustering, many
+empirical studies have rather unique features, making it hard to define a specific tool like 
+the Experimenter in WEKA \citep{weka}.
+The goal of BEASTShell is to make these tasks easier.
 
 \begin{figure}
 \begin{center}

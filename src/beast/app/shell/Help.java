@@ -62,16 +62,17 @@ help(beast.util.TreeParser);
 				}
 			} catch (EvalError e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				//e1.printStackTrace();
 			}
 			
 			try {
 				// check if it is a class
 				 o = Class.forName((String)o).newInstance();
+				 help(o);
 				 return;
 			} catch (Exception e) {
 				// TODO: check if it is a command
-				e.printStackTrace();
+				//e.printStackTrace();
 				//
             	for (String path : studio.interpreter.getNameSpace().getImportedCommands()) {
             		String scriptPath = path +"/"+ (String) o +".bsh";
@@ -113,7 +114,13 @@ help(beast.util.TreeParser);
 						}
             		}
                 }
-            	// fall back
+            	// is it a url then?
+            	if (canLoadPage(o.toString())) {
+        			studio.rightLowerPaneTab.setSelectedIndex(0);
+            		return;
+            	}
+            	
+            	// fall back           	
             	String page = "doc/html/beanshell/bshcommands.html#" + (String) o;
             	if (canLoadPage(page)) {
         			studio.rightLowerPaneTab.setSelectedIndex(0);

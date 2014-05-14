@@ -1,18 +1,30 @@
 package beast.app.shell;
 
+
 import jam.framework.DocumentFrame;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.MenuBar;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.util.List;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -20,6 +32,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import beast.app.BEASTVersion;
+import beast.app.beauti.BeautiPanel;
+import beast.app.draw.MyAction;
 import beast.app.util.Utils;
 import bsh.BshClassManager;
 import bsh.ClassPathException;
@@ -169,6 +184,69 @@ public class BEASTStudio extends JSplitPane {
         } catch ( SecurityException e ) { }
 	}
 	
+	
+	MyAction a_quit = new MyAction("Exit", "Exit Program", "exit", KeyEvent.VK_F4) {
+		private static final long serialVersionUID = 1L;
+
+		public void actionPerformed(ActionEvent ae) {
+            // if (!m_doc.m_bIsSaved) {
+            if (!quit()) {
+                return;
+            }
+            System.exit(0);
+        }
+    }; // class ActionQuit
+
+    MyAction a_about = new MyAction("About", "Help about", "about", -1) {
+        private static final long serialVersionUID = -1;
+
+        public void actionPerformed(ActionEvent ae) {
+        	Help.help("doc/html/about.html");
+        }
+    }; // class ActionAbout
+
+    MyAction a_help = new MyAction("Help", "Help on current panel", "help", -1) {
+        private static final long serialVersionUID = -1;
+
+        public void actionPerformed(ActionEvent ae) {
+        	Help.help("doc/html/index.html");
+        }
+    }; // class ActionHelp
+	
+	private JMenuBar createMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("File");
+        fileMenu.setMnemonic('F');
+        menuBar.add(fileMenu);
+        //fileMenu.add(a_new);
+        //fileMenu.add(a_load);
+        fileMenu.addSeparator();
+        if (!Utils.isMac()) {
+            fileMenu.addSeparator();
+            fileMenu.add(a_quit);
+        }
+
+        JMenu modeMenu = new JMenu("Mode");
+        menuBar.add(modeMenu);
+        modeMenu.setMnemonic('M');
+
+
+        JMenu viewMenu = new JMenu("View");
+        menuBar.add(viewMenu);
+        viewMenu.setMnemonic('V');
+
+        JMenu helpMenu = new JMenu("Help");
+        menuBar.add(helpMenu);
+        helpMenu.setMnemonic('H');
+        helpMenu.add(a_help);
+        //helpMenu.add(a_citation);
+        if (!Utils.isMac()) {
+            helpMenu.add(a_about);
+        }
+
+        return menuBar;
+	}
+	
 	public static void main(String[] args) {
 		bsh.util.Util.startSplashScreen();
 		
@@ -192,6 +270,8 @@ public class BEASTStudio extends JSplitPane {
             }
         });
 
+		frame.setJMenuBar(studio.createMenuBar());
+		
         if (Utils.isMac()) {
             // set up application about-menu for Mac
             // Mac-only stuff
@@ -270,6 +350,5 @@ public class BEASTStudio extends JSplitPane {
 //		}.run();
 		studio.interpreter.run();
 	}
-
 
 } // RBEASTStudio
