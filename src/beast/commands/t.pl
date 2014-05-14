@@ -1034,7 +1034,7 @@ $args{'qwilcox'} = "{x, m, n, lower_tail, log_p}, {x, m, n}  ";
 $args{'rwilcox'} = "{n, m, n2}, {n, m, n2}  ";
 
 $args{'round'} = "{x} {x}";
-$args{'signif'} = "{x d} {x d}";
+$args{'signif'} = "{x, d} {x, d}";
 $args{'atan'} = "{x} {x}";
 $args{'log'} = "{x} {x}";
 $args{'log10'} = "{x} {x}";
@@ -1163,10 +1163,11 @@ if ($docmap{$cmd} =~ /\@see\(doc\/html\/beast\/(.*)\)(.*)/) {
 	$aa0 = $#aa0;
 	@aa1 = split("\s+",$aa[1]);
 	$aa1 = $#aa1;
-	print FTEST "$cmd($aa[0]);\n";
+#	print FTEST "$cmd($aa[0]);\n";
 	if ($aa0 != $aa1) {
-		print FTEST "$cmd($aa[1]);\n";
+#		print FTEST "$cmd($aa[1]);\n";
 	}
+print FTEST "$docmap{$cmd}\n";
 
 }
 

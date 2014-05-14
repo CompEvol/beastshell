@@ -4,8 +4,8 @@ all(c(true,true));
 any(c(true,true));
 any(c(true,false));
 x = c(true,false);
-abs(x);
 x = c(1,2,3);
+abs(x);
 y = x;
 df = 2;
 give_log= false;
@@ -45,20 +45,19 @@ tanh(y);
 acosh(y);
 asinh(y);
 atanh(y);
-tan2(1,1);
+atan2(1,1);
 
 lgamma(y);
 gamma(y);
 digamma(y);
-trdigamma(y);
 trigamma(y);
 
-lbeta(y);
 lbeta(1,1);
 lbeta(0.1,0.1);
 beta(0.5,0.5);
 
-choose(2, 10);
+pause();
+
 choose(10,2);
 choose(10,3);
 choose(10,4);
@@ -72,9 +71,11 @@ prod(y);
 range(y);
 mean(y);
 cumprod(y);
-cumpmin(y);
+cummin(y);
 cummin(y);
 cummax(y);
+
+pause();
 
 dchisq(x, df, give_log);
 pchisq(x, df, lower_tail, log_p);
@@ -96,6 +97,7 @@ dt(x, n, give_log);
 pt(x, n, lower_tail, /*log_p*/give_log);
 qt(p, df, lower_tail, give_log);
 
+pause();
 
 dbeta(x, a, b);
 dbeta(x, a, b, give_log);
@@ -104,7 +106,7 @@ qbeta(p, 0.5, 0.5, lower_tail, log_p);
 
 dbinom(x, n, p, give_log);
 pbinom(x, n, p, lower_tail, log_p);
-loqbinom(p, n, 0.5, lower_tail, log_p);
+qbinom(p, n, 0.5, lower_tail, log_p);
 
 dcauchy(x, location, scale, give_log);
 pcauchy(x, location, scale, lower_tail, log_p);
@@ -113,9 +115,11 @@ qcauchy(p, location, scale, lower_tail, log_p);
 m=2;
 df(x, m, n, give_log);
 df(x, m, n, give_log);
-df1 = 2, df2=3;
+df1 = 2; df2=3;
 pf(x, df1, df2, lower_tail, log_p);
 qf(p, df1, df2, lower_tail, log_p);
+
+pause();
 
 shape=1.0;
 alpha = 2; beta = 3;
@@ -137,6 +141,8 @@ dnbinom(x, size, prob, give_log);
 pnbinom(x, size, prob, lower_tail, log_p);
 qnbinom(p, size, prob, lower_tail, log_p);
 
+pause();
+
 mu=1.0;sigma=0.5;
 dnorm(x, mu, sigma, give_log);
 pnorm(x, mu, sigma, lower_tail, log_p);
@@ -155,13 +161,12 @@ ptukey(q, rr, cc, df, lower_tail, log_p);
 qtukey(p, rr, cc, df, lower_tail, log_p);
 
 r=2; n=5; NR=2; NB=3;
-dhyper(x, r, b, n, give_log);
-phyper(x, NR, NB, n, lower_tail, log_p);
-qhyper(p, NR, NB, n, lower_tail, log_p);
 
 dwilcox(x, m, n, log_p);
 pwilcox(x, m, n, lower_tail, log_p);
 qwilcox(x, m, n, lower_tail, log_p);
+
+pause();
 
 rchisq(n, df);
 rexp(n, scale);
@@ -182,5 +187,15 @@ rweibull(n, shape, scale);
 rhyper(n, 2, 3, 1);
 rwilcox(n, 2, 4);
 
-rmultinom(n, n, prob, K, rN);
+pause();
+
+r=2; n=5; NR=2; NB=3;
+dhyper(x, r, b, n, give_log);
+
+phyper(x, NR, NB, n, lower_tail, log_p);
+qhyper(p, NR, NB, n, lower_tail, log_p);
+
+
+rmultinom(n, prob, 2, rN);
 rsignrank();
+
