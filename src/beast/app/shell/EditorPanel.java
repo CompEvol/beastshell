@@ -1,5 +1,6 @@
 package beast.app.shell;
 
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -14,7 +15,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
@@ -48,6 +53,8 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener {
 	Image image;
 	private JCheckBox regexCB;
 	private JCheckBox matchCaseCB;
+	
+	Set<RSyntaxTextArea> editorUnChanged = new  HashSet<>();
 	
 	String cwd = System.getProperty("user.dir");
 
@@ -216,6 +223,7 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener {
 	    ac.install(textPane);		
 
 	    addTab("New file", textPane);
+	    editorUnChanged.add(textPane);
 		fileNames.add(null);
 	}
 
@@ -234,7 +242,13 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener {
 			if (e.isControlDown() && e.getKeyCode() == 71) {
 				doSearchReplace();
 			}
-			
+			RSyntaxTextArea current = getCurrentTextPane();
+			if (current != null && editorUnChanged.contains(current)) {
+				int currentTab = tabbedPane.getSelectedIndex();
+				String label = "*" + tabbedPane.getTitleAt(currentTab);
+				tabbedPane.setTitleAt(currentTab, label);
+				editorUnChanged.remove(current);
+			}
 		}
 
 		@Override
@@ -341,7 +355,8 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener {
 			textPane.setAntiAliasingEnabled(true);
 			textPane.setText(text);
 			textPane.addKeyListener(this);
-			
+		    editorUnChanged.add(textPane);
+		    
 		    CompletionProvider provider = createCompletionProvider();
 		    AutoCompletion ac = new AutoCompletion(provider);
 		    ac.install(textPane);		
@@ -355,6 +370,17 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener {
 	private void doSave() {
 		int i = tabbedPane.getSelectedIndex();
 		doSave(i);
+		
+		RSyntaxTextArea current = getCurrentTextPane();
+		if (current != null && !editorUnChanged.contains(current)) {
+			int currentTab = tabbedPane.getSelectedIndex();
+			String label = tabbedPane.getTitleAt(currentTab);
+			if (label.startsWith("*")) {
+				label = label.substring(1);
+			}
+			tabbedPane.setTitleAt(currentTab, label);
+			editorUnChanged.add(current);
+		}
 	}
 
 	private void doSaveAll() {
