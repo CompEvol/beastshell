@@ -5,7 +5,9 @@ package beast.app.shell;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -14,6 +16,7 @@ import beast.core.BEASTObject;
 import beast.util.AddOnManager;
 import bsh.ClassIdentifier;
 import bsh.EvalError;
+import bsh.UtilEvalError;
 
 public class Help {
 	/**
@@ -220,6 +223,59 @@ help(beast.util.TreeParser);
     	return false;
 	}
 	
+    
+    public static void javap( Object o ) 
+    {
+    	Class clas = null;
+    	if ( o instanceof ClassIdentifier )
+    		clas = studio.interpreter.getNameSpace().identifierToClass((ClassIdentifier) o);
+    	else if ( o instanceof String )
+    	{
+    		if ( ((String)o).length() < 1 ) {
+    			studio.console.error("javap: Empty class name.");
+    			return;
+    		}
+        	try {
+				if (studio.interpreter.get((String)o) != null) {
+					o = studio.interpreter.get((String)o);
+			    	if ( o instanceof ClassIdentifier ) {
+			    		clas = studio.interpreter.getNameSpace().identifierToClass((ClassIdentifier) o);
+					} else {
+						clas = o.getClass();
+					}
+				} else {
+					clas = studio.interpreter.getNameSpace().getClass((String)o);
+				}
+			} catch (EvalError | UtilEvalError e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	} else if ( o instanceof Class )
+    		clas = (Class) o;
+    	else 
+    		clas = o.getClass();
+    	
+    	StringBuffer buf = new StringBuffer();
+    	buf.append( "Class "+clas+" extends " +clas.getSuperclass() );
+
+    	Method [] dmethods=clas.getDeclaredMethods();
+    	//print("------------- Methods ----------------");
+    	for(int i=0; i<dmethods.length; i++) {
+    		Method m = dmethods[i];
+    		if ( Modifier.isPublic( m.getModifiers() ) )
+    			buf.append( m + "<br>\n");
+    	}
+
+    	//print("------------- Fields ----------------");
+    	Field [] fields=clas.getDeclaredFields();
+    	for(int i=0; i<fields.length; i++) {
+    		Field f = fields[i];
+    		if ( Modifier.isPublic( f.getModifiers() ) )
+    			buf.append( f + "<br>\n");
+    	}
+    	showHelp(buf.toString());
+    }
+
 	
 	public static void main(String[] args) {
 		Help.help();

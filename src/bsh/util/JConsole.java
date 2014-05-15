@@ -523,6 +523,10 @@ public class JConsole extends JScrollPane
 
 	private	void acceptLine( String	line ) 
 	{
+		if (line.startsWith("??")) {
+			line = line.trim();
+			line = "helpp(\"" + line.substring(2) +"\");\n";
+		}
 		if (line.startsWith("?")) {
 			line = line.trim();
 			line = "help(\"" + line.substring(1) +"\");\n";
