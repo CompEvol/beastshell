@@ -12,9 +12,7 @@ o test all beast commands
 o work out trace demo
 o make demo link work
 o stylesheet for BEASTObjects
-o what is happening with tab-complete
-o ?? for javap
-o javap output to help browser
+o what is happening with tab-complete?
 
 <h3><img src="images/homebutton.gif"><img src="images/small_bean_shell.png"> scripting for BEAST</h3>
 BEASTShell is based on BeanShell 2.2 
@@ -49,7 +47,7 @@ BEASTShell is based on BeanShell 2.2
 <p><a href='http://beast2.org'>The official website</a></p>
 
 <h3>Interactive Help</h3>
-<p>Use <tt>help(arg)</tt> or <tt>?arg</tt></p>
+<p>Use <tt>help(arg)</tt> or <tt>?arg</tt> for general help, <tt>javap(arg)</tt> or <tt>??arg</tt> for methods and fields</p>
 <p>To get help on a command, use <tt>?cmd</tt>  or <tt>help("cmd");</tt> e.g. 
 <pre>bsh % ?print
 bsh % help("print");
@@ -60,10 +58,13 @@ bsh % help("dnorm");
 <pre>bsh %  help(beast.core.MCMC);
 bsh %  var = new beast.core.MCMC();
 bsh %  ?var
+bsh %  javap(var)
+bsh %  ??var
 </pre></p>
 <p></p>
 <p>To get help on any other class, use <tt>help(Class);</tt> e.g. 
 <pre>bsh %  help(java.util.ArrayList);
+bsh %  ??java.util.ArrayList;
 bsh %  data = new ArrayList&lt;Double&gt;();
 bsh %  ?data</pre></p>
 

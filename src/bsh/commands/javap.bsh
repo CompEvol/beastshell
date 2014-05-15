@@ -41,22 +41,49 @@ javap( Object o )
 	else 
 		clas = o.getClass();
 	
-	print( "Class "+clas+" extends " +clas.getSuperclass() );
 
-	this.dmethods=clas.getDeclaredMethods();
-	//print("------------- Methods ----------------");
-	for(int i=0; i<dmethods.length; i++) {
-		this.m = dmethods[i];
-		if ( Modifier.isPublic( m.getModifiers() ) )
-			print( m );
-	}
+	if (this.interpreter.studio == null) {
 
-	//print("------------- Fields ----------------");
-	this.fields=clas.getDeclaredFields();
-	for(int i=0; i<fields.length; i++) {
-		this.f = fields[i];
-		if ( Modifier.isPublic( f.getModifiers() ) )
-			print( f );
+		this.dmethods=clas.getDeclaredMethods();
+		//print("------------- Methods ----------------");
+		for(int i=0; i<dmethods.length; i++) {
+			this.m = dmethods[i];
+			if ( Modifier.isPublic( m.getModifiers() ) )
+				buf.append( m ); buf.append('\n');
+		}
+
+		//print("------------- Fields ----------------");
+		this.fields=clas.getDeclaredFields();
+		for(int i=0; i<fields.length; i++) {
+			this.f = fields[i];
+			if ( Modifier.isPublic( f.getModifiers() ) )
+				buf.append( f ); buf.append('\n');
+		}
+	} else {
+		buf = new StringBuffer();
+		buf.append("<html><head><title>" + o + "</title><link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"></head><body>\n");
+		buf.append("<h1>Class "+clas+" extends " +clas.getSuperclass() + "</h1>\n");
+
+		this.dmethods=clas.getDeclaredMethods();
+		buf.append("<h2>------------- Methods ----------------</h2>");
+		for(int i=0; i<dmethods.length; i++) {
+			this.m = dmethods[i];
+			if ( Modifier.isPublic( m.getModifiers() ) ) {
+				buf.append( m ); buf.append("<br>");
+			}
+		}
+
+		buf.append("<h2>------------- Fields ----------------</h2>");
+		this.fields=clas.getDeclaredFields();
+		for(int i=0; i<fields.length; i++) {
+			this.f = fields[i];
+			if ( Modifier.isPublic( f.getModifiers() ) ) {
+				buf.append( f ); buf.append("<br>");
+			}
+		}
+
+		buf.append("</body></html>");
+		this.interpreter.studio.helpPane.setText(buf.toString());
 	}
 }
 

@@ -1343,14 +1343,14 @@ public class NameSpace implements Serializable, BshClassManager.Listener, NameSo
 		*/
 		importClass("bsh.EvalError");
 		importClass("bsh.Interpreter");
+		importPackage("java.util");
+		importPackage("java.io");
+		importPackage("java.lang");
 		importPackage("javax.swing.event");
 		importPackage("javax.swing");
 		importPackage("java.awt.event");
 		importPackage("java.awt");
 		importPackage("java.net");
-		importPackage("java.util");
-		importPackage("java.io");
-		importPackage("java.lang");
 		// RRB: added for BEAST
 		importCommands("/beast/commands");
 		importCommands("/bsh/commands");
