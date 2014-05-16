@@ -1,0 +1,33 @@
+// @see(doc/html/beast/commands/beast.html)
+
+beast() {
+	beast("");
+}
+
+beast(String arg) {
+	String sanitise(String property) {
+		// sanitise for windows
+		if (beast.app.util.Utils.isWindows()) {
+			String cwd = System.getProperty("user.dir");
+			cwd = cwd.replace("\\", "/");
+			property = property.replaceAll(";\\.", ";" +  cwd + ".");
+			property = property.replace("\\", "/");
+		}
+		return property;
+	}
+
+	String cmd = "java ";
+    if (System.getProperty("java.library.path") != null && System.getProperty("java.library.path").length() > 0) {
+    	cmd += ("-Djava.library.path=" + sanitise(System.getProperty("java.library.path"))) + " ";
+    }
+    cmd+= "-cp ";
+    final String strClassPath = sanitise(System.getProperty("java.class.path"));
+    cmd += strClassPath + " ";
+    cmd += "beast.app.beastapp.BeastMain ";
+    cmd+= arg + " ";
+
+	print(cmd);
+	exec(cmd);
+}
+
+
