@@ -1,4 +1,4 @@
-// demonstrates various 2D charts
+// demonstrates various 2D charts x
 
 import com.xeiam.xchart.*;
 import beast.app.shell.*;

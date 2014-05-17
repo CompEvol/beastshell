@@ -32,6 +32,8 @@ import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import org.fife.ui.autocomplete.AutoCompletion;
 import org.fife.ui.autocomplete.BasicCompletion;
@@ -45,7 +47,7 @@ import beast.app.beauti.BeautiDoc;
 import beast.app.util.Utils;
 import beast.util.AddOnManager;
 
-public class EditorPanel extends JPanel implements ActionListener, KeyListener {
+public class EditorPanel extends JPanel implements ActionListener, KeyListener, DocumentListener {
 	private static final long serialVersionUID = 1L;
 	JTabbedPane tabbedPane;
 	List<String> fileNames;
@@ -210,13 +212,14 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener {
 		return null;
 	}
 
-	private void doNew() {
+	public void doNew() {
 		RSyntaxTextArea /* JTextArea */textPane;
 		textPane = new RSyntaxTextArea();
 		textPane.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
 		textPane.setCodeFoldingEnabled(true);
 		textPane.setAntiAliasingEnabled(true);
 		textPane.addKeyListener(this);
+	    textPane.getDocument().addDocumentListener(this);
 		
 	    CompletionProvider provider = createCompletionProvider();
 	    AutoCompletion ac = new AutoCompletion(provider);
@@ -241,13 +244,6 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener {
 			}
 			if (e.isControlDown() && e.getKeyCode() == 71) {
 				doSearchReplace();
-			}
-			RSyntaxTextArea current = getCurrentTextPane();
-			if (current != null && editorUnChanged.contains(current)) {
-				int currentTab = tabbedPane.getSelectedIndex();
-				String label = "*" + tabbedPane.getTitleAt(currentTab);
-				tabbedPane.setTitleAt(currentTab, label);
-				editorUnChanged.remove(current);
 			}
 		}
 
@@ -333,7 +329,7 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener {
 
 	   }	
 	
-	private void doOpen() {
+	public void doOpen() {
 		File file = Utils.getLoadFile("Open BEASTScript file", new File(cwd), "BEAST shell script files", "bsh");
 		doOpen(file);
 	}
@@ -356,6 +352,7 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener {
 			textPane.setText(text);
 			textPane.addKeyListener(this);
 		    editorUnChanged.add(textPane);
+		    textPane.getDocument().addDocumentListener(this);
 		    
 		    CompletionProvider provider = createCompletionProvider();
 		    AutoCompletion ac = new AutoCompletion(provider);
@@ -367,9 +364,9 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener {
 		}
 	}
 
-	private void doSave() {
+	public void doSave() {
 		int i = tabbedPane.getSelectedIndex();
-		doSave(i);
+		doSave(i, false);
 		
 		RSyntaxTextArea current = getCurrentTextPane();
 		if (current != null && !editorUnChanged.contains(current)) {
@@ -383,16 +380,16 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener {
 		}
 	}
 
-	private void doSaveAll() {
+	public void doSaveAll() {
 		for (int i = 0; i < tabbedPane.getTabCount(); i++) {
-			doSave(i);
+			doSave(i, false);
 		}
 	}
 
-	private void doSave(int i) {
+	private void doSave(int i, boolean selectFile) {
 		File file = null;
-		if (fileNames.get(i) == null) {
-			tabbedPane.setSelectedIndex(i);
+		tabbedPane.setSelectedIndex(i);
+		if (selectFile || fileNames.get(i) == null) {
 			file = Utils.getSaveFile("Open BEASTscript file", new File(cwd), "BEAST shell script files", "bsh");
 			if (file != null) {
 				cwd = file.getParent();
@@ -464,6 +461,32 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+	}
+	
+	public boolean hasEditors() {
+		return tabbedPane.getTabCount() > 0;
+	}
+
+	public void saveAs() {
+		doSave(tabbedPane.getSelectedIndex(), true);
+	}
+
+	@Override
+	public void insertUpdate(DocumentEvent e) {
+	}
+
+	@Override
+	public void removeUpdate(DocumentEvent e) {
+	}
+
+	@Override
+	public void changedUpdate(DocumentEvent e) {
+		RSyntaxTextArea current = getCurrentTextPane();
+		if (current != null && editorUnChanged.contains(current)) {
+			int currentTab = tabbedPane.getSelectedIndex();
+			String label = "*" + tabbedPane.getTitleAt(currentTab);
+			tabbedPane.setTitleAt(currentTab, label);
+			editorUnChanged.remove(current);
+		}
 	}
 }

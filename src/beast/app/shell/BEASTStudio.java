@@ -1,6 +1,7 @@
 package beast.app.shell;
 
 
+
 import jam.framework.DocumentFrame;
 
 import java.awt.BorderLayout;
@@ -33,7 +34,6 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import beast.app.BEASTVersion;
-import beast.app.beauti.BeautiPanel;
 import beast.app.draw.MyAction;
 import beast.app.util.Utils;
 import bsh.BshClassManager;
@@ -184,6 +184,57 @@ public class BEASTStudio extends JSplitPane {
         } catch ( SecurityException e ) { }
 	}
 	
+	Action a_new =  new MyAction("New", "Start new editor", "new", KeyEvent.VK_N) {
+        private static final long serialVersionUID = 1;
+
+        public void actionPerformed(ActionEvent ae) {
+        	editorPanel.doNew();
+        }
+    };
+
+	Action a_open =  new MyAction("Load", "Open file for editing", "open", KeyEvent.VK_O) {
+        private static final long serialVersionUID = 1;
+
+        public void actionPerformed(ActionEvent ae) {
+        	editorPanel.doOpen();
+        }
+    };
+
+    Action a_save =  new MyAction("Save", "Save Editor", "save", KeyEvent.VK_S) {
+        private static final long serialVersionUID = 1;
+
+        public void actionPerformed(ActionEvent ae) {
+        	editorPanel.doSave();
+        } // actionPerformed
+        
+        public boolean isEnabled() {
+        	return editorPanel.hasEditors();
+        };
+    }; // class ActionSave
+	
+    Action a_saveall =  new MyAction("Save All", "Save All Editors", "saveall", -1) {
+        private static final long serialVersionUID = 1;
+
+        public void actionPerformed(ActionEvent ae) {
+        	editorPanel.doSaveAll();
+        } // actionPerformed
+        
+        public boolean isEnabled() {
+        	return editorPanel.hasEditors();
+        };
+    }; // class ActionSave
+
+    Action a_saveas =  new MyAction("Save As", "Save Model As", "saveas", -1) {
+        private static final long serialVersionUID = 1;
+
+        public void actionPerformed(ActionEvent ae) {
+        	editorPanel.saveAs();
+        } // actionPerformed
+        
+        public boolean isEnabled() {
+        	return editorPanel.hasEditors();
+        };
+    }; // class ActionSaveAs
 	
 	MyAction a_quit = new MyAction("Exit", "Exit Program", "exit", KeyEvent.VK_F4) {
 		private static final long serialVersionUID = 1L;
@@ -218,22 +269,25 @@ public class BEASTStudio extends JSplitPane {
         JMenu fileMenu = new JMenu("File");
         fileMenu.setMnemonic('F');
         menuBar.add(fileMenu);
-        //fileMenu.add(a_new);
-        //fileMenu.add(a_load);
+        fileMenu.add(a_new);
+        fileMenu.add(a_open);
+        fileMenu.add(a_save);
+        fileMenu.add(a_saveall);
+        fileMenu.add(a_saveas);
         fileMenu.addSeparator();
         if (!Utils.isMac()) {
             fileMenu.addSeparator();
             fileMenu.add(a_quit);
         }
 
-        JMenu modeMenu = new JMenu("Mode");
-        menuBar.add(modeMenu);
-        modeMenu.setMnemonic('M');
-
-
-        JMenu viewMenu = new JMenu("View");
-        menuBar.add(viewMenu);
-        viewMenu.setMnemonic('V');
+//        JMenu modeMenu = new JMenu("Mode");
+//        menuBar.add(modeMenu);
+//        modeMenu.setMnemonic('M');
+//
+//
+//        JMenu viewMenu = new JMenu("View");
+//        menuBar.add(viewMenu);
+//        viewMenu.setMnemonic('V');
 
         JMenu helpMenu = new JMenu("Help");
         menuBar.add(helpMenu);
