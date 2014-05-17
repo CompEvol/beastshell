@@ -92,7 +92,10 @@ new UnrootedTreeDrawing(tree=tree1, showLeafLabels="true",
                      bg=Color.orange);
 pause();
                      
-// structured coalescent -- requires beastii
+// structured coalescent
+// ensure BEASTlabs is available
+requires("BEASTlabs");
+
 colors = new ArrayList();
 for (c : new String[]{"pink","green","127,127,255","orange"}) {
 	colors.add(new ColorPlugin(c));

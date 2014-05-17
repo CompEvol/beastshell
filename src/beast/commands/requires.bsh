@@ -1,0 +1,24 @@
+// @see(doc/html/beast/commands/requires.html)
+
+requires(String packageName) {
+	packages = beast.util.AddOnManager.getPackages();
+	for (_package : packages) {
+		// print (_package.packageName);
+		if (_package.packageName.equals(packageName)) {
+			if (_package.isInstalled()) {
+				return;
+			} else {
+				if (JOptionPane.showConfirmDialog(null, "We need package " + packageName + 
+					" which is not installed yet. Do you want to install this package (and dependent packages if any)?", 
+					"Install package", JOptionPane.YES_NO_CANCEL_OPTION) 
+				!= JOptionPane.YES_OPTION) {
+					error("Required package " + packageName +" not found. Expect unexpected results.");
+					return;
+				}
+				beast.util.AddOnManager.install(_package, false, null, packages);
+				beast.util.AddOnManager.loadExternalJars();
+			}
+		}
+	}
+	error("Required package " + packageName +" not found. Expect unexpected results.");
+}

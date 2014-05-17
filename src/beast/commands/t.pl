@@ -1101,20 +1101,21 @@ print FINDEX '<html><head></head>
 </head>
 <body>
 <h1>BEAST Shell commands</h1>
-<h1>BEAST Commands</h1>
 
 Some useful commands are
 <table style="background:lightgrey">
-<tr><td>c</td><td>construct a list of objecst, e.g. <tt>x=c(1,1.5,2,2.4)</tt></td></tr>
 <tr><td>demo</td><td>demonstrate some BEASTShell capabilities in BEASTStudio</td></tr>
 <tr><td><a href="commands/help.html">help</a></td><td>provide online help</td></tr>
 <tr style="background:white"><td></td><td></td></tr>
+<tr><td>c</td><td>construct a list of objecst, e.g. <tt>x=c(1,1.5,2,2.4)</tt></td></tr>
 <tr><td>assertEquals</td><td>handy for testing, e.g. <tt>assertEquals(dbeta(0.4, 5, 1, false), 0.128, 0.0001);</tt></td></tr>
 <tr style="background:white"><td></td><td></td></tr>
 <tr><td><a href="commands/beast.html">beast</a></td><td>start a BEAST run</td></tr>
 <tr><td><a href="commands/beauti.html">beauti</a></td><td>start a BEAUti session</td></tr>
 <tr><td><a href="commands/appstore.html">appstore</a></td><td>start the BEAST AppStore</td></tr>
 <tr><td><a href="commands/.html"></a></td><td></td></tr>
+<tr style="background:white"><td></td><td></td></tr>
+<tr><td><a href="commands/requires.html">requires</a></td><td>indicate some BEAST package is required, and install if not present.</td></tr>
 <tr><td></td><td></td></tr>
 <tr><td></td><td></td></tr>
 </table>
