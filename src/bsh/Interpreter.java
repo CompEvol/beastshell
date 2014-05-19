@@ -33,6 +33,7 @@
 
 package bsh;
 
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -52,6 +53,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import beast.app.shell.BEASTStudio;
 import beast.util.AddOnManager;
+import bsh.util.JConsole;
 
 /**
 	The BeanShell script interpreter.
@@ -835,6 +837,14 @@ public class Interpreter
 		} else {
 			out.print(o);
 			out.flush();
+		}
+	}
+	public final void print( Object o , Font f) 
+	{
+		if (console instanceof JConsole) {
+			((JConsole) console).print(o, f);
+		} else {
+			print(o);
 		}
 	}
 

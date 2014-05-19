@@ -5,14 +5,14 @@
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="jconsole.html#Using_JConsole"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="execscripts.html#Executable_scripts_under_Unix"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="execscripts.html#Executable_scripts_under_Unix"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table><h1>Reflective Style Access to Scripted Methods</h1>
 
 
-The following examples show how to work with BeanShell methods dynamically 
+The following examples show how to work with BEASTShell methods dynamically 
 from within scripts, using the equivalent of reflective style access in Java.
 This is an advanced topic primarily of interest to developers who wish to
-do tight integration of BeanShell scripts with their application environment.
+do tight integration of BEASTShell scripts with their application environment.
 <p CLEAR="ALL"/>
 
 <h2><a name="eval()">eval()</a></h2>
@@ -68,7 +68,7 @@ this.invokeMethod( "bar", new Object [] { new Integer(5), "stringy" } );
 
 Arguments are passed as an array of objects.  Primitive types must be 
 wrapped in their appropriate wrappers.
-BeanShell will select among overloaded methods using the standard Java
+BEASTShell will select among overloaded methods using the standard Java
 method resolution rules.  (JLS 15.11.2).
 
 <h2><a name="Method_Lookup">Method Lookup</a></h2>
@@ -82,7 +82,7 @@ its signature.
 You can get "handles" to all of the methods defined in a context using the 
 namespace getMethods() method.  
 getMethods() returns an array of bsh.BshMethod objects,
-which are wrappers for the internally parsed representation of BeanShell
+which are wrappers for the internally parsed representation of BEASTShell
 scripted methods:
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
@@ -168,5 +168,5 @@ in this section you can list the methods they have defined and invoke
 them dynamically.
 
 <table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="jconsole.html#Using_JConsole"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="execscripts.html#Executable_scripts_under_Unix"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="execscripts.html#Executable_scripts_under_Unix"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table></body></html>

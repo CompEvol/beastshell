@@ -62,7 +62,7 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
     /**
      * generates HTML pages *
      */
-    static DocMaker docMaker;
+    static public DocMaker docMaker;
     static boolean docsGenerated = false;
     /**
      * browser stack *

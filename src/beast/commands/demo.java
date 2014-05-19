@@ -1,5 +1,6 @@
 package beast.commands;
 
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -33,6 +34,11 @@ public class demo {
 			file = new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + DEMO_DIR);
 			collectDemos(file, demos);
 		}
+		env.print("Use ");env.print("demo(demoname);", new Font("SansSerif", Font.BOLD, 12));
+		env.print(" e.g. ");env.print("demo(\"chart\");", new Font("SansSerif", Font.BOLD, 12));
+		env.print(" to start a demo.\n\n");
+		env.print("The following demos are available:\n");
+		env.print("----------------------------------\n");
 		for (String msg : demos) {
 			env.println(msg);
 		}

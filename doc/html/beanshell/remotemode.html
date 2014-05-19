@@ -4,18 +4,18 @@
 <title>Remote Server Mode</title>
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
-<body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="embeddedmode.html#Embedding_BeanShell_in_Your_Application"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="servletmode.html#BshServlet_and_Servlet_Mode_Scripting"><img src="../images/forwardbutton.gif"/><br/>Next
+<body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="embeddedmode.html#Embedding_BEASTShell_in_Your_Application"><img src="../images/backbutton.gif"/><br/>Back
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="servletmode.html#BshServlet_and_Servlet_Mode_Scripting"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table><h1>Remote Server Mode</h1>
 
 
 <img src="../images/remotemode.gif"/>
 <br CLEAR="ALL"/>
 
-Remote server mode lets you access a BeanShell Interpreter inside of a 
+Remote server mode lets you access a BEASTShell Interpreter inside of a 
 remote VM.
 With remote server mode activated you can literally telnet into the running
-application and type commands at the BeanShell shell prompt.  Or, even better, 
+application and type commands at the BEASTShell shell prompt.  Or, even better, 
 you can use any web browser to bring up a remote GUI console.
 <p CLEAR="ALL"/>
 
@@ -36,7 +36,7 @@ is an issue.
 </center>
 <p CLEAR="ALL"/>
 
-To enable remote access simply issue the BeanShell server() command, specifying
+To enable remote access simply issue the BEASTShell server() command, specifying
 a base port number:
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
@@ -45,15 +45,15 @@ server(1234);
 // Sessiond started on port: 1235
 </pre></td></tr></table></center><p/>
 
-At this point BeanShell will run two services: a tiny HTTP server on the
-port you specified and the BeanShell telnet session server on the next port
+At this point BEASTShell will run two services: a tiny HTTP server on the
+port you specified and the BEASTShell telnet session server on the next port
 (the port you specified + 1).
 <p CLEAR="ALL"/>
 
 <h2><a name="Web_Browser_Access">Web Browser Access</a></h2>
 
 After starting the server you can connect your web browser to the port
-you specified.   BeanShell will respond by sending an HTML page offering
+you specified.   BEASTShell will respond by sending an HTML page offering
 you a choice of the Swing based JConsole or the older AWTConsole.  You
 may choose whichever is appropriate for your web browser.
 <p CLEAR="ALL"/>
@@ -73,15 +73,15 @@ Minmal (old) AWT based Console page
 </table>
 
 The httpd server then serves the remote console applet.
-When it starts you will have a BeanShell session that looks like the 
-regular console, but is connected to the remote BeanShell VM.
+When it starts you will have a BEASTShell session that looks like the 
+regular console, but is connected to the remote BEASTShell VM.
 <p CLEAR="ALL"/>
 
 <img src="../images/remoteconsole.gif"/>
 <p CLEAR="ALL"/>
 
 You can open as many sessions into that VM as you like in this way, but 
-note that unlike the BeanShell desktop environment -
+note that unlike the BEASTShell desktop environment -
 <strong>
 All remote sessions share the same global scope.
 </strong>
@@ -117,9 +117,9 @@ on the desired port.
 
 <h2><a name="Telnet_Access">Telnet Access</a></h2>
 
-We mentioned earlier that BeanShell starts its telnet session server on
+We mentioned earlier that BEASTShell starts its telnet session server on
 the port next to the HTTP port.  You can use any telnet client to access
-a BeanShell command line directly, in text only-mode, without the use of
+a BEASTShell command line directly, in text only-mode, without the use of
 a web browser.
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
@@ -133,9 +133,9 @@ Interpreter command line does).
 
 <em>
 At the time of this writing there is no explicit way to close a session.
-BeanShell will simply detect the end of streams.
+BEASTShell will simply detect the end of streams.
 </em>
 
-<table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="embeddedmode.html#Embedding_BeanShell_in_Your_Application"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="servletmode.html#BshServlet_and_Servlet_Mode_Scripting"><img src="../images/forwardbutton.gif"/><br/>Next
+<table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="embeddedmode.html#Embedding_BEASTShell_in_Your_Application"><img src="../images/backbutton.gif"/><br/>Back
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="servletmode.html#BshServlet_and_Servlet_Mode_Scripting"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table></body></html>

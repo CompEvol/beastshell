@@ -5,21 +5,21 @@
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="remotemode.html#Remote_Server_Mode"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="appletmode.html#The_BeanShell_Demo_Applet"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="appletmode.html#The_BEASTShell_Demo_Applet"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table><h1>BshServlet and Servlet Mode Scripting</h1>
 
 
-BshServlet is a simple servlet that can be used to evaluate BeanShell
+BshServlet is a simple servlet that can be used to evaluate BEASTShell
 scripts inside of an application server or servlet container.  BshServlet
-accepts BeanShell scripts via the POST method, evaluates them capturing output
+accepts BEASTShell scripts via the POST method, evaluates them capturing output
 (optionally including standard out and standard error) and returns the results.
 <p CLEAR="ALL"/>
 
 BshServlet has a simple form based interface for interactive experimentation
 (analogous to the remote server mode).  But more generally you can send
-standalone BeanShell scripts from the command line to the BshServlet for
+standalone BEASTShell scripts from the command line to the BshServlet for
 evaluation using the bsh.Remote launcher.  bsh.Remote complements
-bsh.Interpreter and bsh.Console as a launch point for BeanShell.
+bsh.Interpreter and bsh.Console as a launch point for BEASTShell.
 <p CLEAR="ALL"/>
 
 <p/><center><table cellpadding="5" border="1" width="100%"><tr><td><strong>Tip:</strong><br CLEAR="ALL"/>
@@ -50,26 +50,26 @@ application.  Web applications can usually be deployed to a servlet container by
 simply dropping the WAR file into a special directory.
 </td></tr></table></center><p/>
 
-The first file, bshservlet.war, assumes that BeanShell has been installed in 
+The first file, bshservlet.war, assumes that BEASTShell has been installed in 
 your application server's classpath.  It includes only the web.xml file 
 necessary to deploy an instance of the test servlet and an index.html README 
 file.  
 
 <p/><center><table cellpadding="5" border="1" width="90%"><tr><td bgcolor="#eeeebb"><strong>Note:</strong><br CLEAR="ALL"/>
-To install BeanShell in the Tomcat server classpath place the bsh.jar file in 
-common/lib.  To use BeanShell in Weblogic you must upgrade its version of the 
-package.  See <a href="weblogic.html">Upgrading BeanShell in Weblogic</a>
+To install BEASTShell in the Tomcat server classpath place the bsh.jar file in 
+common/lib.  To use BEASTShell in Weblogic you must upgrade its version of the 
+package.  See <a href="weblogic.html">Upgrading BEASTShell in Weblogic</a>
 (http://www.beanshell.org/weblogic.html).
 </td></tr></table></center><p/>
 
-The second WAR, bshservlet-wbsh.war, includes a copy of the BeanShell 
+The second WAR, bshservlet-wbsh.war, includes a copy of the BEASTShell 
 application bsh.jar inside the WAR's lib directory.  This WAR includes 
 everything you need to just drop the WAR into an application server.  
 
 <p/><center><table cellpadding="5" border="1" width="90%"><tr><td bgcolor="#eeeebb"><strong>Note:</strong><br CLEAR="ALL"/>
 Using bshservlet-wbsh.war will still *not* work in Weblogic 6.x unless 
-you upgrade Weblogic's internal version of BeanShell first.  
-See <a href="weblogic.html">Upgrading BeanShell in Weblogic</a>.
+you upgrade Weblogic's internal version of BEASTShell first.  
+See <a href="weblogic.html">Upgrading BEASTShell in Weblogic</a>.
 (http://www.beanshell.org/weblogic.html).
 </td></tr></table></center><p/>
 
@@ -77,7 +77,7 @@ To use the servlet for testing your own applications you will probably want to
 deploy an instance of the test servlet in your WAR file.  This will allow 
 the test servlet to to share a classloader with your webapp so that you can 
 test things like application classes and EJB local homes.  Since the servlet 
-is included in the standard BeanShell distribution, all that is necessary to 
+is included in the standard BEASTShell distribution, all that is necessary to 
 do this is to include bsh.jar and add an entry to your wegapp's web.xml file.  
 Here is an example:
 
@@ -173,7 +173,7 @@ The following parameters are recognized by BshServlet:
 
 <table border="1" cellpadding="5">
 <tr><td>Parameter</td><td>Value</td></tr>
-<tr><td><strong>bsh.script</strong></td><td>The BeanShell Script</td></tr>
+<tr><td><strong>bsh.script</strong></td><td>The BEASTShell Script</td></tr>
 <tr><td><strong>bsh.servlet.captureOutErr</strong></td><td>"true" - 
 capture standard out and standard error during the evaluation of the 
 script.  Note: this is inherently non-thread safe.  All output from the
@@ -189,5 +189,5 @@ be encoded for transport back to the client.</td></tr>
 </table>
 
 <table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="remotemode.html#Remote_Server_Mode"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="appletmode.html#The_BeanShell_Demo_Applet"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="appletmode.html#The_BEASTShell_Demo_Applet"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table></body></html>

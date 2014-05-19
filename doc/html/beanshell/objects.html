@@ -5,18 +5,18 @@
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="methods.html#Scripted_Methods"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="scope.html#Scope_Modifiers"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="scope.html#Scope_Modifiers"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table><h1>Scripted Objects</h1>
 
 
-Many people who use BeanShell use it to write scripts that 
+Many people who use BEASTShell use it to write scripts that 
 work with existing Java classes and APIs, or perform other kinds of dynamic 
 activities for their own applications at run-time without the aid of a 
 compiler.  Often this means writing relatively unstructured code -
 for example, a sequence of method invocations or loops, all contained in a 
 single script file or eval() statement. 
-In the previous section we saw that BeanShell is also capable of scripting 
-methods, just like Java.  Creating methods and new BeanShell commands 
+In the previous section we saw that BEASTShell is also capable of scripting 
+methods, just like Java.  Creating methods and new BEASTShell commands 
 (which are just methods in their own files) is the 
 natural progression of organizing your scripts into re-usable and 
 maintainable components.
@@ -24,10 +24,10 @@ maintainable components.
 
 Beyond methods and structured programming lie, of course, objects and the 
 full breadth of object oriented programming.  In Java objects are the products
-of classes.  While BeanShell is compatible with standard Java syntax for 
+of classes.  While BEASTShell is compatible with standard Java syntax for 
 statements, expressions, and methods, you can't yet script new Java classes 
-within BeanShell.
-Instead, BeanShell allows you to script objects as "method closures", 
+within BEASTShell.
+Instead, BEASTShell allows you to script objects as "method closures", 
 similar to the way it is done in Perl 5.x, JavaScript, and other object-capable 
 scripting languages.  This style of scripting objects (which we'll describe 
 momentarily) is simple and flows very naturally from the style of scripting 
@@ -53,7 +53,7 @@ to its own object instance (an instance of the MyClass object) using 'this'.
 
 <h2><a name="The_'this'_reference">The 'this' reference</a></h2>
 
-As in most languages, an executing method in BeanShell has its own 
+As in most languages, an executing method in BEASTShell has its own 
 "local" scope 
 that holds argument (parameter) variables and locally declared variables.  For
 example, in the following code segment any variables that we might use within 
@@ -78,7 +78,7 @@ outside of the method invocation - it is thrown away when the method exits,
 just like a standard Java local variable.
 <p CLEAR="ALL"/>
 
-Now comes the twist - In BeanShell you have the option to "hang on" to the 
+Now comes the twist - In BEASTShell you have the option to "hang on" to the 
 scope of a method invocation after exiting the method by referring to the 
 special 'this' reference.  As in Java, 'this' refers to the current object 
 context.   The only difference is that in this case the context is associated
@@ -107,7 +107,7 @@ but a kind of object constructor.
 
 In the above case our foo object is not so much an object, but really more of a 
 structure.  It contains variables (bar) but no "behavior".  The next twist
-that we'll introduce is that BeanShell methods are also allowed to contain 
+that we'll introduce is that BEASTShell methods are also allowed to contain 
 other methods:
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
@@ -121,7 +121,7 @@ Scripted methods may define any number of nested methods in this way, to an
 arbitrary depth.  The methods are "local" to the method invocation.  
 <p CLEAR="ALL"/>
 
-Statements and expressions within the enclosing BeanShell method can call 
+Statements and expressions within the enclosing BEASTShell method can call 
 their "local" methods just like any other method.  (Locally declared methods 
 override outer-more methods like local variables hide instance variables in
 Java.)  The enclosed methods are not directly visible outside of their
@@ -174,5 +174,5 @@ go into more depth about how to work with scripted methods and objects.
 <p CLEAR="ALL"/>
 
 <table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="methods.html#Scripted_Methods"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="scope.html#Scope_Modifiers"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="scope.html#Scope_Modifiers"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table></body></html>

@@ -1,48 +1,48 @@
 
 <html>
 <head>
-<title>Embedding BeanShell in Your Application</title>
+<title>Embedding BEASTShell in Your Application</title>
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="standalonemode.html#Modes_of_Operation"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="remotemode.html#Remote_Server_Mode"><img src="../images/forwardbutton.gif"/><br/>Next
-			</a></td></tr></table><h1>Embedding BeanShell in Your Application</h1>
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="remotemode.html#Remote_Server_Mode"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td></tr></table><h1>Embedding BEASTShell in Your Application</h1>
 
 
 <img src="../images/embeddedmode.gif"/>
 <br CLEAR="ALL"/>
 
-BeanShell was designed not only as a standalone scripting language - to run
+BEASTShell was designed not only as a standalone scripting language - to run
 scripts from files or on the command line -  but to be easily embeddable in 
 and extensible by your applications.  When we talk about
-embedding BeanShell in your application we mean simply that you can use the
-BeanShell Interpreter in your own classes, to evaluate scripts and work with
+embedding BEASTShell in your application we mean simply that you can use the
+BEASTShell Interpreter in your own classes, to evaluate scripts and work with
 objects dynamically.  
 <p CLEAR="ALL"/>
 
-There are a number of reasons you might use BeanShell in this way.  Here
+There are a number of reasons you might use BEASTShell in this way.  Here
 are a few:
 <p CLEAR="ALL"/>
 
 <h3>Highly Customizable Applications</h3>
 
-You can use BeanShell to make your applications highly customizable by users 
+You can use BEASTShell to make your applications highly customizable by users 
 without requiring them to compile Java classes or even to know all of the 
 Java syntax.  
 
-During development you can use BeanShell to "factor out" volatile or 
+During development you can use BEASTShell to "factor out" volatile or 
 environmentally dependent algorithms from your application and leave them 
 in the scripting domain while they are under the most intense change.
 Later it is easy to move them back into compiled Java if you wish because
-BeanShell syntax is Java syntax.
+BEASTShell syntax is Java syntax.
 <p CLEAR="ALL"/>
 
 <h3>Macros and Evaluation</h3>
 
-BeanShell can be used as a generic language for "macros" or other complex
+BEASTShell can be used as a generic language for "macros" or other complex
 tasks that must be described by a user of your application.
 For example, the popular JEdit Java editor uses 
-BeanShell to allow users to implement macros for key bindings.  This gives
+BEASTShell to allow users to implement macros for key bindings.  This gives
 user power to customize the behavior of the editor, using as much (or
 as little) of the full power of Java as desired.
 <p CLEAR="ALL"/>
@@ -53,12 +53,12 @@ will be familiar with the name "Java" and more inclined to want to work
 with it than an arbitrary new language.
 <p CLEAR="ALL"/>
 
-BeanShell can also be used to perform dynamic evaluation of complex expressions
+BEASTShell can also be used to perform dynamic evaluation of complex expressions
 such as mathematics or computations entered by the user.   Why write an
 arithmetic expression parser when you can let your user enter equations using
 intermediate variables, operators, and other constructs.  If strict control
 is desired, you can generate the script yourself using your own rules, and
-still leave the evaluation to BeanShell.
+still leave the evaluation to BEASTShell.
 
 <h3>Simplify Complex Configuration Files</h3>
 
@@ -77,39 +77,39 @@ discover is that you are creating your own scripting language - and one that
 is probably not as easy to read as plain old Java.
 <p CLEAR="ALL"/>
 
-BeanShell solves the problem of complex configuration files by allowing
+BEASTShell solves the problem of complex configuration files by allowing
 users to work not only with simple properties style values 
 (loose variable assignment)
 but also to have the full power of Java to construct objects, arrays,
-perform loops and conditionals, etc.  And as we'll see, BeanShell scripts
+perform loops and conditionals, etc.  And as we'll see, BEASTShell scripts
 can work seamlessly with objects from the application, <b>without</b>
 the need to turn them into strings to cross the script boundary.
 <p CLEAR="ALL"/>
 
 
-<h2><a name="The_BeanShell_Core_Distribution">The BeanShell Core Distribution</a></h2>
+<h2><a name="The_BEASTShell_Core_Distribution">The BEASTShell Core Distribution</a></h2>
 
 Beanshell is fairly small, even in its most general distribution.  The
-full JAR with all utilities weighs in at about 250K.  But BeanShell is
+full JAR with all utilities weighs in at about 250K.  But BEASTShell is
 also distributed in a componentized fashion, allowing you to choose to add
 only the utilities and other pieces that you need.  The core distribution
-includes only the BeanShell interpreter and is currently about 130K.  <em>We
+includes only the BEASTShell interpreter and is currently about 130K.  <em>We
 expect this size to drop in the future with improvements in the parser
 generator.</em>  Any significant new features will always be provided in
 the form of add-on modules, so that the core language can remain small.
 <p CLEAR="ALL"/>
 
-More and more people are using BeanShell for embedded applications in small
-devices.  We have reports of BeanShell running everywhere from palm-tops
+More and more people are using BEASTShell for embedded applications in small
+devices.  We have reports of BEASTShell running everywhere from palm-tops
 to autonomous buoys in the Pacific ocean!
 
 
-<h2><a name="Calling_BeanShell_From_Java">Calling BeanShell From Java</a></h2>
+<h2><a name="Calling_BEASTShell_From_Java">Calling BEASTShell From Java</a></h2>
 
-Invoking BeanShell from Java is easy.   The first step is to create in
+Invoking BEASTShell from Java is easy.   The first step is to create in
 instance of the bsh.Interpreter class.  Then you can use it to evaluate
 strings of code, source external scripts.  You can pass your data in to
-the Interpreter as ordinary BeanShell variables, using the Interpreter
+the Interpreter as ordinary BEASTShell variables, using the Interpreter
 set() and get() methods.
 <p CLEAR="ALL"/>
 
@@ -142,14 +142,14 @@ and the GUI console.
 
 The Interprete eval() method accepts a script as a string and interprets it,
 optionally returning a result.
-The string can contain any normal BeanShell script text with any number of 
+The string can contain any normal BEASTShell script text with any number of 
 Java statements.
 The Interpreter maintains state over any number of eval() calls, so you can
 interpret statements individually or all together.
 
 <p/><center><table cellpadding="5" border="1" width="90%"><tr><td bgcolor="#eeeebb"><strong>Note:</strong><br CLEAR="ALL"/>
 It is not necessary to add a trailing ";" semi-colon at the end of the 
-evaluated string.  BeanShell always adds one at the end of the string.
+evaluated string.  BEASTShell always adds one at the end of the string.
 </td></tr></table></center><p/>
 
 The result of the evaluation of the last statement or expression in the 
@@ -176,7 +176,7 @@ i.eval( reader );
 <h2><a name="EvalError">EvalError</a></h2>
 
 The bsh.EvalError exception is the general exception type for an error in 
-evaluating a BeanShell script.  Subclasses of EvalError - ParseException
+evaluating a BEASTShell script.  Subclasses of EvalError - ParseException
 and TargetError - indicate the specific conditions where a textual 
 parsing error was encountered or where the script itself caused an exception 
 to be generated.
@@ -255,7 +255,7 @@ and eval() from a file.
 <h3>set(), get(), and unset()</h3>
 
 As we've seen in the examples thus far, set() and get() can be used to
-pass objects into the BeanShell interpreter as variables and retrieve the
+pass objects into the BEASTShell interpreter as variables and retrieve the
 value of variables, respectively.
 <p CLEAR="ALL"/>
 
@@ -294,10 +294,10 @@ We've talked about the usefulness of writing scripts that implement
 Java interfaces.  By wrapping a script in an interface you can make it
 transparent to the rest of your Java code.
 
-As we described in the "Interfaces" section earlier, within the BeanShell 
+As we described in the "Interfaces" section earlier, within the BEASTShell 
 interpreter scripted objects automatically implement any interface necessary 
 when they are passed as arguments to methods requiring them.  
-However if you are going to pass a reference outside of BeanShell you may 
+However if you are going to pass a reference outside of BEASTShell you may 
 have to perform an explicit cast inside the script, to get it to manufacture 
 the correct type.
 <p CLEAR="ALL"/>
@@ -350,12 +350,12 @@ you will get a runtime exception.
 
 <h2><a name="Multiple_Interpreters_vs._Multi-threading">Multiple Interpreters vs. Multi-threading</a></h2>
 
-A common design question is whether to use a single BeanShell
+A common design question is whether to use a single BEASTShell
 interpreter or multiple interpreter instances in your application.  
 <p CLEAR="ALL"/>
 
 The Interpreter class is, in general, thread safe and allows you to 
-work with threads, within the normal bounds of the Java language.  BeanShell
+work with threads, within the normal bounds of the Java language.  BEASTShell
 does not change the normal application level threading issues of multiple 
 threads from accessing the same variables: you still have to synchronize
 access using some mechanism if necessary. 
@@ -366,17 +366,17 @@ briefly in "Scripting Interfaces".
 
 Since working with multiple threads introduces issues of synchronization
 and application structure, you may wish to simply create multiple Interpreter
-instances.  BeanShell Interpreter instances were designed to be very light
+instances.  BEASTShell Interpreter instances were designed to be very light
 weight.  Construction time is usually negligible and in simple tests, we have 
 found that it is possible to maintain hundreds (or even thousands) of 
 instances.
 <p CLEAR="ALL"/>
 
 There are other options in-between options as well.  It is possible to 
-retrieve BeanShell scripted objects from the interpreter and "re-bind" them
+retrieve BEASTShell scripted objects from the interpreter and "re-bind" them
 again to the interpreter.  We'll talk about that in the next section.
 You can also get and set the root level bsh.NameSpace object for the
-entire Interpreter.  The NameSpace is roughly equivalent to a BeanShell method
+entire Interpreter.  The NameSpace is roughly equivalent to a BEASTShell method
 context.   Each method context has an associated NameSpace object.
 
 <p/><center><table cellpadding="5" border="1" width="100%"><tr><td><strong>Tip:</strong><br CLEAR="ALL"/>
@@ -389,15 +389,15 @@ the clear() command.
 is not implemented.  This will be corrected in an upcoming release.</em>
 <p CLEAR="ALL"/>
 
-See also "The BeanShell Parser" for more about performance issues.
+See also "The BEASTShell Parser" for more about performance issues.
 
 <h2><a name="Serializing_Interpreters_and_Scripted_Objects">Serializing Interpreters and Scripted Objects</a></h2>
 
-The BeanShell Interpreter is serializable, assuming of course that all
+The BEASTShell Interpreter is serializable, assuming of course that all
 objects referenced by variables in the global scope are also serializable.
 So you can save the entire static state of the interpreter by serializing
 it and storing it.  Note that serializing the Intepreter does not "freeze"
-execution of BeanShell scripts in any sense other than saving the current
+execution of BEASTShell scripts in any sense other than saving the current
 state of the variables.  In general if you serialize an Interpreter while 
 it is executing code the results will be undetermined.  De-serializing an
 interpreter does not automatically restart method executions; it simply
@@ -405,12 +405,12 @@ restores state.
 <p CLEAR="ALL"/>
 
 <p/><center><table cellpadding="5" border="1" width="90%"><tr><td bgcolor="#eeeebb"><strong>Note:</strong><br CLEAR="ALL"/>
-There is serious Java bug that affects BeanShell serializability in Java
+There is serious Java bug that affects BEASTShell serializability in Java
 versions prior to 1.3.  When using these versions of Java the primitive type 
 class identifiers cannot be de-serialized.  See the FAQ for a workaround.
 </td></tr></table></center><p/>
 
-It is also possible to serialize individual BeanShell scripted objects
+It is also possible to serialize individual BEASTShell scripted objects
 ('this' type references and interfaces to scripts).  The same rules apply.
 One thing to note is that by default serializing a scripted object context
 will also serialize all of that object's parent contexts up to the global
@@ -421,18 +421,18 @@ To detach a scripted object from its parent namespace you can use the
 namespace prune() method:
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
-// From BeanShell
+// From BEASTShell
 object.namespace.prune();
 
 // From Java
 object.getNameSpace().prune();
 </pre></td></tr></table></center><p/>
 
-To bind a BeanShell scripted object back into a particular method scope
+To bind a BEASTShell scripted object back into a particular method scope
 you can use the bind() command:
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
-// From BeanShell
+// From BEASTShell
 bind( object, this.namespace );
 
 // From Java
@@ -446,8 +446,8 @@ where there is no active interpreter - e.g. where an external method call
 from compiled Java enters the object.
 <p CLEAR="ALL"/>
 
-The BeanShell save() command which serializes objects recognize when you are 
-trying to save a BeanShell scripted object (a bsh.This reference) type and 
+The BEASTShell save() command which serializes objects recognize when you are 
+trying to save a BEASTShell scripted object (a bsh.This reference) type and 
 automatically prune()s it from the parent namespace, so that saving the object 
 doesn't drag along the whole interpreter along for the ride.  Similarly, 
 load() binds the object to the current scope.
@@ -455,5 +455,5 @@ load() binds the object to the current scope.
 
 
 <table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="standalonemode.html#Modes_of_Operation"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="remotemode.html#Remote_Server_Mode"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="remotemode.html#Remote_Server_Mode"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table></body></html>

@@ -29,7 +29,7 @@ help(beast.util.TreeParser);
 
      * generates HTML pages *
      */
-    static DocMaker m_docMaker = new DocMaker();
+    static DocMaker m_docMaker = HelpBrowser.docMaker;
 	
 	
 	static public void help() {
@@ -142,7 +142,11 @@ help(beast.util.TreeParser);
 		}
 		if (o instanceof BEASTObject) {
 			try {
-				String help = m_docMaker.getHTML(o.getClass().getName(), true);
+				if (m_docMaker == null) {
+					m_docMaker = HelpBrowser.docMaker;
+				}
+				
+				String help = m_docMaker.getHTML(o.getClass().getName(), false);
 				showHelp(help);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

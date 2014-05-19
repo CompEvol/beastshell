@@ -7,7 +7,7 @@
 
 <h2>Running demos</h2>
 <p>You probably want to start with the demos first, which show off the capabilities 
-of BEAST Shell. To list available demos, run
+of BEASTShell. To list available demos, run
 <pre>
 bsh % demo();
 </pre>
@@ -18,7 +18,7 @@ bsh % demo("chart");
 </pre>
 </p>
 
-<h2>Getting Help</h2>
+<h2>Interactive Help</h2>
 <p>To get help on a command, use <tt>help("cmd");</tt> of alternatively <tt>?cmd<?tt> e.g. 
 <pre>bsh % help("print");
 bsh % ?print
@@ -30,10 +30,16 @@ bsh % ?dnorm
 or, if you already created an MCMC object, asking help for the object will have the same results:
 <pre>bsh % tree = new beast.evolution.tree.Tree()
 bsh % ?tree
+bsh % javap(tree)
+bsh % ??tree
 </pre>
 </p>
 <p></p>
-<p>To get help on any other class, use <tt>help(Class);</tt> e.g. <pre>bsh %  help(java.util.ArrayList);</pre></p>
+<p>To get help on any other class, use <tt>help(Class);</tt> e.g. 
+<pre>bsh %  help(java.util.ArrayList);
+bsh %  ??java.util.ArrayList;
+bsh %  data = new ArrayList&lt;Double&gt;();
+bsh %  ?data</pre></p>
 
 </body>
 

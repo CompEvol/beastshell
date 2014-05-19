@@ -5,11 +5,11 @@
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="syntax.html#Basic_Syntax"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="objects.html#Scripted_Objects"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="objects.html#Scripted_Objects"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table><h1>Scripted Methods</h1>
 
 
-You can define define methods in BeanShell, just as they would appear in Java:
+You can define define methods in BEASTShell, just as they would appear in Java:
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
 int addTwoNumbers( int a, int b ) {
     return a + b;
@@ -17,12 +17,12 @@ int addTwoNumbers( int a, int b ) {
 </pre></td></tr></table></center><p/>
 
 And you can use them in your scripts just as you would any Java method or
-"built-in" BeanShell command:
+"built-in" BEASTShell command:
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
 sum = addTwoNumbers( 5, 7 );
 </pre></td></tr></table></center><p/>
 
-Just as BeanShell variables may be dynamically typed, methods may have 
+Just as BEASTShell variables may be dynamically typed, methods may have 
 dynamic argument and return types.  We could, for example, have declared
 our add() method above like so:
 
@@ -32,7 +32,7 @@ add( a, b ) {
 }
 </pre></td></tr></table></center><p/>
 
-In this case, BeanShell would dynamically determine the types when the method is
+In this case, BEASTShell would dynamically determine the types when the method is
 called and attempt to "do the right thing":
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
@@ -44,14 +44,14 @@ print( foo ); // Oh baby
 </pre></td></tr></table></center><p/>
 
 In the first case Java performed arithmetic addition on the integers 1 and 2.
-(By the way, if we had passed in numbers of other types BeanShell would have 
+(By the way, if we had passed in numbers of other types BEASTShell would have 
 performed the appropriate numeric promotion and returned the correct Java 
 primitive type.)  
 In the second
-case BeanShell performed the usual string concatenation for String types and
+case BEASTShell performed the usual string concatenation for String types and
 returned a String object.  This example is a bit extreme, as there are no
 other overloaded operators like string concatenation in Java.  But it serves 
-to emphasize that BeanShell methods can work with loose types.
+to emphasize that BEASTShell methods can work with loose types.
 <p CLEAR="ALL"/>
 
 Methods with unspecified return types may return any type of object (as in
@@ -110,13 +110,13 @@ print( a ); // prints 2
 Variables and methods are "inherited" from the parent scope in the usual way.
 In the example above there are just two levels of scope: the top or "global"
 scope and the scope of the method foo().  Later we'll talk about scripting
-objects in BeanShell and see that there can be arbitrary levels of scoping
+objects in BEASTShell and see that there can be arbitrary levels of scoping
 involved.  But the rules will be the same.
 <p CLEAR="ALL"/>
 
 As in Java, a typed variable is not visible outside the scope in which it is 
 declared.  So declaring a variable with a type is a way to limit its scope or
-make a <em>local</em> variable.  In BeanShell using an untyped or 
+make a <em>local</em> variable.  In BEASTShell using an untyped or 
 "loosely" typed variable is also equivalent to declaring a local
 variable.  That is, if you use a variable that has not been defined elsewhere,
 it defaults to the local scope:
@@ -148,7 +148,7 @@ variable 'b' in the scope of foo.  The variable 'c' is explicitly declared
 foo().
 <p CLEAR="ALL"/>
 
-Later we'll see that BeanShell allows arbitrary nesting of methods.  If we were
+Later we'll see that BEASTShell allows arbitrary nesting of methods.  If we were
 to declare another method inside of foo() it could see all of these
 variables (a, b, and c) as it is also in the scope of foo().
 <p CLEAR="ALL"/>
@@ -163,7 +163,7 @@ do we do if we want to make a local variable with the same name as a global
 one?  One answer would be to resort to declaring the variable with a type.  
 But if we wish to continue working with loosely typed variables in this case we
 have two options:  We can explicitly declare a loosely typed variable with the
-BeanShell 'var' type.  Or we can simply qualify our assignment with the 'this.'
+BEASTShell 'var' type.  Or we can simply qualify our assignment with the 'this.'
 qualifier.
 <p CLEAR="ALL"/>
 
@@ -178,7 +178,7 @@ foo();
 print( a ); // ERROR! a is undefined!
 </pre></td></tr></table></center><p/>
 
-'var' is a magic type in BeanShell that represents a loose (untyped) variable.
+'var' is a magic type in BEASTShell that represents a loose (untyped) variable.
 The default value of a variable declared with 'var' is null.
 <p CLEAR="ALL"/>
 
@@ -195,7 +195,7 @@ print( a ); // ERROR! a is undefined!
 
 In this example we used the modifier 'this' to qualify an untyped
 variable's scope and make it local.  We will explain 'this' and what it means 
-in BeanShell scripted methods in the next section on Scripted Objects.  
+in BEASTShell scripted methods in the next section on Scripted Objects.  
 <p CLEAR="ALL"/>
 
 
@@ -228,9 +228,9 @@ in the global scope (the "topmost" scope).
 
 So, we've seen that 'super' can be used to refer to the method's parent 
 context.  We'll see in the next section how 'this' and 'super' are used
-in scripting Objects in BeanShell.
+in scripting Objects in BEASTShell.
 <p CLEAR="ALL"/>
 
 <table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="syntax.html#Basic_Syntax"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="objects.html#Scripted_Objects"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="objects.html#Scripted_Objects"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table></body></html>

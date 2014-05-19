@@ -1,11 +1,11 @@
 
 <html>
 <head>
-<title>BeanShell FAQ</title>
+<title>BEASTShell FAQ</title>
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body bgcolor="#ffffff">
-<h1>BeanShell FAQ</h1>
+<h1>BEASTShell FAQ</h1>
 
 	Authors:
 	<br/>Pat Niemeyer(pat@pat.net)<br/>Daniel Leuck(dan@econtix.com)<br/>
@@ -13,33 +13,33 @@
 <ul>
 <li>
 <a href="#1">
-		Why is it called "BeanShell"?
+		Why is it called "BEASTShell"?
 		</a>
 </li>
 <li>
 <a href="#2">
-		How does BeanShell relate to other Java scripting languages like
+		How does BEASTShell relate to other Java scripting languages like
 		JavaScript, Jacl, and JPython.
 		</a>
 </li>
 <li>
 <a href="#3">
-		What is BeanShell's size?
+		What is BEASTShell's size?
 		</a>
 </li>
 <li>
 <a href="#4">
-		What tools were used to create BeanShell?
+		What tools were used to create BEASTShell?
 		</a>
 </li>
 <li>
 <a href="#5">
-		Does BeanShell reparse scripted methods on each invocation?
+		Does BEASTShell reparse scripted methods on each invocation?
 		</a>
 </li>
 <li>
 <a href="#6">
-		Why does BeanShell encounter problems during deserialization of
+		Why does BEASTShell encounter problems during deserialization of
 		primitive type (class) identifiers? / Why do I get a
 		java.lang.ClassNotFoundException during deserialization?
 		</a>
@@ -51,7 +51,7 @@
 </li>
 <li>
 <a href="#8">
-		Why is BeanShell so slow when executing certain operations such as for
+		Why is BEASTShell so slow when executing certain operations such as for
 		loops?
 		</a>
 </li>
@@ -92,19 +92,19 @@
 
 	<a name="1">
 <h2>
-		Why is it called "BeanShell"?
+		Why is it called "BEASTShell"?
 		</h2>
 </a>
 		It's partially a pun on "bash" (the GNU "Bourne again" shell)
 		"bash"-&gt;"bsh" and then there's the obvious beans reference.
 		<br/>
 		In the future I want to add more functionality for working with
-		JavaBeans (editors, etc.) and make BeanShell more accessible for use
+		JavaBeans (editors, etc.) and make BEASTShell more accessible for use
 		*as* a JavaBean. 
 		<hr/>
 	<a name="2">
 <h2>
-		How does BeanShell relate to other Java scripting languages like
+		How does BEASTShell relate to other Java scripting languages like
 		JavaScript, Jacl, and JPython.
 		</h2>
 </a>
@@ -124,21 +124,21 @@
 		more object oriented and structured / regular alternative to Perl. 
 		(Although the use of formatting for code blocking offends my C
 		sensibilities ;) ). Python may be the best choice for a full blown
-		scripting language. However it is signifigantly heavier than BeanShell
+		scripting language. However it is signifigantly heavier than BEASTShell
 		for use as a scripting extension language and it does require that
 		programmers learn yet another language (albeit a good one). 
 		<br/>
 		It is entirely possible that one or more of these languages will
-		eventually supercede the role of BeanShell. However their full
+		eventually supercede the role of BEASTShell. However their full
 		implementations will undoubtedly be quite large (many megs) and there
 		will probably always be a role for a light weight, "obvious" and simple
 		scripting extension language. The goal then is to keep the core of bsh
-		as small as possible. The core of BeanShell is currently about 135K and
+		as small as possible. The core of BEASTShell is currently about 135K and
 		may actually get smaller in the future.
 		<hr/>
 	<a name="3">
 <h2>
-		What is BeanShell's size?
+		What is BEASTShell's size?
 		</h2>
 </a>
 		Right now the core beanshell interpreter (without the misc shell tools)
@@ -149,7 +149,7 @@
 		<hr/>
 	<a name="4">
 <h2>
-		What tools were used to create BeanShell?
+		What tools were used to create BEASTShell?
 		</h2>
 </a>
 		Beanshell is based on the Sun Java 1.1 grammar and the parser is
@@ -167,7 +167,7 @@
 		<hr/>		
 	<a name="5">
 <h2>
-		Does BeanShell reparse scripted methods on each invocation?
+		Does BEASTShell reparse scripted methods on each invocation?
 		</h2>
 </a>
 		No.  Scripted methods are parsed once and stored in a parse tree.
@@ -175,7 +175,7 @@
 		<hr/>
 	<a name="6">
 <h2>
-		Why does BeanShell encounter problems during deserialization of
+		Why does BEASTShell encounter problems during deserialization of
 		primitive type (class) identifiers? / Why do I get a
 		java.lang.ClassNotFoundException during deserialization?
 		</h2>
@@ -196,7 +196,7 @@
 		Why is bsh slower executing the first few commands?
 		</h2>
 </a>
-		The BeanShell parser uses a lot of small classes to build the parse
+		The BEASTShell parser uses a lot of small classes to build the parse
 		tree. Java may not load (and verify) a given classes until you happen to
 		exercise the corresponding part of the Java grammar. (For example, it
 		may not load the class bsh.ASTForStatement until you use a "for" loop.)
@@ -209,15 +209,15 @@
 		<hr/>
 	<a name="8">
 <h2>
-		Why is BeanShell so slow when executing certain operations such as for
+		Why is BEASTShell so slow when executing certain operations such as for
 		loops?
 		</h2>
 </a>
-		As with any scripting language, BeanShell trades performance for
+		As with any scripting language, BEASTShell trades performance for
 		flexibility.  Certain operations are slower than others.  For loops, for
 		example, are noticeably slower than Java because the primitives involved
 		are being coerced to objects.  Object creation is computationally
-		expensive.  BeanShell will continue to be optimized but will always
+		expensive.  BEASTShell will continue to be optimized but will always
 		remain slower than Java.
 		<hr/>	
 
@@ -280,7 +280,7 @@
 		The AWT based Console was never very good. Since Swing is pure Java and
 		is available for jdk1.1.x there should be no reason to use AWT any
 		longer. However the old Console is still packaged for use in the Applet
-		based remote server mode and BeanShell still looks for it if nothing
+		based remote server mode and BEASTShell still looks for it if nothing
 		else is available.  
 		<hr/>
 	<a name="12">
@@ -288,7 +288,7 @@
 		How does bsh deal with multi-line statements on the command line?
 		</h2>
 </a>
-		BeanShell is not very friendly as a shell. (Although the bsh console
+		BEASTShell is not very friendly as a shell. (Although the bsh console
 		window implements a simple history for you. The raw parser does not
 		provide any feedback on a statement by statement basis. The happy little
 		"bsh" prompt is generated in the main interpreter loop and a little more
@@ -319,7 +319,7 @@
 		</h2>
 </a>
 		Not currently but this is planned for a future release.  
-		See "The BeanShell Parser" in the user manual for related information.
+		See "The BEASTShell Parser" in the user manual for related information.
 		<hr/>
 	<a name="14">
 <h2>

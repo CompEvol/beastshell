@@ -1,16 +1,16 @@
 
 <html>
 <head>
-<title>BeanShell Commands Documentation</title>
+<title>BEASTShell Commands Documentation</title>
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="credit.html#Credit_and_Acknowledgments"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><img src="../images/forwardbutton.gif"/><br/>Next
-			</td></tr></table><h1>BeanShell Commands Documentation</h1>
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><img src="../images/forwardbutton.gif"/><br/>Next
+			</td></tr></table><h1>BEASTShell Commands Documentation</h1>
 	
 
 The following documentation was generated automatically by 'BshDoc' from 
-Javadoc style comments in the BeanShell command script files.  See "BshDoc"
+Javadoc style comments in the BEASTShell command script files.  See "BshDoc"
 for more information.
 <p CLEAR="ALL"/>
 
@@ -100,7 +100,7 @@ for more information.
 	Debug output is verbose and generally useful only for developers.
 <!--
 </td></tr></table><table width="100%" border="0" cellpadding="5"><tr><td bgcolor="#cccccc"><a name="desktop"><strong><font size="+2">desktop</font></strong></a><br CLEAR="ALL"/><font size="+1">desktop ( ) <br CLEAR="ALL"/></font></td></tr><tr><td>
- * Start the BeanShell GUI desktop in a JFrame.  A starter workspace is created
+ * Start the BEASTShell GUI desktop in a JFrame.  A starter workspace is created
  * and added to the desktop.
  *
  * @method void desktop()
@@ -115,7 +115,7 @@ for more information.
 </td></tr></table><table width="100%" border="0" cellpadding="5"><tr><td bgcolor="#cccccc"><a name="dirname"><strong><font size="+2">dirname</font></strong></a><br CLEAR="ALL"/><font size="+1">String dirname ( String pathname ) <br CLEAR="ALL"/></font></td></tr><tr><td>
 	Return directory portion of path based on the system default file separator.
 	Note: you should probably use pathToFile() to localize the path relative
-	to BeanShell's working directory and then file.getAbsolutePath() to get
+	to BEASTShell's working directory and then file.getAbsolutePath() to get
 	back to a system localized string.
 	<p>
 	
@@ -208,7 +208,7 @@ for more information.
 	<p>
 </td></tr></table><table width="100%" border="0" cellpadding="5"><tr><td bgcolor="#cccccc"><a name="exec"><strong><font size="+2">exec</font></strong></a><br CLEAR="ALL"/><font size="+1">exec ( String arg ) <br CLEAR="ALL"/></font></td></tr><tr><td>
 	Start an external application using the Java Runtime exec() method.
-	Display any output to the standard BeanShell output using print().
+	Display any output to the standard BEASTShell output using print().
 
 </td></tr></table><table width="100%" border="0" cellpadding="5"><tr><td bgcolor="#cccccc"><a name="exit"><strong><font size="+2">exit</font></strong></a><br CLEAR="ALL"/><font size="+1">exit ( ) <br CLEAR="ALL"/></font></td></tr><tr><td>
 	Conditionally exit the virtual machine.
@@ -296,7 +296,7 @@ for more information.
 	<p>
 
 	This is equivalent to the standard Class.forName() method for class loading,
-	however it takes advantage of the BeanShell class manager so that added 
+	however it takes advantage of the BEASTShell class manager so that added 
 	classpath will be taken into account.  You can also use Class.forName(), 
 	however if you have modified the classpath or reloaded classes from within 
 	your script the modifications will only appear if you use the getClass() 
@@ -307,8 +307,8 @@ for more information.
     bootstrap JAR file if possible.
 
 </td></tr></table><table width="100%" border="0" cellpadding="5"><tr><td bgcolor="#cccccc"><a name="getResource"><strong><font size="+2">getResource</font></strong></a><br CLEAR="ALL"/><font size="+1">URL getResource ( String path ) <br CLEAR="ALL"/></font></td></tr><tr><td>
-	Get a resource from the BeanShell classpath.
-	This method takes into account modification to the BeanShell class path via
+	Get a resource from the BEASTShell classpath.
+	This method takes into account modification to the BEASTShell class path via
 	addClassPath() and setClassPath();
 
 </td></tr></table><table width="100%" border="0" cellpadding="5"><tr><td bgcolor="#cccccc"><a name="getSourceFileInfo"><strong><font size="+2">getSourceFileInfo</font></strong></a><br CLEAR="ALL"/><font size="+1">getSourceFileInfo ( ) <br CLEAR="ALL"/></font></td></tr><tr><td>
@@ -332,7 +332,7 @@ for more information.
 
 </td></tr></table><table width="100%" border="0" cellpadding="5"><tr><td bgcolor="#cccccc"><a name="importCommands"><strong><font size="+2">importCommands</font></strong></a><br CLEAR="ALL"/><font size="+1">void importCommands( resource path | package name )
 <br CLEAR="ALL"/></font></td></tr><tr><td>
-	Import scripted or compiled BeanShell commands in the following package
+	Import scripted or compiled BEASTShell commands in the following package
 	in the classpath.  You may use either "/" path or "." package notation.
 	e.g. 
 	<pre>
@@ -345,7 +345,7 @@ for more information.
 	named 'command'.bsh and second a class file named 'command'.class.
 	<p/>
 
-	You may add to the BeanShell classpath using the addClassPath() or
+	You may add to the BEASTShell classpath using the addClassPath() or
 	setClassPath() commands and then import them as usual.
 	<pre>
 		addClassPath("mycommands.jar");
@@ -364,7 +364,7 @@ for more information.
     Import an instance object into this namespace
     (analogous to static class imports).
     You can import the methods and fields of a Java object instance into
-    a BeanShell namespace.  e.g.
+    a BEASTShell namespace.  e.g.
 
     <pre>
         Map map = new HashMap();
@@ -409,7 +409,7 @@ for more information.
 
 </td></tr></table><table width="100%" border="0" cellpadding="5"><tr><td bgcolor="#cccccc"><a name="object"><strong><font size="+2">object</font></strong></a><br CLEAR="ALL"/><font size="+1">This object()
 <br CLEAR="ALL"/></font></td></tr><tr><td>
-	Return an "empty" BeanShell object context which can be used to hold 
+	Return an "empty" BEASTShell object context which can be used to hold 
 	data items.  e.g. 
 	<p>
 	<pre>
@@ -436,9 +436,9 @@ for more information.
 	instead of print().
 
 </td></tr></table><table width="100%" border="0" cellpadding="5"><tr><td bgcolor="#cccccc"><a name="printBanner"><strong><font size="+2">printBanner</font></strong></a><br CLEAR="ALL"/><font size="+1">printBanner ( ) <br CLEAR="ALL"/></font></td></tr><tr><td>
-	Print the BeanShell banner (version and author line) - GUI or non GUI.
+	Print the BEASTShell banner (version and author line) - GUI or non GUI.
 </td></tr></table><table width="100%" border="0" cellpadding="5"><tr><td bgcolor="#cccccc"><a name="pwd"><strong><font size="+2">pwd</font></strong></a><br CLEAR="ALL"/><font size="+1">pwd ( ) <br CLEAR="ALL"/></font></td></tr><tr><td>
-	Print the BeanShell working directory.  This is the cwd obeyed by all the 
+	Print the BEASTShell working directory.  This is the cwd obeyed by all the 
 	unix-like bsh commands.
 
 </td></tr></table><table width="100%" border="0" cellpadding="5"><tr><td bgcolor="#cccccc"><a name="reloadClasses"><strong><font size="+2">reloadClasses</font></strong></a><br CLEAR="ALL"/><font size="+1">void reloadClasses( [ package name ] )
@@ -487,7 +487,7 @@ for more information.
 	Save a serializable Java object to filename. 
 
 </td></tr></table><table width="100%" border="0" cellpadding="5"><tr><td bgcolor="#cccccc"><a name="server"><strong><font size="+2">server</font></strong></a><br CLEAR="ALL"/><font size="+1">void server ( int port ) <br CLEAR="ALL"/></font></td></tr><tr><td>
-	Create a remote BeanShell listener service attached to 
+	Create a remote BEASTShell listener service attached to 
 	the current interpreter, listening on the specified port.
 
 </td></tr></table><table width="100%" border="0" cellpadding="5"><tr><td bgcolor="#cccccc"><a name="setAccessibility"><strong><font size="+2">setAccessibility</font></strong></a><br CLEAR="ALL"/><font size="+1">setAccessibility ( boolean b ) <br CLEAR="ALL"/></font></td></tr><tr><td>
@@ -547,7 +547,7 @@ for more information.
 
 </td></tr></table><table width="100%" border="0" cellpadding="5"><tr><td bgcolor="#cccccc"><a name="setStrictJava"><strong><font size="+2">setStrictJava</font></strong></a><br CLEAR="ALL"/><font size="+1">void setStrictJava ( boolean val ) <br CLEAR="ALL"/></font></td></tr><tr><td>
 	Enable or disable "Strict Java Mode".
-	When strict Java mode is enabled BeanShell will:
+	When strict Java mode is enabled BEASTShell will:
 	<p>
 
 	<ol>
@@ -562,7 +562,7 @@ for more information.
 	See "Strict Java Mode" for more details.
 	<p/>
 
-	<em>Note: Currently most standard BeanShell commands will not work in 
+	<em>Note: Currently most standard BEASTShell commands will not work in 
 	Strict Java mode simply because they have not been written with full
 	types, etc.
 
@@ -638,5 +638,5 @@ for more information.
 -->
 
 <table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="credit.html#Credit_and_Acknowledgments"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><img src="../images/forwardbutton.gif"/><br/>Next
 			</td></tr></table></body></html>

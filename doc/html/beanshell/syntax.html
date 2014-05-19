@@ -5,20 +5,20 @@
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="quickstart.html#Quick_Start"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="methods.html#Scripted_Methods"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="methods.html#Scripted_Methods"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table><h1>Basic Syntax</h1>
 
 
-BeanShell is, foremost, a Java interpreter. So you probably already know 
-most of what you need to start scripting with BeanShell.  This 
-section describes specifically what portion of the Java language BeanShell 
-interprets and how BeanShell extends it or "loosens" it to be more 
+BEASTShell is, foremost, a Java interpreter. So you probably already know 
+most of what you need to start scripting with BEASTShell.  This 
+section describes specifically what portion of the Java language BEASTShell 
+interprets and how BEASTShell extends it or "loosens" it to be more 
 scripting-language-like.
 <p CLEAR="ALL"/>
 
 <h2><a name="Standard_Java_Syntax"> Standard Java Syntax </a></h2>
 
-In a BeanShell script (and on the command line) you can type normal 
+In a BEASTShell script (and on the command line) you can type normal 
 Java statements and expressions and display the results.  
 Statements and expressions are the kinds of things you normally find 
 inside of a Java method: variable assignments, method calls, math 
@@ -62,10 +62,10 @@ In the examples above, all of our variables have declared types. e.g.
 "JButton button".  Beanshell will enforce these types, as you will see if 
 you later try to assign something other than a JButton to the variable 
 "button" (you will get an error message).
-However BeanShell also supports "loose" or dynamically typed variables.
+However BEASTShell also supports "loose" or dynamically typed variables.
 That is, you can refer to 
 variables without declaring them first and without specifying any type.
-In this case BeanShell will do type checking where appropriate at runtime.  
+In this case BEASTShell will do type checking where appropriate at runtime.  
 So, for example, we could have left off the types in the above example and 
 written all of the above as:
 
@@ -100,9 +100,9 @@ development and testing process; especially for in interactive use.
 <p CLEAR="ALL"/>
 
 When a "loose" variable is used you are free to reassign it to another type of 
-Java object later.  Untyped BeanShell variables can also freely hold Java 
+Java object later.  Untyped BEASTShell variables can also freely hold Java 
 primitive values like <b>int</b>
-and <b>boolean</b>.  Don't worry, BeanShell always knows the real types and 
+and <b>boolean</b>.  Don't worry, BEASTShell always knows the real types and 
 only lets you use the values where appropriate.  For primitive types this 
 includes doing the
 correct numeric promotion that the real Java language would do when you use
@@ -135,17 +135,17 @@ try {
 <h2><a name="Basic_Scoping_of_Variables">Basic Scoping of Variables</a></h2>
 
 <p/><center><table cellpadding="5" border="1" width="90%"><tr><td bgcolor="#eeeebb"><strong>Note:</strong><br CLEAR="ALL"/>
-As of BeanShell version 1.3 the default scoping of loosely typed variables was
-changed to be more consistent with Java.  BeanShell still supports an alternate
+As of BEASTShell version 1.3 the default scoping of loosely typed variables was
+changed to be more consistent with Java.  BEASTShell still supports an alternate
 scoping used in earlier versions.  This mode can be enabled for legacy code by 
 setting the system property "localscoping" to true.  
 See appendix "Local Scoping".
 </td></tr></table></center><p/>
 
-Variable scoping in BeanShell behaves, wherever possible, just like that in 
+Variable scoping in BEASTShell behaves, wherever possible, just like that in 
 Java.  Ordinary Java, however, does not offer "loose" variables 
 (variables that can be used without being declared first).  
-So we must define their behavior within BeanShell.
+So we must define their behavior within BEASTShell.
 We'll see in the next section that untyped variables - variables that are not 
 declared and not assigned a value elsewhere - default to the 
 <em>local</em> scope.  
@@ -155,18 +155,18 @@ declaring it, you are creating a new local variable in the current scope.
 
 <h3>Blocks</h3>
 
-Blocks are statements between curly braces {}.  In BeanShell, as in Java, 
+Blocks are statements between curly braces {}.  In BEASTShell, as in Java, 
 blocks define a level of scope for typed variables: typed variables declared
 within a block are local to the block.  Other assignments within the block 
 occur, as always, wherever the variable was defined.
 <p CLEAR="ALL"/>
 
-Untyped variables in BeanShell, however, are not constrained by blocks.
+Untyped variables in BEASTShell, however, are not constrained by blocks.
 Instead they act as if they were declared at the outer (enclosing)
 scope's level.  
-With this in mind, BeanShell code looks just like Java code.
+With this in mind, BEASTShell code looks just like Java code.
 
-In BeanShell if you declare a typed variable within a block it is local to the
+In BEASTShell if you declare a typed variable within a block it is local to the
 block.  But if you use an untyped variable (which looks just like an ordinary
 assignment in Java) it behaves as an assignment to the enclosing scope.
 <p CLEAR="ALL"/>
@@ -216,7 +216,7 @@ Modifiers may not be applied to untyped variables.
 
 <h2><a name="Convenience_Syntax">Convenience Syntax</a></h2>
 
-In BeanShell you may access JavaBean properties as if they were fields:
+In BEASTShell you may access JavaBean properties as if they were fields:
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
 button = new java.awt.Button();
@@ -225,7 +225,7 @@ print( button.label );       // Equivalent to print( b.getLabel() );
 </pre></td></tr></table></center><p/>
 
 JavaBean properties are simply pairs of "setter" and "getter" methods that
-adhere to a naming convention.  In the above example BeanShell located
+adhere to a naming convention.  In the above example BEASTShell located
 a "setter" method with the name "setLabel()" and used it to assign the string
 value.  It then found the method named getLabel() to retrieve the value.
 <p CLEAR="ALL"/>
@@ -241,7 +241,7 @@ print( f.infinite );  // Equivalent to print( f.isInfinite() ); // false
 If there is any ambiguity with an actual Java field name of the object 
 (e.g. label in the above example) then the actual field name takes precedence.
 
-If you wish to avoid any ambiguity BeanShell provides an additional, 
+If you wish to avoid any ambiguity BEASTShell provides an additional, 
 uniform syntax for accessing both Java Bean properties and Hashtable or Map 
 entries.  You may use the "{}" curly brace construct with a 
 String identifier as a qualifier on any variable of the appropriate type:
@@ -259,7 +259,7 @@ Where the java.util.Collections API is available, Maps are also supported.
 
 <h3>Enhanced 'for' Loop</h3>
 
-BeanShell supports the Java 1.5 style enhanced for-loop for iterating over
+BEASTShell supports the Java 1.5 style enhanced for-loop for iterating over
 collections and array types.  (Note that you do not have to be running Java 1.5
 to use this feature).
 
@@ -289,13 +289,13 @@ Supported iterable types include all the obvious things.
 </ul>
 
 See also the BshIterator API which supports the ehanced for-loop and allows
-iteration over these types using the dynamically loaded BeanShell Collection 
+iteration over these types using the dynamically loaded BEASTShell Collection 
 manager.
 <p CLEAR="ALL"/>
 
 <h3>Switch Statements</h3>
 
-In BeanShell, the switch statement may be used not only with numeric types
+In BEASTShell, the switch statement may be used not only with numeric types
 but with objects.  For example, you may switch on Dates and Strings which
 are compared for equality with their equals() methods:
 
@@ -317,11 +317,11 @@ switch( dateobj )
 
 "Boxing" and "Unboxing" are the terms used to describe automatically wrapping 
 a primitive type in a wrapper class and unwrapping it as necessary.  Boxing
-is a feature of Java (SDK1.5) and has been supported in BeanShell for many
+is a feature of Java (SDK1.5) and has been supported in BEASTShell for many
 years.
 <p CLEAR="ALL"/>
 
-BeanShell supports boxing and unboxing of primitive types.  For example:
+BEASTShell supports boxing and unboxing of primitive types.  For example:
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
 int i=5;
@@ -335,7 +335,7 @@ int x = v.getFirstElement();
 
 <h2><a name="Importing_Classes_and_Packages">Importing Classes and Packages</a></h2>
 
-In BeanShell as in Java, you can either refer to classes by their fully
+In BEASTShell as in Java, you can either refer to classes by their fully
 qualified names, or you can <strong>import</strong> one or more classes 
 from a Java package.
 <p CLEAR="ALL"/>
@@ -347,7 +347,7 @@ import mypackage.MyClass;
 </pre></td></tr></table></center><p/>
 <p CLEAR="ALL"/>
 
-In BeanShell import statements may appear anywhere, even inside a method, 
+In BEASTShell import statements may appear anywhere, even inside a method, 
 not just at the top of a file.  In the event of a conflict, later imports take
 precedence over earlier ones.
 <p CLEAR="ALL"/>
@@ -359,16 +359,16 @@ automatically import the entire classpath, like so:
 import *;
 </pre></td></tr></table></center><p/>
 
-The first time you do this BeanShell will map out your entire classpath;
+The first time you do this BEASTShell will map out your entire classpath;
 so this is primarily intended for interactive use.  Note that importing every
 class in your classpath can be time consuming.  It can also result in a lot 
-of ambiguities.  Currently BeanShell will report an error when resolving an 
+of ambiguities.  Currently BEASTShell will report an error when resolving an 
 an ambiguous import from mapping the entire classpath.  You may disambiguate 
 it by importing the class you intend.
 <p CLEAR="ALL"/>
 
 <p/><center><table cellpadding="5" border="1" width="100%"><tr><td><strong>Tip:</strong><br CLEAR="ALL"/>
-The BeanShell which() command will use the classpath mapping capability to
+The BEASTShell which() command will use the classpath mapping capability to
 tell you where exactly in your classpath a specified class is located:
 <pre>
 bsh % which( java.lang.String );
@@ -376,10 +376,10 @@ Jar: file:/usr/java/j2sdk1.4.0/jre/lib/rt.jar
 </pre>
 </td></tr></table></center><p/>
 
-See "Class Path Management" for information about modifying the BeanShell
+See "Class Path Management" for information about modifying the BEASTShell
 classpath at run-time with the addClassPath() or setClassPath() commands.
 <p CLEAR="ALL"/>
-Also see "BeanShell Commands" for information about importing new BeanShell
+Also see "BEASTShell Commands" for information about importing new BEASTShell
 commands from the classpath.
 <p CLEAR="ALL"/>
 
@@ -400,7 +400,7 @@ you.  They are, in the order in which they are imported:
 </ul>
 <p CLEAR="ALL"/>
 
-Two BeanShell package classes are also imported by default:
+Two BEASTShell package classes are also imported by default:
 <p CLEAR="ALL"/>
 
 <ul>
@@ -409,7 +409,7 @@ Two BeanShell package classes are also imported by default:
 </ul>
 <p CLEAR="ALL"/>
 
-Finally, we should mention that BeanShell commands may be imported from the 
+Finally, we should mention that BEASTShell commands may be imported from the 
 classpath.  The default commands are imported in the following way:
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
@@ -427,8 +427,8 @@ java.awt package again your script.  Later imports take precedence.
 
 <h2><a name="Document_Friendly_Entities">Document Friendly Entities</a></h2>
 
-BeanShell supports special overloaded text forms of all common operators
-to make it easier to embed BeanShell scripts inside other kinds of documents
+BEASTShell supports special overloaded text forms of all common operators
+to make it easier to embed BEASTShell scripts inside other kinds of documents
 (e.g XML).
 <p CLEAR="ALL"/>
 
@@ -452,5 +452,5 @@ to make it easier to embed BeanShell scripts inside other kinds of documents
 </table>
 
 <table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="quickstart.html#Quick_Start"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="methods.html#Scripted_Methods"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="methods.html#Scripted_Methods"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table></body></html>

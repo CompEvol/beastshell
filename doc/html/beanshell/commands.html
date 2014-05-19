@@ -1,28 +1,28 @@
 
 <html>
 <head>
-<title>Adding BeanShell Commands</title>
+<title>Adding BEASTShell Commands</title>
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
-<body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="commands.html#BeanShell_Commands"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="strictjava.html#Strict_Java_Mode"><img src="../images/forwardbutton.gif"/><br/>Next
-			</a></td></tr></table><h1>Adding BeanShell Commands</h1>
+<body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="commands.html#BEASTShell_Commands"><img src="../images/backbutton.gif"/><br/>Back
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="strictjava.html#Strict_Java_Mode"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td></tr></table><h1>Adding BEASTShell Commands</h1>
 
 
-BeanShell Commands are scripted methods or compiled Java classes which are 
+BEASTShell Commands are scripted methods or compiled Java classes which are 
 dynamically loaded from the classpath to implement a method.
-All of the standard commands we discuss in this manual live in the BeanShell
+All of the standard commands we discuss in this manual live in the BEASTShell
 JAR file under the path /bsh/commands.
 <p CLEAR="ALL"/>
 
-Adding to the set of "prefab" commands supplied with BeanShell is as easy as 
-writing any other BeanShell methods.  You simply have to place your 
+Adding to the set of "prefab" commands supplied with BEASTShell is as easy as 
+writing any other BEASTShell methods.  You simply have to place your 
 script into a file named with the same name as the command and place the
 file in the classpath.  You may then "import" the commands with the
 importCommands() method.  
 <p CLEAR="ALL"/>
 
-Command files can be placed anywhere in the BeanShell classpath.
+Command files can be placed anywhere in the BEASTShell classpath.
 You can even use the addClassPath() or setClassPath() commands to add new 
 command directories or JARs containing commands to your script at any time.
 <p CLEAR="ALL"/>
@@ -41,7 +41,7 @@ helloWorld() {
 Place the command file helloWorld.bsh in a directory or JAR in your
 classpath and import it with the importCommands() command.  
 You can either set the classpath
-externally for Java or inside of BeanShell with the addClassPath() command.
+externally for Java or inside of BEASTShell with the addClassPath() command.
 For example, suppose we have placed
 the file in the path: /home/pat/mycommands/helloWorld.bsh.
 We could then do:
@@ -51,7 +51,7 @@ addClassPath("/home/pat");  // If it's not already in our classpath
 importCommands("/mycommands");
 </pre></td></tr></table></center><p/>
 
-We can now use helloWorld() just like any other BeanShell command.
+We can now use helloWorld() just like any other BEASTShell command.
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
 helloWorld(); // prints "Hello World!"
@@ -59,12 +59,12 @@ helloWorld(); // prints "Hello World!"
 
 importCommands() will accept either a "resource path" style path name or a
 Java package name.  Either one is simply converted to a resource path or 
-Java package name as required to load scripts or compiled BeanShell command
+Java package name as required to load scripts or compiled BEASTShell command
 classes.  A relative path (e.g. "mycommands") is turned into an absolute path
 by prepending "/".  You may import "loose" commands (like unpackaged classes)
 at the top of the classpath by importing "/".
 <p CLEAR="ALL"/>
-If for example you have placed BeanShell commands along with your other 
+If for example you have placed BEASTShell commands along with your other 
 classes in a Java package called com.xyz.utils in your classpath, you can 
 import those commands with:
 
@@ -79,7 +79,7 @@ commands in a method or object they are local to that scope.
 
 <h3>Overloaded Commands</h3>
 
-BeanShell command scripts can contain any number of overloaded forms of the
+BEASTShell command scripts can contain any number of overloaded forms of the
 command method, e.g.:
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
@@ -92,25 +92,25 @@ helloWorld( String msg ) {
 }
 </pre></td></tr></table></center><p/>
 
-BeanShell will select the appropriate method based on the
+BEASTShell will select the appropriate method based on the
 usual rules for methods selection.
 
 
 <h2><a name="Compiled_Commands">Compiled Commands</a></h2>
 
-You can also implement BeanShell commands as compiled classes instead of
+You can also implement BEASTShell commands as compiled classes instead of
 scripts if you wish.  Your class name must simply be the name of the command
 (matching case as well) and it must implement one or more static invoke()
 methods who's signatures match a pattern.  The first two
 arguments of the invoke() method must be the bsh.Interpreter
-and bsh.CallStack objects that provide context to all BeanShell scripts.
+and bsh.CallStack objects that provide context to all BEASTShell scripts.
 Then any number (possibly zero) of arguments, which are the arguments of the
 command may follow.  
-BeanShell will select the appropriate method based on the
+BEASTShell will select the appropriate method based on the
 usual rules for methods selection.
 <p CLEAR="ALL"/>
 
-The dir() command is an example of a BeanShell command that is implemented in
+The dir() command is an example of a BEASTShell command that is implemented in
 Java.   Let's look at a snippet from it to see how it implements a pair of
 invoke() methods for the dir() and dir(path) commands.
 <p CLEAR="ALL"/>
@@ -158,7 +158,7 @@ within its scope.  In this case we have declared it at the global scope.
 
 <h2><a name="Commands_Scope">Commands Scope</a></h2>
 
-Scripted BeanShell commands are loaded when no existing method matches
+Scripted BEASTShell commands are loaded when no existing method matches
 the command name.
 When a command script is loaded it is sourced (evaluated) in the 'global' scope
 of the interpreter.  This means that once the command is loaded the methods
@@ -175,7 +175,7 @@ may only be loaded once and then they are effectively cached.
 
 <h2><a name="Getting_the_Caller_Context">Getting the Caller Context</a></h2>
 
-A useful feature of BeanShell for command writers is the 'this.caller'
+A useful feature of BEASTShell for command writers is the 'this.caller'
 reference, which allows you to create side effects (set or modify variables) in
 the method caller's scope.  For example:
 
@@ -235,8 +235,8 @@ The diagram above shows the foo() and bar() scopes, along with the caller's
 scope access via 'this.caller'.
 <p CLEAR="ALL"/>
 
-This is very useful in writing BeanShell commands.  
-BeanShell command methods are always loaded into the global 
+This is very useful in writing BEASTShell commands.  
+BEASTShell command methods are always loaded into the global 
 scope.  If you refer to 'super' from your command you will simply 
 get 'global'.  Often it is desirable to write commands that explicitly have 
 side effects in the caller's scope.  The ability to do so makes it possible to
@@ -244,9 +244,9 @@ write new kinds of commands that have the appearance of being "built-in"
 to the language.  
 <p CLEAR="ALL"/>
 
-A good example of this is the eval() BeanShell command.  eval() evaluates
+A good example of this is the eval() BEASTShell command.  eval() evaluates
 a string as if it were typed in the current context.  To do this, it sends
-the string to an instance of the BeanShell interpreter.  But when it does
+the string to an instance of the BEASTShell interpreter.  But when it does
 so it tells the interpreter to evaluate the string in a specific namespace:
 the namespace of the caller; using this.caller.
 
@@ -351,10 +351,10 @@ assert( boolean condition )
 
 <h2><a name="Working_with_Dirctories_and_Paths">Working with Dirctories and Paths</a></h2>
 
-BeanShell supports the notion of a <em>current working directory</em> for
+BEASTShell supports the notion of a <em>current working directory</em> for
 commands that work with files.  The cd() command can be used to change the
 working directory and pwd() can be used to display the current value.
-The BeanShell current working directory is stored in the variable bsh.cwd.
+The BEASTShell current working directory is stored in the variable bsh.cwd.
 <p CLEAR="ALL"/>
 
 All commands that work with files respect the working directory, including
@@ -386,7 +386,7 @@ absfilename = pathToFile( filename );
 <h3>Path Names and Slashes</h3>
 
 When working with path names you can generally just use forward slashes
-in BeanShell.  Java localizes forward slashes to the appropriate value
+in BEASTShell.  Java localizes forward slashes to the appropriate value
 under Windows environments.  If you must use backslashes remember to 
 escape them by doubling them:
 
@@ -398,7 +398,7 @@ dir("c:\\Windows"); // ok
 
 <h2><a name="Working_With_Class_Identifiers">Working With Class Identifiers</a></h2>
 
-You may have noticed that certain BeanShell commands such as javap(),
+You may have noticed that certain BEASTShell commands such as javap(),
 which(), and browseClass() which take a class as an argument can accept any 
 type of argument, including a plain Java class identifier.  For example,
 all of the following are legal:
@@ -432,19 +432,19 @@ with all of the above, converting the argument to a class type:
 
 <h2><a name="Working_with_Iterable_Types">Working with Iterable Types</a></h2>
 
-In conjunction with the enhanced for-loop added in BeanShell version 1.3 a
+In conjunction with the enhanced for-loop added in BEASTShell version 1.3 a
 unified API was added to provide support for iteration over composite types.
 The bsh.BshIterator interface provides the standard hasNext() and next()
 methods of the java.util.Iterator interface, but is available in all versions
 of Java and can be created for all composite types including arrays.  
 <p CLEAR="ALL"/>
 
-The BeanShell CollectionManager is used to get a BshIterator for an interable
+The BEASTShell CollectionManager is used to get a BshIterator for an interable
 object or array.  It is a dynamically loaded extension, so it provides support
 for the java.util.Collections API when available, but does not break 
 compatability for Java 1.1 applications.
 
-You can use this in the implementation of BeanShell commands to iterate 
+You can use this in the implementation of BEASTShell commands to iterate 
 over Enumeration, arrays, Vector, String, StringBuffer and 
 (when the java.util.collections API is present) Collections and Iterator.
 <p CLEAR="ALL"/>
@@ -459,6 +459,6 @@ if ( cm.isBshIterable( myObject ) )
 }
 </pre></td></tr></table></center><p/>
 
-<table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="commands.html#BeanShell_Commands"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="strictjava.html#Strict_Java_Mode"><img src="../images/forwardbutton.gif"/><br/>Next
+<table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="commands.html#BEASTShell_Commands"><img src="../images/backbutton.gif"/><br/>Back
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="strictjava.html#Strict_Java_Mode"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table></body></html>

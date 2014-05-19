@@ -5,11 +5,11 @@
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="classpath.html#Class_Loading_and_Class_Path_Management"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="embeddedmode.html#Embedding_BeanShell_in_Your_Application"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="embeddedmode.html#Embedding_BEASTShell_in_Your_Application"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table><h1>Modes of Operation</h1>
 
 
-There are currently five basic modes of operation for running BeanShell:
+There are currently five basic modes of operation for running BEASTShell:
 
 <ul>
 <li>Standalone scripts</li>
@@ -22,9 +22,9 @@ There are currently five basic modes of operation for running BeanShell:
 We'll outline these in this and the coming sections.
 <p CLEAR="ALL"/>
 
-BeanShell is also integrated into a number of other tools and development
+BEASTShell is also integrated into a number of other tools and development
 environments including the Emacs JDE and the NetBeans/Forte for Java IDE.
-Please see the web site for articles and information about using BeanShell
+Please see the web site for articles and information about using BEASTShell
 within these third party tools.
 
 <h2><a name="Standalone">Standalone</a></h2>
@@ -32,9 +32,9 @@ within these third party tools.
 <img src="../images/scriptmode.gif"/>
 <br CLEAR="ALL"/>
 
-You can use BeanShell to run scripts from the command line or enter
+You can use BEASTShell to run scripts from the command line or enter
 statements interactively by starting the bsh.Interpreter class.
-(See "Quickstart" for instructions on adding BeanShell to your classpath.)
+(See "Quickstart" for instructions on adding BEASTShell to your classpath.)
 <p CLEAR="ALL"/>
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
@@ -64,9 +64,9 @@ etc.  This mode is incomplete.  It should be considered experimental.</em>
 <h2><a name="Remote">Remote</a></h2>
 
 The bsh.Remote launcher is the equivalent of bsh.Interpreter, but runs
-the specified file in a remote BeanShell engine.  The remote engine may
-be a servlet mode BeanShell engine (BshServlet) or a native server mode 
-remote BeanShell instance (embedded interpreter).
+the specified file in a remote BEASTShell engine.  The remote engine may
+be a servlet mode BEASTShell engine (BshServlet) or a native server mode 
+remote BEASTShell instance (embedded interpreter).
 <p CLEAR="ALL"/>
 
 bsh.Remote accepts a URL and filename as arguments:
@@ -81,7 +81,7 @@ java bsh.Remote bsh://localhost:1234/ test1.bsh
 
 An HTTP URL may be specified that points to an instance of BshServlet
 (See "Servlet Mode" for details).  Or a native "bsh:" URL may be specified,
-pointing to an instance of the BeanShell interpreter running in remote
+pointing to an instance of the BEASTShell interpreter running in remote
 server mode.
 
 <em>
@@ -96,18 +96,18 @@ it will return the value as the exit status to the command line.
 
 <h2><a name="Interactive_Use">Interactive Use</a></h2>
 
-One of the most popular uses for BeanShell is, of course, as a "shell" for
-interactive experimentation and debugging.  BeanShell can be run in a GUI 
+One of the most popular uses for BEASTShell is, of course, as a "shell" for
+interactive experimentation and debugging.  BEASTShell can be run in a GUI 
 desktop mode that offers a number conveniences like command line history,
 cut &amp; paste, and tools for interactive use such as a simple classbrowser.  
-We'll talk about the GUI in "The BeanShell Desktop" later.  
+We'll talk about the GUI in "The BEASTShell Desktop" later.  
 
 <p/><center><table cellpadding="5" border="1" width="100%"><tr><td><strong>Tip:</strong><br CLEAR="ALL"/>
-The BeanShell GUI is comprised mostly of a set of BeanShell scripts supplied 
-in the JAR file and launched by the BeanShell desktop() command.
+The BEASTShell GUI is comprised mostly of a set of BEASTShell scripts supplied 
+in the JAR file and launched by the BEASTShell desktop() command.
 </td></tr></table></center><p/>
 
-However BeanShell can also be run interactively in plain text on the command 
+However BEASTShell can also be run interactively in plain text on the command 
 line.  
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
@@ -117,7 +117,7 @@ line.
 This is useful for quick "one liners"; however it does not offer 
 creature comforts such as command line history and editing.  We should note
 that some shells, such as the Windows environment, do command line history 
-and editing automatically - providing these features for BeanShell.
+and editing automatically - providing these features for BEASTShell.
 <p CLEAR="ALL"/>
 
 <p/><center><table cellpadding="5" border="1" width="100%"><tr><td><strong>Tip:</strong><br CLEAR="ALL"/>
@@ -130,7 +130,7 @@ shell).
 
 <h2><a name="The_.bshrc_Init_File">The .bshrc Init File</a></h2>
 
-When run interactively, BeanShell looks for a startup file called ".bshrc"
+When run interactively, BEASTShell looks for a startup file called ".bshrc"
 in the user's home directory.  If the file is found it is sourced into the
 interactive shell.  You can use this to perform setup for your interactive
 use.  For example, to add additional default imports or to toggle on the
@@ -167,5 +167,5 @@ C:\Winnt\Profiles\&lt;username&gt;\.bshrc
 </table>
 
 <table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="classpath.html#Class_Loading_and_Class_Path_Management"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="embeddedmode.html#Embedding_BeanShell_in_Your_Application"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="embeddedmode.html#Embedding_BEASTShell_in_Your_Application"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table></body></html>

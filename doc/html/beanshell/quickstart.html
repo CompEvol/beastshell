@@ -5,34 +5,34 @@
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="intro.html#Introduction"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="syntax.html#Basic_Syntax"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="syntax.html#Basic_Syntax"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table><h1>Quick Start</h1>
 
 
-Welcome to BeanShell.
+Welcome to BEASTShell.
 This is a crash course to get you going.  We'll leave out many
 important options and details.  Please see the rest of the user's guide 
 for more information.
 <p CLEAR="ALL"/>
 
-<h2><a name="Download_and_Run_BeanShell">
-Download and Run BeanShell
+<h2><a name="Download_and_Run_BEASTShell">
+Download and Run BEASTShell
 </a></h2>
 
 Download the latest JAR file from http://www.beanshell.org
-and start up BeanShell either in the graphical desktop mode or on 
+and start up BEASTShell either in the graphical desktop mode or on 
 the command line.
 <p CLEAR="ALL"/>
 
 If you just want to start playing around you may be able to launch the 
-BeanShell desktop by simply double clicking on the BeanShell JAR file.  More 
+BEASTShell desktop by simply double clicking on the BEASTShell JAR file.  More 
 generally however you'll want to add the jar to your classpath so that you 
 can work with your own classes and applications easily.
 <p CLEAR="ALL"/>
 
-To do this you can either drop the BeanShell JAR file into your Java 
+To do this you can either drop the BEASTShell JAR file into your Java 
 extensions folder or add it to your classpath.  (Important: If you put 
-BeanShell in the extensions folder and wish to use it with BSF applications 
+BEASTShell in the extensions folder and wish to use it with BSF applications 
 like Jakarta Ant you must install the bsf.jar in the same location).
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
@@ -40,18 +40,18 @@ To install as an extension place the bsh.jar file in your
 $JAVA_HOME/jre/lib/ext folder.  (OSX users: place the bsh.jar in 
 /Library/Java/Extensions or ~/Library/Java/Extensions for individual users.)
 
-Or add BeanShell to your classpath like this:
+Or add BEASTShell to your classpath like this:
 
 unix:     export CLASSPATH=$CLASSPATH:bsh-xx.jar
 windows:  set classpath=%classpath%;bsh-xx.jar
 </pre></td></tr></table></center><p/>
 
 <p/><center><table cellpadding="5" border="1" width="100%"><tr><td><strong>Tip:</strong><br CLEAR="ALL"/>
-You can modify the classpath from within BeanShell using the addClassPath()
+You can modify the classpath from within BEASTShell using the addClassPath()
 and setClassPath() commands.
 </td></tr></table></center><p/>
 
-You can then run BeanShell in either a GUI or command line mode:
+You can then run BEASTShell in either a GUI or command line mode:
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
     java bsh.Console       // run the graphical desktop
@@ -62,28 +62,28 @@ or
 </pre></td></tr></table></center><p/>
 <p CLEAR="ALL"/>
 
-It's also possible to call BeanShell from within your own Java applications,
+It's also possible to call BEASTShell from within your own Java applications,
 to reach it in a remote server mode for debugging, to use it as a servlet, 
-or even in an applet.  See "BeanShell Modes of Operation" for more details.
+or even in an applet.  See "BEASTShell Modes of Operation" for more details.
 
-<h2><a name="The_BeanShell_GUI">
-The BeanShell GUI
+<h2><a name="The_BEASTShell_GUI">
+The BEASTShell GUI
 </a></h2>
 
-The BeanShell GUI desktop is meant to allow some experimentation with the
-features of BeanShell.  It is not intended to be a replacement for a full
+The BEASTShell GUI desktop is meant to allow some experimentation with the
+features of BEASTShell.  It is not intended to be a replacement for a full
 featured IDE.  Please check out the 
 <a href="http://www.jedit.org/">jEdit editor</a> for an example of a full
-featured development environment based in part on BeanShell scripting
+featured development environment based in part on BEASTShell scripting
 capabilities.
 <p CLEAR="ALL"/>
 
-Upon starting the BeanShell in GUI mode a console window will open.  
+Upon starting the BEASTShell in GUI mode a console window will open.  
 By right clicking on the desktop background you can open additional 
 console windows and other tools such as a simple class browser.
 <p CLEAR="ALL"/>
 
-Each console window runs a separate instance of the BeanShell interpreter.
+Each console window runs a separate instance of the BEASTShell interpreter.
 The graphical console supports basic command history, line editing,
 cut and paste, and even class and variable name completion.  From the console 
 you can open a simple editor window.  In it you can write 
@@ -95,7 +95,7 @@ console's workspace or a new workspace.
 Java Statements and Expressions
 </a></h2>
 
-BeanShell understands standard Java statements, expressions, and 
+BEASTShell understands standard Java statements, expressions, and 
 method declarations.
 Statements and expressions are all of the normal things that you'd say
 inside a Java method such as variable declarations and assignments, 
@@ -103,9 +103,9 @@ method calls, loops, and conditionals.
 <p CLEAR="ALL"/>
 
 You can use these exactly as they would appear in Java,
-however in BeanShell you also have the option of working with "loosely typed"
+however in BEASTShell you also have the option of working with "loosely typed"
 variables.  That is, you can simply omit the types of variables that you use 
-(both primitives and objects).  BeanShell will only
+(both primitives and objects).  BEASTShell will only
 signal an error if you attempt to misuse the actual type of the variable.
 <p CLEAR="ALL"/>
 
@@ -113,7 +113,7 @@ Here are some examples:
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
 foo = "Foo";    
 four = (2 + 2)*2/2;
-print( foo + " = " + four );  // print() is a BeanShell command
+print( foo + " = " + four );  // print() is a BEASTShell command
 
 // Do a loop
 for (i=0; i&lt;5; i++)
@@ -128,11 +128,11 @@ frame.setVisible(true);
 </pre></td></tr></table></center><p/>
 <p CLEAR="ALL"/>
 
-<h2><a name="Useful_BeanShell_Commands">
-Useful BeanShell Commands
+<h2><a name="Useful_BEASTShell_Commands">
+Useful BEASTShell Commands
 </a></h2>
 
-In the previous example we used a convenient "built-in" BeanShell command 
+In the previous example we used a convenient "built-in" BEASTShell command 
 called print(), to display values.  print() does pretty
 much the same thing as System.out.println() except that it insures that the
 output always goes to the command line.  print() also displays some types
@@ -142,7 +142,7 @@ Another related command is show(), which toggles on and off automatic
 display of the result of every line you type.
 <p CLEAR="ALL"/>
 
-Here are a few other examples of BeanShell commands:
+Here are a few other examples of BEASTShell commands:
 
 <ul>
 <li> <strong>source(), run()</strong>  
@@ -169,12 +169,12 @@ similar to the output of the Java javap command.</li>
 </ul>
 
 <p CLEAR="ALL"/>
-See the complete list of <a href="bshcommands.html">BeanShell Commands</a>
+See the complete list of <a href="bshcommands.html">BEASTShell Commands</a>
 for more information.
 <p CLEAR="ALL"/>
 
 <p/><center><table cellpadding="5" border="1" width="100%"><tr><td><strong>Tip:</strong><br CLEAR="ALL"/>
-BeanShell commands are not really "built-in" but are simply BeanShell scripts
+BEASTShell commands are not really "built-in" but are simply BEASTShell scripts
 that are automatically loaded from the classpath.  You can add your 
 own scripts to the classpath to extend the basic command set.
 </td></tr></table></center><p/>
@@ -183,7 +183,7 @@ own scripts to the classpath to extend the basic command set.
 Scripted Methods
 </a></h2>
 
-You can declare and use methods in BeanShell just as you would in a Java class.
+You can declare and use methods in BEASTShell just as you would in a Java class.
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
 int addTwoNumbers( int a, int b ) {
@@ -207,7 +207,7 @@ foo = add("Oh", " baby");   // "Oh baby"
 
 <h2><a name="Implementing_Interfaces">Implementing Interfaces</a></h2>
 
-<em>Note: implementing arbitrary interfaces requires BeanShell be run
+<em>Note: implementing arbitrary interfaces requires BEASTShell be run
 under a Java 1.3 or higher environment.</em>
 <p CLEAR="ALL"/>
 
@@ -241,11 +241,11 @@ ml = new MouseListener() {
 Scripted Objects
 </a></h2>
 
-In BeanShell, as in JavaScript and Perl, method "closures" allow you to create
+In BEASTShell, as in JavaScript and Perl, method "closures" allow you to create
 scripted objects.  You can turn the results of a method call into an object
 reference by having the method return the special value <strong>this</strong>.
 You can then use the reference to refer to any variables set during the method 
-call.  Useful objects need methods of course, so in BeanShell scripted methods 
+call.  Useful objects need methods of course, so in BEASTShell scripted methods 
 may also contain methods at any level.  For example:
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
@@ -270,21 +270,21 @@ evolutionary step that languages acquired along the path to Objects.
 Please see the user's manual for a more thorough explanation.
 <p CLEAR="ALL"/>
 
-Within your scripts, BeanShell scripted objects 
+Within your scripts, BEASTShell scripted objects 
 (i.e. any <em>'this'</em> type reference like myFoo in the previous example) 
 can automatically implement any Java interface type.  When Java code calls 
 methods on the interface the corresponding scripted methods will be invoked to 
-handle them.  BeanShell will automatically "cast" your scripted object 
+handle them.  BEASTShell will automatically "cast" your scripted object 
 when you attempt to pass it as an argument to a method that takes an interface
 type.
-For passing script references outside of BeanShell, you can perform an 
+For passing script references outside of BEASTShell, you can perform an 
 explicit cast where necessary.  Please see the user manual for full details.
 <p CLEAR="ALL"/>
 
-<h2><a name="Calling_BeanShell_From_Your_Application">Calling BeanShell From Your Application</a></h2>
+<h2><a name="Calling_BEASTShell_From_Your_Application">Calling BEASTShell From Your Application</a></h2>
 
 You can evaluate text and run scripts from within your application by
-creating an instance of the BeanShell interpreter and using the eval()
+creating an instance of the BEASTShell interpreter and using the eval()
 or source() commands.  You may pass in variable references to objects you 
 wish to use in scripts via the set() method and retrieve results with the 
 get() method.
@@ -316,5 +316,5 @@ manual for more details.  Please consult the mailing list archives for
 more useful information.  http://www.beanshell.org/
 
 <table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="intro.html#Introduction"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="syntax.html#Basic_Syntax"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="syntax.html#Basic_Syntax"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table></body></html>

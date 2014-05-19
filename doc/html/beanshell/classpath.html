@@ -5,12 +5,12 @@
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="strictjava.html#Strict_Java_Mode"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="standalonemode.html#Modes_of_Operation"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="standalonemode.html#Modes_of_Operation"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table><h1>Class Loading and Class Path Management</h1>
 
 
-BeanShell is capable of some very fine grained and sophisticated class 
-reloading and modifications to the class path.  BeanShell can even map
+BEASTShell is capable of some very fine grained and sophisticated class 
+reloading and modifications to the class path.  BEASTShell can even map
 the entire class path to allow for automatic importing of classes.
 
 
@@ -78,15 +78,15 @@ remap as necessary.
 <p CLEAR="ALL"/>
 
 <em>
-Note: As of BeanShell 1.1alpha new class files added to the classpath 
-(from outside of BeanShell) after mapping will not be seen in imports.
+Note: As of BEASTShell 1.1alpha new class files added to the classpath 
+(from outside of BEASTShell) after mapping will not be seen in imports.
 </em>
 
 
 <h2><a name="Reloading_Classes">Reloading Classes</a></h2>
 
-BeanShell provides an easy to use mechanism for reloading classes from the 
-classpath.  It is possible in BeanShell to reload arbitrary subsets of classes 
+BEASTShell provides an easy to use mechanism for reloading classes from the 
+classpath.  It is possible in BEASTShell to reload arbitrary subsets of classes 
 down to a single class file.  However There are subtle issues to be understood 
 with respect to what it means to reload a class in the Java environment. 
 Please see the discussion of class loading detail below.  But in a nutshell,
@@ -152,7 +152,7 @@ reloaded. i.e. jar files cannot be swapped.</em>
 
 Unlike the reloadClases() command which reloads the entire class path,
 when you issue a command to reload a package or individual class name
-BeanShell must map some portions of the classpath to find the location of 
+BEASTShell must map some portions of the classpath to find the location of 
 those class files.  This operation can be time consuming, but it is only
 done once.  If running in interactive mode feedback will be given on the
 progress of the mapping.
@@ -161,11 +161,11 @@ progress of the mapping.
 <h2><a name="Loading_Classes_Explicitly">Loading Classes Explicitly</a></h2>
 
 In order to perform an explicit class lookup by name while taking into 
-account any BeanShell class path modification you must use a replacement
+account any BEASTShell class path modification you must use a replacement
 for the standard Class.forName() method.
 <p CLEAR="ALL"/>
 
-The getClass() command will load a class by name, using the BeanShell
+The getClass() command will load a class by name, using the BEASTShell
 classpath.  Alternately, you can consult the class manager explicitly:
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
@@ -178,15 +178,15 @@ c = BshClassManager.classForName( name );  // equivalent
 
 The bsh.Interpeter setClassLoader() and bsh.BshClassManager.setClassLoader()
 methods can be used to set an external class loader which is consulted
-for all basic class loading in BeanShell.  
+for all basic class loading in BEASTShell.  
 <p CLEAR="ALL"/>
 
-BeanShell will use the specified class loader at the same point where it 
+BEASTShell will use the specified class loader at the same point where it 
 would otherwise use the plain Class.forName().  If no explicit classpath 
 management is done from the script (addClassPath(), setClassPath(), 
-reloadClasses()) then BeanShell will only use the supplied classloader.  
-If additional classpath management is done then BeanShell will perform that 
-in addition to the supplied external classloader.  However BeanShell is not 
+reloadClasses()) then BEASTShell will only use the supplied classloader.  
+If additional classpath management is done then BEASTShell will perform that 
+in addition to the supplied external classloader.  However BEASTShell is not 
 currently able to reload classes supplied through the external classloader.  
 <p CLEAR="ALL"/>
 
@@ -208,21 +208,21 @@ class loader to one of your newly loaded objects, it will not recognize it
 as the same type of class.
 <p CLEAR="ALL"/>
 
-BeanShell works with objects dynamically through the reflection API, so
+BEASTShell works with objects dynamically through the reflection API, so
 your scripts will not have a problem recognizing reloaded class objects.
 However any objects which have you already created might not like them.
 
 
-<h2><a name="Class_Loading_in_BeanShell">Class Loading in BeanShell</a></h2>
+<h2><a name="Class_Loading_in_BEASTShell">Class Loading in BEASTShell</a></h2>
 
-The following is a discussion of the BeanShell class loader architecture,
+The following is a discussion of the BEASTShell class loader architecture,
 which allows both course class path extension and fine grained individual
 class reloading.
 <p CLEAR="ALL"/>
 
-<strong>Thriftiness</strong> - Abiding by the BeanShell thriftiness 
+<strong>Thriftiness</strong> - Abiding by the BEASTShell thriftiness 
 proposition: no class loading code is exercised unless directed by a
-command.  BeanShell begins with no class loader and only adds class loading
+command.  BEASTShell begins with no class loader and only adds class loading
 in layers as necessary to achieve desired effects.
 <p CLEAR="ALL"/>
 
@@ -247,17 +247,17 @@ it will see all previously reloaded classes as well.
 <p CLEAR="ALL"/>
 
 The BshClassManager knows about all class loader changes and broadcasts
-notification of changes to registered listeners.  BeanShell namespaces use
+notification of changes to registered listeners.  BEASTShell namespaces use
 this mechanism to dereference cached type information, however they do not
 remove existing object instances.
 <p CLEAR="ALL"/>
 
-Type caching is extremely important to BeanShell performance.  So changing
+Type caching is extremely important to BEASTShell performance.  So changing
 the classloader, which necessitates clearing all type caches, should be 
 considered an expensive operation. 
 <p CLEAR="ALL"/>
 
 
 <table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="strictjava.html#Strict_Java_Mode"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="contents.html"><img src="../images/homebutton2.gif"/><br/>BeansShell</a></td><td align="center"><a href="standalonemode.html#Modes_of_Operation"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="standalonemode.html#Modes_of_Operation"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table></body></html>
