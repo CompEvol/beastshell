@@ -1,0 +1,222 @@
+<html>
+<head>
+<title>BEAST Shell Commands</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h1>BEASTShell Commands</h1>
+Commands are divided into
+<ul>
+<li><a href='#beasr'>BEAST commands</a> which are mostly specific to BEAST.
+<li><a href='#bsh'>BeanShell commands</a> which are inherited from BeanShell.
+Some commands are deleted or adjusted for BEASTShell.
+<li><a href='#math'>Math, statistical and utility functions</a> for general purpose usage.
+</ul>
+
+<h2 id='beasr'>BEAST commands</h2>
+Some useful commands are
+<table style="background:lightgrey">
+<tr><td>demo</td><td>demonstrate some BEASTShell capabilities in BEASTStudio</td></tr>
+<tr><td><a href="beast/commands/help.html">help</a></td><td>provide online help</td></tr>
+<tr style="background:white"><td></td><td></td></tr>
+<tr><td>c</td><td>construct a list of objecst, e.g. <tt>x=c(1,1.5,2,2.4)</tt></td></tr>
+<tr><td>assertEquals</td><td>handy for testing, e.g. <tt>assertEquals(dbeta(0.4, 5, 1, false), 0.128, 0.0001);</tt></td></tr>
+<tr style="background:white"><td></td><td></td></tr>
+<tr><td><a href="beast/commands/beast.html">beast</a></td><td>start a BEAST run</td></tr>
+<tr><td><a href="beast/commands/beauti.html">beauti</a></td><td>start a BEAUti session</td></tr>
+<tr><td><a href="beast/commands/appstore.html">appstore</a></td><td>start the BEAST AppStore</td></tr>
+<tr><td><a href="beast/commands/.html"></a></td><td></td></tr>
+<tr style="background:white"><td></td><td></td></tr>
+<tr><td><a href="beast/commands/requires.html">requires</a></td><td>indicate some BEAST package is required, and install if not present.</td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+</table>
+
+<h2 id='bsh'>BeanShell commands</h2>
+<table>
+<tr><td><a href="beanshell/bshcommands.html#addClassPath">addClassPath</a></td><td> void addClassPath( string | URL )</td></tr>
+<tr><td><a href="beanshell/bshcommands.html#bg">bg</a></td><td> Thread bg( String filename )</td></tr>
+<tr><td><a href="beanshell/bshcommands.html#bind">bind</a></td><td> bind ( bsh .This ths , bsh .NameSpace namespace ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#browseClass">browseClass</a></td><td> void browseClass( String | Object | Class )</td></tr>
+<tr><td><a href="beanshell/bshcommands.html#cat">cat</a></td><td> cat ( String filename ) <br CLEAR="ALL"/>cat ( URL url ) <br CLEAR="ALL"/>cat ( InputStream ins ) <br CLEAR="ALL"/>cat ( Reader reader ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#cd">cd</a></td><td> void cd ( String pathname ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#classBrowser">classBrowser</a></td><td> classBrowser ( ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#clear">clear</a></td><td> clear ( ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#cp">cp</a></td><td> cp ( String fromFile , String toFile ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#debug">debug</a></td><td> debug ( ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#dir">dir</a></td><td> void dir ( String pathname ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#dirname">dirname</a></td><td> String dirname ( String pathname ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#error">error</a></td><td> void error ( item ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#eval">eval</a></td><td> Object eval ( String expression ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#exec">exec</a></td><td> exec ( String arg ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#exit">exit</a></td><td> exit ( ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#extend">extend</a></td><td> This extend( This object )</td></tr>
+<tr><td><a href="beanshell/bshcommands.html#frame">frame</a></td><td> Frame | JFrame | JInternalFrame frame( Component component )</td></tr>
+<tr><td><a href="beanshell/bshcommands.html#getBshPrompt">getBshPrompt</a></td><td> String getBshPrompt ( ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#getClass">getClass</a></td><td> Class getClass ( String name ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#getClassPath">getClassPath</a></td><td> URL [ ] getClassPath ( ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#getResource">getResource</a></td><td> URL getResource ( String path ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#getSourceFileInfo">getSourceFileInfo</a></td><td> getSourceFileInfo ( ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#importCommands">importCommands</a></td><td> void importCommands( resource path | package name )</td></tr>
+<tr><td><a href="beanshell/bshcommands.html#importObject">importObject</a></td><td> void importObject( Object object )</td></tr>
+<tr><td><a href="beanshell/bshcommands.html#javap">javap</a></td><td> void javap( String | Object | Class | ClassIdentifier )</td></tr>
+<tr><td><a href="beanshell/bshcommands.html#load">load</a></td><td> Object load ( String filename ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#dir">ls</a></td><td> void ls( String filename ) alias of "dir" </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#mv">mv</a></td><td> mv ( String fromFile , String toFile ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#object">object</a></td><td> This object()</td></tr>
+<tr><td><a href="beanshell/bshcommands.html#pathToFile">pathToFile</a></td><td> File pathToFile ( String filename ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#print">print</a></td><td> void print ( arg ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#printBanner">printBanner</a></td><td> printBanner ( ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#pwd">pwd</a></td><td> pwd ( ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#reloadClasses">reloadClasses</a></td><td> void reloadClasses( [ package name ] )</td></tr>
+<tr><td><a href="beanshell/bshcommands.html#rm">rm</a></td><td> boolean rm ( String pathname ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#run">run</a></td><td> run ( String filename , Object runArgument ) <br CLEAR="ALL"/>run ( String filename ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#save">save</a></td><td> void save ( Object obj , String filename ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#server">server</a></td><td> void server ( int port ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#setAccessibility">setAccessibility</a></td><td> setAccessibility ( boolean b ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#setClassPath">setClassPath</a></td><td> void setClassPath( URL [] )</td></tr>
+<tr><td><a href="beanshell/bshcommands.html#setFont">setFont</a></td><td> Font setFont ( Component comp , String family , int style , int size ) <br CLEAR="ALL"/>Font setFont ( Component comp , int size ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#setNameCompletion">setNameCompletion</a></td><td> void setNameCompletion ( boolean bool ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#setNameSpace">setNameSpace</a></td><td> setNameSpace ( ns ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#setStrictJava">setStrictJava</a></td><td> void setStrictJava ( boolean val ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#show">show</a></td><td> show ( ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#source">source</a></td><td> Object source ( String filename ) <br CLEAR="ALL"/>Object source ( URL url ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#sourceRelative">sourceRelative</a></td><td> sourceRelative ( String file ) </td></tr>
+<tr><td><a href="beanshell/bshcommands.html#unset">unset</a></td><td> void unset ( String name ) </td></tr>
+</table>
+<h2 id='math'>Math, statistical and utility functions</h2>
+<table>
+<tr><td><a href='beast/base/all.html'>all</a></td><td> Are All Values True?</td></tr>
+<tr><td><a href='beast/base/any.html'>any</a></td><td> Are Some Values True?</td></tr>
+<tr><td><a href='beast/base/Extremes.html'>pmin</a></td><td> Maxima and Minima</td></tr>
+<tr><td><a href='beast/base/Extremes.html'>pmax</a></td><td> Maxima and Minima</td></tr>
+<tr><td><a href='beast/base/Round.html'>round</a></td><td> Rounding of Numbers</td></tr>
+<tr><td><a href='beast/base/Round.html'>signif</a></td><td> Rounding of Numbers</td></tr>
+<tr><td><a href='beast/base/Trig.html'>atan</a></td><td> Trigonometric Functions</td></tr>
+<tr><td><a href='beast/base/Log.html'>log</a></td><td> Logarithms and Exponentials</td></tr>
+<tr><td><a href='beast/base/Log.html'>log10</a></td><td> Logarithms and Exponentials</td></tr>
+<tr><td><a href='beast/base/Log.html'>log2</a></td><td> Logarithms and Exponentials</td></tr>
+<tr><td><a href='beast/base/MathFun.html'>abs</a></td><td> Miscellaneous Mathematical Functions</td></tr>
+<tr><td><a href='beast/base/Round.html'>floor</a></td><td> Rounding of Numbers</td></tr>
+<tr><td><a href='beast/base/Round.html'>ceiling</a></td><td> Rounding of Numbers</td></tr>
+<tr><td><a href='beast/base/MathFun.html'>sqrt</a></td><td> Miscellaneous Mathematical Functions</td></tr>
+<tr><td><a href='beast/base/sign.html'>sign</a></td><td> Sign Function</td></tr>
+<tr><td><a href='beast/base/Round.html'>trunc</a></td><td> Rounding of Numbers</td></tr>
+<tr><td><a href='beast/base/Log.html'>exp</a></td><td> Logarithms and Exponentials</td></tr>
+<tr><td><a href='beast/base/Log.html'>expm1</a></td><td> Logarithms and Exponentials</td></tr>
+<tr><td><a href='beast/base/Log.html'>log1p</a></td><td> Logarithms and Exponentials</td></tr>
+<tr><td><a href='beast/base/Trig.html'>cos</a></td><td> Trigonometric Functions</td></tr>
+<tr><td><a href='beast/base/Trig.html'>sin</a></td><td> Trigonometric Functions</td></tr>
+<tr><td><a href='beast/base/Trig.html'>tan</a></td><td> Trigonometric Functions</td></tr>
+<tr><td><a href='beast/base/Trig.html'>acos</a></td><td> Trigonometric Functions</td></tr>
+<tr><td><a href='beast/base/Trig.html'>asin</a></td><td> Trigonometric Functions</td></tr>
+<tr><td><a href='beast/base/Hyperbolic.html'>cosh</a></td><td> Hyperbolic Functions</td></tr>
+<tr><td><a href='beast/base/Hyperbolic.html'>sinh</a></td><td> Hyperbolic Functions</td></tr>
+<tr><td><a href='beast/base/Hyperbolic.html'>tanh</a></td><td> Hyperbolic Functions</td></tr>
+<tr><td><a href='beast/base/Hyperbolic.html'>acosh</a></td><td> Hyperbolic Functions</td></tr>
+<tr><td><a href='beast/base/Hyperbolic.html'>asinh</a></td><td> Hyperbolic Functions</td></tr>
+<tr><td><a href='beast/base/Hyperbolic.html'>atanh</a></td><td> Hyperbolic Functions</td></tr>
+<tr><td><a href='beast/base/Special.html'>lgamma</a></td><td> Special Functions of Mathematics</td></tr>
+<tr><td><a href='beast/base/Special.html'>gamma</a></td><td> Special Functions of Mathematics</td></tr>
+<tr><td><a href='beast/base/Special.html'>digamma</a></td><td> Special Functions of Mathematics</td></tr>
+<tr><td><a href='beast/base/Special.html'>trigamma</a></td><td> Special Functions of Mathematics</td></tr>
+<tr><td><a href='beast/base/Trig.html'>atan2</a></td><td> Trigonometric Functions</td></tr>
+<tr><td><a href='beast/base/Special.html'>lbeta</a></td><td> Special Functions of Mathematics</td></tr>
+<tr><td><a href='beast/base/Special.html'>beta</a></td><td> Special Functions of Mathematics</td></tr>
+<tr><td><a href='beast/base/Special.html'>lchoose</a></td><td> Special Functions of Mathematics</td></tr>
+<tr><td><a href='beast/base/Special.html'>choose</a></td><td> Special Functions of Mathematics</td></tr>
+<tr><td><a href='beast/stats/Chisquare.html) The (non-central'>dchisq</a></td><td> Chi-Squared Distribution</td></tr>
+<tr><td><a href='beast/stats/Chisquare.html) The (non-central'>pchisq</a></td><td> Chi-Squared Distribution</td></tr>
+<tr><td><a href='beast/stats/Chisquare.html) The (non-central'>qchisq</a></td><td> Chi-Squared Distribution</td></tr>
+<tr><td><a href='beast/stats/Exponential.html'>dexp</a></td><td> The Exponential Distribution</td></tr>
+<tr><td><a href='beast/stats/Exponential.html'>pexp</a></td><td> The Exponential Distribution</td></tr>
+<tr><td><a href='beast/stats/Exponential.html'>qexp</a></td><td> The Exponential Distribution</td></tr>
+<tr><td><a href='beast/stats/Geometric.html'>dgeom</a></td><td> The Geometric Distribution</td></tr>
+<tr><td><a href='beast/stats/Geometric.html'>pgeom</a></td><td> The Geometric Distribution</td></tr>
+<tr><td><a href='beast/stats/Geometric.html'>qgeom</a></td><td> The Geometric Distribution</td></tr>
+<tr><td><a href='beast/stats/Poisson.html'>dpois</a></td><td> The Poisson Distribution</td></tr>
+<tr><td><a href='beast/stats/Poisson.html'>ppois</a></td><td> The Poisson Distribution</td></tr>
+<tr><td><a href='beast/stats/Poisson.html'>qpois</a></td><td> The Poisson Distribution</td></tr>
+<tr><td><a href='beast/stats/TDist.html'>dt</a></td><td> The Student t Distribution</td></tr>
+<tr><td><a href='beast/stats/TDist.html'>pt</a></td><td> The Student t Distribution</td></tr>
+<tr><td><a href='beast/stats/TDist.html'>qt</a></td><td> The Student t Distribution</td></tr>
+<tr><td><a href='beast/stats/SignRank.html'>dsignrank</a></td><td> Distribution of the Wilcoxon Signed Rank Statistic</td></tr>
+<tr><td><a href='beast/stats/SignRank.html'>psignrank</a></td><td> Distribution of the Wilcoxon Signed Rank Statistic</td></tr>
+<tr><td><a href='beast/stats/SignRank.html'>qsignrank</a></td><td> Distribution of the Wilcoxon Signed Rank Statistic</td></tr>
+<tr><td><a href='beast/stats/Beta.html'>dbeta</a></td><td> The Beta Distribution</td></tr>
+<tr><td><a href='beast/stats/Beta.html'>pbeta</a></td><td> The Beta Distribution</td></tr>
+<tr><td><a href='beast/stats/Beta.html'>qbeta</a></td><td> The Beta Distribution</td></tr>
+<tr><td><a href='beast/stats/Binomial.html'>dbinom</a></td><td> The Binomial Distribution</td></tr>
+<tr><td><a href='beast/stats/Binomial.html'>pbinom</a></td><td> The Binomial Distribution</td></tr>
+<tr><td><a href='beast/stats/Binomial.html'>qbinom</a></td><td> The Binomial Distribution</td></tr>
+<tr><td><a href='beast/stats/Cauchy.html'>dcauchy</a></td><td> The Cauchy Distribution</td></tr>
+<tr><td><a href='beast/stats/Cauchy.html'>pcauchy</a></td><td> The Cauchy Distribution</td></tr>
+<tr><td><a href='beast/stats/Cauchy.html'>qcauchy</a></td><td> The Cauchy Distribution</td></tr>
+<tr><td><a href='beast/stats/Fdist.html'>df</a></td><td> The F Distribution</td></tr>
+<tr><td><a href='beast/stats/Fdist.html'>pf</a></td><td> The F Distribution</td></tr>
+<tr><td><a href='beast/stats/Fdist.html'>qf</a></td><td> The F Distribution</td></tr>
+<tr><td><a href='beast/stats/GammaDist.html'>dgamma</a></td><td> The Gamma Distribution</td></tr>
+<tr><td><a href='beast/stats/GammaDist.html'>pgamma</a></td><td> The Gamma Distribution</td></tr>
+<tr><td><a href='beast/stats/GammaDist.html'>qgamma</a></td><td> The Gamma Distribution</td></tr>
+<tr><td><a href='beast/stats/Lognormal.html'>dlnorm</a></td><td> The Log Normal Distribution</td></tr>
+<tr><td><a href='beast/stats/Lognormal.html'>plnorm</a></td><td> The Log Normal Distribution</td></tr>
+<tr><td><a href='beast/stats/Lognormal.html'>qlnorm</a></td><td> The Log Normal Distribution</td></tr>
+<tr><td><a href='beast/stats/Logistic.html'>dlogis</a></td><td> The Logistic Distribution</td></tr>
+<tr><td><a href='beast/stats/Logistic.html'>plogis</a></td><td> The Logistic Distribution</td></tr>
+<tr><td><a href='beast/stats/Logistic.html'>qlogis</a></td><td> The Logistic Distribution</td></tr>
+<tr><td><a href='beast/stats/NegBinomial.html'>dnbinom</a></td><td> The Negative Binomial Distribution</td></tr>
+<tr><td><a href='beast/stats/NegBinomial.html'>pnbinom</a></td><td> The Negative Binomial Distribution</td></tr>
+<tr><td><a href='beast/stats/NegBinomial.html'>qnbinom</a></td><td> The Negative Binomial Distribution</td></tr>
+<tr><td><a href='beast/stats/Normal.html'>dnorm</a></td><td> The Normal Distribution</td></tr>
+<tr><td><a href='beast/stats/Normal.html'>pnorm</a></td><td> The Normal Distribution</td></tr>
+<tr><td><a href='beast/stats/Normal.html'>qnorm</a></td><td> The Normal Distribution</td></tr>
+<tr><td><a href='beast/stats/Uniform.html'>dunif</a></td><td> The Uniform Distribution</td></tr>
+<tr><td><a href='beast/stats/Uniform.html'>punif</a></td><td> The Uniform Distribution</td></tr>
+<tr><td><a href='beast/stats/Uniform.html'>qunif</a></td><td> The Uniform Distribution</td></tr>
+<tr><td><a href='beast/stats/Weibull.html'>dweibull</a></td><td> The Weibull Distribution</td></tr>
+<tr><td><a href='beast/stats/Weibull.html'>pweibull</a></td><td> The Weibull Distribution</td></tr>
+<tr><td><a href='beast/stats/Weibull.html'>qweibull</a></td><td> The Weibull Distribution</td></tr>
+<tr><td><a href='beast/stats/Wilcoxon.html'>dwilcox</a></td><td> Distribution of the Wilcoxon Rank Sum Statistic</td></tr>
+<tr><td><a href='beast/stats/Wilcoxon.html'>pwilcox</a></td><td> Distribution of the Wilcoxon Rank Sum Statistic</td></tr>
+<tr><td><a href='beast/stats/Wilcoxon.html'>qwilcox</a></td><td> Distribution of the Wilcoxon Rank Sum Statistic</td></tr>
+<tr><td><a href='beast/stats/Hypergeometric.html'>dhyper</a></td><td> The Hypergeometric Distribution</td></tr>
+<tr><td><a href='beast/stats/Hypergeometric.html'>phyper</a></td><td> The Hypergeometric Distribution</td></tr>
+<tr><td><a href='beast/stats/Hypergeometric.html'>qhyper</a></td><td> The Hypergeometric Distribution</td></tr>
+<tr><td><a href='beast/stats/Tukey.html'>ptukey</a></td><td> The Studentized Range Distribution</td></tr>
+<tr><td><a href='beast/stats/Tukey.html'>qtukey</a></td><td> The Studentized Range Distribution</td></tr>
+<tr><td><a href='beast/stats/Chisquare.html) The (non-central'>rchisq</a></td><td> Chi-Squared Distribution</td></tr>
+<tr><td><a href='beast/stats/Exponential.html'>rexp</a></td><td> The Exponential Distribution</td></tr>
+<tr><td><a href='beast/stats/Geometric.html'>rgeom</a></td><td> The Geometric Distribution</td></tr>
+<tr><td><a href='beast/stats/Poisson.html'>rpois</a></td><td> The Poisson Distribution</td></tr>
+<tr><td><a href='beast/stats/TDist.html'>rt</a></td><td> The Student t Distribution</td></tr>
+<tr><td><a href='beast/stats/SignRank.html'>rsignrank</a></td><td> Distribution of the Wilcoxon Signed Rank Statistic</td></tr>
+<tr><td><a href='beast/stats/Beta.html'>rbeta</a></td><td> The Beta Distribution</td></tr>
+<tr><td><a href='beast/stats/Binomial.html'>rbinom</a></td><td> The Binomial Distribution</td></tr>
+<tr><td><a href='beast/stats/Cauchy.html'>rcauchy</a></td><td> The Cauchy Distribution</td></tr>
+<tr><td><a href='beast/stats/Fdist.html'>rf</a></td><td> The F Distribution</td></tr>
+<tr><td><a href='beast/stats/GammaDist.html'>rgamma</a></td><td> The Gamma Distribution</td></tr>
+<tr><td><a href='beast/stats/Lognormal.html'>rlnorm</a></td><td> The Log Normal Distribution</td></tr>
+<tr><td><a href='beast/stats/Logistic.html'>rlogis</a></td><td> The Logistic Distribution</td></tr>
+<tr><td><a href='beast/stats/NegBinomial.html'>rnbinom</a></td><td> The Negative Binomial Distribution</td></tr>
+<tr><td><a href='beast/stats/Normal.html'>rnorm</a></td><td> The Normal Distribution</td></tr>
+<tr><td><a href='beast/stats/Uniform.html'>runif</a></td><td> The Uniform Distribution</td></tr>
+<tr><td><a href='beast/stats/Weibull.html'>rweibull</a></td><td> The Weibull Distribution</td></tr>
+<tr><td><a href='beast/stats/Wilcoxon.html'>rwilcox</a></td><td> Distribution of the Wilcoxon Rank Sum Statistic</td></tr>
+<tr><td><a href='beast/stats/Hypergeometric.html'>rhyper</a></td><td> The Hypergeometric Distribution</td></tr>
+<tr><td><a href='beast/stats/Multinom.html'>rmultinom</a></td><td> The Multinomial Distribution</td></tr>
+<tr><td><a href='beast/base/sample.html'>sample</a></td><td> Random Samples and Permutations</td></tr>
+<tr><td><a href='beast/base/Random.html'>RNGkind</a></td><td> Random Number Generation</td></tr>
+<tr><td><a href='beast/base/sum.html'>sum</a></td><td> Sum of Vector Elements</td></tr>
+<tr><td><a href='beast/base/mean.html'>mean</a></td><td> Arithmetic Mean</td></tr>
+<tr><td><a href='beast/base/Extremes.html'>min</a></td><td> Maxima and Minima</td></tr>
+<tr><td><a href='beast/base/Extremes.html'>max</a></td><td> Maxima and Minima</td></tr>
+<tr><td><a href='beast/base/prod.html'>prod</a></td><td> Product of Vector Elements</td></tr>
+<tr><td><a href='beast/base/range.html'>range</a></td><td> Range of Values</td></tr>
+<tr><td><a href='beast/base/cumsum.html'>cumsum</a></td><td> Cumulative Sums, Products, and Extremes</td></tr>
+<tr><td><a href='beast/base/cumsum.html'>cumprod</a></td><td> Cumulative Sums, Products, and Extremes</td></tr>
+<tr><td><a href='beast/base/cumsum.html'>cummax</a></td><td> Cumulative Sums, Products, and Extremes</td></tr>
+<tr><td><a href='beast/base/cumsum.html'>cummin</a></td><td> Cumulative Sums, Products, and Extremes</td></tr>
+</table>
+
+</body>
+</html>

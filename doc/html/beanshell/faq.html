@@ -5,10 +5,8 @@
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body bgcolor="#ffffff">
-<h1>BEASTShell FAQ</h1>by Pat Niemeyer <a href='mailto:pat@pat.net'>pat@pat.net</a></p>
+<h1>BEASTShell FAQ</h1>by Pat Niemeyer <a href='mailto:pat@pat.net'>pat@pat.net</a>, and Daniel Leuck(dan@econtix.com)</p>
 
-	Authors:
-	<br/>Pat Niemeyer(pat@pat.net)<br/>Daniel Leuck(dan@econtix.com)<br/>
 <p/>
 <ul>
 <li>
@@ -20,11 +18,6 @@
 <a href="#2">
 		How does BEASTShell relate to other Java scripting languages like
 		JavaScript, Jacl, and JPython.
-		</a>
-</li>
-<li>
-<a href="#3">
-		What is BEASTShell's size?
 		</a>
 </li>
 <li>
@@ -56,22 +49,6 @@
 		</a>
 </li>
 <li>
-<a href="#9">
-		How can I use JConsole as an output terminal in my application?
-		</a>
-</li>
-<li>
-<a href="#10">
-		What's wrong with running the interpreter on the command line under
-		Solaris?
-		</a>
-</li>
-<li>
-<a href="#11">
-		What happened to the AWT based version of the GUI Console.
-		</a>
-</li>
-<li>
 <a href="#12">
 		How does bsh deal with multi-line statements on the command line?
 		</a>
@@ -95,12 +72,12 @@
 		Why is it called "BEASTShell"?
 		</h2>
 </a>
-		It's partially a pun on "bash" (the GNU "Bourne again" shell)
+		BEASTShell is based on BeanShell, which got it's name 
+		partially as a pun on "bash" (the GNU "Bourne again" shell)
 		"bash"-&gt;"bsh" and then there's the obvious beans reference.
 		<br/>
-		In the future I want to add more functionality for working with
-		JavaBeans (editors, etc.) and make BEASTShell more accessible for use
-		*as* a JavaBean. 
+		BEASTShell is an adaption of BeanShell for easily creating 
+		BEASTObjects, so the name seemed appropriate.
 		<hr/>
 	<a name="2">
 <h2>
@@ -135,17 +112,6 @@
 		scripting extension language. The goal then is to keep the core of bsh
 		as small as possible. The core of BEASTShell is currently about 135K and
 		may actually get smaller in the future.
-		<hr/>
-	<a name="3">
-<h2>
-		What is BEASTShell's size?
-		</h2>
-</a>
-		Right now the core beanshell interpreter (without the misc shell tools)
-		is approximately 135K in the compressed JAR file (Bsh is about 175K with
-		all of its utilities). About 75-80% of that is the parser, which is
-		generated using Sun's JavaCC tool. It is possible that a more advanced
-		parser generator could reduce this size in the future. 
 		<hr/>
 	<a name="4">
 <h2>
@@ -221,68 +187,6 @@
 		remain slower than Java.
 		<hr/>	
 
-
-	<a name="9">
-<h2>
-		How can I use JConsole as an output terminal in my application?
-		</h2>
-</a>
-		JConsole is a Swing component.  You can use it as you would any other
-		swing component.  For example:
-		<br/>
-		<code>
-		JConsole console = new JConsole();
-		myPanel.add(console);
-		</code>
-		<br/>
-		If you want to connect it to an interpreter simply add
-		<br/>
-		<code>
-		Interpreter interpreter = new Interpreter( console );
-  		interpreter.run();
-		</code>
-		<br/>
-		JConsole can also be connected to the interpreter directly with
-		Interpreter setConsole().  JConsole can supply a PrintWriter through
-		getOut() and has a full suite of direct print() methods.  When
-		interacting with the console from outside the event handling thread
-		employ the normal Swing-related thread safety facilities such as
-		SwingUtilities.invokeNow() and invokeLater().		
-		<p/>
-		Consult the user manual for complete details.
-		<hr/>
-	<a name="10">
-<h2>
-		What's wrong with running the interpreter on the command line under
-		Solaris?
-		</h2>
-</a>
-		Very old versions of Java for Solaris that use "green threads"
-		(non native threads) have a problem. Reading input from stdin
-		(System.in) blocks all other threads. <em>Note: this does *not* affect
-		the graphical bsh console window under Solaris or any OS.</em> This is a
-		well known problem relating to the implementation of user level threads.
-		You should be fine under Solaris using any native threads
-		implementation. 
-		<br/>
-		The problem is documented in a
-		<a href="http://metadigest.xcf.berkeley.edu/archive/advanced-java/9701/0811.html">
-		mail thread</a> from some time ago.
-		<br/>
-		Here's <a href="faqblockingio.html">a local copy</a> of one note in case
-		that disappears.
-		<hr/>	
-	<a name="11">
-<h2>
-		What happened to the AWT based version of the GUI Console.
-		</h2>
-</a>
-		The AWT based Console was never very good. Since Swing is pure Java and
-		is available for jdk1.1.x there should be no reason to use AWT any
-		longer. However the old Console is still packaged for use in the Applet
-		based remote server mode and BEASTShell still looks for it if nothing
-		else is available.  
-		<hr/>
 	<a name="12">
 <h2>
 		How does bsh deal with multi-line statements on the command line?
@@ -319,7 +223,7 @@
 		</h2>
 </a>
 		Not currently but this is planned for a future release.  
-		See "The BEASTShell Parser" in the user manual for related information.
+		See "The <a href='parser.html'>BEASTShell Parser</a>" in the user manual for related information.
 		<hr/>
 	<a name="14">
 <h2>

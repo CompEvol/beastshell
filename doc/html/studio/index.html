@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
-<h3>BEAST Studio -- a basic IDE for BEASTShell</h3>
+<h1>BEAST Studio -- a basic IDE for BEASTShell</h1>
 
 <h3>The panels</h3>
 <ul>
@@ -23,5 +23,35 @@
 <tr><td>Ctrl-F</td><td> for search in the help and editor pane as well as filtering the history</td></tr>
 </table>
 
+<h2>Accessing BEASTStudio from BEASTShell</h2>
+
+To print to the console, use the <tt>print</tt> command, or <tt>bsh.console.print()</tt>.
+The latter can be used to set the font as well, e.g
+<pre>
+bsh.console.print("Hello world", new Font("SansSerif", Font.BOLD, 12));
+</pre>
+
+<tt> this.interpreter.studio</tt> is the BEASTStudio object, which can be used
+to add panels to the chart-panel, or open web-pages, or display information in
+HTML format in the help panel.
+
+<pre>
+// set text in Help panel to "hello world"
+this.interpreter.studio.helpPane.setText("hello world");
+
+// display beast2.org in help panel
+this.interpreter.studio.helpPane.setURL(new URL("http://beast2.org"));
+</pre>
+
+To add a component to the chart-panel, call addChart on the plotPane.
+The following adds a button to the plotPane, but you can imagine adding
+some nice graphics to the plotPane. 
+<pre>
+button = new JButton( "My Button" );
+this.interpreter.studio.plotPane.addChart(button);
+</pre>
+The plotPane allows export to bitmap or PDF, so it allows you to draw some 
+things, then save them to file. Also, the plotPane allows browsing through 
+the components that were added.
 </body>
 </html>
