@@ -525,10 +525,16 @@ public class JConsole extends JScrollPane
 	{
 		if (line.startsWith("??")) {
 			line = line.trim();
+			if (line.endsWith(";")) {
+				line = line.substring(0, line.length()-1);
+			}
 			line = "javap(" + line.substring(2) +");\n";
 		}
 		if (line.startsWith("?")) {
 			line = line.trim();
+			if (line.endsWith(";")) {
+				line = line.substring(0, line.length()-1);
+			}
 			line = "help(\"" + line.substring(1) +"\");\n";
 		}
 		// Patch to handle Unicode characters

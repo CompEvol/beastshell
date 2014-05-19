@@ -253,7 +253,7 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener, 
 			
 		}
 	
-		private void doSearchReplace() {
+		void doSearchReplace() {
 			SearchDialog dlg = new SearchDialog(this, getCurrentTextPane());
 			dlg.setVisible(true);
 			//dlg.dispose();

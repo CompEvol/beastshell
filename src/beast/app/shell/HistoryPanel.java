@@ -38,7 +38,7 @@ import java.awt.event.KeyListener;
 public class HistoryPanel extends JPanel implements KeyListener {
 	private static final long serialVersionUID = 1L;
 
-	private JTextField textSearchField;
+	JTextField searchField;
 	RSyntaxTextArea /*JTextArea*/ textPane;
 	Image image;
 	BEASTStudio studio = null;
@@ -84,7 +84,7 @@ public class HistoryPanel extends JPanel implements KeyListener {
 		toolBar.add(btnNewButton_1);
 		
 		image = new ImageIcon(HistoryPanel.class.getResource("/beast/app/shell/icons/search.png")).getImage();
-		textSearchField = new JTextField() {
+		searchField = new JTextField() {
 	            protected void paintComponent(Graphics g) {  
 	                super.paintComponent(g);  
 	                int y = (getHeight() - image.getHeight(null))/2;
@@ -92,10 +92,10 @@ public class HistoryPanel extends JPanel implements KeyListener {
 	                g.drawImage(image, x, y, this);
 	            }  
 	        };  
-		textSearchField.setToolTipText("filter history by matching expression");
-		toolBar.add(textSearchField);
-		textSearchField.setColumns(8);
-		textSearchField.getDocument().addDocumentListener(new DocumentListener() {
+		searchField.setToolTipText("filter history by matching expression");
+		toolBar.add(searchField);
+		searchField.setColumns(8);
+		searchField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void removeUpdate(DocumentEvent e) {
                 filter();
@@ -115,7 +115,7 @@ public class HistoryPanel extends JPanel implements KeyListener {
 		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textSearchField.setText("");
+				searchField.setText("");
 			}
 		});
 		btnNewButton_2.setToolTipText("clear filter history");
@@ -184,7 +184,7 @@ public class HistoryPanel extends JPanel implements KeyListener {
 	}
 	
 	void filter() {
-		String filter = textSearchField.getText();
+		String filter = searchField.getText();
 		if (filter.equals("")) {
 	        StringBuffer buf = new StringBuffer();
 	        for (String s : history) {
@@ -217,7 +217,7 @@ public class HistoryPanel extends JPanel implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.isControlDown() && e.getKeyCode() == 70) {
-			textSearchField.requestFocus();
+			searchField.requestFocus();
 		}
 	}
 }

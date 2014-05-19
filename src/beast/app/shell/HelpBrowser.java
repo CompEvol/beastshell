@@ -75,7 +75,7 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
     JButton btnPrev;
     JButton btnNext;
     JButton btnHome;
-	private JTextField searchField;
+	JTextField searchField;
 	Image image;
     
     private final JFXPanel jfxPanel = new JFXPanel();

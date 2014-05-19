@@ -5,24 +5,19 @@ package beast.app.shell;
 import jam.framework.DocumentFrame;
 
 import java.awt.BorderLayout;
-import java.awt.Cursor;
+import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.List;
 
-import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -33,7 +28,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import beast.app.BEASTVersion;
 import beast.app.draw.MyAction;
 import beast.app.util.Utils;
 import bsh.BshClassManager;
@@ -236,7 +230,7 @@ public class BEASTStudio extends JSplitPane {
         };
     }; // class ActionSaveAs
 	
-	MyAction a_quit = new MyAction("Exit", "Exit Program", "exit", KeyEvent.VK_F4) {
+    MyAction a_quit = new MyAction("Exit", "Exit Program", "exit", KeyEvent.VK_F4) {
 		private static final long serialVersionUID = 1L;
 
 		public void actionPerformed(ActionEvent ae) {
@@ -247,6 +241,54 @@ public class BEASTStudio extends JSplitPane {
             System.exit(0);
         }
     }; // class ActionQuit
+
+	Action a_find =  new MyAction("Find", "Find in text", "find", KeyEvent.VK_F) {
+        private static final long serialVersionUID = 1;
+
+        public void actionPerformed(ActionEvent ae) {
+        	Component focusOwner = frame.getFocusOwner();
+        	while (focusOwner != null) {
+	        	if (editorPanel == focusOwner) {
+	        		editorPanel.searchField.requestFocus();
+	        	} else if (helpPane == focusOwner) {
+	        		helpPane.searchField.requestFocus();
+	        	} else if (historyPane == focusOwner) {
+	        		historyPane.searchField.requestFocus();	
+	        	}
+        		focusOwner = focusOwner.getParent();
+        	}
+        }
+        
+        public boolean isEnabled() {
+        	Component focusOwner = frame.getFocusOwner();
+        	while (focusOwner != null) {
+	        	if (editorPanel == focusOwner || helpPane == focusOwner || historyPane == focusOwner) {
+	        		return true;	
+	        	}
+        		focusOwner = focusOwner.getParent();
+        	}
+        	return false;
+        };
+    };
+
+	Action a_findReplace=  new MyAction("Find/Replace", "Find and replace text", "findreplace", KeyEvent.VK_H) {
+        private static final long serialVersionUID = 1;
+
+        public void actionPerformed(ActionEvent ae) {
+       		editorPanel.doSearchReplace();
+        }
+
+        public boolean isEnabled() {
+        	Component focusOwner = frame.getFocusOwner();
+        	while (focusOwner != null) {
+	        	if (editorPanel == focusOwner) {
+	        		return true;	
+	        	}
+        		focusOwner = focusOwner.getParent();
+        	}
+        	return false;
+        };
+    };
 
     MyAction a_about = new MyAction("About", "Help about", "about", -1) {
         private static final long serialVersionUID = -1;
@@ -280,11 +322,12 @@ public class BEASTStudio extends JSplitPane {
             fileMenu.add(a_quit);
         }
 
-//        JMenu modeMenu = new JMenu("Mode");
-//        menuBar.add(modeMenu);
-//        modeMenu.setMnemonic('M');
-//
-//
+        JMenu editMenu = new JMenu("Edit");
+        menuBar.add(editMenu);
+        editMenu.setMnemonic('E');
+        editMenu.add(a_find);
+        editMenu.add(a_findReplace);
+
 //        JMenu viewMenu = new JMenu("View");
 //        menuBar.add(viewMenu);
 //        viewMenu.setMnemonic('V');
