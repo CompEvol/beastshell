@@ -5,9 +5,8 @@
 <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body bgcolor="ffffff"><table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="intro.html#Introduction"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="syntax.html#Basic_Syntax"><img src="../images/forwardbutton.gif"/><br/>Next
-			</a></td></tr></table><h1>Quick Start</h1>by Pat Niemeyer <a href='mailto:pat@pat.net'>pat@pat.net</a></p>
-
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>Contents</a></td><td align="center"><a href="syntax.html#Basic_Syntax"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td></tr></table><h1>Quick Start</h1>
 
 Welcome to BEASTShell.
 This is a crash course to get you going.  We'll leave out many
@@ -15,38 +14,7 @@ important options and details.  Please see the rest of the user's guide
 for more information.
 <p CLEAR="ALL"/>
 
-<h2><a name="Download_and_Run_BEASTShell">
-Download and Run BEASTShell
-</a></h2>
-
-Download the latest JAR file from http://www.beanshell.org
-and start up BEASTShell either in the graphical desktop mode or on 
-the command line.
-<p CLEAR="ALL"/>
-
-If you just want to start playing around you may be able to launch the 
-BEASTShell desktop by simply double clicking on the BEASTShell JAR file.  More 
-generally however you'll want to add the jar to your classpath so that you 
-can work with your own classes and applications easily.
-<p CLEAR="ALL"/>
-
-To do this you can either drop the BEASTShell JAR file into your Java 
-extensions folder or add it to your classpath.  (Important: If you put 
-BEASTShell in the extensions folder and wish to use it with BSF applications 
-like Jakarta Ant you must install the bsf.jar in the same location).
-
-<p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
-To install as an extension place the bsh.jar file in your 
-$JAVA_HOME/jre/lib/ext folder.  (OSX users: place the bsh.jar in 
-/Library/Java/Extensions or ~/Library/Java/Extensions for individual users.)
-
-Or add BEASTShell to your classpath like this:
-
-unix:     export CLASSPATH=$CLASSPATH:bsh-xx.jar
-windows:  set classpath=%classpath%;bsh-xx.jar
-</pre></td></tr></table></center><p/>
-
-<p/><center><table cellpadding="5" border="1" width="100%"><tr><td><strong>Tip:</strong><br CLEAR="ALL"/>
+<table cellpadding="5" border="1" width="100%"><tr><td><strong>Tip:</strong><br CLEAR="ALL"/>
 You can modify the classpath from within BEASTShell using the addClassPath()
 and setClassPath() commands.
 </td></tr></table></center><p/>
@@ -54,42 +22,17 @@ and setClassPath() commands.
 You can then run BEASTShell in either a GUI or command line mode:
 
 <p/><center><table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
-    java bsh.Console       // run the graphical desktop
+    java beast.app.shell.BEASTStudio       // run through BEASTStudio
 or
-    java bsh.Interpreter   // run as text-only on the command line
+    java bsh.Interpreter                   // run as text-only on the command line
 or
     java bsh.Interpreter filename [ args ] // run script file
 </pre></td></tr></table></center><p/>
 <p CLEAR="ALL"/>
 
 It's also possible to call BEASTShell from within your own Java applications,
-to reach it in a remote server mode for debugging, to use it as a servlet, 
-or even in an applet.  See "BEASTShell Modes of Operation" for more details.
-
-<h2><a name="The_BEASTShell_GUI">
-The BEASTShell GUI
-</a></h2>
-
-The BEASTShell GUI desktop is meant to allow some experimentation with the
-features of BEASTShell.  It is not intended to be a replacement for a full
-featured IDE.  Please check out the 
-<a href="http://www.jedit.org/">jEdit editor</a> for an example of a full
-featured development environment based in part on BEASTShell scripting
-capabilities.
-<p CLEAR="ALL"/>
-
-Upon starting the BEASTShell in GUI mode a console window will open.  
-By right clicking on the desktop background you can open additional 
-console windows and other tools such as a simple class browser.
-<p CLEAR="ALL"/>
-
-Each console window runs a separate instance of the BEASTShell interpreter.
-The graphical console supports basic command history, line editing,
-cut and paste, and even class and variable name completion.  From the console 
-you can open a simple editor window.  In it you can write 
-scripts and use the 'eval' option to evaluate the text in the attached 
-console's workspace or a new workspace.
-<p CLEAR="ALL"/>
+to reach it in a remote server mode for debugging, to use it as a servlet.  
+See "BEASTShell Modes of Operation" for more details.
 
 <h2><a name="Java_Statements_and_Expressions">
 Java Statements and Expressions
@@ -127,6 +70,51 @@ frame.pack();
 frame.setVisible(true);
 </pre></td></tr></table></center><p/>
 <p CLEAR="ALL"/>
+
+<h2><a name="BEASTObject">Creating BEASTObjects</a></h2>
+
+One of the goals of BEASTShell is to make programming with BEASTObjects easier.
+To create a BEASTObject in Java requires calling the constructor of the object, initialising 
+each of its inputs then calling <tt>initAndValidate()</tt>. BEASTShell does these three
+steps in one single statement, for example,
+
+<table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
+import beast.evolution.alignment.*;
+human = new Sequence(taxon="human", value="?"),
+</pre></td></tr></table></center><p/>
+
+is the BEASTShell equivalent of 
+
+<table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
+import beast.evolution.alignment.*;
+
+Sequence human = new Sequence();
+human.taxonInput.setValue("human", human);
+human.dataInput.setValue("?", human);
+human.initAndValidate();
+</pre></td></tr></table></center><p/>
+
+Note that the name-value pairs in creating the BEASTObject -- these are independent
+of the order. If you leave them out, the order of inputs is used (you can check by 
+showing the BEAST documentation with <tt>?Sequence</tt>), which is more error prone
+since it can change in the future.
+
+Value do not necessarily need to be primitive values, you can use more complex objects
+as well. For example, a two sequence alignment can be created using
+
+<table border="1" cellpadding="5" width="100%"><tr><td bgcolor="#dfdfdc"><pre>
+human = new Sequence(taxon="human", value="?"),
+chimp = new Sequence(taxon="chimp", value="?"),
+data = new Alignment(sequence=human, sequence=chimp);
+</pre></td></tr></table></center><p/>
+
+<h2><a name="Help">Getting Help</a></h2>
+
+The parser recognises lines starting with question marks as cries for help.
+A single question mark followed by an expression brings up help on the
+expression (in BEASTStudio this is shown in the help panel). A double question mark
+followed by an object or class shows public fields and methods for that object or
+class (again, in the help panel when running BEASTStudio).
 
 <h2><a name="Useful_BEASTShell_Commands">
 Useful BEASTShell Commands
@@ -316,5 +304,5 @@ manual for more details.  Please consult the mailing list archives for
 more useful information.  http://www.beanshell.org/
 
 <table cellspacing="10"><tr><td align="center"><a href="../index.html"><img src="../images/homebutton.gif"/><br/>Home</a></td><td><a href="intro.html#Introduction"><img src="../images/backbutton.gif"/><br/>Back
-			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>BEASTShell</a></td><td align="center"><a href="syntax.html#Basic_Syntax"><img src="../images/forwardbutton.gif"/><br/>Next
+			</a></td><td align="center"><a href="index.html"><img src="../images/homebutton2.gif"/><br/>Contents</a></td><td align="center"><a href="syntax.html#Basic_Syntax"><img src="../images/forwardbutton.gif"/><br/>Next
 			</a></td></tr></table></body></html>
