@@ -17,7 +17,7 @@ classBrowser()
 		bsh.system.desktop.classbrowser = browser;
 	} else {
 		this.frame = new javax.swing.JFrame("BeanShell Class Browser");
-		frame.iconImage=bsh.system.icons.eye.image;
+		//frame.iconImage=bsh.system.icons.eye.image;
 	}
 		
 	// Ignore unhandled method invocations from listeners.

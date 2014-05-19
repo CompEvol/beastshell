@@ -259,16 +259,16 @@ public class BEASTStudio extends JSplitPane {
         	}
         }
         
-        public boolean isEnabled() {
-        	Component focusOwner = frame.getFocusOwner();
-        	while (focusOwner != null) {
-	        	if (editorPanel == focusOwner || helpPane == focusOwner || historyPane == focusOwner) {
-	        		return true;	
-	        	}
-        		focusOwner = focusOwner.getParent();
-        	}
-        	return false;
-        };
+//        public boolean isEnabled() {
+//        	Component focusOwner = frame.getFocusOwner();
+//        	while (focusOwner != null) {
+//	        	if (editorPanel == focusOwner || helpPane == focusOwner || historyPane == focusOwner) {
+//	        		return true;	
+//	        	}
+//        		focusOwner = focusOwner.getParent();
+//        	}
+//        	return false;
+//        };
     };
 
 	Action a_findReplace=  new MyAction("Find/Replace", "Find and replace text", "findreplace", KeyEvent.VK_H) {
@@ -278,16 +278,16 @@ public class BEASTStudio extends JSplitPane {
        		editorPanel.doSearchReplace();
         }
 
-        public boolean isEnabled() {
-        	Component focusOwner = frame.getFocusOwner();
-        	while (focusOwner != null) {
-	        	if (editorPanel == focusOwner) {
-	        		return true;	
-	        	}
-        		focusOwner = focusOwner.getParent();
-        	}
-        	return false;
-        };
+//        public boolean isEnabled() {
+//        	Component focusOwner = frame.getFocusOwner();
+//        	while (focusOwner != null) {
+//	        	if (editorPanel == focusOwner) {
+//	        		return true;	
+//	        	}
+//        		focusOwner = focusOwner.getParent();
+//        	}
+//        	return false;
+//        };
     };
 
     MyAction a_about = new MyAction("About", "Help about", "about", -1) {
