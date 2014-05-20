@@ -70,7 +70,7 @@ public class BEASTStudio extends JSplitPane {
 
 	private void setup() {
 		splitpaneleft = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-		editorPanel = new EditorPanel();
+		editorPanel = new EditorPanel(this);
 		splitpaneleft.add(editorPanel);
 		
 		console = new JConsole(this);
@@ -259,6 +259,7 @@ public class BEASTStudio extends JSplitPane {
         	}
         }
         
+// why does this not work?
 //        public boolean isEnabled() {
 //        	Component focusOwner = frame.getFocusOwner();
 //        	while (focusOwner != null) {
@@ -288,6 +289,22 @@ public class BEASTStudio extends JSplitPane {
 //        	}
 //        	return false;
 //        };
+    };
+
+    MyAction a_run = new MyAction("Run", "Run script in current editor", "run", KeyEvent.VK_R) {
+        private static final long serialVersionUID = -1;
+
+        public void actionPerformed(ActionEvent ae) {
+        	editorPanel.runCurrent();
+        }
+    };
+
+    MyAction a_runselection = new MyAction("Run selection", "Run selection in current editor", "runselection", -1) {
+        private static final long serialVersionUID = -1;
+
+        public void actionPerformed(ActionEvent ae) {
+        	editorPanel.runCurrentSelection();
+        }
     };
 
     MyAction a_about = new MyAction("About", "Help about", "about", -1) {
@@ -328,7 +345,13 @@ public class BEASTStudio extends JSplitPane {
         editMenu.add(a_find);
         editMenu.add(a_findReplace);
 
-//        JMenu viewMenu = new JMenu("View");
+        JMenu runMenu = new JMenu("Run");
+        menuBar.add(runMenu);
+        runMenu.setMnemonic('R');
+        runMenu.add(a_run);
+        runMenu.add(a_runselection);
+        
+//        JMenu viewMenu = new JMenu("Run");
 //        menuBar.add(viewMenu);
 //        viewMenu.setMnemonic('V');
 

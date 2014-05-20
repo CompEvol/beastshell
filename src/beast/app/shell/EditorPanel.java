@@ -1,6 +1,7 @@
 package beast.app.shell;
 
 
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -46,6 +47,7 @@ import org.fife.ui.rsyntaxtextarea.*;
 import beast.app.beauti.BeautiDoc;
 import beast.app.util.Utils;
 import beast.util.AddOnManager;
+import bsh.EvalError;
 
 public class EditorPanel extends JPanel implements ActionListener, KeyListener, DocumentListener {
 	private static final long serialVersionUID = 1L;
@@ -55,12 +57,14 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener, 
 	Image image;
 	private JCheckBox regexCB;
 	private JCheckBox matchCaseCB;
+	BEASTStudio studio;
 	
 	Set<RSyntaxTextArea> editorUnChanged = new  HashSet<>();
 	
 	String cwd = System.getProperty("user.dir");
 
-	public EditorPanel() {
+	public EditorPanel(BEASTStudio studio) {
+		this.studio = studio;
 		fileNames = new ArrayList<String>();
 		setLayout(new BorderLayout());
 		JToolBar toolBar = new JToolBar();
@@ -157,6 +161,7 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener, 
 		restoreEditors();
 	}
 
+	
 	public void actionPerformed(ActionEvent e) {
 
 		// "FindNext" => search forward, "FindPrev" => search backward
@@ -243,6 +248,9 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener, 
 				searchField.requestFocus();
 			}
 			if (e.isControlDown() && e.getKeyCode() == 71) {
+				actionPerformed(new ActionEvent(this, 1, "FindNext"));
+			}
+			if (e.isControlDown() && e.getKeyCode() == 72) {
 				doSearchReplace();
 			}
 		}
@@ -488,5 +496,35 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener, 
 			tabbedPane.setTitleAt(currentTab, label);
 			editorUnChanged.remove(current);
 		}
+	}
+
+	public void runCurrent() {
+		bsh.Interpreter interpreter = studio.interpreter.interpreter;
+		String script = getCurrentTextPane().getText();
+		if (script == null || script.trim().length() == 0) {
+			JOptionPane.showMessageDialog(this, "No code found in editor");
+			return;
+		}
+		try {
+			interpreter.eval(script);
+		} catch (EvalError e) {
+			interpreter.error(e);
+		}
+		interpreter.println("Done running " + tabbedPane.getTitleAt(tabbedPane.getSelectedIndex()));
+	}
+
+	public void runCurrentSelection() {
+		bsh.Interpreter interpreter = studio.interpreter.interpreter;
+		String script = getCurrentTextPane().getSelectedText();
+		if (script == null || script.trim().length() == 0) {
+			JOptionPane.showMessageDialog(this, "Select some code first");
+			return;
+		}
+		try {
+			interpreter.eval(script);
+		} catch (EvalError e) {
+			interpreter.error(e);
+		}
+		interpreter.println("Done running selection from " + tabbedPane.getTitleAt(tabbedPane.getSelectedIndex()));
 	}
 }

@@ -4,9 +4,14 @@ import beast.core.*;
 import beast.app.shell.*; 
 
 String edit(BEASTObject obj) {
+	if (obj.getID() == null) {
+		obj.setID("DummyID");
+	}
+	
 	doc = new beast.app.beauti.BeautiDoc();
 	doc.beautiConfig = new beast.app.beauti.BeautiConfig();
 	op = new beast.app.draw.BEASTObjectPanel(obj, obj.getClass(), doc);
+	
 	dialog = new beast.app.draw.BEASTObjectDialog(op, null);
 	if (dialog.showDialog()) {
 		dialog.accept(obj, doc);
