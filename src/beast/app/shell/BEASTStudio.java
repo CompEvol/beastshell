@@ -12,7 +12,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.swing.Action;
@@ -30,6 +32,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 
 import beast.app.draw.MyAction;
 import beast.app.util.Utils;
+import beast.util.AddOnManager;
 import bsh.BshClassManager;
 import bsh.ClassPathException;
 import bsh.NameSource;
@@ -366,10 +369,52 @@ public class BEASTStudio extends JSplitPane {
 
         return menuBar;
 	}
-	
+
+	private static void loadJavaFX() {
+		try {
+			// JavaFX already loaded?
+			Class x = Class.forName("javafx.embed.swing.JFXPanel");
+			// if we got here, all is fine.
+			return;
+		} catch (ClassNotFoundException e) {
+			// JavaFX is not loaded yet
+			try {
+				String home = System.getenv("JAVA_HOME");
+				if (home != null) {
+					AddOnManager.addURL(new URL("file:" + home + "/jre/lib/jfxrt.jar"));
+					Class.forName("javafx.embed.swing.JFXPanel");
+					return;
+				}
+				String jarfile = System.getenv("JAVAFX_JAR");
+				if (jarfile != null) {
+					AddOnManager.addURL(new URL("file:" + jarfile));
+					Class.forName("javafx.embed.swing.JFXPanel");
+					return;
+				}
+				File f = new File("/opt/java/jre/lib/jfxrt.jar"); 
+				if (f.exists()) {
+					AddOnManager.addURL(new URL("file:" + f.getPath()));
+					Class.forName("javafx.embed.swing.JFXPanel");
+					return;
+				}
+			} catch (MalformedURLException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			}
+		}
+		JOptionPane.showMessageDialog(null, "Could not load JavaFX. Run with java 7 or higher, or set the JAVAFX_JAR environment variable to the location of jfxrt.jar or install jfxrt.jar at /opt/java/jre/lib/jfxrt.jar. -- exiting now");
+		System.exit(0);
+	}
+
 	public static void main(String[] args) {
 		bsh.util.Util.startSplashScreen();
-		
+
+		// try to load JavaFX
+		loadJavaFX();
+	
 		JFrame frame = new JFrame();
 		final BEASTStudio studio = new BEASTStudio(args);
 		studio.setup();
