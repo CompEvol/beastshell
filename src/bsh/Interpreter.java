@@ -113,7 +113,7 @@ public class Interpreter
 	public BEASTStudio studio = null;
 	/* --- Begin static members --- */
 
-	public static final String VERSION = "0.0.1";
+	public static final String VERSION = BEASTStudio.VERSION;
 	/*
 		Debug utils are static so that they are reachable by code that doesn't
 		necessarily have an interpreter reference (e.g. tracing in utils).
