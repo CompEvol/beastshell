@@ -39,6 +39,15 @@ public class Summary {
 		}
 		return list;
 	}
+	private static List rmNaN(Number[] obs) {
+		List<Number> list = new ArrayList<>();
+		for (Number o : obs) {
+			if (!Double.isNaN(o.doubleValue())) {
+				list.add(o);
+			}
+		}
+		return list;
+	}
 	private static List rmBNaN(List<Boolean> obs) {
 		List<Boolean> list = new ArrayList<>();
 		for (Boolean o : obs) {
@@ -86,6 +95,12 @@ public class Summary {
 		}
 		double sum = 0; for (double i : x) sum +=i; return sum;
 	}
+	static public double sum(Number[]x, boolean na_rm) {
+		if (na_rm) {
+			return sum(rmNaN(x), false).doubleValue();
+		}
+		double sum = 0; for (Number i : x) sum +=i.doubleValue(); return sum;
+	}
 
 	
 	static public double mean(List<Number> obs, boolean na_rm) {
@@ -106,6 +121,12 @@ public class Summary {
 		}
 		double sum = 0; for (double i : x) sum +=i; return sum/x.length;
 		};
+	static public double mean(Number[]x, boolean na_rm) {
+		if (na_rm) {
+			return mean(rmNaN(x), false);
+		}
+		double sum = 0; for (Number i : x) sum +=i.doubleValue(); return sum/x.length;
+		};
 	
 	static public double min(List<Number> obs, boolean na_rm) {
 		if (na_rm) {
@@ -124,6 +145,12 @@ public class Summary {
 			return min(rmNaN(x), false);
 		}
 		double min = x[0];for (double i : x) {min = Math.min(min, i);}return min;
+		};
+	static public double min(Number[]x, boolean na_rm) {
+		if (na_rm) {
+			return min(rmNaN(x), false);
+		}
+		double min = x[0].doubleValue();for (Number i : x) {min = Math.min(min, i.doubleValue());}return min;
 		};
 	
 	static public double max(List<Number> obs, boolean na_rm) {
@@ -144,6 +171,12 @@ public class Summary {
 		}
 		double max = x[0];for (double i : x) {max = Math.max(max, i);}return max;
 		};
+	static public double max(Number[]x, boolean na_rm) {
+		if (na_rm) {
+			return max(rmNaN(x), false);
+		}
+		Number max = x[0];for (Number i : x) {max = Math.max(max.doubleValue(), i.doubleValue());}return max.doubleValue();
+	};
 	
 	static public Number prod(List<Number> obs, boolean na_rm) {
 		if (na_rm) {
@@ -162,6 +195,12 @@ public class Summary {
 			return prod(rmNaN(x), false);
 		}
 		double prod = 1; for (double i : x) prod *=i; return prod;
+		};
+	static public double prod(Number[]x, boolean na_rm) {
+		if (na_rm) {
+			return prod(rmNaN(x), false).doubleValue();
+		}
+		double prod = 1; for (Number i : x) prod *=i.doubleValue(); return prod;
 		};
 	
 	static public List<Number> range(List<Number> obs, boolean na_rm) {
@@ -183,6 +222,15 @@ public class Summary {
 		return result;
 	};
 	static public List<Number> range(double[]x, boolean na_rm) {
+		if (na_rm) {
+			return range(rmNaN(x), false);
+		}
+		List<Number> result = new ArrayList<>();
+		result.add(min(x, false));
+		result.add(max(x, false));
+		return result;
+	};
+	static public List<Number> range(Number[]x, boolean na_rm) {
 		if (na_rm) {
 			return range(rmNaN(x), false);
 		}
@@ -231,6 +279,19 @@ public class Summary {
 		}
 		return result;
 	};
+	static public Number[] cumsum(Number[] x, boolean na_rm) {
+		if (na_rm) {
+			return cumsum(rmNaN(x), false).toArray(new Number[0]);
+		}
+		Double [] result = new Double[x.length];
+		double sum = 0;
+		int k = 0;
+		for (Number i : x){
+			sum += i.doubleValue();
+			result[k++] = sum;
+		}
+		return result;
+	};
 
 	static public List<Number> cumprod(List<Number> obs, boolean na_rm) {
 		if (na_rm) {
@@ -266,6 +327,19 @@ public class Summary {
 		int k = 0;
 		for (double i : x){
 			prod *= i;
+			result[k++] = prod;
+		}
+		return result;
+	};
+	static public Number[] cumprod(Number[] x, boolean na_rm) {
+		if (na_rm) {
+			return cumprod(rmNaN(x), false).toArray(new Number[0]);
+		}
+		Double [] result = new Double[x.length];
+		double prod = 0;
+		int k = 0;
+		for (Number i : x){
+			prod *= i.doubleValue();
 			result[k++] = prod;
 		}
 		return result;
@@ -309,6 +383,19 @@ public class Summary {
 		}
 		return result;
 	};
+	static public Number[] cummax(Number[] x, boolean na_rm) {
+		if (na_rm) {
+			return cummax(rmNaN(x), false).toArray(new Number[0]);
+		}
+		Double [] result = new Double[x.length];
+		double max = x[0].doubleValue();
+		int k = 0;
+		for (Number i : x){
+			max = Math.max(i.doubleValue(), max);
+			result[k++] = max;
+		}
+		return result;
+	};
 	
 	static public List<Number> cummin(List<Number> obs, boolean na_rm) {
 		if (na_rm) {
@@ -344,6 +431,19 @@ public class Summary {
 		int k = 0;
 		for (double i : x){
 			min = Math.min(i, min);
+			result[k++] = min;
+		}
+		return result;
+	};
+	static public Number[] cummin(Number[] x, boolean na_rm) {
+		if (na_rm) {
+			return cummin(rmNaN(x), false).toArray(new Number[0]);
+		}
+		Double [] result = new Double[x.length];
+		double min = x[0].doubleValue();
+		int k = 0;
+		for (Number i : x){
+			min = Math.min(i.doubleValue(), min);
 			result[k++] = min;
 		}
 		return result;

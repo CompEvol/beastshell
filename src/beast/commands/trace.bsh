@@ -1,0 +1,16 @@
+// @see(doc/html/beast/commands/trace.html) 
+
+trace(file) {
+	trace(file, 10, "posterior");
+}
+
+trace(file, burnin) {
+	trace(file, burnin, "posterior");
+}
+
+trace(file, burnin, var) {
+	df = new LogAnalyser(new String[]{file}, 2000, burnin);
+	df.print(this.interpreter.getOut());
+	x = df.getTrace(var);
+	new Plot(y=x, seriesName=var, yAxisMax=max(x), yAxisMin=min(x));
+}

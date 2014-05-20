@@ -1,0 +1,27 @@
+// @see(doc/html/beast/commands/edit.html) 
+import beast.util.*;
+import beast.core.*;
+import beast.app.shell.*; 
+
+String edit(BEASTObject obj) {
+	doc = new beast.app.beauti.BeautiDoc();
+	doc.beautiConfig = new beast.app.beauti.BeautiConfig();
+	op = new beast.app.draw.BEASTObjectPanel(obj, obj.getClass(), doc);
+	dialog = new beast.app.draw.BEASTObjectDialog(op, null);
+	if (dialog.showDialog()) {
+		dialog.accept(obj, doc);
+		buf = new StringBuffer();
+		for (input: obj.listInputs()) {
+			if (input.get() != null) {
+				buf.append(input.getName() + " = " + input.get() + ", ");
+			}
+		}
+		if (buf.length() > 0) {
+			// eat up trailing space and comma
+			buf.deleteCharAt(buf.length()-1);
+			buf.deleteCharAt(buf.length()-1);
+		}
+		return buf.toString();
+	}
+	return null;
+}

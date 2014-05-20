@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>BEAST command trace</title>
+<link rel="stylesheet" type="text/css" href="../../style.css">
+</head>
+<body>
+<h1>"trace" documentation</h1>
+
+<h2>Description:</h2>
+
+     <tt>trace(filename, burnin, variable)</tt> shows trace plot of
+variable <tt>variable</tt> with <tt>burnin</tt> burnin of a tracefile
+with name <tt>filename</tt>. Also, shows statistics of the trace with
+the given burn-in.
+
+<h2>Usage:</h2>
+
+	trace(filename, burnin, variable);<p>
+	e.g.<p/>
+	<pre>
+	trace("anolis.log");
+	</pre>
+	plots "posterior" from "anolis.log" with 10% burn-in	
+	<pre>
+	trace("../data/anolis.log", 20);
+	</pre>
+	plots "posterior" from "../data/anolis.log" with 20% burn-in	
+	<pre>
+	trace("primates.log", 20, "likelihood");
+	</pre>
+	plots "likelihood" from "primates.log" with 20% burn-in	
+     
+<h2>Arguments:</h2>
+
+    filename: name of the tracefile.</p>
+	burnin: burn-in percentage, default 10</p>
+	variable: variable name in the trace file to plot, default is "posterior"
+
+</body>
+</html>
+

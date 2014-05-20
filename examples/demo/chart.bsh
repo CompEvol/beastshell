@@ -41,7 +41,7 @@ for (int i = 0; i <= size; i++) {
 
 
 
-new Plot(x=xData, y=yData, seriesName="y=sin(x)", lc=Color.blue, linestyle="dash_dash", mc=Color.green, m="SQUARE", isChartTitleVisible=false, isLegendVisible=false);
+new Plot(x=xData, y=yData, seriesName="y=sin(x)", lc=Color.blue, linestyle="dash_dash", mc=Color.green, marker="SQUARE", isChartTitleVisible=false, isLegendVisible=false);
 pause();
 
 // Linechar 06
@@ -50,7 +50,7 @@ xData = c(0, 1, 2, 3, 4, 5, 6);
 yData = c(100, 100, 100, 60, 10, 10, 10 );
 errdata = c( 50, 20, 10, 52, 9, 2, 1 );
 
-new Plot(x=xData, y=yData, error=errdata, seriesName="Error bar\ntest data", lc=Color.blue, linestyle="solid", mc=Color.green, m="DIAMOND", yAxisMin=0.8, yAxisMax=1000, isYAxisLogarithmic=true, errorBarsColor=Color.black);
+new Plot(x=xData, y=yData, error=errdata, seriesName="Error bar\ntest data", lc=Color.blue, linestyle="solid", mc=Color.green, marker="DIAMOND", yAxisMin=0.8, yAxisMax=1000, isYAxisLogarithmic=true, errorBarsColor=Color.black);
 pause();
 
 // ErrorBarTest
@@ -63,10 +63,10 @@ yData2 = c( 50, 80, 90, 0, 10, 30, 40 );
 yData3 = c( 150, 120, 110, 100, 90, 70, 60 );
 
 
-series2 = new Series(x=xData, y=yData2, seriesName="Y+error", lc=Color.blue, linestyle="dash_dash", mc=Color.red, m="NONE");
-series3 = new Series(x=xData, y=yData3, seriesName="Y-error", lc=Color.blue, linestyle="dash_dash", mc=Color.red, m="NONE");
+series2 = new Series(x=xData, y=yData2, seriesName="Y+error", lc=Color.blue, linestyle="dash_dash", mc=Color.red, marker="NONE");
+series3 = new Series(x=xData, y=yData3, seriesName="Y-error", lc=Color.blue, linestyle="dash_dash", mc=Color.red, marker="NONE");
 
-plot = new Plot(x=xData, y=yData1, error=errdata, seriesName="Error bar test data", lc=Color.blue, linestyle="solid", mc=Color.green, m="DIAMOND", yAxisMin=0, yAxisMax=150, errorBarsColor=Color.black);
+plot = new Plot(x=xData, y=yData1, error=errdata, seriesName="Error bar test data", lc=Color.blue, linestyle="solid", mc=Color.green, marker="DIAMOND", yAxisMin=0, yAxisMax=150, errorBarsColor=Color.black);
 plot.add(series2);
 plot.add(series3);
 

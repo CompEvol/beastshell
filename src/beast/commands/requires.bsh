@@ -15,7 +15,7 @@ requires(String packageName) {
 					error("Required package " + packageName +" not found. Expect unexpected results.");
 					return;
 				}
-				beast.util.AddOnManager.install(_package, false, null, packages);
+				beast.util.AddOnManager.installPackage(_package, false, null, packages);
 				beast.util.AddOnManager.loadExternalJars();
 			}
 		}

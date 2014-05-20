@@ -1,13 +1,31 @@
 // demonstrates how to interactively inspect traces
 
 import beast.util.*;
-import beast.app.shell.*;
-
-df = new LogAnalyser(new String[]{"test.log"}, 2000, 10);
-x = df.getTrace("treeLikelihood");
-new Plot(series=new Series(y=x), style= new Style(yAxisMax=max(x), yAxisMin=min(x)));
+import beast.app.shell.*; 
 
 
+// first, we select a trace file to analyse
+f = beast.app.util.Utils.getLoadFile("select a trace file");
+
+// show trace of posterior with 10% burnin and plot statistics
+trace(f.getPath());
+
+pause();
+
+
+// show trace of posterior with 20% burnin and plot statistics
+trace(f.getPath(), 20);
+
+pause();
+
+
+// show trace of likelihood with 30% burnin and plot statistics
+trace(f.getPath(), 30, "likelihood");
+
+
+
+import beast.util.*;
+import beast.app.shell.*; 
 doc = new beast.app.beauti.BeautiDoc();
 doc.beautiConfig = new beast.app.beauti.BeautiConfig();
 series = new Series();
@@ -15,4 +33,10 @@ series.setID("dummy.partition");
 op = new beast.app.draw.BEASTObjectPanel(series, Series.class, doc);
 dialog = new beast.app.draw.BEASTObjectDialog(op, null);
 dialog.showDialog();
+dialog.accept(series, doc);
+
+for (input: series.listInputs()) {
+	print(input.getName() + " = " + input.get());
+}
+
 
