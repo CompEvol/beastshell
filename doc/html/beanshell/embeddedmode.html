@@ -404,12 +404,6 @@ interpreter does not automatically restart method executions; it simply
 restores state.
 <p CLEAR="ALL"/>
 
-<p/><center><table cellpadding="5" border="1" width="90%"><tr><td bgcolor="#eeeebb"><strong>Note:</strong><br CLEAR="ALL"/>
-There is serious Java bug that affects BEASTShell serializability in Java
-versions prior to 1.3.  When using these versions of Java the primitive type 
-class identifiers cannot be de-serialized.  See the FAQ for a workaround.
-</td></tr></table></center><p/>
-
 It is also possible to serialize individual BEASTShell scripted objects
 ('this' type references and interfaces to scripts).  The same rules apply.
 One thing to note is that by default serializing a scripted object context

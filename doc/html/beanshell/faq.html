@@ -31,13 +31,6 @@
 		</a>
 </li>
 <li>
-<a href="#6">
-		Why does BEASTShell encounter problems during deserialization of
-		primitive type (class) identifiers? / Why do I get a
-		java.lang.ClassNotFoundException during deserialization?
-		</a>
-</li>
-<li>
 <a href="#7">
 		Why is bsh slower executing the first few commands?
 		</a>
@@ -139,23 +132,6 @@
 		No.  Scripted methods are parsed once and stored in a parse tree.
 		Reparsing can be forced by calling the source command.  
 		<hr/>
-	<a name="6">
-<h2>
-		Why does BEASTShell encounter problems during deserialization of
-		primitive type (class) identifiers? / Why do I get a
-		java.lang.ClassNotFoundException during deserialization?
-		</h2>
-</a>
-		This problem is due to a known bug occurring in JDK/JRE 1.3.1 and below.
-		The numeric primitive types class identifiers (e.g. Integer.TYPE) aren't
-		properly deserialized by ObjectInputStream.  Attempting to do so will
-		cause a java.lang.ClassNotFoundException When using JDK 1.3.1 or lower
-		you can employ a workaround by subclassing ObjectInputStream.  The
-		workaround is described in detail
-		<a href="http://developer.java.sun.com/developer/bugParade/bugs/4171142.html">
-		here.</a>
-		<hr/>
-
 
 	<a name="7">
 <h2>
