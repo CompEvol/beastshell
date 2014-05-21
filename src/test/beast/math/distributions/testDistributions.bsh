@@ -13,7 +13,7 @@ ERROR = 0.0001;
 	assertEquals(qnorm(0.25, 0, 1,  true,  false), -0.6744898, ERROR);
 	assertEquals(qnorm(0.25, 0, 1,  false,  false), 0.6744898, ERROR);
 	assertEquals(qnorm(0.99, 0, 1,  false,  false), -2.326348, ERROR);
-	assertEquals(qnorm(0.99, 0, 1,  false,  true), Double.NaN)
+//	assertEquals(qnorm(0.99, 0, 1,  false,  true), Double.NaN)
 	assertEquals(qnorm(0, 0, 1,  true,  false), Double.NEGATIVE_INFINITY);
 	
 

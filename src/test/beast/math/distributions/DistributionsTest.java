@@ -1,238 +1,247 @@
 package test.beast.math.distributions;
 
+import java.io.File;
 import java.io.FileReader;
 
 import javax.script.ScriptEngine;
 
+import org.junit.Assert;
 import org.junit.Test;
 
+import test.beast.shell.ShellTest;
+
 import bsh.BshScriptEngineFactory;
-import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
-public class DistributionsTest extends TestCase {
+public class DistributionsTest extends ShellTest {
 	
-
-    @Test
-	public void testDistributionsInCommands() throws Exception {
-        ScriptEngine engine = new BshScriptEngineFactory().getScriptEngine();
-        engine.eval(new FileReader("test/beast/math/distributions/testDistributions.bsh"));
-    }
-    
-    @Test
-    public void testBEASTDistirbutions() throws Exception {
-/*
-// test norm 
-	assertEquals(dnorm(0, 0, 1,  false), 0.3989423, ERROR);
-	assertEquals(dnorm(0, 0, 1,  true), -0.9189385, ERROR);
-	
-	assertEquals(pnorm(0.25, 0, 1,  true,  false), 0.5987063, ERROR);
-	assertEquals(pnorm(0.25, 0, 1,  false,  false), 0.4012937, ERROR);
-	assertEquals(pnorm(0.25, 0, 1,  true,  true), -0.5129841, ERROR);
-	assertEquals(pnorm(0.25, 0, 1,  false,  true), -0.9130618, ERROR);
-	
-	assertEquals(qnorm(0.25, 0, 1,  true,  false), -0.6744898, ERROR);
-	assertEquals(qnorm(0.25, 0, 1,  false,  false), 0.6744898, ERROR);
-	assertEquals(qnorm(0.99, 0, 1,  false,  false), -2.326348, ERROR);
-	assertEquals(qnorm(0.99, 0, 1,  false,  true), Double.NaN)
-	assertEquals(qnorm(0, 0, 1,  true,  false), Double.NEGATIVE_INFINITY);
-	*/
-        ScriptEngine engine = new BshScriptEngineFactory().getScriptEngine();
-        engine.eval(new FileReader("test/beast/math/distributions/testNormal.bsh"));
-
-/*
-
-
-// test beta 
-	assertEquals(dbeta(0.4, 5, 1, false), 0.128, ERROR);
-
-
-// test dnbeta 
-	assertEquals(dnbeta(x=0.5, shape1=20.0, shape2=20.0, ncp=1.0, log=false), 5.000253, ERROR);
-	assertEquals(dnbeta(x=0.8, shape1=40.0, shape2=20.0, ncp=0.5,  log=true), -0.670098, ERROR);
-
-
-// test binom 
-	assertEquals(dbinom(3, 5, 0.25, false), 0.08789063, ERROR);
-
-
-// test qbinom 
-	assertEquals(qbinom(0.2, 114, 0.55, true, false), 58, ERROR);
-	assertEquals(qbinom(0.1, 21, 0.2, true, false), 2, ERROR);
-
-
-// test exp 
-	assertEquals(dexp(x=0.5, 1/0.25, log=false), 0.5413411, ERROR);
-
-
-// test hyper 
-	assertEquals(dhyper(x=3, m=5, n=2, 3, false), 0.2857143, ERROR);
-
-// test QLogNormal 
-	assertEquals(qlnorm(0.95, 0, 1,  true,  false), 5.180252, ERROR);
-	assertEquals(qlnorm(0.68, 0, 1,  false,  false), 0.6264422, ERROR);
-
-
-// test PLogNormal 
-	assertEquals(plnorm(1.96, 0, 1,  true,  false), 0.7495087, ERROR);
-	assertEquals(plnorm(2.55, 0, 1,  false,  false), 0.1746126, ERROR);
-
-
-// test DLogNormal 
-	assertEquals(dlnorm(1.96, 0, 1,   false), 0.1622998, ERROR);
-	assertEquals(dlnorm(2.55, 0, 1,   true), -2.293167, ERROR);
-
-
-// test dgeom 
-	assertEquals(dgeom(5, 0.5, false), 0.015625, ERROR);
-	assertEquals(dgeom(10, 0.2, true), -3.840873, ERROR);
-
-
-// test pgeom 
-	assertEquals(pgeom(3, 0.5, true, false),  0.9375, ERROR);
-	assertEquals(pgeom(10, 0.2, false,false ),  0.08589935, ERROR);
-
-
-// test qgeom 
-	assertEquals(qgeom(0.9, 0.6, true, false),  2.0, ERROR);
-	assertEquals(qgeom(0.4, 0.1, false,false ),  8.0, ERROR);
-
-
-
-// test dnbinom 
-	assertEquals(dnbinom(x=3, size=5, prob=0.25, log=false), 0.01441956, ERROR);
-
-
-// test dnbinom_mu 
-	assertEquals(dnbinom_mu(x=4, size=10, mu=10, log=false),  0.04364014, ERROR);
-	assertEquals(dnbinom_mu(x=6, size=10, mu=10, log=true), -2.572162, ERROR);
-
-// test pnbinom 
-	assertEquals(pnbinom(q=3, size=5, prob=0.5, lower.tail=false, logp=false), 0.6367187, ERROR);
-
-
-// test qnbinom 
-	assertEquals(qnbinom(p=0.4, size=900, prob=0.9, lower.tail=true, logp=false), 97, ERROR);
-	assertEquals(qnbinom(p=0.01, size=900, prob=0.9, lower.tail=true, logp=false), 76, ERROR);
-	assertEquals(qnbinom(p=0.1, size=900, prob=0.3, lower.tail=true, logp=true), Double.NaN);
-
-
-// test qnbinom_mu 
-	assertEquals(qnbinom(p=0.6, size=20, mu=8, lower.tail=true, logp=false), 9.0, ERROR);
-
-
-// test plogis 
-	assertEquals(plogis(2.55, 0, 1, false, false), 0.07242649, ERROR);
-
-
-// test dlogis 
-	assertEquals(dlogis(3, 5, 0.25, false), 0.001340951, ERROR);
-
-
-// test qlogis 
-	assertEquals(qlogis(0.7, 0, 1, false, false), -0.8472979, ERROR);
-
-
-// test qsignrank <- function(){
-	assertEquals(qsignrank(0.7, 10, false, false), 22, ERROR);
-	assertEquals(qsignrank(0.7, 10, true, false), 33, ERROR);
-
-
-// test psignrank <- function(){
-	assertEquals(psignrank(0.7, 10, false, false), 0.99902, ERROR);
-	assertEquals(psignrank(0.7, 10, true, false), 0.0009765, ERROR);
-
-
-// test dsignrank <- function(){
-	assertEquals(dsignrank(2, 5, false), 0.03125, ERROR);
-	assertEquals(dsignrank(2, 5, true), -3.465736, ERROR);
-
-
-// test dwilcox <- function(){
-	assertEquals(dwilcox(x=10, m=5,3, false), 0.08928571, ERROR);
-	assertEquals(dwilcox(x=20, m=6,4, true), -3.73767, ERROR);
-
-
-// test pwilcox <- function(){
-	assertEquals(pwilcox(2,10,5, false, false), 0.998668, ERROR);
-	assertEquals(pwilcox(7,15,7, true, false), 0.0002638615, ERROR);
-
-// test qwilcox <- function(){
-	assertEquals(qwilcox(0.5,10,4, true, false), 20.0, ERROR);
-	assertEquals(qwilcox(0.1,4, 10, false, false), 29.0, ERROR);
-
-// test pnchisquare 
-	assertEquals(pnchisq(q=0.75, df=4, ncp=1, lower.tail=true, logp=false), 0.03540971, ERROR);
-
-
-// test qnchisquare 
-	assertEquals(qnchisq(p=0.75, df=4, ncp=1, lower.tail=true, logp=false), 6.737266, ERROR);
-
-
-// test pnt 
-	assertEquals(pnt(q=1.96, df=20, ncp=2, lower.tail=true, logp=false), 0.4752101, ERROR);
-
-// test qnt <- function(){
-	assertEquals(qnt(p=0.8, df=20, ncp=2, lower.tail=true, logp=false), 2.965995, ERROR);
-
-
-// test dnt <- function(){
-	assertEquals(dnt(x=2, df=20, ncp=3, log=false), 0.2435572, ERROR);
-
-
-// test dnchisq <- function(){
-	assertEquals(dnchisq(x=2, df=10, ncp=5, log=false), 0.001017647, ERROR);
-	assertEquals(dnchisq(x=5, df=9, ncp=10, log=true), -5.125956, ERROR);
-
-
-// test pnbinom_mu <- function(){
-	assertEquals(pnbinom_mu(q=0.25, size=10, mu=4, lower.tail=true, logp=false),  0.03457161, ERROR);
-	assertEquals(pnbinom_mu(q=0.25, size=10, mu=4, lower.tail=true, logp=true),  -3.364722, ERROR);
-	assertEquals(pnbinom_mu(q=0.25, size=10, mu=4, lower.tail=false, logp=false), 0.9654284, ERROR);
-
-// test pnbeta 
-	assertEquals(pnbeta(q=0.25, shape1=1, shape2=6, ncp=1, lower.tail=true, logp=false), 0.6935046, ERROR);
-	assertEquals(pnbeta(q=0.25, shape1=1, shape2=6, ncp=1, lower.tail=true, logp=true), -0.3659974, ERROR);
-
-// test dnf 
-	assertEquals(dnf(x=1, df1=6, df2=6, ncp=1, log=false), 0.4621278, ERROR);
-	assertEquals(dnf(x=1, df1=6, df2=6, ncp=1, log=true), -0.7719139, ERROR);
-
-// test dnf 
-	assertEquals(dnf(0, 6,6 , 1, false), 0, ERROR);
-	assertEquals(dnf(1, 6,6 , 1, false), 0.4621278, ERROR);
-	assertEquals(dnf(2, 6,6 , 1, true), -1.662094, ERROR);
-
+	public static junit.framework.Test suite() throws Exception {
+		TestSuite suite = addTests("src/test/beast/math/distributions/testDistributions.bsh");
+        return addTests("test/beast/math/distributions/testNormal.bsh", suite);
+	}
+
+
+//    @Test
+//	public void testDistributionsInCommands() throws Exception {
+//        ScriptEngine engine = new BshScriptEngineFactory().getScriptEngine();
+//        engine.eval(new FileReader("test/beast/math/distributions/testDistributions.bsh"));
+//    }
+//    
+//    @Test
+//    public void testBEASTDistirbutions() throws Exception {
+///*
+//// test norm 
+//	assertEquals(dnorm(0, 0, 1,  false), 0.3989423, ERROR);
+//	assertEquals(dnorm(0, 0, 1,  true), -0.9189385, ERROR);
+//	
+//	assertEquals(pnorm(0.25, 0, 1,  true,  false), 0.5987063, ERROR);
+//	assertEquals(pnorm(0.25, 0, 1,  false,  false), 0.4012937, ERROR);
+//	assertEquals(pnorm(0.25, 0, 1,  true,  true), -0.5129841, ERROR);
+//	assertEquals(pnorm(0.25, 0, 1,  false,  true), -0.9130618, ERROR);
+//	
+//	assertEquals(qnorm(0.25, 0, 1,  true,  false), -0.6744898, ERROR);
+//	assertEquals(qnorm(0.25, 0, 1,  false,  false), 0.6744898, ERROR);
+//	assertEquals(qnorm(0.99, 0, 1,  false,  false), -2.326348, ERROR);
+//	assertEquals(qnorm(0.99, 0, 1,  false,  true), Double.NaN)
+//	assertEquals(qnorm(0, 0, 1,  true,  false), Double.NEGATIVE_INFINITY);
+//	*/
+//        ScriptEngine engine = new BshScriptEngineFactory().getScriptEngine();
+//        engine.eval(new FileReader("test/beast/math/distributions/testNormal.bsh"));
 //
-// qnbeta() and qnf() functions sometimes return different values when compared to
-// original interpreter. This is about accuracy and should be corrected at next level.
-// mhsatman.
-
-
-// test qnbeta <- function(){
-	assertEquals(qnbeta(p=0.05, shape1=12, shape2=8, ncp=1, lower.tail=true, logp=false), 0.428099, ERROR);
-
-
-// test qnf <- function(){
-	assertEquals(qnf(p=0.05, df1=4, df2=2, ncp=1, lower.tail=true, logp=false),  0.1835066, ERROR);
-
-
-// test tukeys 
-	//This is confusing. Because location of parameters are replaced in R calls
-	
-	assertEquals(ptukey(q=5.20, nranges=5, nmeans=14, df=12, lower.tail=true, logp=false), 0.7342322, ERROR);
-	assertEquals(ptukey(q=4.9, nranges=2, nmeans=21, df=9, lower.tail=true, logp=true), -0.406227, ERROR);
-	assertEquals(qtukey(p=0.90, nranges=4, nmeans=6, df=3, lower.tail=true, logp=false), 8.001985, ERROR);
-
-
-// test chisquareZeroDf 
-	assertEquals(pchisq(0.5, df=0, lower.tail=true, logp=false), 1);
-	assertEquals(pchisq(0.5, df=0, lower.tail=false, logp=false), 0);
-	assertEquals(pnchisq(0.5, df=0, ncp=0.5, lower.tail=true, logp=false), 0.8225176, ERROR);
-	assertEquals(qchisq(0.5, df=0, lower.tail=true, logp=false), 0);
-	assertEquals(qchisq(1, df=0, lower.tail=true, logp=false), Double.POSITIVE_INFINITY);
-
-*/    	
-    }
-
-
+///*
+//
+//
+//// test beta 
+//	assertEquals(dbeta(0.4, 5, 1, false), 0.128, ERROR);
+//
+//
+//// test dnbeta 
+//	assertEquals(dnbeta(x=0.5, shape1=20.0, shape2=20.0, ncp=1.0, log=false), 5.000253, ERROR);
+//	assertEquals(dnbeta(x=0.8, shape1=40.0, shape2=20.0, ncp=0.5,  log=true), -0.670098, ERROR);
+//
+//
+//// test binom 
+//	assertEquals(dbinom(3, 5, 0.25, false), 0.08789063, ERROR);
+//
+//
+//// test qbinom 
+//	assertEquals(qbinom(0.2, 114, 0.55, true, false), 58, ERROR);
+//	assertEquals(qbinom(0.1, 21, 0.2, true, false), 2, ERROR);
+//
+//
+//// test exp 
+//	assertEquals(dexp(x=0.5, 1/0.25, log=false), 0.5413411, ERROR);
+//
+//
+//// test hyper 
+//	assertEquals(dhyper(x=3, m=5, n=2, 3, false), 0.2857143, ERROR);
+//
+//// test QLogNormal 
+//	assertEquals(qlnorm(0.95, 0, 1,  true,  false), 5.180252, ERROR);
+//	assertEquals(qlnorm(0.68, 0, 1,  false,  false), 0.6264422, ERROR);
+//
+//
+//// test PLogNormal 
+//	assertEquals(plnorm(1.96, 0, 1,  true,  false), 0.7495087, ERROR);
+//	assertEquals(plnorm(2.55, 0, 1,  false,  false), 0.1746126, ERROR);
+//
+//
+//// test DLogNormal 
+//	assertEquals(dlnorm(1.96, 0, 1,   false), 0.1622998, ERROR);
+//	assertEquals(dlnorm(2.55, 0, 1,   true), -2.293167, ERROR);
+//
+//
+//// test dgeom 
+//	assertEquals(dgeom(5, 0.5, false), 0.015625, ERROR);
+//	assertEquals(dgeom(10, 0.2, true), -3.840873, ERROR);
+//
+//
+//// test pgeom 
+//	assertEquals(pgeom(3, 0.5, true, false),  0.9375, ERROR);
+//	assertEquals(pgeom(10, 0.2, false,false ),  0.08589935, ERROR);
+//
+//
+//// test qgeom 
+//	assertEquals(qgeom(0.9, 0.6, true, false),  2.0, ERROR);
+//	assertEquals(qgeom(0.4, 0.1, false,false ),  8.0, ERROR);
+//
+//
+//
+//// test dnbinom 
+//	assertEquals(dnbinom(x=3, size=5, prob=0.25, log=false), 0.01441956, ERROR);
+//
+//
+//// test dnbinom_mu 
+//	assertEquals(dnbinom_mu(x=4, size=10, mu=10, log=false),  0.04364014, ERROR);
+//	assertEquals(dnbinom_mu(x=6, size=10, mu=10, log=true), -2.572162, ERROR);
+//
+//// test pnbinom 
+//	assertEquals(pnbinom(q=3, size=5, prob=0.5, lower.tail=false, logp=false), 0.6367187, ERROR);
+//
+//
+//// test qnbinom 
+//	assertEquals(qnbinom(p=0.4, size=900, prob=0.9, lower.tail=true, logp=false), 97, ERROR);
+//	assertEquals(qnbinom(p=0.01, size=900, prob=0.9, lower.tail=true, logp=false), 76, ERROR);
+//	assertEquals(qnbinom(p=0.1, size=900, prob=0.3, lower.tail=true, logp=true), Double.NaN);
+//
+//
+//// test qnbinom_mu 
+//	assertEquals(qnbinom(p=0.6, size=20, mu=8, lower.tail=true, logp=false), 9.0, ERROR);
+//
+//
+//// test plogis 
+//	assertEquals(plogis(2.55, 0, 1, false, false), 0.07242649, ERROR);
+//
+//
+//// test dlogis 
+//	assertEquals(dlogis(3, 5, 0.25, false), 0.001340951, ERROR);
+//
+//
+//// test qlogis 
+//	assertEquals(qlogis(0.7, 0, 1, false, false), -0.8472979, ERROR);
+//
+//
+//// test qsignrank <- function(){
+//	assertEquals(qsignrank(0.7, 10, false, false), 22, ERROR);
+//	assertEquals(qsignrank(0.7, 10, true, false), 33, ERROR);
+//
+//
+//// test psignrank <- function(){
+//	assertEquals(psignrank(0.7, 10, false, false), 0.99902, ERROR);
+//	assertEquals(psignrank(0.7, 10, true, false), 0.0009765, ERROR);
+//
+//
+//// test dsignrank <- function(){
+//	assertEquals(dsignrank(2, 5, false), 0.03125, ERROR);
+//	assertEquals(dsignrank(2, 5, true), -3.465736, ERROR);
+//
+//
+//// test dwilcox <- function(){
+//	assertEquals(dwilcox(x=10, m=5,3, false), 0.08928571, ERROR);
+//	assertEquals(dwilcox(x=20, m=6,4, true), -3.73767, ERROR);
+//
+//
+//// test pwilcox <- function(){
+//	assertEquals(pwilcox(2,10,5, false, false), 0.998668, ERROR);
+//	assertEquals(pwilcox(7,15,7, true, false), 0.0002638615, ERROR);
+//
+//// test qwilcox <- function(){
+//	assertEquals(qwilcox(0.5,10,4, true, false), 20.0, ERROR);
+//	assertEquals(qwilcox(0.1,4, 10, false, false), 29.0, ERROR);
+//
+//// test pnchisquare 
+//	assertEquals(pnchisq(q=0.75, df=4, ncp=1, lower.tail=true, logp=false), 0.03540971, ERROR);
+//
+//
+//// test qnchisquare 
+//	assertEquals(qnchisq(p=0.75, df=4, ncp=1, lower.tail=true, logp=false), 6.737266, ERROR);
+//
+//
+//// test pnt 
+//	assertEquals(pnt(q=1.96, df=20, ncp=2, lower.tail=true, logp=false), 0.4752101, ERROR);
+//
+//// test qnt <- function(){
+//	assertEquals(qnt(p=0.8, df=20, ncp=2, lower.tail=true, logp=false), 2.965995, ERROR);
+//
+//
+//// test dnt <- function(){
+//	assertEquals(dnt(x=2, df=20, ncp=3, log=false), 0.2435572, ERROR);
+//
+//
+//// test dnchisq <- function(){
+//	assertEquals(dnchisq(x=2, df=10, ncp=5, log=false), 0.001017647, ERROR);
+//	assertEquals(dnchisq(x=5, df=9, ncp=10, log=true), -5.125956, ERROR);
+//
+//
+//// test pnbinom_mu <- function(){
+//	assertEquals(pnbinom_mu(q=0.25, size=10, mu=4, lower.tail=true, logp=false),  0.03457161, ERROR);
+//	assertEquals(pnbinom_mu(q=0.25, size=10, mu=4, lower.tail=true, logp=true),  -3.364722, ERROR);
+//	assertEquals(pnbinom_mu(q=0.25, size=10, mu=4, lower.tail=false, logp=false), 0.9654284, ERROR);
+//
+//// test pnbeta 
+//	assertEquals(pnbeta(q=0.25, shape1=1, shape2=6, ncp=1, lower.tail=true, logp=false), 0.6935046, ERROR);
+//	assertEquals(pnbeta(q=0.25, shape1=1, shape2=6, ncp=1, lower.tail=true, logp=true), -0.3659974, ERROR);
+//
+//// test dnf 
+//	assertEquals(dnf(x=1, df1=6, df2=6, ncp=1, log=false), 0.4621278, ERROR);
+//	assertEquals(dnf(x=1, df1=6, df2=6, ncp=1, log=true), -0.7719139, ERROR);
+//
+//// test dnf 
+//	assertEquals(dnf(0, 6,6 , 1, false), 0, ERROR);
+//	assertEquals(dnf(1, 6,6 , 1, false), 0.4621278, ERROR);
+//	assertEquals(dnf(2, 6,6 , 1, true), -1.662094, ERROR);
+//
+////
+//// qnbeta() and qnf() functions sometimes return different values when compared to
+//// original interpreter. This is about accuracy and should be corrected at next level.
+//// mhsatman.
+//
+//
+//// test qnbeta <- function(){
+//	assertEquals(qnbeta(p=0.05, shape1=12, shape2=8, ncp=1, lower.tail=true, logp=false), 0.428099, ERROR);
+//
+//
+//// test qnf <- function(){
+//	assertEquals(qnf(p=0.05, df1=4, df2=2, ncp=1, lower.tail=true, logp=false),  0.1835066, ERROR);
+//
+//
+//// test tukeys 
+//	//This is confusing. Because location of parameters are replaced in R calls
+//	
+//	assertEquals(ptukey(q=5.20, nranges=5, nmeans=14, df=12, lower.tail=true, logp=false), 0.7342322, ERROR);
+//	assertEquals(ptukey(q=4.9, nranges=2, nmeans=21, df=9, lower.tail=true, logp=true), -0.406227, ERROR);
+//	assertEquals(qtukey(p=0.90, nranges=4, nmeans=6, df=3, lower.tail=true, logp=false), 8.001985, ERROR);
+//
+//
+//// test chisquareZeroDf 
+//	assertEquals(pchisq(0.5, df=0, lower.tail=true, logp=false), 1);
+//	assertEquals(pchisq(0.5, df=0, lower.tail=false, logp=false), 0);
+//	assertEquals(pnchisq(0.5, df=0, ncp=0.5, lower.tail=true, logp=false), 0.8225176, ERROR);
+//	assertEquals(qchisq(0.5, df=0, lower.tail=true, logp=false), 0);
+//	assertEquals(qchisq(1, df=0, lower.tail=true, logp=false), Double.POSITIVE_INFINITY);
+//
+//*/    	
+//    }
+//
+//
 }

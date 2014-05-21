@@ -11,14 +11,17 @@ import beast.evolution.tree.Tree;
 import beast.math.distributions.Uniform;
 import beast.util.TreeParser;
 import bsh.BshScriptEngineFactory;
+import bsh.EvalError;
 import junit.framework.TestCase;
 
 public class UniformDistributionTest extends TestCase {
 	
     ScriptEngine engine = new BshScriptEngineFactory().getScriptEngine();
-
+    
+    final bsh.Interpreter interpreter = new bsh.Interpreter();
+    
     @Test
-	public void testMean() throws ScriptException {
+	public void testMean() throws ScriptException, EvalError {
 
         engine.eval("import beast.evolution.alignment.*");
         engine.eval("import beast.util.*");
@@ -39,15 +42,21 @@ public class UniformDistributionTest extends TestCase {
         engine.eval("import beast.math.distributions.*");
 
         Uniform d = (Uniform) engine.eval("new Uniform(lower=1.0, upper=2.0)");
-   		assertEquals(0.5, d.getMean(), 1e-10);
+   		assertEquals(1.5, d.getMean(), 1e-10);
 		
-        engine.eval("d = new Uniform(lower=1.0, upper=2.0, offset=10.0);" +
-        		"assertEquals(10.5, d.getMean(), 1e-10);");
+   		
+        interpreter.eval("import beast.math.distributions.*");
+        d = (Uniform) interpreter.eval("new Uniform(lower=1.0, upper=3.0)");
+   		assertEquals(2.0, d.getMean(), 1e-10);
+   		
+   		
+   		interpreter.eval("d = new Uniform(lower=1.0, upper=2.0, offset=10.0);" +
+        		"assertEquals(11.5, d.getMean(), 1e-10);");
 
-        engine.eval("d = new Uniform(upper=Double.POSITIVE_INFINITY, offset=10.0);" +
+   		interpreter.eval("d = new Uniform(upper=Double.POSITIVE_INFINITY, offset=10.0);" +
         		"assertEquals(Double.NaN, d.getMean(), 1e-10);");
 
-        engine.eval("d = new Uniform(lower=Double.NEGATIVE_INFINITY, offset=10.0);" +
+   		interpreter.eval("d = new Uniform(lower=Double.NEGATIVE_INFINITY, offset=10.0);" +
         		"assertEquals(Double.NaN, d.getMean(), 1e-10);");
     }
 	

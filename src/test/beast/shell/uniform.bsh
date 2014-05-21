@@ -1,0 +1,4 @@
+import beast.math.distributions.*;
+d = new Uniform(lower=1.0, upper=2.0);
+assertEquals(1.5, d.getMean(), 1e-10);
+
