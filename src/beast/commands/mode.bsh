@@ -1,0 +1,11 @@
+// @see(doc/html/beast/base/StatUtils.html)
+
+mode(sample) {
+	double [] x = toDoubleArray(sample);
+	return org.apache.commons.math3.stat.StatUtils.mode(x);
+}
+
+mode(sample, int begin, int end) {
+	double [] x = toDoubleArray(sample);
+	return org.apache.commons.math3.stat.StatUtils.mode(x, begin, length);
+}

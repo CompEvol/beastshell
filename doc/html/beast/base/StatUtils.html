@@ -1,0 +1,869 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- NewPage -->
+<html lang="en"><head>
+<title>StatUtils (Apache Commons Math 3.3 API)</title>
+<link rel="stylesheet" type="text/css" href="R.css">
+</head>
+<body>
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<h1>org.apache.commons.math3.stat.StatUtils</h1>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="overviewSummary" summary="Method Summary table, listing methods, and an explanation" border="0" cellpadding="3" cellspacing="0">
+<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tbody><tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#geometricMean%28double[]%29">geometricMean</a></strong>(double[]&nbsp;values)</code>
+<div class="block">Returns the geometric mean of the entries in the input array, or
+ <code>Double.NaN</code> if the array is empty.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#geometricMean%28double[],%20int,%20int%29">geometricMean</a></strong>(double[]&nbsp;values,
+                          int&nbsp;begin,
+                          int&nbsp;length)</code>
+<div class="block">Returns the geometric mean of the entries in the specified portion of
+ the input array, or <code>Double.NaN</code> if the designated subarray
+ is empty.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#meanDifference%28double[],%20double[]%29">meanDifference</a></strong>(double[]&nbsp;sample1,
+                            double[]&nbsp;sample2)</code>
+<div class="block">Returns the mean of the (signed) differences between corresponding elements of the
+ input arrays -- i.e., sum(sample1[i] - sample2[i]) / sample1.length.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static double[]</code></td>
+<td class="colLast"><code><strong><a href="#mode%28double[]%29">mode</a></strong>(double[]&nbsp;sample)</code>
+<div class="block">Returns the sample mode(s).</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static double[]</code></td>
+<td class="colLast"><code><strong><a href="#mode%28double[],%20int,%20int%29">mode</a></strong>(double[]&nbsp;sample,
+        int&nbsp;begin,
+        int&nbsp;length)</code>
+<div class="block">Returns the sample mode(s).</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static double[]</code></td>
+<td class="colLast"><code><strong><a href="#normalize%28double[]%29">normalize</a></strong>(double[]&nbsp;sample)</code>
+<div class="block">Normalize (standardize) the sample, so it is has a mean of 0 and a standard deviation of 1.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#percentile%28double[],%20double%29">percentile</a></strong>(double[]&nbsp;values,
+                    double&nbsp;p)</code>
+<div class="block">Returns an estimate of the <code>p</code>th percentile of the values
+ in the <code>values</code> array.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#percentile%28double[],%20int,%20int,%20double%29">percentile</a></strong>(double[]&nbsp;values,
+                    int&nbsp;begin,
+                    int&nbsp;length,
+                    double&nbsp;p)</code>
+<div class="block">Returns an estimate of the <code>p</code>th percentile of the values
+ in the <code>values</code> array, starting with the element in (0-based)
+ position <code>begin</code> in the array and including <code>length</code>
+ values.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#populationVariance%28double[]%29">populationVariance</a></strong>(double[]&nbsp;values)</code>
+<div class="block">Returns the <a href="http://en.wikibooks.org/wiki/Statistics/Summary/Variance">
+ population variance</a> of the entries in the input array, or
+ <code>Double.NaN</code> if the array is empty.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#populationVariance%28double[],%20double%29">populationVariance</a></strong>(double[]&nbsp;values,
+                                    double&nbsp;mean)</code>
+<div class="block">Returns the <a href="http://en.wikibooks.org/wiki/Statistics/Summary/Variance">
+ population variance</a> of the entries in the input array, using the
+ precomputed mean value.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#populationVariance%28double[],%20double,%20int,%20int%29">populationVariance</a></strong>(double[]&nbsp;values,
+                                    double&nbsp;mean,
+                                    int&nbsp;begin,
+                                    int&nbsp;length)</code>
+<div class="block">Returns the <a href="http://en.wikibooks.org/wiki/Statistics/Summary/Variance">
+ population variance</a> of the entries in the specified portion of
+ the input array, using the precomputed mean value.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#populationVariance%28double[],%20int,%20int%29">populationVariance</a></strong>(double[]&nbsp;values,
+                                    int&nbsp;begin,
+                                    int&nbsp;length)</code>
+<div class="block">Returns the <a href="http://en.wikibooks.org/wiki/Statistics/Summary/Variance">
+ population variance</a> of the entries in the specified portion of
+ the input array, or <code>Double.NaN</code> if the designated subarray
+ is empty.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#product%28double[]%29">product</a></strong>(double[]&nbsp;values)</code>
+<div class="block">Returns the product of the entries in the input array, or
+ <code>Double.NaN</code> if the array is empty.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#product%28double[],%20int,%20int%29">product</a></strong>(double[]&nbsp;values,
+              int&nbsp;begin,
+              int&nbsp;length)</code>
+<div class="block">Returns the product of the entries in the specified portion of
+ the input array, or <code>Double.NaN</code> if the designated subarray
+ is empty.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#sumDifference%28double[],%20double[]%29">sumDifference</a></strong>(double[]&nbsp;sample1,
+                          double[]&nbsp;sample2)</code>
+<div class="block">Returns the sum of the (signed) differences between corresponding elements of the
+ input arrays -- i.e., sum(sample1[i] - sample2[i]).</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#sumLog%28double[]%29">sumLog</a></strong>(double[]&nbsp;values)</code>
+<div class="block">Returns the sum of the natural logs of the entries in the input array, or
+ <code>Double.NaN</code> if the array is empty.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#sumLog%28double[],%20int,%20int%29">sumLog</a></strong>(double[]&nbsp;values,
+            int&nbsp;begin,
+            int&nbsp;length)</code>
+<div class="block">Returns the sum of the natural logs of the entries in the specified portion of
+ the input array, or <code>Double.NaN</code> if the designated subarray
+ is empty.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#sumSq%28double[]%29">sumSq</a></strong>(double[]&nbsp;values)</code>
+<div class="block">Returns the sum of the squares of the entries in the input array, or
+ <code>Double.NaN</code> if the array is empty.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#sumSq%28double[],%20int,%20int%29">sumSq</a></strong>(double[]&nbsp;values,
+          int&nbsp;begin,
+          int&nbsp;length)</code>
+<div class="block">Returns the sum of the squares of the entries in the specified portion of
+ the input array, or <code>Double.NaN</code> if the designated subarray
+ is empty.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#variance%28double[]%29">variance</a></strong>(double[]&nbsp;values)</code>
+<div class="block">Returns the variance of the entries in the input array, or
+ <code>Double.NaN</code> if the array is empty.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#variance%28double[],%20double%29">variance</a></strong>(double[]&nbsp;values,
+                double&nbsp;mean)</code>
+<div class="block">Returns the variance of the entries in the input array, using the
+ precomputed mean value.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#variance%28double[],%20double,%20int,%20int%29">variance</a></strong>(double[]&nbsp;values,
+                double&nbsp;mean,
+                int&nbsp;begin,
+                int&nbsp;length)</code>
+<div class="block">Returns the variance of the entries in the specified portion of
+ the input array, using the precomputed mean value.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#variance%28double[],%20int,%20int%29">variance</a></strong>(double[]&nbsp;values,
+                int&nbsp;begin,
+                int&nbsp;length)</code>
+<div class="block">Returns the variance of the entries in the specified portion of
+ the input array, or <code>Double.NaN</code> if the designated subarray
+ is empty.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#varianceDifference%28double[],%20double[],%20double%29">varianceDifference</a></strong>(double[]&nbsp;sample1,
+                                    double[]&nbsp;sample2,
+                                    double&nbsp;meanDifference)</code>
+<div class="block">Returns the variance of the (signed) differences between corresponding elements of the
+ input arrays -- i.e., var(sample1[i] - sample2[i]).</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="sumSq(double[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sumSq</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.132">sumSq</a>(double[]&nbsp;values)
+                    throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the sum of the squares of the entries in the input array, or
+ <code>Double.NaN</code> if the array is empty.
+ <p>
+ Throws <code>IllegalArgumentException</code> if the array is null.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - input array</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the sum of the squared values or <code>Double.NaN</code> if the
+ array is empty</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null</dd></dl>
+</li>
+</ul>
+<a name="sumSq(double[], int, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sumSq</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.150">sumSq</a>(double[]&nbsp;values,
+           int&nbsp;begin,
+           int&nbsp;length)
+                    throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the sum of the squares of the entries in the specified portion of
+ the input array, or <code>Double.NaN</code> if the designated subarray
+ is empty.
+ <p>
+ Throws <code>IllegalArgumentException</code> if the array is null.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd><dd><code>begin</code> - index of the first array element to include</dd><dd><code>length</code> - the number of elements to include</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the sum of the squares of the values or Double.NaN if length = 0</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null or the array index
+ parameters are not valid</dd></dl>
+</li>
+</ul>
+<a name="product(double[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>product</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.165">product</a>(double[]&nbsp;values)
+                      throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the product of the entries in the input array, or
+ <code>Double.NaN</code> if the array is empty.
+ <p>
+ Throws <code>IllegalArgumentException</code> if the array is null.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the product of the values or Double.NaN if the array is empty</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null</dd></dl>
+</li>
+</ul>
+<a name="product(double[], int, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>product</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.184">product</a>(double[]&nbsp;values,
+             int&nbsp;begin,
+             int&nbsp;length)
+                      throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the product of the entries in the specified portion of
+ the input array, or <code>Double.NaN</code> if the designated subarray
+ is empty.
+ <p>
+ Throws <code>IllegalArgumentException</code> if the array is null.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd><dd><code>begin</code> - index of the first array element to include</dd><dd><code>length</code> - the number of elements to include</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the product of the values or Double.NaN if length = 0</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null or the array index
+ parameters are not valid</dd></dl>
+</li>
+</ul>
+<a name="sumLog(double[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sumLog</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.203">sumLog</a>(double[]&nbsp;values)
+                     throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the sum of the natural logs of the entries in the input array, or
+ <code>Double.NaN</code> if the array is empty.
+ <p>
+ Throws <code>IllegalArgumentException</code> if the array is null.</p>
+ <p>
+ See <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/summary/SumOfLogs.html" title="class in org.apache.commons.math3.stat.descriptive.summary"><code>SumOfLogs</code></a>.
+ </p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the sum of the natural logs of the values or Double.NaN if
+ the array is empty</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null</dd></dl>
+</li>
+</ul>
+<a name="sumLog(double[], int, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sumLog</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.226">sumLog</a>(double[]&nbsp;values,
+            int&nbsp;begin,
+            int&nbsp;length)
+                     throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the sum of the natural logs of the entries in the specified portion of
+ the input array, or <code>Double.NaN</code> if the designated subarray
+ is empty.
+ <p>
+ Throws <code>IllegalArgumentException</code> if the array is null.</p>
+ <p>
+ See <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/summary/SumOfLogs.html" title="class in org.apache.commons.math3.stat.descriptive.summary"><code>SumOfLogs</code></a>.
+ </p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd><dd><code>begin</code> - index of the first array element to include</dd><dd><code>length</code> - the number of elements to include</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the sum of the natural logs of the values or Double.NaN if
+ length = 0</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null or the array index
+ parameters are not valid</dd></dl>
+</li>
+</ul>
+<a name="geometricMean(double[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>geometricMean</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.284">geometricMean</a>(double[]&nbsp;values)
+                            throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the geometric mean of the entries in the input array, or
+ <code>Double.NaN</code> if the array is empty.
+ <p>
+ Throws <code>IllegalArgumentException</code> if the array is null.</p>
+ <p>
+ See <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/moment/GeometricMean.html" title="class in org.apache.commons.math3.stat.descriptive.moment"><code>GeometricMean</code></a>
+ for details on the computing algorithm.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the geometric mean of the values or Double.NaN if the array is empty</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null</dd></dl>
+</li>
+</ul>
+<a name="geometricMean(double[], int, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>geometricMean</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.306">geometricMean</a>(double[]&nbsp;values,
+                   int&nbsp;begin,
+                   int&nbsp;length)
+                            throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the geometric mean of the entries in the specified portion of
+ the input array, or <code>Double.NaN</code> if the designated subarray
+ is empty.
+ <p>
+ Throws <code>IllegalArgumentException</code> if the array is null.</p>
+ <p>
+ See <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/moment/GeometricMean.html" title="class in org.apache.commons.math3.stat.descriptive.moment"><code>GeometricMean</code></a>
+ for details on the computing algorithm.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd><dd><code>begin</code> - index of the first array element to include</dd><dd><code>length</code> - the number of elements to include</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the geometric mean of the values or Double.NaN if length = 0</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null or the array index
+ parameters are not valid</dd></dl>
+</li>
+</ul>
+<a name="variance(double[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>variance</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.331">variance</a>(double[]&nbsp;values)
+                       throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the variance of the entries in the input array, or
+ <code>Double.NaN</code> if the array is empty.
+
+ <p>This method returns the bias-corrected sample variance (using <code>n - 1</code> in
+ the denominator).  Use <a href="#populationVariance%28double[]%29"><code>populationVariance(double[])</code></a> for the non-bias-corrected
+ population variance.</p>
+ <p>
+ See <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/moment/Variance.html" title="class in org.apache.commons.math3.stat.descriptive.moment"><code>Variance</code></a> for
+ details on the computing algorithm.</p>
+ <p>
+ Returns 0 for a single-value (i.e. length = 1) sample.</p>
+ <p>
+ Throws <code>MathIllegalArgumentException</code> if the array is null.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the variance of the values or Double.NaN if the array is empty</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null</dd></dl>
+</li>
+</ul>
+<a name="variance(double[], int, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>variance</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.359">variance</a>(double[]&nbsp;values,
+              int&nbsp;begin,
+              int&nbsp;length)
+                       throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the variance of the entries in the specified portion of
+ the input array, or <code>Double.NaN</code> if the designated subarray
+ is empty.
+
+ <p>This method returns the bias-corrected sample variance (using <code>n - 1</code> in
+ the denominator).  Use <a href="#populationVariance%28double[],%20int,%20int%29"><code>populationVariance(double[], int, int)</code></a> for the non-bias-corrected
+ population variance.</p>
+ <p>
+ See <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/moment/Variance.html" title="class in org.apache.commons.math3.stat.descriptive.moment"><code>Variance</code></a> for
+ details on the computing algorithm.</p>
+ <p>
+ Returns 0 for a single-value (i.e. length = 1) sample.</p>
+ <p>
+ Throws <code>MathIllegalArgumentException</code> if the array is null or the
+ array index parameters are not valid.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd><dd><code>begin</code> - index of the first array element to include</dd><dd><code>length</code> - the number of elements to include</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the variance of the values or Double.NaN if length = 0</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null or the array index
+  parameters are not valid</dd></dl>
+</li>
+</ul>
+<a name="variance(double[], double, int, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>variance</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.394">variance</a>(double[]&nbsp;values,
+              double&nbsp;mean,
+              int&nbsp;begin,
+              int&nbsp;length)
+                       throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the variance of the entries in the specified portion of
+ the input array, using the precomputed mean value.  Returns
+ <code>Double.NaN</code> if the designated subarray is empty.
+
+ <p>This method returns the bias-corrected sample variance (using <code>n - 1</code> in
+ the denominator).  Use <a href="#populationVariance%28double[],%20double,%20int,%20int%29"><code>populationVariance(double[], double, int, int)</code></a> for the non-bias-corrected
+ population variance.</p>
+ <p>
+ See <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/moment/Variance.html" title="class in org.apache.commons.math3.stat.descriptive.moment"><code>Variance</code></a> for
+ details on the computing algorithm.</p>
+ <p>
+ The formula used assumes that the supplied mean value is the arithmetic
+ mean of the sample data, not a known population parameter.  This method
+ is supplied only to save computation when the mean has already been
+ computed.</p>
+ <p>
+ Returns 0 for a single-value (i.e. length = 1) sample.</p>
+ <p>
+ Throws <code>MathIllegalArgumentException</code> if the array is null or the
+ array index parameters are not valid.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd><dd><code>mean</code> - the precomputed mean value</dd><dd><code>begin</code> - index of the first array element to include</dd><dd><code>length</code> - the number of elements to include</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the variance of the values or Double.NaN if length = 0</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null or the array index
+  parameters are not valid</dd></dl>
+</li>
+</ul>
+<a name="variance(double[], double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>variance</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.425">variance</a>(double[]&nbsp;values,
+              double&nbsp;mean)
+                       throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the variance of the entries in the input array, using the
+ precomputed mean value.  Returns <code>Double.NaN</code> if the array
+ is empty.
+
+ <p>This method returns the bias-corrected sample variance (using <code>n - 1</code> in
+ the denominator).  Use <a href="#populationVariance%28double[],%20double%29"><code>populationVariance(double[], double)</code></a> for the non-bias-corrected
+ population variance.</p>
+ <p>
+ See <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/moment/Variance.html" title="class in org.apache.commons.math3.stat.descriptive.moment"><code>Variance</code></a> for
+ details on the computing algorithm.</p>
+ <p>
+ The formula used assumes that the supplied mean value is the arithmetic
+ mean of the sample data, not a known population parameter.  This method
+ is supplied only to save computation when the mean has already been
+ computed.</p>
+ <p>
+ Returns 0 for a single-value (i.e. length = 1) sample.</p>
+ <p>
+ Throws <code>MathIllegalArgumentException</code> if the array is null.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd><dd><code>mean</code> - the precomputed mean value</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the variance of the values or Double.NaN if the array is empty</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null</dd></dl>
+</li>
+</ul>
+<a name="populationVariance(double[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>populationVariance</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.446">populationVariance</a>(double[]&nbsp;values)
+                                 throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the <a href="http://en.wikibooks.org/wiki/Statistics/Summary/Variance">
+ population variance</a> of the entries in the input array, or
+ <code>Double.NaN</code> if the array is empty.
+ <p>
+ See <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/moment/Variance.html" title="class in org.apache.commons.math3.stat.descriptive.moment"><code>Variance</code></a> for
+ details on the formula and computing algorithm.</p>
+ <p>
+ Returns 0 for a single-value (i.e. length = 1) sample.</p>
+ <p>
+ Throws <code>MathIllegalArgumentException</code> if the array is null.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the population variance of the values or Double.NaN if the array is empty</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null</dd></dl>
+</li>
+</ul>
+<a name="populationVariance(double[], int, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>populationVariance</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.472">populationVariance</a>(double[]&nbsp;values,
+                        int&nbsp;begin,
+                        int&nbsp;length)
+                                 throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the <a href="http://en.wikibooks.org/wiki/Statistics/Summary/Variance">
+ population variance</a> of the entries in the specified portion of
+ the input array, or <code>Double.NaN</code> if the designated subarray
+ is empty.
+ <p>
+ See <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/moment/Variance.html" title="class in org.apache.commons.math3.stat.descriptive.moment"><code>Variance</code></a> for
+ details on the computing algorithm.</p>
+ <p>
+ Returns 0 for a single-value (i.e. length = 1) sample.</p>
+ <p>
+ Throws <code>MathIllegalArgumentException</code> if the array is null or the
+ array index parameters are not valid.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd><dd><code>begin</code> - index of the first array element to include</dd><dd><code>length</code> - the number of elements to include</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the population variance of the values or Double.NaN if length = 0</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null or the array index
+  parameters are not valid</dd></dl>
+</li>
+</ul>
+<a name="populationVariance(double[], double, int, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>populationVariance</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.504">populationVariance</a>(double[]&nbsp;values,
+                        double&nbsp;mean,
+                        int&nbsp;begin,
+                        int&nbsp;length)
+                                 throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the <a href="http://en.wikibooks.org/wiki/Statistics/Summary/Variance">
+ population variance</a> of the entries in the specified portion of
+ the input array, using the precomputed mean value.  Returns
+ <code>Double.NaN</code> if the designated subarray is empty.
+ <p>
+ See <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/moment/Variance.html" title="class in org.apache.commons.math3.stat.descriptive.moment"><code>Variance</code></a> for
+ details on the computing algorithm.</p>
+ <p>
+ The formula used assumes that the supplied mean value is the arithmetic
+ mean of the sample data, not a known population parameter.  This method
+ is supplied only to save computation when the mean has already been
+ computed.</p>
+ <p>
+ Returns 0 for a single-value (i.e. length = 1) sample.</p>
+ <p>
+ Throws <code>MathIllegalArgumentException</code> if the array is null or the
+ array index parameters are not valid.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd><dd><code>mean</code> - the precomputed mean value</dd><dd><code>begin</code> - index of the first array element to include</dd><dd><code>length</code> - the number of elements to include</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the population variance of the values or Double.NaN if length = 0</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null or the array index
+  parameters are not valid</dd></dl>
+</li>
+</ul>
+<a name="populationVariance(double[], double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>populationVariance</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.532">populationVariance</a>(double[]&nbsp;values,
+                        double&nbsp;mean)
+                                 throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the <a href="http://en.wikibooks.org/wiki/Statistics/Summary/Variance">
+ population variance</a> of the entries in the input array, using the
+ precomputed mean value.  Returns <code>Double.NaN</code> if the array
+ is empty.
+ <p>
+ See <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/moment/Variance.html" title="class in org.apache.commons.math3.stat.descriptive.moment"><code>Variance</code></a> for
+ details on the computing algorithm.</p>
+ <p>
+ The formula used assumes that the supplied mean value is the arithmetic
+ mean of the sample data, not a known population parameter.  This method
+ is supplied only to save computation when the mean has already been
+ computed.</p>
+ <p>
+ Returns 0 for a single-value (i.e. length = 1) sample.</p>
+ <p>
+ Throws <code>MathIllegalArgumentException</code> if the array is null.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd><dd><code>mean</code> - the precomputed mean value</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the population variance of the values or Double.NaN if the array is empty</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the array is null</dd></dl>
+</li>
+</ul>
+</ul>
+<a name="percentile(double[], double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>percentile</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.656">percentile</a>(double[]&nbsp;values,
+                double&nbsp;p)
+                         throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns an estimate of the <code>p</code>th percentile of the values
+ in the <code>values</code> array.
+ <p>
+ </p><ul>
+ <li>Returns <code>Double.NaN</code> if <code>values</code> has length
+ <code>0</code></li><p></p>
+ <li>Returns (for any value of <code>p</code>) <code>values[0]</code>
+  if <code>values</code> has length <code>1</code></li>
+ <li>Throws <code>IllegalArgumentException</code> if <code>values</code>
+ is null  or p is not a valid quantile value (p must be greater than 0
+ and less than or equal to 100)</li>
+ </ul><p></p>
+ <p>
+ See <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/rank/Percentile.html" title="class in org.apache.commons.math3.stat.descriptive.rank"><code>Percentile</code></a> for
+ a description of the percentile estimation algorithm used.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - input array of values</dd><dd><code>p</code> - the percentile value to compute</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the percentile value or Double.NaN if the array is empty</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if <code>values</code> is null
+ or p is invalid</dd></dl>
+</li>
+</ul>
+<a name="percentile(double[], int, int, double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>percentile</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.688">percentile</a>(double[]&nbsp;values,
+                int&nbsp;begin,
+                int&nbsp;length,
+                double&nbsp;p)
+                         throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns an estimate of the <code>p</code>th percentile of the values
+ in the <code>values</code> array, starting with the element in (0-based)
+ position <code>begin</code> in the array and including <code>length</code>
+ values.
+ <p>
+ </p><ul>
+ <li>Returns <code>Double.NaN</code> if <code>length = 0</code></li>
+ <li>Returns (for any value of <code>p</code>) <code>values[begin]</code>
+  if <code>length = 1 </code></li>
+ <li>Throws <code>MathIllegalArgumentException</code> if <code>values</code>
+  is null , <code>begin</code> or <code>length</code> is invalid, or
+ <code>p</code> is not a valid quantile value (p must be greater than 0
+ and less than or equal to 100)</li>
+ </ul><p></p>
+ <p>
+ See <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/rank/Percentile.html" title="class in org.apache.commons.math3.stat.descriptive.rank"><code>Percentile</code></a> for
+ a description of the percentile estimation algorithm used.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - array of input values</dd><dd><code>p</code> - the percentile to compute</dd><dd><code>begin</code> - the first (0-based) element to include in the computation</dd><dd><code>length</code> - the number of array elements to include</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the percentile value</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the parameters are not valid or the
+ input array is null</dd></dl>
+</li>
+</ul>
+<a name="sumDifference(double[], double[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sumDifference</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.704">sumDifference</a>(double[]&nbsp;sample1,
+                   double[]&nbsp;sample2)
+                            throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/DimensionMismatchException.html" title="class in org.apache.commons.math3.exception">DimensionMismatchException</a>,
+                                   <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/NoDataException.html" title="class in org.apache.commons.math3.exception">NoDataException</a></pre>
+<div class="block">Returns the sum of the (signed) differences between corresponding elements of the
+ input arrays -- i.e., sum(sample1[i] - sample2[i]).</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>sample1</code> - the first array</dd><dd><code>sample2</code> - the second array</dd>
+<dt><span class="strong">Returns:</span></dt><dd>sum of paired differences</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/DimensionMismatchException.html" title="class in org.apache.commons.math3.exception">DimensionMismatchException</a></code> - if the arrays do not have the same
+ (positive) length.</dd>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/NoDataException.html" title="class in org.apache.commons.math3.exception">NoDataException</a></code> - if the sample arrays are empty.</dd></dl>
+</li>
+</ul>
+<a name="meanDifference(double[], double[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>meanDifference</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.731">meanDifference</a>(double[]&nbsp;sample1,
+                    double[]&nbsp;sample2)
+                             throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/DimensionMismatchException.html" title="class in org.apache.commons.math3.exception">DimensionMismatchException</a>,
+                                    <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/NoDataException.html" title="class in org.apache.commons.math3.exception">NoDataException</a></pre>
+<div class="block">Returns the mean of the (signed) differences between corresponding elements of the
+ input arrays -- i.e., sum(sample1[i] - sample2[i]) / sample1.length.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>sample1</code> - the first array</dd><dd><code>sample2</code> - the second array</dd>
+<dt><span class="strong">Returns:</span></dt><dd>mean of paired differences</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/DimensionMismatchException.html" title="class in org.apache.commons.math3.exception">DimensionMismatchException</a></code> - if the arrays do not have the same
+ (positive) length.</dd>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/NoDataException.html" title="class in org.apache.commons.math3.exception">NoDataException</a></code> - if the sample arrays are empty.</dd></dl>
+</li>
+</ul>
+<a name="varianceDifference(double[], double[], double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>varianceDifference</h4>
+<pre>public static&nbsp;double&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.749">varianceDifference</a>(double[]&nbsp;sample1,
+                        double[]&nbsp;sample2,
+                        double&nbsp;meanDifference)
+                                 throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/DimensionMismatchException.html" title="class in org.apache.commons.math3.exception">DimensionMismatchException</a>,
+                                        <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/NumberIsTooSmallException.html" title="class in org.apache.commons.math3.exception">NumberIsTooSmallException</a></pre>
+<div class="block">Returns the variance of the (signed) differences between corresponding elements of the
+ input arrays -- i.e., var(sample1[i] - sample2[i]).</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>sample1</code> - the first array</dd><dd><code>sample2</code> - the second array</dd><dd><code>meanDifference</code> - the mean difference between corresponding entries</dd>
+<dt><span class="strong">Returns:</span></dt><dd>variance of paired differences</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/DimensionMismatchException.html" title="class in org.apache.commons.math3.exception">DimensionMismatchException</a></code> - if the arrays do not have the same
+ length.</dd>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/NumberIsTooSmallException.html" title="class in org.apache.commons.math3.exception">NumberIsTooSmallException</a></code> - if the arrays length is less than 2.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="#meanDifference%28double[],%20double[]%29"><code>meanDifference(double[],double[])</code></a></dd></dl>
+</li>
+</ul>
+<a name="normalize(double[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>normalize</h4>
+<pre>public static&nbsp;double[]&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.777">normalize</a>(double[]&nbsp;sample)</pre>
+<div class="block">Normalize (standardize) the sample, so it is has a mean of 0 and a standard deviation of 1.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>sample</code> - Sample to normalize.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>normalized (standardized) sample.</dd><dt><span class="strong">Since:</span></dt>
+  <dd>2.2</dd></dl>
+</li>
+</ul>
+<a name="mode(double[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>mode</h4>
+<pre>public static&nbsp;double[]&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.817">mode</a>(double[]&nbsp;sample)
+                     throws <a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></pre>
+<div class="block">Returns the sample mode(s).  The mode is the most frequently occurring
+ value in the sample. If there is a unique value with maximum frequency,
+ this value is returned as the only element of the output array. Otherwise,
+ the returned array contains the maximum frequency elements in increasing
+ order.  For example, if <code>sample</code> is {0, 12, 5, 6, 0, 13, 5, 17},
+ the returned array will have length two, with 0 in the first element and
+ 5 in the second.
+
+ <p>NaN values are ignored when computing the mode - i.e., NaNs will never
+ appear in the output array.  If the sample includes only NaNs or has
+ length 0, an empty array is returned.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>sample</code> - input data</dd>
+<dt><span class="strong">Returns:</span></dt><dd>array of array of the most frequently occurring element(s) sorted in ascending order.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the indices are invalid or the array is null</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.3</dd></dl>
+</li>
+</ul>
+<a name="mode(double[], int, int)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>mode</h4>
+<pre>public static&nbsp;double[]&nbsp;<a href="http://commons.apache.org/proper/commons-math/apidocs/src-html/org/apache/commons/math3/stat/StatUtils.html#line.845">mode</a>(double[]&nbsp;sample,
+            int&nbsp;begin,
+            int&nbsp;length)</pre>
+<div class="block">Returns the sample mode(s).  The mode is the most frequently occurring
+ value in the sample. If there is a unique value with maximum frequency,
+ this value is returned as the only element of the output array. Otherwise,
+ the returned array contains the maximum frequency elements in increasing
+ order.  For example, if <code>sample</code> is {0, 12, 5, 6, 0, 13, 5, 17},
+ the returned array will have length two, with 0 in the first element and
+ 5 in the second.
+
+ <p>NaN values are ignored when computing the mode - i.e., NaNs will never
+ appear in the output array.  If the sample includes only NaNs or has
+ length 0, an empty array is returned.</p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>sample</code> - input data</dd><dd><code>begin</code> - index (0-based) of the first array element to include</dd><dd><code>length</code> - the number of elements to include</dd>
+<dt><span class="strong">Returns:</span></dt><dd>array of array of the most frequently occurring element(s) sorted in ascending order.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the indices are invalid or the array is null</dd><dt><span class="strong">Since:</span></dt>
+  <dd>3.3</dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<p class="legalCopy"><small>Copyright © 2003–2014 <a href="http://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.</small></p>
+
+</body></html>

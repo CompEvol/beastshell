@@ -1,0 +1,9 @@
+// @see(doc/html/beast/base/StatUtils.html)
+
+normalize(sample) {
+	double [] x = toDoubleArray(sample);
+	return org.apache.commons.math3.stat.StatUtils.normalize(x);
+}
+
+
+
