@@ -374,12 +374,10 @@ public class BEASTStudio extends JSplitPane {
 		try {
 			// JavaFX already loaded?
 			Class x = Class.forName("javafx.embed.swing.JFXPanel");
-			System.out.println("JavaFX already loaded");
 			// if we got here, all is fine.
 			return;
 		} catch (ClassNotFoundException e) {
 			// JavaFX is not loaded yet
-			System.out.println("JavaFX not loaded: attempt to load now");
 			try {
 				String home = System.getenv("JAVA_HOME");
 				if (home != null) {
@@ -407,12 +405,7 @@ public class BEASTStudio extends JSplitPane {
 				e1.printStackTrace();
 			}
 		}
-		JOptionPane.showMessageDialog(null, "<html>Could not load JavaFX.<br>"
-				+ "Run with java 7 or higher,<br>"
-				+ "or set the JAVAFX_JAR environment variable to the location of jfxrt.jar<br>"
-				+ "or install jfxrt.jar at /opt/java/jre/lib/jfxrt.jar<br>"
-				+ "or copy jfxrt.jar to the BEAST/2.1/BEASTShell/lib directory.<br>"
-				+ " -- exiting now");
+		JOptionPane.showMessageDialog(null, "Could not load JavaFX. Run with java 7 or higher, or set the JAVAFX_JAR environment variable to the location of jfxrt.jar or install jfxrt.jar at /opt/java/jre/lib/jfxrt.jar. -- exiting now");
 		System.exit(0);
 	}
 

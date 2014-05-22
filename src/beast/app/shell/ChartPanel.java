@@ -9,7 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,8 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
+
+import org.jtikz.TikzGraphics2D;
 
 import beast.app.util.Utils;
 
@@ -98,8 +102,14 @@ public class ChartPanel extends JPanel {
 	}
 
 	protected void doExport() {
-		File file = Utils.getSaveFile("Save chart as", new File("."), "Image file (*.pdf, *.png, *.jpg, *.bmp)", "pdf", "png", "jpg", "bmp");
+		File file = Utils.getSaveFile("Save chart as", new File("."), "Image file (*.pdf, *.png, *.jpg, *.bmp, *.tex)", "pdf", "png", "jpg", "bmp", "tex");
 		if (file != null) {
+			doExport(file);
+		}
+	}
+	
+	// public access so it can be called from a script	
+	public void doExport(File file) {
 				String sFileName = file.getAbsolutePath();
 				if (sFileName != null && !sFileName.equals("")) {
                     if (sFileName.toLowerCase().endsWith(".pdf")) {
@@ -151,11 +161,45 @@ public class ChartPanel extends JPanel {
 							e.printStackTrace();
 						}
 						return;
+					} else if (sFileName.toLowerCase().endsWith(".tex")) {
+				        TikzGraphics2D tikzGraphics2D;
+
+				        PrintStream out;
+						try {
+							out = new PrintStream(file);
+					        out.println("\\documentclass[12pt]{article}");
+					        out.println("\\usepackage{tikz,pgf}");
+					        out.println("\\begin{document}");
+
+					        tikzGraphics2D = new TikzGraphics2D(out);
+					        paint(tikzGraphics2D);
+					        tikzGraphics2D.flush();
+
+					        out.println("\\end{document}");
+					        out.flush();
+						} catch (FileNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						return;
+//				        if (out != System.out) {
+//				            out.close();
+//				            String fileName = file.getPath();
+//				            String pdflatexPathString = pdflatexPath.get();
+//				            if (!pdflatexPathString.equals("")) {
+//				                String pdfFileName = fileName.substring(0, fileName.length() - 3) + "pdf";
+//
+//				                Process p = Runtime.getRuntime().exec(pdflatexPathString + " " + fileName);
+//				                p.waitFor();
+//				                Process p2 = Runtime.getRuntime().exec("open " + pdfFileName);
+//				                p2.waitFor();
+//				            }
+//				        }
+
 					}
 					JOptionPane.showMessageDialog(null, "Extention of file " + sFileName
 							+ " not recognized as png,bmp,jpg or pdf file");
 				}
-			}
 			
 	}
 

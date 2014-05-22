@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>BEAST command plot</title>
+<link rel="stylesheet" type="text/css" href="../../style.css">
+</head>
+<body>
+<h1>"plot" documentation</h1>
+
+<h2>Description:</h2>
+
+<tt>plot(component), plot(filename)</tt> -- create a plot or export to file.
+
+<h2>Usage:</h2>
+
+	plot(component);</p>
+	plot(filename);<p>
+e.g.</p>
+<pre> plot(treeDrawing);
+      plot("tree.png");
+      plot("tree.pdf");
+      plot("tree.tex");</pre>
+     
+<h2>Arguments:</h2>
+
+    Component component: JComponent to be plotted</p>
+	String filename: file to save the component to, the file extension is used to determine 
+              the file format. Use one of png, bmp, jpg, pdf, tex. Output to tex 
+			  produces a tix drawing in a latex file.
+
+</body>
+</html>

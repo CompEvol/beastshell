@@ -1,0 +1,10 @@
+// @see(doc/html/beast/commands/plot.html)
+
+plot(Component c) { 
+	this.interpreter.studio.plotPane.addChart(c);
+}
+
+plot(String filename) { 
+	File file = new File(filename);
+	this.interpreter.studio.plotPane.doExport(file);
+}
