@@ -18,3 +18,9 @@ This can be done in BEAUti in the Package Manager. Once this repository is added
 To run, open the BEAST AppStore, and select BEASTStudio.
 
 Feedback to remco@cs.auckland.ac.nz
+
+TODO
+- add apache common methods for modes
+- update R docs
+- add commandt to commands list doc
+- 
