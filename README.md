@@ -23,4 +23,4 @@ TODO
 - add apache common methods for modes
 - update R docs
 - add commandt to commands list doc
-- 
+- refactor beast graphics
