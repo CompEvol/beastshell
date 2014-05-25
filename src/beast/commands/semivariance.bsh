@@ -1,0 +1,32 @@
+// @see(doc/html/beast/base/DescriptiveStats.html#semivariance)
+
+semivariance(x,  double cutoff) {
+	double [] y = toDoubleArray(x);
+    semivariance = new org.apache.commons.math3.stat.descriptive.moment.SemiVariance();
+	return semivariance.evaluate(y, 0, y.length(), cutoff);
+}
+
+semivariance(values, double cutoff, SemiVariance.Direction direction) {
+	double [] y = toDoubleArray(x);
+    semivariance = new org.apache.commons.math3.stat.descriptive.moment.SemiVariance();
+	return semivariance.evaluate(y, 0, y.length(), cutoff, direction);
+}
+
+semivariance(values, double cutoff, SemiVariance.Direction direction, boolean corrected, int start, int length) {
+	double [] y = toDoubleArray(x);
+    semivariance = new org.apache.commons.math3.stat.descriptive.moment.SemiVariance();
+	return semivariance.evaluate(y, 0, y.length(), direction, start, length);
+}
+
+semivariance(values, int start, int length) {
+	double [] y = toDoubleArray(x);
+    semivariance = new org.apache.commons.math3.stat.descriptive.moment.SemiVariance();
+	return semivariance.evaluate(y, 0, y.length(), start, length);
+}
+
+semivariance(values, SemiVariance.Direction direction) {
+	double [] y = toDoubleArray(x);
+    semivariance = new org.apache.commons.math3.stat.descriptive.moment.SemiVariance();
+	return semivariance.evaluate(y, direction);
+}
+

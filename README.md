@@ -20,7 +20,6 @@ To run, open the BEAST AppStore, and select BEASTStudio.
 Feedback to remco@cs.auckland.ac.nz
 
 TODO
-- add apache common methods for modes
+- add apache common regression methods to plot regression lines
 - update R docs
-- add commandt to commands list doc
 - refactor beast graphics
