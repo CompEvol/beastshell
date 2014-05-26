@@ -1,4 +1,4 @@
-package beast.app.draw.tree;
+package beast.graphics;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;

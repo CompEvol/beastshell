@@ -1,4 +1,4 @@
-package beast.app.draw.tree;
+package beast.graphics;
 
 import beast.app.shell.Plot;
 import beast.evolution.tree.Node;

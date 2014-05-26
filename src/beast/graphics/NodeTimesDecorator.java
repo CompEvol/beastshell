@@ -1,4 +1,4 @@
-package beast.app.draw.tree;
+package beast.graphics;
 
 import beast.core.Input;
 import beast.core.BEASTObject;

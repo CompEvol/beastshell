@@ -1,4 +1,4 @@
-package beast.app.draw.tree;
+package beast.graphics;
 
 import java.awt.*;
 import java.util.Arrays;

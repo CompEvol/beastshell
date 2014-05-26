@@ -1,7 +1,7 @@
 // demonstrates various trees and how to display them
 import beast.util.*;
 import beast.core.parameter.*;
-import beast.app.draw.tree.*;
+import beast.graphics.*;
 import beast.evolution.alignment.*;
 import beast.evolution.tree.*;
 import beast.evolution.tree.coalescent.*;

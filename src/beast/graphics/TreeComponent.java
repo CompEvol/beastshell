@@ -1,4 +1,4 @@
-package beast.app.draw.tree;
+package beast.graphics;
 
 import beast.evolution.alignment.Alignment;
 import beast.evolution.alignment.Sequence;

@@ -4,6 +4,7 @@ import com.xeiam.xchart.*;
 import beast.app.shell.*;
 import java.awt.*;
 
+
 // simple chart
 
 xData = c(-3, -2, -1, 0, 1, 2, 3);
@@ -287,4 +288,20 @@ x = c("humans","chimp","dog","fruit fly");
 y = c(100, 98, 95, 60);
 
 new Plot(seriesName="%DNA", x=x, y=y, title="Percentage DNA in common with homo sapiens", xAxisTitle="Species", yAxisTitle="Number", chartType="Bar", legendPosition="InsideSW");
+pause();
+
+// plot with regression line
+
+e = rnorm(30, 0, 20);
+y=new ArrayList();
+x=new ArrayList();
+for (i = 0; i < 30; i++) {x.add(i);y.add(1.0 + i*0.5 + e.get(i));}
+p = new Plot(y=y, x=x, seriesName="noisy line");
+
+// calculate regression line with coordinates (x[i], r[i])
+r = regression(x, y);
+
+// plot regression line
+p.add(new Series(y=r, seriesName="linear", marker="NONE"));
+pause();
 
