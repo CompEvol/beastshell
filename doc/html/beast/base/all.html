@@ -17,40 +17,23 @@
 <h3>Usage</h3>
 
 <pre>
-all(..., na.rm = FALSE)
+all(x), all(x, na_rm)
 </pre>
 
 
 <h3>Arguments</h3>
 
 <table summary="R argblock">
-<tr valign="top"><td><code>...</code></td>
+<tr valign="top"><td><code>x</code></td>
 <td>
-<p>zero or more logical vectors.  Other objects of zero
-length are ignored, and the rest are coerced to logical ignoring
-any class.</p>
+<p>Array or collection of boolean values.</p>
 </td></tr>
-<tr valign="top"><td><code>na.rm</code></td>
+<tr valign="top"><td><code>na_rm</code></td>
 <td>
-<p>logical.  If true <code>NA</code> values are removed before
+<p>boolean. If true <code>NaN</code> values are removed before
 the result is computed.</p>
 </td></tr>
 </table>
-
-
-<h3>Details</h3>
-
-<p>This is a generic function: methods can be defined for it
-directly or via the <code><a href="groupGeneric.html">Summary</a></code> group generic.
-For this to work properly, the arguments <code>...</code> should be
-unnamed, and dispatch is on the first argument.
-</p>
-<p>Coercion of types other than integer (raw, double, complex, character,
-list) gives a warning as this is often unintentional.
-</p>
-<p>This is a <a href="Primitive.html">primitive</a> function.
-</p>
-
 
 <h3>Value</h3>
 
@@ -70,11 +53,6 @@ value is <code>NA</code> (which can only occur if <code>na.rm = FALSE</code> and
 
 
 <h3>S4 methods</h3>
-
-<p>This is part of the S4 <code><a href="../../methods/html/S4groupGeneric.html">Summary</a></code>
-group generic.  Methods for it must use the signature
-<code>x, ..., na.rm</code>.
-</p>
 
 
 <h3>Note</h3>

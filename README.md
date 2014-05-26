@@ -20,5 +20,5 @@ To run, open the BEAST AppStore, and select BEASTStudio.
 Feedback to remco@cs.auckland.ac.nz
 
 TODO
-- update R docs
+- completely rewrite R-based docs, they are misleading at the moment
 
