@@ -80,6 +80,9 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
     
     private final JFXPanel jfxPanel = new JFXPanel();
     private WebEngine engine;
+    public WebEngine getWebEngine() {
+    	return engine;
+    }
     
     private final JPanel panel = new JPanel(new BorderLayout());
     private final JLabel lblStatus = new JLabel();

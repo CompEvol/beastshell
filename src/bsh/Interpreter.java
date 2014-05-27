@@ -653,7 +653,8 @@ public class Interpreter
 		Interpreter localInterpreter = 
 			new Interpreter( 
 				in, out, err, false, nameSpace, this, sourceFileInfo  );
-
+		localInterpreter.studio = studio;
+		
 		CallStack callstack = new CallStack( nameSpace );
 
 		SimpleNode node = null;

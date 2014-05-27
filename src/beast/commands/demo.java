@@ -90,9 +90,20 @@ public class demo {
 				env.println(str);
 				if (str.indexOf("pause();") >= 0) {
 					env.eval(buf);
-					if (JOptionPane.showConfirmDialog(Plot.studio.editorPanel, "Continue?", "Demo " + file, JOptionPane.YES_NO_OPTION) != 0){
+					env.println("Continue (Y/n)?");
+					int i = env.getIn().read();
+					String answer = "" + (char) i;
+					while(env.getIn().ready()) {
+						answer  += (char)env.getIn().read();
+					}
+					if (!answer.equals("\\u003b\\u000a") && !answer.equals("\\u0059\\u000a")
+							&& !answer.equals("\\u0079\\u000a")) {
+						// not empty, 'y' or 'Y'
 						return;
 					}
+//					if (JOptionPane.showConfirmDialog(Plot.studio.editorPanel, "Continue?", "Demo " + file, JOptionPane.YES_NO_OPTION) != 0){
+//						return;
+//					}
 					buf = "";
 				} else {
 					buf = buf + str + "\n";
