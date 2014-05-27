@@ -1,61 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Descriptive Statistics</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
 
 
-<pre id='kurtosis'>
-kurtosis(double [] x),
-kurtosis(double [] x, begin, length),
+<h2 id='kurtosis'>Kurtosis</h1>
 
+<h3>Description</h3>
 Computes the Kurtosis of the available values.
 
-We use the following (unbiased) formula to define kurtosis:
-
+We use the following (unbiased) formula to define kurtosis:</p>
+<pre>
 kurtosis = { [n(n+1) / (n -1)(n - 2)(n-3)] sum[(x_i - mean)^4] / std^4 } - [3(n-1)^2 / (n-2)(n-3)]
+</pre>
 
-where n is the number of values, mean is the Mean and std is the StandardDeviation
+where n is the number of values, mean is the Mean and std is the StandardDeviation.</p>
 
-Note that this statistic is undefined for n &lt; 4. Double.Nan is returned when there is not sufficient data to compute the statistic.
+Note that this statistic is undefined for n &lt; 4. Double.Nan is returned when there is not sufficient data to compute the statistic.</p>
 
-Note that this implementation is not synchronized. If multiple threads access an instance of this class concurrently, and at least one of the threads invokes the increment() or clear() method, it must be synchronized externally.
+Note that this implementation is not synchronized. If multiple threads access an instance of this class concurrently, and at least one of the threads invokes the increment() or clear() method, it must be synchronized externally.</p>
 
+<h3>Usage</h3>
+<pre>
+kurtosis(double [] x),
+kurtosis(double [] x, begin, length),
+</pre>
 
-Parameters:
+<h3>Arguments</h3>
+<pre>
     values - the input array
     begin - index of the first array element to include
     length - the number of elements to include
+</pre>
+
+<h3>Value</h3>
+<pre>
 Returns:
     the kurtosis of the values or Double.NaN if length is less than 4
 </pre>
 
-<pre id='semivariance'>
-double 	evaluate(double[] values, double cutoff)
-    Returns the SemiVariance of the designated values against the cutoff, using instance properties variancDirection and biasCorrection.
-double 	evaluate(double[] values, double cutoff, SemiVariance.Direction direction)
-    Returns the SemiVariance of the designated values against the cutoff in the given direction, using the current value of the biasCorrection instance property.
-double 	evaluate(double[] values, double cutoff, SemiVariance.Direction direction, boolean corrected, int start, int length)
-    Returns the SemiVariance of the designated values against the cutoff in the given direction with the provided bias correction.
-double 	evaluate(double[] values, int start, int length)
-    Returns the SemiVariance of the designated values against the mean, using instance properties varianceDirection and biasCorrection.
-double 	evaluate(double[] values, SemiVariance.Direction direction)
-    This method calculates SemiVariance for the entire array against the mean, using the current value of the biasCorrection instance property.
-
-
+<hr>
+<h2 id='semivariance'>Semi variance</h2>
+<h3>Description</h3>
 Computes the semivariance of a set of values with respect to a given cutoff value. We define the downside semivariance of a set of values x against the cutoff value cutoff to be
+<pre>
 Σ (x[i] - target)2 / df
+</pre>
 where the sum is taken over all i such that x[i] &lt; cutoff and df is the length of x (non-bias-corrected) or one less than this number (bias corrected). The upside semivariance is defined similarly, with the sum taken over values of x that exceed the cutoff value.
 
-The cutoff value defaults to the mean, bias correction defaults to true and the "variance direction" (upside or downside) defaults to downside. The variance direction and bias correction may be set using property setters or their values can provided as parameters to evaluate(double[], double, Direction, boolean, int, int).
+
+<h3>Usage</h3>
+<pre>
+double 	semivariance(double[] values, double cutoff)
+    Returns the SemiVariance of the designated values against the cutoff, using instance properties variancDirection and biasCorrection.
+double 	semivariance(double[] values, double cutoff, SemiVariance.Direction direction)
+    Returns the SemiVariance of the designated values against the cutoff in the given direction, using the current value of the biasCorrection instance property.
+double 	semivariance(double[] values, double cutoff, SemiVariance.Direction direction, boolean corrected, int start, int length)
+    Returns the SemiVariance of the designated values against the cutoff in the given direction with the provided bias correction.
+double 	semivariance(double[] values, int start, int length)
+    Returns the SemiVariance of the designated values against the mean, using instance properties varianceDirection and biasCorrection.
+double 	semivariance(double[] values, SemiVariance.Direction direction)
+    This method calculates SemiVariance for the entire array against the mean, using the current value of the biasCorrection instance property.
+</pre>
+
+
+
+
+<h3>Arguments</h3>
+<pre>
+    values - the input array
+    begin - index of the first array element to include
+    length - the number of elements to include
+	cutoff - The cutoff value defaults to the mean, bias correction defaults to true and the "variance direction" (upside or downside) defaults to downside. The variance direction and bias correction may be set using property setters or their values can provided as parameters to semivariance(double[], double, Direction, boolean, int, int).
+	direction - upside or downside
+</pre>
+
+<h3>Value</h3>
+Returns:
+    the Semi variance of the values.</p>
 
 If the input array is null, evaluate methods throw IllegalArgumentException. If the array has length 1, 0 is returned, regardless of the value of the cutoff. 
-</pre>
 
-<pre id='skewness'>
+
+<hr>
+<h2 id='skewness'>Skeweness</h2>
+Computes the skewness of the available values.</p>
+
+We use the following (unbiased) formula to define skewness:</p>
+<pre>
+skewness = [n / (n -1) (n - 2)] sum[(x_i - mean)^3] / std^3
+</pre>
+where n is the number of values, mean is the Mean and std is the StandardDeviation </p>
+
+<h3>Usage</h3>
+<pre>
 double 	evaluate(double[] values, int begin, int length)
     Returns the Skewness of the entries in the specifed portion of the input array.
-
-Computes the skewness of the available values.
-
-We use the following (unbiased) formula to define skewness:
-
-skewness = [n / (n -1) (n - 2)] sum[(x_i - mean)^3] / std^3
-
-where n is the number of values, mean is the Mean and std is the StandardDeviation 
 </pre>
+
+<hr>
+Based on apache commons math documentation
+</body>
+</html>

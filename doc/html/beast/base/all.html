@@ -1,10 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>R: Are All Values True?</title>
+<html><head><title>Are All Values True?</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="R.css">
 </head><body>
-
-<table width="100%" summary="page for all {base}"><tr><td>all {base}</td><td align="right">R Documentation</td></tr></table>
 
 <h2>Are All Values True?</h2>
 
@@ -37,7 +35,7 @@ the result is computed.</p>
 
 <h3>Value</h3>
 
-<p>The value is a logical vector of length one.
+<p>The value is a boolean 
 </p>
 <p>Let <code>x</code> denote the concatenation of all the logical vectors in
 <code>...</code> (after coercion), after removing <code>NA</code>s if requested by
@@ -51,44 +49,11 @@ value is <code>NA</code> (which can only occur if <code>na.rm = FALSE</code> and
 <code>NA</code> value).
 </p>
 
-
-<h3>S4 methods</h3>
-
-
-<h3>Note</h3>
-
-<p>That <code>all(logical(0))</code> is true is a useful convention:
-it ensures that
-</p>
-<PRE>all(all(x), all(y)) == all(x, y)
-</PRE>
-even if <code>x</code> has length zero.
-
-
-<h3>References</h3>
-
-<p>Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
-<EM>The New S Language</EM>.
-Wadsworth &amp; Brooks/Cole.
-</p>
-
-
 <h3>See Also</h3>
 
-<p><code><a href="any.html">any</a></code>, the &lsquo;complement&rsquo; of <code>all</code>, and
-<code><a href="stopifnot.html">stopifnot</a>(*)</code> which is an <code>all(*)</code>
-&lsquo;insurance&rsquo;.
+<p><code><a href="any.html">any</a></code>, the &lsquo;complement&rsquo; of <code>all</code>.
 </p>
 
-
-<h3>Examples</h3>
-
-<pre>
-range(x &lt;- sort(round(stats::rnorm(10) - 1.2, 1)))
-if(all(x &lt; 0)) cat("all x values are negative\n")
-
-all(logical(0))  # true, as all zero of the elements are true.
-</pre>
-
-<hr><div align="center">[Package <em>base</em> version 3.0.0 <a href="00Index.html">Index</a>]</div>
+<hr>
+Looseley based on R documentation
 </body></html>
