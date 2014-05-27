@@ -60,6 +60,15 @@ javap( Object o )
 				buf.append( f ); buf.append('\n');
 		}
 	} else {
+		// see if any javadoc is available
+		name = beast.util.AddOnManager.getPackageUserDir() + "/BEASTShell/doc/javadoc/" +
+			clas.getName().replaceAll("\\.","/") + ".html";
+		print("Checking " + name);
+		if (new File(name).exists()) {
+			this.interpreter.studio.helpPane.setURL(new URL("file://" + name));
+			return;
+		}
+
 		buf = new StringBuffer();
 		buf.append("<html><head><title>" + o + "</title><link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"></head><body>\n");
 		buf.append("<h1>Class "+clas+" extends " +clas.getSuperclass() + "</h1>\n");

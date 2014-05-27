@@ -1,0 +1,13 @@
+// convert tree(s) in NEXUS format to Newick
+
+if (bsh.args.length != 1) {
+	print("Expected only one argument, not " + bsh.args.length);
+	print("Usages: nexus2newick.bsh <treefile.nexus>");
+	return;
+}
+
+parser = new beast.util.NexusParser();
+parser.parseFile(new File(bsh.args[0]));
+for (t : parser.trees) {
+	print(t.getRoot().toString(parser.taxa));
+}

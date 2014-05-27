@@ -1,0 +1,34 @@
+
+makeBinary(node) {
+	// removes internal single child nodes
+	// but does not deal with single child leaf nodes
+	while (node.getChildCount() == 1) {
+		print("Got one!");
+		child = node.getChild(0);
+		node.removeChild(child);
+		for (gchild: child.getChildren()) {
+			node.addChild(gchild);
+		}
+	}
+	for (child: node.getChildren()) {
+		makeBinary(child);
+	}
+}
+
+newickToBinary(String n) {
+	// remove single child leafs by string manipulation
+	n.replaceAll("\\(([^,]+)\\)","$1");
+	// TreeParser auto-converts multi-child nodes to binary nodes
+	t = new beast.util.TreeParser(newick=n, IsLabelledNewick=true);
+
+	// remove internal single child nodes
+	makeBinary(t.getRoot());
+
+	setAccessibility(true);
+	s = t.getRoot().toString(t.labels);
+	return s;
+}
+
+n = beast.app.beauti.BeautiDoc.load("/home/remco/data/beast/global/families/filtered/y.trees");
+newickToBinary(n);
+
