@@ -57,7 +57,6 @@ import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
 
-
 import beast.app.DocMaker;
 import beast.app.util.Utils;
 import beast.util.AddOnManager;
@@ -252,10 +251,14 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
 
     
     protected void doExport() {
-		File file = Utils.getSaveFile("Save chart as", new File("."), "Image file (*.pdf, *.png, *.jpg, *.bmp, *.tex)", "pdf", "png", "jpg", "bmp", "tex");
-		if (file != null) {
-			ChartPanel.doExport(file, panel);
-		}
+	    Platform.runLater(new Runnable() { 
+	    	public void run() { 
+				File file = beast.app.shell.Utils.getSaveFile("Save chart as", new File("."), "Image file (*.pdf, *.png, *.jpg, *.bmp, *.tex)", "*.pdf", "*.png", "*.jpg", "*.bmp", "*.tex");
+				if (file != null) {
+					ChartPanel.doExport(file, panel);
+				}
+	    	} 
+	    });
 	}
 
 	void filter() {

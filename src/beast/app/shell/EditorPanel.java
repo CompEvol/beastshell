@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javafx.application.Platform;
+
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -338,8 +340,12 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener, 
 	   }	
 	
 	public void doOpen() {
-		File file = Utils.getLoadFile("Open BEASTScript file", new File(cwd), "BEAST shell script files", "bsh");
-		doOpen(file);
+	    Platform.runLater(new Runnable() { 
+	    	public void run() { 
+	    		File file = beast.app.shell.Utils.getLoadFile("Open BEASTScript file", new File(cwd), "BEAST shell script files", "*.bsh");
+	    		doOpen(file);
+	    	} 
+	    });
 	}
 	
 	private void doOpen(File file) {
@@ -374,7 +380,7 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener, 
 
 	public void doSave() {
 		int i = tabbedPane.getSelectedIndex();
-		doSave(i, false);
+		doSave(i);
 		
 		RSyntaxTextArea current = getCurrentTextPane();
 		if (current != null && !editorUnChanged.contains(current)) {
@@ -390,18 +396,29 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener, 
 
 	public void doSaveAll() {
 		for (int i = 0; i < tabbedPane.getTabCount(); i++) {
-			doSave(i, false);
+			doSave(i);
 		}
 	}
 
-	private void doSave(int i, boolean selectFile) {
+	public void saveAs() {
+	    Platform.runLater(new Runnable() { 
+	    	public void run() { 
+	    		int i = tabbedPane.getSelectedIndex();
+				File file = Utils.getSaveFile("Open BEASTscript file", new File(cwd), "BEAST shell script files", "bsh");
+				if (file != null) {
+					cwd = file.getParent();
+					fileNames.set(i, file.getAbsolutePath());
+					doSave(i);
+				}
+	    	}
+	    });
+	}
+	
+	private void doSave(int i) {
 		File file = null;
 		tabbedPane.setSelectedIndex(i);
-		if (selectFile || fileNames.get(i) == null) {
-			file = Utils.getSaveFile("Open BEASTscript file", new File(cwd), "BEAST shell script files", "bsh");
-			if (file != null) {
-				cwd = file.getParent();
-			}
+		if (fileNames.get(i) == null) {
+			saveAs();
 		} else {
 			file = new File(fileNames.get(i));
 		}
@@ -475,9 +492,6 @@ public class EditorPanel extends JPanel implements ActionListener, KeyListener, 
 		return tabbedPane.getTabCount() > 0;
 	}
 
-	public void saveAs() {
-		doSave(tabbedPane.getSelectedIndex(), true);
-	}
 
 	@Override
 	public void insertUpdate(DocumentEvent e) {

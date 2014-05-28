@@ -15,6 +15,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Platform;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -102,10 +104,14 @@ public class ChartPanel extends JPanel {
 	}
 
 	protected void doExport() {
-		File file = Utils.getSaveFile("Save chart as", new File("."), "Image file (*.pdf, *.png, *.jpg, *.bmp, *.tex)", "pdf", "png", "jpg", "bmp", "tex");
-		if (file != null) {
-			doExport(file, panel);
-		}
+	    Platform.runLater(new Runnable() { 
+	    	public void run() { 
+				File file = beast.app.shell.Utils.getSaveFile("Save chart as", new File("."), "Image file (*.pdf, *.png, *.jpg, *.bmp, *.tex)", "*.pdf", "*.png", "*.jpg", "*.bmp", "*.tex");
+				if (file != null) {
+					doExport(file, panel);
+				}
+	    	} 
+	    });
 	}
 	
 	// public access so it can be called from a script	
