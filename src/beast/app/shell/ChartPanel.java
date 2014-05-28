@@ -104,84 +104,84 @@ public class ChartPanel extends JPanel {
 	protected void doExport() {
 		File file = Utils.getSaveFile("Save chart as", new File("."), "Image file (*.pdf, *.png, *.jpg, *.bmp, *.tex)", "pdf", "png", "jpg", "bmp", "tex");
 		if (file != null) {
-			doExport(file);
+			doExport(file, panel);
 		}
 	}
 	
 	// public access so it can be called from a script	
-	public void doExport(File file) {
-				String sFileName = file.getAbsolutePath();
-				if (sFileName != null && !sFileName.equals("")) {
-                    if (sFileName.toLowerCase().endsWith(".pdf")) {
-                    	try {
-                    	com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
-                    	PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(sFileName));
-                    	doc.setPageSize(new com.itextpdf.text.Rectangle(panel.getWidth(), panel.getHeight()));
-                    	doc.open();
-                    	PdfContentByte cb = writer.getDirectContent();
-                    	Graphics2D g = new PdfGraphics2D(cb, panel.getWidth(), panel.getHeight());
-                    	 
-						BufferedImage bi;
-						bi = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_RGB);
-						//g = bi.getGraphics();
-						g.setPaintMode();
-						g.setColor(getBackground());
-						g.fillRect(0, 0, panel.getWidth(), panel.getHeight());
-						panel.paint(g);
-						//panel.printAll(g);
+	static public void doExport(File file, JPanel panel) {
+		String sFileName = file.getAbsolutePath();
+		if (sFileName != null && !sFileName.equals("")) {
+            if (sFileName.toLowerCase().endsWith(".pdf")) {
+            	try {
+            	com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
+            	PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(sFileName));
+            	doc.setPageSize(new com.itextpdf.text.Rectangle(panel.getWidth(), panel.getHeight()));
+            	doc.open();
+            	PdfContentByte cb = writer.getDirectContent();
+            	Graphics2D g = new PdfGraphics2D(cb, panel.getWidth(), panel.getHeight());
+            	 
+				BufferedImage bi;
+				bi = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_RGB);
+				//g = bi.getGraphics();
+				g.setPaintMode();
+				g.setColor(panel.getBackground());
+				g.fillRect(0, 0, panel.getWidth(), panel.getHeight());
+				panel.paint(g);
+				//panel.printAll(g);
 
-                    	g.dispose();
-                    	doc.close();
-                    	} catch (Exception e) {
-							JOptionPane.showMessageDialog(panel, "Export may have failed: " + e.getMessage());
-						}
-                        repaint();
-                    	return;
-                    } else 	if (sFileName.toLowerCase().endsWith(".png") || sFileName.toLowerCase().endsWith(".jpg")
-							|| sFileName.toLowerCase().endsWith(".bmp")) {
-						BufferedImage bi;
-						Graphics g;
-						bi = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_RGB);
-						g = bi.getGraphics();
-						g.setPaintMode();
-						g.setColor(getBackground());
-						g.fillRect(0, 0, panel.getWidth(), panel.getHeight());
-						panel.printAll(g);
-						try {
-							if (sFileName.toLowerCase().endsWith(".png")) {
-								ImageIO.write(bi, "png", new File(sFileName));
-							} else if (sFileName.toLowerCase().endsWith(".jpg")) {
-								ImageIO.write(bi, "jpg", new File(sFileName));
-							} else if (sFileName.toLowerCase().endsWith(".bmp")) {
-								ImageIO.write(bi, "bmp", new File(sFileName));
-							}
-						} catch (Exception e) {
-							JOptionPane.showMessageDialog(null,
-									sFileName + " was not written properly: " + e.getMessage());
-							e.printStackTrace();
-						}
-						return;
-					} else if (sFileName.toLowerCase().endsWith(".tex")) {
-				        TikzGraphics2D tikzGraphics2D;
+            	g.dispose();
+            	doc.close();
+            	} catch (Exception e) {
+					JOptionPane.showMessageDialog(panel, "Export may have failed: " + e.getMessage());
+				}
+            	panel.repaint();
+            	return;
+            } else 	if (sFileName.toLowerCase().endsWith(".png") || sFileName.toLowerCase().endsWith(".jpg")
+					|| sFileName.toLowerCase().endsWith(".bmp")) {
+				BufferedImage bi;
+				Graphics g;
+				bi = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_RGB);
+				g = bi.getGraphics();
+				g.setPaintMode();
+				g.setColor(panel.getBackground());
+				g.fillRect(0, 0, panel.getWidth(), panel.getHeight());
+				panel.printAll(g);
+				try {
+					if (sFileName.toLowerCase().endsWith(".png")) {
+						ImageIO.write(bi, "png", new File(sFileName));
+					} else if (sFileName.toLowerCase().endsWith(".jpg")) {
+						ImageIO.write(bi, "jpg", new File(sFileName));
+					} else if (sFileName.toLowerCase().endsWith(".bmp")) {
+						ImageIO.write(bi, "bmp", new File(sFileName));
+					}
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null,
+							sFileName + " was not written properly: " + e.getMessage());
+					e.printStackTrace();
+				}
+				return;
+			} else if (sFileName.toLowerCase().endsWith(".tex")) {
+		        TikzGraphics2D tikzGraphics2D;
 
-				        PrintStream out;
-						try {
-							out = new PrintStream(file);
-					        out.println("\\documentclass[12pt]{article}");
-					        out.println("\\usepackage{tikz,pgf}");
-					        out.println("\\begin{document}");
+		        PrintStream out;
+				try {
+					out = new PrintStream(file);
+			        out.println("\\documentclass[12pt]{article}");
+			        out.println("\\usepackage{tikz,pgf}");
+			        out.println("\\begin{document}");
 
-					        tikzGraphics2D = new TikzGraphics2D(out);
-					        paint(tikzGraphics2D);
-					        tikzGraphics2D.flush();
+			        tikzGraphics2D = new TikzGraphics2D(out);
+			        panel.paint(tikzGraphics2D);
+			        tikzGraphics2D.flush();
 
-					        out.println("\\end{document}");
-					        out.flush();
-						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						return;
+			        out.println("\\end{document}");
+			        out.flush();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
 //				        if (out != System.out) {
 //				            out.close();
 //				            String fileName = file.getPath();
@@ -196,11 +196,10 @@ public class ChartPanel extends JPanel {
 //				            }
 //				        }
 
-					}
-					JOptionPane.showMessageDialog(null, "Extention of file " + sFileName
-							+ " not recognized as png,bmp,jpg or pdf file");
-				}
-			
+			}
+			JOptionPane.showMessageDialog(null, "Extention of file " + sFileName
+					+ " not recognized as png,bmp,jpg or pdf file");
+		}
 	}
 
 	protected void doClear() {

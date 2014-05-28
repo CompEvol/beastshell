@@ -7,13 +7,18 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,12 +30,10 @@ import javafx.collections.*;
 import javafx.concurrent.*;
 import javafx.concurrent.Worker.State;
 import javafx.embed.swing.JFXPanel;
-import javafx.event.*;
 import javafx.scene.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.web.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -45,12 +48,18 @@ import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 
 import org.fife.ui.rtextarea.SearchContext;
+import org.jtikz.TikzGraphics2D;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.events.EventListener;
 
+import com.itextpdf.awt.PdfGraphics2D;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfWriter;
+
 
 import beast.app.DocMaker;
+import beast.app.util.Utils;
 import beast.util.AddOnManager;
 
 public class HelpBrowser extends JPanel implements ActionListener { //implements HyperlinkListener {
@@ -75,6 +84,7 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
     JButton btnPrev;
     JButton btnNext;
     JButton btnHome;
+    JButton btnExport;
 	JTextField searchField;
 	Image image;
     
@@ -163,6 +173,18 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
 		toolBar.add(btnHome);
 		//btnPrev.setMnemonic(KeyEvent.VK_RIGHT);
 		//btnNext.setMnemonic(KeyEvent.VK_LEFT);
+		
+		btnExport = new JButton("");
+		btnExport.setIcon(new ImageIcon(EditorPanel.class
+				.getResource("/beast/app/shell/icons/export.png")));
+		btnExport.setToolTipText("Export current chart to bitmap or pdf");
+		btnExport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				doExport();
+			}
+		});
+		toolBar.add(btnExport);
+
 
 		
 		image = new ImageIcon(HistoryPanel.class.getResource("/beast/app/shell/icons/search.png")).getImage();
@@ -229,7 +251,14 @@ public class HelpBrowser extends JPanel implements ActionListener { //implements
     } // c'tor
 
     
-    void filter() {
+    protected void doExport() {
+		File file = Utils.getSaveFile("Save chart as", new File("."), "Image file (*.pdf, *.png, *.jpg, *.bmp, *.tex)", "pdf", "png", "jpg", "bmp", "tex");
+		if (file != null) {
+			ChartPanel.doExport(file, panel);
+		}
+	}
+
+	void filter() {
     	actionPerformed(null);
     }
     
