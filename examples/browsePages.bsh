@@ -1,0 +1,6 @@
+
+for (page  : c("wym","svm","szl")) {
+	print("loading http://www.ethnologue.com/language/" + page);
+	this.interpreter.studio.helpPane.setURL(new URL("http://www.ethnologue.com/language/" + page));
+	pause();
+}

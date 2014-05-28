@@ -23,6 +23,8 @@ package org.renjin.primitives;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,7 +32,7 @@ import java.util.List;
  */
 public class Summary {
 	
-	private static List rmNaN(List<Number> obs) {
+	private static List rmNaN(Collection<Number> obs) {
 		List<Number> list = new ArrayList<>();
 		for (Number o : obs) {
 			if (!Double.isNaN(o.doubleValue())) {
@@ -77,7 +79,7 @@ public class Summary {
 
 	
 	
-	static public Number sum(List<Number> obs, boolean na_rm) {
+	static public Number sum(Collection<Number> obs, boolean na_rm) {
 		if (na_rm) {
 			return sum(rmNaN(obs), false);
 		}
@@ -103,7 +105,7 @@ public class Summary {
 	}
 
 	
-	static public double mean(List<Number> obs, boolean na_rm) {
+	static public double mean(Collection<Number> obs, boolean na_rm) {
 		if (na_rm) {
 			return mean(rmNaN(obs), false);
 		}
@@ -128,11 +130,11 @@ public class Summary {
 		double sum = 0; for (Number i : x) sum +=i.doubleValue(); return sum/x.length;
 		};
 	
-	static public double min(List<Number> obs, boolean na_rm) {
+	static public double min(Collection obs, boolean na_rm) {
 		if (na_rm) {
 			return min(rmNaN(obs), false);
 		}
-		double min = obs.get(0).doubleValue();for (Number o : obs){min = Math.min(min, o.doubleValue());}return min;
+		return ((Number) Collections.min(obs)).doubleValue();
 		};
 	static public int min(int[]x, boolean na_rm) {
 		if (na_rm) {
@@ -153,11 +155,11 @@ public class Summary {
 		double min = x[0].doubleValue();for (Number i : x) {min = Math.min(min, i.doubleValue());}return min;
 		};
 	
-	static public double max(List<Number> obs, boolean na_rm) {
+	static public double max(Collection obs, boolean na_rm) {
 		if (na_rm) {
 			return max(rmNaN(obs), false);
 		}
-		double max = obs.get(0).doubleValue();for (Number o : obs){max = Math.max(max, o.doubleValue());}return max;
+		return ((Number) Collections.max(obs)).doubleValue();
 		};
 	static public int max(int[]x, boolean na_rm) {
 		if (na_rm) {
@@ -178,7 +180,7 @@ public class Summary {
 		Number max = x[0];for (Number i : x) {max = Math.max(max.doubleValue(), i.doubleValue());}return max.doubleValue();
 	};
 	
-	static public Number prod(List<Number> obs, boolean na_rm) {
+	static public Number prod(Collection<Number> obs, boolean na_rm) {
 		if (na_rm) {
 			return prod(rmNaN(obs), false);
 		}
@@ -203,7 +205,7 @@ public class Summary {
 		double prod = 1; for (Number i : x) prod *=i.doubleValue(); return prod;
 		};
 	
-	static public List<Number> range(List<Number> obs, boolean na_rm) {
+	static public List<Number> range(Collection<Number> obs, boolean na_rm) {
 		if (na_rm) {
 			return range(rmNaN(obs), false);
 		}

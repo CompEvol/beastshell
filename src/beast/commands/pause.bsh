@@ -1,8 +1,14 @@
 
 pause() {
     print("Press enter to continue");
-    this.interpreter.in.read();
 
+	int i = this.interpreter.in.read();
+	String answer = "" + (char) i;
+	while(this.interpreter.in.ready()) {
+		answer  += (char)this.interpreter.in.read();
+	}
+
+//    this.interpreter.in.read();
 //    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //    br.readLine();
 }
