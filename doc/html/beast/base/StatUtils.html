@@ -227,6 +227,23 @@
  input arrays -- i.e., var(sample1[i] - sample2[i]).</div>
 </td>
 </tr>
+tr class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#mean(double[])">mean</a></strong>(double[]&nbsp;values)</code>
+<div class="block">Returns the arithmetic mean of the entries in the input array, or
+ <code>Double.NaN</code> if the array is empty.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><strong><a href="#mean(double[],%20int,%20int)">mean</a></strong>(double[]&nbsp;values,
+        int&nbsp;begin,
+        int&nbsp;length)</code>
+<div class="block">Returns the arithmetic mean of the entries in the specified portion of
+ the input array, or <code>Double.NaN</code> if the designated subarray
+ is empty.</div>
+</td>
+</tr>
 </tbody></table>
 </div>
 <div class="details">
@@ -855,6 +872,50 @@
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/exception/MathIllegalArgumentException.html" title="class in org.apache.commons.math3.exception">MathIllegalArgumentException</a></code> - if the indices are invalid or the array is null</dd><dt><span class="strong">Since:</span></dt>
   <dd>3.3</dd></dl>
+</li>
+</ul>
+
+<a name="mean(double[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>mean</h4>
+<pre>public static&nbsp;double&nbsp;mean(double[]&nbsp;values)
+                   throws MathIllegalArgumentException</pre>
+<div class="block">Returns the arithmetic mean of the entries in the input array, or
+ <code>Double.NaN</code> if the array is empty.
+</div>
+ <p>
+ Throws <code>IllegalArgumentException</code> if the array is null.</p>
+ <p>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the mean of the values or Double.NaN if the array is empty</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>MathIllegalArgumentException</code> - if the array is null</dd></dl>
+</li>
+</ul>
+<a name="mean(double[], int, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>mean</h4>
+<pre>public static&nbsp;double&nbsp;mean(double[]&nbsp;values,
+          int&nbsp;begin,
+          int&nbsp;length)
+                   throws MathIllegalArgumentException</pre>
+<div class="block">Returns the arithmetic mean of the entries in the specified portion of
+ the input array, or <code>Double.NaN</code> if the designated subarray
+ is empty.
+ <p>
+ Throws <code>IllegalArgumentException</code> if the array is null.</p>
+</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>values</code> - the input array</dd><dd><code>begin</code> - index of the first array element to include</dd><dd><code>length</code> - the number of elements to include</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the mean of the values or Double.NaN if length = 0</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>MathIllegalArgumentException</code> - if the array is null or the array index
+ parameters are not valid</dd></dl>
 </li>
 </ul>
 </li>

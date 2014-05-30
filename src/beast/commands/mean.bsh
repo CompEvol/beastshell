@@ -1,0 +1,12 @@
+// @see(doc/html/beast/base/StatUtils.html)
+
+mean(x) {
+	double [] y = toDoubleArray(x);
+	return org.apache.commons.math3.stat.StatUtils.mean(y);
+}
+
+mean(x, int begin, int length) {
+	double [] y = toDoubleArray(x);
+	return org.apache.commons.math3.stat.StatUtils.mean(y, begin, length);
+}
+
