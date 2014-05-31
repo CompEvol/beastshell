@@ -1,0 +1,12 @@
+// @see(doc/html/beast/base/StatUtils.html)
+
+sum(x) {
+	double [] y = toDoubleArray(x);
+	return org.apache.commons.math3.stat.StatUtils.sum(y);
+}
+
+sum(x, int begin, int length) {
+	double [] y = toDoubleArray(x);
+	return org.apache.commons.math3.stat.StatUtils.sum(y, begin, length);
+}
+
