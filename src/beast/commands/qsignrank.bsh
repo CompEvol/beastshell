@@ -1,0 +1,11 @@
+// @see(doc/html/beast/stats/SignRank.html) Distribution of the Wilcoxon Signed Rank Statistic
+
+qsignrank(arg0, arg1) {return org.renjin.Distributions.qsignrank(arg0, arg1, false, false);
+}
+
+qsignrank(arg0, arg1, log) {return org.renjin.Distributions.qsignrank(arg0, arg1, false, log);
+}
+
+qsignrank(arg0, arg1, lowerTail, log) {return org.renjin.Distributions.qsignrank(arg0, arg1, lowerTail, log);
+}
+

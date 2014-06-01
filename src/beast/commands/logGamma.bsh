@@ -1,0 +1,3 @@
+// 
+ logGamma(arg0) {return org.renjin.MathExt. logGamma(arg0);
+}

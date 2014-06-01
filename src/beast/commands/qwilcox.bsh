@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/Wilcoxon.html) Distribution of the Wilcoxon Rank Sum Statistic
+
+qwilcox(x, m, n) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.qwilcox(i, m, n, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qwilcox(x, m, n, false, false);
+	}
+}
+
+qwilcox(x, m, n, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.qwilcox(i, m, n, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qwilcox(x, m, n, false, log);
+	}
+}
+
+qwilcox(x, m, n, lowerTail, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.qwilcox(i, m, n, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qwilcox(x, m, n, lowerTail, log);
+	}
+}
+

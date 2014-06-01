@@ -1,0 +1,28 @@
+// @see(doc/html/beast/stats/Normal.html) The Normal Distribution
+
+
+dnorm(x, mu, sigma) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.dnorm(i, mu, sigma, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.dnorm(x, mu, sigma, false);
+	}
+}
+
+dnorm(x, mu, sigma, log) {
+
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.dnorm(i, mu, sigma, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.dnorm(x, mu, sigma, log);
+	}
+}
+

@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/Weibull.html) The Weibull Distribution
+
+pweibull(x, shape, scale) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pweibull(i, shape, scale, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pweibull(x, shape, scale, false, false);
+	}
+}
+
+pweibull(x, shape, scale, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pweibull(i, shape, scale, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pweibull(x, shape, scale, false, log);
+	}
+}
+
+pweibull(x, shape, scale, lowerTail, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pweibull(i, shape, scale, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pweibull(x, shape, scale, lowerTail, log);
+	}
+}
+

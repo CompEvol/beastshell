@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/Cauchy.html) The Cauchy Distribution
+
+rcauchy(n, location, scale) {return org.renjin.stats.internals.distributions.RNG.rcauchy(n, location, scale);
+}

@@ -1,0 +1,10 @@
+// 
+pnbinom_mu(arg0, arg1, arg2) {return org.renjin.Distributions.pnbinom_mu(arg0, arg1, arg2, false, false);
+}
+
+pnbinom_mu(arg0, arg1, arg2, log) {return org.renjin.Distributions.pnbinom_mu(arg0, arg1, arg2, false, log);
+}
+
+pnbinom_mu(arg0, arg1, arg2, lowerTail, log) {return org.renjin.Distributions.pnbinom_mu(arg0, arg1, arg2, lowerTail, log);
+}
+

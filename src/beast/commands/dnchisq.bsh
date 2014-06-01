@@ -1,0 +1,27 @@
+// 
+
+dnchisq(x, df, ncp) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.dnchisq(i, df, ncp, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.dnchisq(x, df, ncp, false);
+	}
+}
+
+dnchisq(x, df, ncp, log) {
+
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.dnchisq(i, df, ncp, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.dnchisq(x, df, ncp, log);
+	}
+}
+

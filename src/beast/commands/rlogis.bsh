@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/Logistic.html) The Logistic Distribution
+
+rlogis(n, location, scale) {return org.renjin.stats.internals.distributions.RNG.rlogis(n, location, scale);
+}

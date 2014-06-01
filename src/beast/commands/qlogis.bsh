@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/Logistic.html) The Logistic Distribution
+
+qlogis(p, location, scale) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qlogis(i, location, scale, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qlogis(p, location, scale, false, false);
+	}
+}
+
+qlogis(p, location, scale, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qlogis(i, location, scale, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qlogis(p, location, scale, false, log);
+	}
+}
+
+qlogis(p, location, scale, lowerTail, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qlogis(i, location, scale, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qlogis(p, location, scale, lowerTail, log);
+	}
+}
+

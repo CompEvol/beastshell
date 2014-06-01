@@ -1,0 +1,9 @@
+// 
+
+dnbinom_mu(arg0, arg1, arg2) {return org.renjin.Distributions.dnbinom_mu(arg0, arg1, arg2, false);
+}
+
+dnbinom_mu(arg0, arg1, arg2, log) {
+return org.renjin.Distributions.dnbinom_mu(arg0, arg1, arg2, log);
+}
+

@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/Lognormal.html) The Log Normal Distribution
+
+rlnorm(n, meanlog, sdlog) {return org.renjin.stats.internals.distributions.RNG.rlnorm(n, meanlog, sdlog);
+}

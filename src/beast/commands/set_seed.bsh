@@ -1,0 +1,3 @@
+// 
+set_seed(arg0, arg1, arg2) {return org.renjin.stats.internals.distributions.RNG.set_seed(arg0, arg1, arg2);
+}

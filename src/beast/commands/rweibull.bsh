@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/Weibull.html) The Weibull Distribution
+
+rweibull(n, shape, scale) {return org.renjin.stats.internals.distributions.RNG.rweibull(n, shape, scale);
+}

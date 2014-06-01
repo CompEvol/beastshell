@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/Beta.html) The Beta Distribution
+
+qbeta(p, shape1, shape2) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qbeta(i, shape1, shape2, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qbeta(p, shape1, shape2, false, false);
+	}
+}
+
+qbeta(p, shape1, shape2, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qbeta(i, shape1, shape2, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qbeta(p, shape1, shape2, false, log);
+	}
+}
+
+qbeta(p, shape1, shape2, lowerTail, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qbeta(i, shape1, shape2, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qbeta(p, shape1, shape2, lowerTail, log);
+	}
+}
+

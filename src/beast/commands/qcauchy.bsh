@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/Cauchy.html) The Cauchy Distribution
+
+qcauchy(p, location, scale) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qcauchy(i, location, scale, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qcauchy(p, location, scale, false, false);
+	}
+}
+
+qcauchy(p, location, scale, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qcauchy(i, location, scale, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qcauchy(p, location, scale, false, log);
+	}
+}
+
+qcauchy(p, location, scale, lowerTail, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qcauchy(i, location, scale, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qcauchy(p, location, scale, lowerTail, log);
+	}
+}
+

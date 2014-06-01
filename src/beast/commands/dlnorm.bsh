@@ -1,0 +1,28 @@
+// @see(doc/html/beast/stats/Lognormal.html) The Log Normal Distribution
+
+
+dlnorm(x, meanlog, sdlog) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.dlnorm(i, meanlog, sdlog, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.dlnorm(x, meanlog, sdlog, false);
+	}
+}
+
+dlnorm(x, meanlog, sdlog, log) {
+
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.dlnorm(i, meanlog, sdlog, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.dlnorm(x, meanlog, sdlog, log);
+	}
+}
+

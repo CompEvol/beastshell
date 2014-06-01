@@ -1,0 +1,5 @@
+// @see(doc/html/beast/base/Extremes.html) Maxima and Minima
+
+max(x) { 
+		return org.renjin.primitives.Summary.max(x, false);
+}

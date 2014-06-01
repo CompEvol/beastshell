@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/Chisquare.html) The (non-central) Chi-Squared Distribution
+
+pchisq(x, df) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pchisq(i, df, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pchisq(x, df, false, false);
+	}
+}
+
+pchisq(x, df, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pchisq(i, df, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pchisq(x, df, false, log);
+	}
+}
+
+pchisq(x, df, lowerTail, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pchisq(i, df, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pchisq(x, df, lowerTail, log);
+	}
+}
+

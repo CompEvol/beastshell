@@ -1,0 +1,37 @@
+// 
+qnt(p, df, ncp) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qnt(i, df, ncp, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qnt(p, df, ncp, false, false);
+	}
+}
+
+qnt(p, df, ncp, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qnt(i, df, ncp, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qnt(p, df, ncp, false, log);
+	}
+}
+
+qnt(p, df, ncp, lowerTail, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qnt(i, df, ncp, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qnt(p, df, ncp, lowerTail, log);
+	}
+}
+

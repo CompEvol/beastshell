@@ -1,0 +1,28 @@
+// @see(doc/html/beast/stats/Poisson.html) The Poisson Distribution
+
+
+dpois(x, lambda) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.dpois(i, lambda, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.dpois(x, lambda, false);
+	}
+}
+
+dpois(x, lambda, log) {
+
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.dpois(i, lambda, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.dpois(x, lambda, log);
+	}
+}
+

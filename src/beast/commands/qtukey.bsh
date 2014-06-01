@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/Tukey.html) The Studentized Range Distribution
+
+qtukey(p, rr, cc, df) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qtukey(i, rr, cc, df, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qtukey(p, rr, cc, df, false, false);
+	}
+}
+
+qtukey(p, rr, cc, df, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qtukey(i, rr, cc, df, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qtukey(p, rr, cc, df, false, log);
+	}
+}
+
+qtukey(p, rr, cc, df, lowerTail, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qtukey(i, rr, cc, df, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qtukey(p, rr, cc, df, lowerTail, log);
+	}
+}
+

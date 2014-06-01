@@ -1,0 +1,4 @@
+// @see(doc/html/beast/base/sample.html) Random Samples and Permutations
+
+sample(arg0, arg1, arg2, arg3) {return org.renjin.stats.internals.distributions.Sampling.sample(arg0, arg1, arg2, arg3);
+}

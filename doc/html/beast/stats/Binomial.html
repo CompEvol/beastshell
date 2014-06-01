@@ -1,10 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>R: The Binomial Distribution</title>
+<html><head><title>The Binomial Distribution</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="R.css">
 </head><body>
-
-<table width="100%" summary="page for Binomial {stats}"><tr><td>Binomial {stats}</td><td align="right">R Documentation</td></tr></table>
 
 <h2>The Binomial Distribution</h2>
 
@@ -14,14 +12,25 @@
 generation for the binomial distribution with parameters <code>size</code>
 and <code>prob</code>.
 </p>
-
+<p><code>dbinom</code> gives the density, <code>pbinom</code> gives the distribution
+function, <code>qbinom</code> gives the quantile function and <code>rbinom</code>
+generates random deviates.
+</p>
 
 <h3>Usage</h3>
 
 <pre>
-dbinom(x, size, prob, log = FALSE)
-pbinom(q, size, prob, lower.tail = TRUE, log.p = FALSE)
-qbinom(p, size, prob, lower.tail = TRUE, log.p = FALSE)
+dbinom(x, size, prob)
+dbinom(x, size, prob, log)
+
+pbinom(q, size, prob)
+pbinom(q, size, prob, log_p)
+pbinom(q, size, prob, lower_tail, log_p)
+
+qbinom(p, size, prob)
+qbinom(p, size, prob, log_p)
+qbinom(p, size, prob, lower_tail, log_p)
+
 rbinom(n, size, prob)
 </pre>
 
@@ -50,11 +59,11 @@ is taken to be the number required.</p>
 <td>
 <p>probability of success on each trial.</p>
 </td></tr>
-<tr valign="top"><td><code>log, log.p</code></td>
+<tr valign="top"><td><code>log, log_p</code></td>
 <td>
 <p>logical; if TRUE, probabilities p are given as log(p).</p>
 </td></tr>
-<tr valign="top"><td><code>lower.tail</code></td>
+<tr valign="top"><td><code>lower_tail</code></td>
 <td>
 <p>logical; if TRUE (default), probabilities are
 <i>P[X &le; x]</i>, otherwise, <i>P[X &gt; x]</i>.</p>
@@ -89,39 +98,6 @@ is zero, with a warning.
 function, <code>qbinom</code> gives the quantile function and <code>rbinom</code>
 generates random deviates.
 </p>
-<p>If <code>size</code> is not an integer, <code>NaN</code> is returned.
-</p>
-<p>The length of the result is determined by <code>n</code> for
-<code>rbinom</code>, and is the maximum of the lengths of the
-numerical parameters for the other functions.  
-</p>
-<p>The numerical parameters other than <code>n</code> are recycled to the
-length of the result.  Only the first elements of the logical
-parameters are used.
-</p>
-
-
-<h3>Source</h3>
-
-<p>For <code>dbinom</code> a saddle-point expansion is used: see
-</p>
-<p>Catherine Loader (2000). <EM>Fast and Accurate Computation of
-Binomial Probabilities</EM>; available from
-<a href="http://www.herine.net/stat/software/dbinom.html">http://www.herine.net/stat/software/dbinom.html</a>.
-</p>
-<p><code>pbinom</code> uses <code><a href="Beta.html">pbeta</a></code>.
-</p>
-<p><code>qbinom</code> uses the Cornish&ndash;Fisher Expansion to include a skewness
-correction to a normal approximation, followed by a search.
-</p>
-<p><code>rbinom</code> (for <code>size &lt; .Machine$integer.max</code>) is based on
-</p>
-<p>Kachitvichyanukul, V. and Schmeiser, B. W. (1988)
-Binomial random variate generation.
-<EM>Communications of the ACM</EM>, <B>31</B>, 216&ndash;222.
-</p>
-<p>For larger values it uses inversion.
-</p>
 
 
 <h3>See Also</h3>
@@ -132,24 +108,6 @@ Binomial random variate generation.
 </p>
 
 
-<h3>Examples</h3>
 
-<pre>
-require(graphics)
-# Compute P(45 &lt; X &lt; 55) for X Binomial(100,0.5)
-sum(dbinom(46:54, 100, 0.5))
-
-## Using "log = TRUE" for an extended range :
-n &lt;- 2000
-k &lt;- seq(0, n, by = 20)
-plot (k, dbinom(k, n, pi/10, log = TRUE), type = "l", ylab = "log density",
-      main = "dbinom(*, log=TRUE) is better than  log(dbinom(*))")
-lines(k, log(dbinom(k, n, pi/10)), col = "red", lwd = 2)
-## extreme points are omitted since dbinom gives 0.
-mtext("dbinom(k, log=TRUE)", adj = 0)
-mtext("extended range", adj = 0, line = -1, font = 4)
-mtext("log(dbinom(k))", col = "red", adj = 1)
-</pre>
-
-<hr><div align="center">[Package <em>stats</em> version 3.0.0 <a href="00Index.html">Index</a>]</div>
+<hr>Loosely based on R documentation
 </body></html>

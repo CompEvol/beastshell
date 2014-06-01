@@ -1,0 +1,5 @@
+// @see(doc/html/beast/base/range.html) Range of Values
+
+range(x) { 
+		return org.renjin.primitives.Summary.range(x, false);
+}

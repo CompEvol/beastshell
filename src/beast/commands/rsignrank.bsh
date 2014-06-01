@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/SignRank.html) Distribution of the Wilcoxon Signed Rank Statistic
+
+rsignrank(arg0, arg1) {return org.renjin.stats.internals.distributions.RNG.rsignrank(arg0, arg1);
+}

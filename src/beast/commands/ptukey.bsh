@@ -1,0 +1,11 @@
+// @see(doc/html/beast/stats/Tukey.html) The Studentized Range Distribution
+
+ptukey(q, rr, cc, df) {return org.renjin.Distributions.ptukey(q, rr, cc, df, false, false);
+}
+
+ptukey(q, rr, cc, df, log) {return org.renjin.Distributions.ptukey(q, rr, cc, df, false, log);
+}
+
+ptukey(q, rr, cc, df, lowerTail, log) {return org.renjin.Distributions.ptukey(q, rr, cc, df, lowerTail, log);
+}
+

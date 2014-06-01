@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/GammaDist.html) The Gamma Distribution
+
+rgamma(n, a, scale) {return org.renjin.stats.internals.distributions.RNG.rgamma(n, a, scale);
+}

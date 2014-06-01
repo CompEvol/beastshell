@@ -1,0 +1,37 @@
+// 
+pnbeta(x, a, b, ncp) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.stats.internals.distributions.Beta.pnbeta(i, a, b, ncp, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.stats.internals.distributions.Beta.pnbeta(x, a, b, ncp, false, false);
+	}
+}
+
+pnbeta(x, a, b, ncp, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.stats.internals.distributions.Beta.pnbeta(i, a, b, ncp, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.stats.internals.distributions.Beta.pnbeta(x, a, b, ncp, false, log);
+	}
+}
+
+pnbeta(x, a, b, ncp, lowerTail, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.stats.internals.distributions.Beta.pnbeta(i, a, b, ncp, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.stats.internals.distributions.Beta.pnbeta(x, a, b, ncp, lowerTail, log);
+	}
+}
+

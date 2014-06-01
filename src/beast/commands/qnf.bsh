@@ -1,0 +1,37 @@
+// 
+qnf(p, df1, df2, ncp) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qnf(i, df1, df2, ncp, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qnf(p, df1, df2, ncp, false, false);
+	}
+}
+
+qnf(p, df1, df2, ncp, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qnf(i, df1, df2, ncp, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qnf(p, df1, df2, ncp, false, log);
+	}
+}
+
+qnf(p, df1, df2, ncp, lowerTail, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qnf(i, df1, df2, ncp, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qnf(p, df1, df2, ncp, lowerTail, log);
+	}
+}
+

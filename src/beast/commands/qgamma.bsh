@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/GammaDist.html) The Gamma Distribution
+
+qgamma(p, alpha, beta) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qgamma(i, alpha, beta, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qgamma(p, alpha, beta, false, false);
+	}
+}
+
+qgamma(p, alpha, beta, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qgamma(i, alpha, beta, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qgamma(p, alpha, beta, false, log);
+	}
+}
+
+qgamma(p, alpha, beta, lowerTail, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qgamma(i, alpha, beta, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qgamma(p, alpha, beta, lowerTail, log);
+	}
+}
+

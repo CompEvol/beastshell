@@ -1,0 +1,28 @@
+// @see(doc/html/beast/stats/Beta.html) The Beta Distribution
+
+
+dbeta(x, a, b) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.dbeta(i, a, b, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.dbeta(x, a, b, false);
+	}
+}
+
+dbeta(x, a, b, log) {
+
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.dbeta(i, a, b, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.dbeta(x, a, b, log);
+	}
+}
+

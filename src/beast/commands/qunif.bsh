@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/Uniform.html) The Uniform Distribution
+
+qunif(p, a, b) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qunif(i, a, b, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qunif(p, a, b, false, false);
+	}
+}
+
+qunif(p, a, b, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qunif(i, a, b, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qunif(p, a, b, false, log);
+	}
+}
+
+qunif(p, a, b, lowerTail, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qunif(i, a, b, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qunif(p, a, b, lowerTail, log);
+	}
+}
+

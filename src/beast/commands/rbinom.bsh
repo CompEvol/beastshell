@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/Binomial.html) The Binomial Distribution
+
+rbinom(n, nin, pp) {return org.renjin.stats.internals.distributions.RNG.rbinom(n, nin, pp);
+}

@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/NegBinomial.html) The Negative Binomial Distribution
+
+rnbinom(n, size, prob) {return org.renjin.stats.internals.distributions.RNG.rnbinom(n, size, prob);
+}

@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/Beta.html) The Beta Distribution
+
+rbeta(n, aa, bb) {return org.renjin.stats.internals.distributions.RNG.rbeta(n, aa, bb);
+}

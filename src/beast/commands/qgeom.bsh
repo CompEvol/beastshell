@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/Geometric.html) The Geometric Distribution
+
+qgeom(p, prob) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qgeom(i, prob, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qgeom(p, prob, false, false);
+	}
+}
+
+qgeom(p, prob, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qgeom(i, prob, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qgeom(p, prob, false, log);
+	}
+}
+
+qgeom(p, prob, lowerTail, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qgeom(i, prob, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qgeom(p, prob, lowerTail, log);
+	}
+}
+

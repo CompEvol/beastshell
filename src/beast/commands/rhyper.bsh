@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/Hypergeometric.html) The Hypergeometric Distribution
+
+rhyper(n, nn1in, nn2in, kkin) {return org.renjin.stats.internals.distributions.RNG.rhyper(n, nn1in, nn2in, kkin);
+}

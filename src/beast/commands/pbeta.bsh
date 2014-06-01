@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/Beta.html) The Beta Distribution
+
+pbeta(x, pin, qin) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pbeta(i, pin, qin, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pbeta(x, pin, qin, false, false);
+	}
+}
+
+pbeta(x, pin, qin, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pbeta(i, pin, qin, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pbeta(x, pin, qin, false, log);
+	}
+}
+
+pbeta(x, pin, qin, lowerTail, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pbeta(i, pin, qin, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pbeta(x, pin, qin, lowerTail, log);
+	}
+}
+

@@ -1,0 +1,10 @@
+// 
+pnt(t, df, ncp) {return org.renjin.Distributions.pnt(t, df, ncp, false, false);
+}
+
+pnt(t, df, ncp, log) {return org.renjin.Distributions.pnt(t, df, ncp, false, log);
+}
+
+pnt(t, df, ncp, lowerTail, log) {return org.renjin.Distributions.pnt(t, df, ncp, lowerTail, log);
+}
+

@@ -1,0 +1,4 @@
+// @see(doc/html/beast/base/Special.html) Special Functions of Mathematics
+
+beta(a, b) {return org.renjin.MathExt.beta(a, b);
+}

@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/Normal.html) The Normal Distribution
+
+rnorm(n, mu, sigma) {return org.renjin.stats.internals.distributions.RNG.rnorm(n, mu, sigma);
+}

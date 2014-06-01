@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/Fdist.html) The F Distribution
+
+pf(x, df1, df2) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pf(i, df1, df2, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pf(x, df1, df2, false, false);
+	}
+}
+
+pf(x, df1, df2, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pf(i, df1, df2, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pf(x, df1, df2, false, log);
+	}
+}
+
+pf(x, df1, df2, lowerTail, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pf(i, df1, df2, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pf(x, df1, df2, lowerTail, log);
+	}
+}
+

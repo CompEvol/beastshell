@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/Wilcoxon.html) Distribution of the Wilcoxon Rank Sum Statistic
+
+rwilcox(n, m, n2) {return org.renjin.stats.internals.distributions.RNG.rwilcox(n, m, n2);
+}

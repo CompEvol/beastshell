@@ -1,0 +1,4 @@
+// @see(doc/html/beast/base/Trig.html) Trigonometric Functions
+
+atan2(arg0, arg1) {return org.renjin.MathExt.atan2(arg0, arg1);
+}

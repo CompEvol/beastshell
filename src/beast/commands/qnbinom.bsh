@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/NegBinomial.html) The Negative Binomial Distribution
+
+qnbinom(p, size, prob) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qnbinom(i, size, prob, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qnbinom(p, size, prob, false, false);
+	}
+}
+
+qnbinom(p, size, prob, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qnbinom(i, size, prob, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qnbinom(p, size, prob, false, log);
+	}
+}
+
+qnbinom(p, size, prob, lowerTail, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qnbinom(i, size, prob, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qnbinom(p, size, prob, lowerTail, log);
+	}
+}
+

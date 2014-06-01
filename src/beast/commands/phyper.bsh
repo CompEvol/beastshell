@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/Hypergeometric.html) The Hypergeometric Distribution
+
+phyper(x, NR, NB, n) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.phyper(i, NR, NB, n, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.phyper(x, NR, NB, n, false, false);
+	}
+}
+
+phyper(x, NR, NB, n, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.phyper(i, NR, NB, n, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.phyper(x, NR, NB, n, false, log);
+	}
+}
+
+phyper(x, NR, NB, n, lowerTail, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.phyper(i, NR, NB, n, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.phyper(x, NR, NB, n, lowerTail, log);
+	}
+}
+

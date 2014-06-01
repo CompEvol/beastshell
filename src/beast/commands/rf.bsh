@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/Fdist.html) The F Distribution
+
+rf(n, n1, n2) {return org.renjin.stats.internals.distributions.RNG.rf(n, n1, n2);
+}

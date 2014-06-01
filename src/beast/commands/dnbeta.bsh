@@ -1,0 +1,27 @@
+// 
+
+dnbeta(x, a, b, ncp) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.stats.internals.distributions.Beta.dnbeta(i, a, b, ncp, false));
+		}
+		return result;
+	} else {
+		return org.renjin.stats.internals.distributions.Beta.dnbeta(x, a, b, ncp, false);
+	}
+}
+
+dnbeta(x, a, b, ncp, log) {
+
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.stats.internals.distributions.Beta.dnbeta(i, a, b, ncp, log));
+		}
+		return result;
+	} else {
+		return org.renjin.stats.internals.distributions.Beta.dnbeta(x, a, b, ncp, log);
+	}
+}
+

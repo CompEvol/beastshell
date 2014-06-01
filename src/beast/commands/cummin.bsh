@@ -1,0 +1,5 @@
+// @see(doc/html/beast/base/cumsum.html) Cumulative Sums, Products, and Extremes
+
+cummin(x) { 
+		return org.renjin.primitives.Summary.cummin(x, false);
+}

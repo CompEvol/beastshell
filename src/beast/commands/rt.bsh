@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/TDist.html) The Student t Distribution
+
+rt(n, df) {return org.renjin.stats.internals.distributions.RNG.rt(n, df);
+}

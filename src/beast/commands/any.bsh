@@ -1,0 +1,4 @@
+// @see(doc/html/beast/base/any.html) Are Some Values True?
+
+any(arg) {return org.renjin.primitives.Summary.any(arg);
+}

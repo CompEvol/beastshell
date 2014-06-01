@@ -1,0 +1,28 @@
+// @see(doc/html/beast/stats/Exponential.html) The Exponential Distribution
+
+
+dexp(x, rate) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.dexp(i, rate, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.dexp(x, rate, false);
+	}
+}
+
+dexp(x, rate, log) {
+
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.dexp(i, rate, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.dexp(x, rate, log);
+	}
+}
+

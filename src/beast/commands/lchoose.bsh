@@ -1,0 +1,4 @@
+// @see(doc/html/beast/base/Special.html) Special Functions of Mathematics
+
+lchoose(arg0, arg1) {return org.renjin.MathExt.lchoose(arg0, arg1);
+}

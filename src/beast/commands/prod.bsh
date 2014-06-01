@@ -1,0 +1,5 @@
+// @see(doc/html/beast/base/prod.html) Product of Vector Elements
+
+prod(x) { 
+		return org.renjin.primitives.Summary.prod(x, false);
+}

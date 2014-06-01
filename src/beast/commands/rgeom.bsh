@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/Geometric.html) The Geometric Distribution
+
+rgeom(n, p) {return org.renjin.stats.internals.distributions.RNG.rgeom(n, p);
+}

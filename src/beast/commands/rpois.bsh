@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/Poisson.html) The Poisson Distribution
+
+rpois(n, mu) {return org.renjin.stats.internals.distributions.RNG.rpois(n, mu);
+}

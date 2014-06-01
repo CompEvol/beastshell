@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/Uniform.html) The Uniform Distribution
+
+runif(n, a, b) {return org.renjin.stats.internals.distributions.RNG.runif(n, a, b);
+}

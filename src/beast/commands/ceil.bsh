@@ -1,0 +1,3 @@
+// 
+ ceil(arg0) {return org.renjin.MathExt. ceil(arg0);
+}

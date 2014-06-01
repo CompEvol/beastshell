@@ -1,0 +1,4 @@
+// @see(doc/html/beast/stats/Exponential.html) The Exponential Distribution
+
+rexp(n, scale) {return org.renjin.stats.internals.distributions.RNG.rexp(n, scale);
+}

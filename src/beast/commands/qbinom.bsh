@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/Binomial.html) The Binomial Distribution
+
+qbinom(p, n, pr) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qbinom(i, n, pr, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qbinom(p, n, pr, false, false);
+	}
+}
+
+qbinom(p, n, pr, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qbinom(i, n, pr, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qbinom(p, n, pr, false, log);
+	}
+}
+
+qbinom(p, n, pr, lowerTail, log) {
+	if (p instanceof java.util.List || p.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : p) {
+			result.add(org.renjin.Distributions.qbinom(i, n, pr, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.qbinom(p, n, pr, lowerTail, log);
+	}
+}
+

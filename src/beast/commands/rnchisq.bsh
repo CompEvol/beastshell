@@ -1,0 +1,3 @@
+// 
+rnchisq(n, df, lambda) {return org.renjin.stats.internals.distributions.RNG.rnchisq(n, df, lambda);
+}

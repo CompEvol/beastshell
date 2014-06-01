@@ -1,0 +1,38 @@
+// @see(doc/html/beast/stats/TDist.html) The Student t Distribution
+
+pt(x, n) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pt(i, n, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pt(x, n, false, false);
+	}
+}
+
+pt(x, n, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pt(i, n, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pt(x, n, false, log);
+	}
+}
+
+pt(x, n, lowerTail, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pt(i, n, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pt(x, n, lowerTail, log);
+	}
+}
+

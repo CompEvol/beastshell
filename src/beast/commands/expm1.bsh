@@ -1,0 +1,13 @@
+// @see(doc/html/beast/base/Log.html) Logarithms and Exponentials
+
+expm1(x) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.MathExt.expm1(i));
+		}
+		return result;
+	} else {
+		return org.renjin.MathExt.expm1(x);
+	}
+}
