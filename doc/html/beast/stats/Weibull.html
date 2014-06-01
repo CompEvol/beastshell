@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>R: The Weibull Distribution</title>
+<html><head><title>The Weibull Distribution</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="R.css">
 </head><body>
 
-<table width="100%" summary="page for Weibull {stats}"><tr><td>Weibull {stats}</td><td align="right">R Documentation</td></tr></table>
+
 
 <h2>The Weibull Distribution</h2>
 
@@ -19,9 +19,17 @@ and <code>scale</code>.
 <h3>Usage</h3>
 
 <pre>
-dweibull(x, shape, scale = 1, log = FALSE)
-pweibull(q, shape, scale = 1, lower.tail = TRUE, log.p = FALSE)
-qweibull(p, shape, scale = 1, lower.tail = TRUE, log.p = FALSE)
+dweibull(x, shape, scale = 1)
+dweibull(x, shape, scale = 1, log_p)
+
+pweibull(q, shape, scale = 1)
+pweibull(q, shape, scale = 1, log_p)
+pweibull(q, shape, scale = 1, lower_tail, log_p)
+
+qweibull(p, shape, scale = 1)
+qweibull(p, shape, scale = 1, log_p)
+qweibull(p, shape, scale = 1, lower_tail, log_p)
+
 rweibull(n, shape, scale = 1)
 </pre>
 
@@ -46,11 +54,11 @@ is taken to be the number required.</p>
 <td>
 <p>shape and scale parameters, the latter defaulting to 1.</p>
 </td></tr>
-<tr valign="top"><td><code>log, log.p</code></td>
+<tr valign="top"><td><code>log, log_p</code></td>
 <td>
 <p>logical; if TRUE, probabilities p are given as log(p).</p>
 </td></tr>
-<tr valign="top"><td><code>lower.tail</code></td>
+<tr valign="top"><td><code>lower_tail</code></td>
 <td>
 <p>logical; if TRUE (default), probabilities are
 <i>P[X &le; x]</i>, otherwise, <i>P[X &gt; x]</i>.</p>
@@ -131,7 +139,7 @@ x &lt;- c(0, rlnorm(50))
 all.equal(dweibull(x, shape = 1), dexp(x))
 all.equal(pweibull(x, shape = 1, scale = pi), pexp(x, rate = 1/pi))
 ## Cumulative hazard H():
-all.equal(pweibull(x, 2.5, pi, lower.tail = FALSE, log.p = TRUE),
+all.equal(pweibull(x, 2.5, pi, lower_tail = FALSE, log_p = TRUE),
           -(x/pi)^2.5, tolerance = 1e-15)
 all.equal(qweibull(x/11, shape = 1, scale = pi), qexp(x/11, rate = 1/pi))
 </pre>

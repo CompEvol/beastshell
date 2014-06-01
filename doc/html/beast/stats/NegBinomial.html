@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>R: The Negative Binomial Distribution</title>
+<html><head><title>The Negative Binomial Distribution</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="R.css">
 </head><body>
 
-<table width="100%" summary="page for NegBinomial {stats}"><tr><td>NegBinomial {stats}</td><td align="right">R Documentation</td></tr></table>
+
 
 <h2>The Negative Binomial Distribution</h2>
 
@@ -19,9 +19,17 @@ generation for the negative binomial distribution with parameters
 <h3>Usage</h3>
 
 <pre>
-dnbinom(x, size, prob, mu, log = FALSE)
-pnbinom(q, size, prob, mu, lower.tail = TRUE, log.p = FALSE)
-qnbinom(p, size, prob, mu, lower.tail = TRUE, log.p = FALSE)
+dnbinom(x, size, prob, mu)
+dnbinom(x, size, prob, mu, log_p)
+
+pnbinom(q, size, prob, mu)
+pnbinom(q, size, prob, mu, log_p)
+pnbinom(q, size, prob, mu, lower_tail, log_p)
+
+qnbinom(p, size, prob, mu)
+qnbinom(p, size, prob, mu, log_p)
+qnbinom(p, size, prob, mu, lower_tail, log_p)
+
 rnbinom(n, size, prob, mu)
 </pre>
 
@@ -60,11 +68,11 @@ Must be strictly positive, need not be integer.</p>
 <td>
 <p>alternative parametrization via mean: see &lsquo;Details&rsquo;.</p>
 </td></tr>
-<tr valign="top"><td><code>log, log.p</code></td>
+<tr valign="top"><td><code>log, log_p</code></td>
 <td>
 <p>logical; if TRUE, probabilities p are given as log(p).</p>
 </td></tr>
-<tr valign="top"><td><code>lower.tail</code></td>
+<tr valign="top"><td><code>lower_tail</code></td>
 <td>
 <p>logical; if TRUE (default), probabilities are
 <i>P[X &le; x]</i>, otherwise, <i>P[X &gt; x]</i>.</p>

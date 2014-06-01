@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>R: The Poisson Distribution</title>
+<html><head><title>The Poisson Distribution</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="R.css">
 </head><body>
 
-<table width="100%" summary="page for Poisson {stats}"><tr><td>Poisson {stats}</td><td align="right">R Documentation</td></tr></table>
+
 
 <h2>The Poisson Distribution</h2>
 
@@ -18,9 +18,17 @@ generation for the Poisson distribution with parameter <code>lambda</code>.
 <h3>Usage</h3>
 
 <pre>
-dpois(x, lambda, log = FALSE)
-ppois(q, lambda, lower.tail = TRUE, log.p = FALSE)
-qpois(p, lambda, lower.tail = TRUE, log.p = FALSE)
+dpois(x, lambda)
+dpois(x, lambda, log_p)
+
+ppois(q, lambda)
+ppois(q, lambda, log_p)
+ppois(q, lambda, lower_tail, log_p)
+
+qpois(p, lambda)
+qpois(p, lambda, log_p)
+qpois(p, lambda, lower_tail, log_p)
+
 rpois(n, lambda)
 </pre>
 
@@ -48,11 +56,11 @@ rpois(n, lambda)
 <td>
 <p>vector of (non-negative) means.</p>
 </td></tr>
-<tr valign="top"><td><code>log, log.p</code></td>
+<tr valign="top"><td><code>log, log_p</code></td>
 <td>
 <p>logical; if TRUE, probabilities p are given as log(p).</p>
 </td></tr>
-<tr valign="top"><td><code>lower.tail</code></td>
+<tr valign="top"><td><code>lower_tail</code></td>
 <td>
 <p>logical; if TRUE (default), probabilities are
 <i>P[X &le; x]</i>, otherwise, <i>P[X &gt; x]</i>.</p>
@@ -78,8 +86,8 @@ is zero, with a warning.
 <p>The quantile is right continuous: <code>qpois(p, lambda)</code> is the smallest
 integer <i>x</i> such that <i>P(X &le; x) &ge; p</i>.
 </p>
-<p>Setting <code>lower.tail = FALSE</code> allows to get much more precise
-results when the default, <code>lower.tail = TRUE</code> would return 1, see
+<p>Setting <code>lower_tail = FALSE</code> allows to get much more precise
+results when the default, <code>lower_tail = TRUE</code> would return 1, see
 the example below.
 </p>
 
@@ -140,7 +148,7 @@ require(graphics)
 Ni &lt;- rpois(50, lambda = 4); table(factor(Ni, 0:max(Ni)))
 
 1 - ppois(10*(15:25), lambda = 100)  # becomes 0 (cancellation)
-    ppois(10*(15:25), lambda = 100, lower.tail = FALSE)  # no cancellation
+    ppois(10*(15:25), lambda = 100, lower_tail = FALSE)  # no cancellation
 
 par(mfrow = c(2, 1))
 x &lt;- seq(-0.01, 5, 0.01)

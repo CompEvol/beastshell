@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>R: The Studentized Range Distribution</title>
+<html><head><title>The Studentized Range Distribution</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="R.css">
 </head><body>
 
-<table width="100%" summary="page for Tukey {stats}"><tr><td>Tukey {stats}</td><td align="right">R Documentation</td></tr></table>
+
 
 <h2>The Studentized Range Distribution</h2>
 
@@ -20,8 +20,14 @@ chi-squared with <i>df</i> degrees of freedom, see <code><a href="Chisquare.html
 <h3>Usage</h3>
 
 <pre>
-ptukey(q, nmeans, df, nranges = 1, lower.tail = TRUE, log.p = FALSE)
-qtukey(p, nmeans, df, nranges = 1, lower.tail = TRUE, log.p = FALSE)
+ptukey(q, nmeans, df, nranges = 1)
+ptukey(q, nmeans, df, nranges = 1, log_p)
+ptukey(q, nmeans, df, nranges = 1, lower_tail, log_p)
+
+qtukey(p, nmeans, df, nranges = 1)
+qtukey(p, nmeans, df, nranges = 1, log_p)
+qtukey(p, nmeans, df, nranges = 1, lower_tail, log_p)
+
 </pre>
 
 
@@ -49,11 +55,11 @@ qtukey(p, nmeans, df, nranges = 1, lower.tail = TRUE, log.p = FALSE)
 <p>number of <EM>groups</EM> whose <B>maximum</B> range is
 considered.</p>
 </td></tr>
-<tr valign="top"><td><code>log.p</code></td>
+<tr valign="top"><td><code>log_p</code></td>
 <td>
 <p>logical; if TRUE, probabilities p are given as log(p).</p>
 </td></tr>
-<tr valign="top"><td><code>lower.tail</code></td>
+<tr valign="top"><td><code>lower_tail</code></td>
 <td>
 <p>logical; if TRUE (default), probabilities are
 <i>P[X &le; x]</i>, otherwise, <i>P[X &gt; x]</i>.</p>
