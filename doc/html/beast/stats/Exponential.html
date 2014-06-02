@@ -14,23 +14,29 @@
 generation for the exponential distribution with rate <code>rate</code>
 (i.e., mean <code>1/rate</code>).
 </p>
+<p><code>dexp</code> gives the density,
+<code>pexp</code> gives the distribution function,
+<code>qexp</code> gives the quantile function, and
+<code>rexp</code> generates random deviates.
+</p>
+
 
 
 <h3>Usage</h3>
 
 <pre>
-dexp(x, rate = 1)
-dexp(x, rate = 1, log_p)
+dexp(x, rate)
+dexp(x, rate, log_p)
 
-pexp(q, rate = 1)
-pexp(q, rate = 1, log_p)
-pexp(q, rate = 1, lower_tail, log_p)
+pexp(q, rate)
+pexp(q, rate, log_p)
+pexp(q, rate, lower_tail, log_p)
 
-qexp(p, rate = 1)
-qexp(p, rate = 1, log_p)
-qexp(p, rate = 1, lower_tail, log_p)
+qexp(p, rate)
+qexp(p, rate, log_p)
+qexp(p, rate, lower_tail, log_p)
 
-rexp(n, rate = 1)
+rexp(n, rate)
 </pre>
 
 
@@ -47,20 +53,19 @@ rexp(n, rate = 1)
 </td></tr>
 <tr valign="top"><td><code>n</code></td>
 <td>
-<p>number of observations. If <code>length(n) &gt; 1</code>, the length
-is taken to be the number required.</p>
+<p>number of observations.</p>
 </td></tr>
 <tr valign="top"><td><code>rate</code></td>
 <td>
-<p>vector of rates.</p>
+<p>rate = 1/mean.</p>
 </td></tr>
-<tr valign="top"><td><code>log, log_p</code></td>
+<tr valign="top"><td><code>log_p</code></td>
 <td>
-<p>logical; if TRUE, probabilities p are given as log(p).</p>
+<p>logical; if true, probabilities p are given as log(p).</p>
 </td></tr>
 <tr valign="top"><td><code>lower_tail</code></td>
 <td>
-<p>logical; if TRUE (default), probabilities are
+<p>logical; if true (default), probabilities are
 <i>P[X &le; x]</i>, otherwise, <i>P[X &gt; x]</i>.</p>
 </td></tr>
 </table>
@@ -68,9 +73,6 @@ is taken to be the number required.</p>
 
 <h3>Details</h3>
 
-<p>If <code>rate</code> is not specified, it assumes the default value of
-<code>1</code>.
-</p>
 <p>The exponential distribution with rate <i>&lambda;</i> has density
 </p>
 <p align="center"><i>f(x) = &lambda; {e}^{- &lambda; x}</i></p>
@@ -102,34 +104,9 @@ is <code>-pexp(t, r, lower = FALSE, log = TRUE)</code>.
 </p>
 
 
-<h3>Source</h3>
-
-<p><code>dexp</code>, <code>pexp</code> and <code>qexp</code> are all calculated
-from numerically stable versions of the definitions.
-</p>
-<p><code>rexp</code> uses
-</p>
-<p>Ahrens, J. H. and Dieter, U. (1972).
-Computer methods for sampling from the exponential and normal distributions.
-<EM>Communications of the ACM</EM>, <B>15</B>, 873&ndash;882.
-</p>
-
-
-<h3>References</h3>
-
-<p>Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
-<EM>The New S Language</EM>.
-Wadsworth &amp; Brooks/Cole.
-</p>
-<p>Johnson, N. L., Kotz, S. and Balakrishnan, N. (1995)
-<EM>Continuous Univariate Distributions</EM>, volume 1, chapter 19.
-Wiley, New York.
-</p>
-
-
 <h3>See Also</h3>
 
-<p><code><a href="../../base/html/Log.html">exp</a></code> for the exponential function.
+<p><code><a href="../base/Log.html">exp</a></code> for the exponential function.
 </p>
 <p><a href="Distributions.html">Distributions</a> for other standard distributions, including
 <code><a href="GammaDist.html">dgamma</a></code> for the gamma distribution and
@@ -138,17 +115,5 @@ generalize the exponential.
 </p>
 
 
-<h3>Examples</h3>
-
-<pre>
-dexp(1) - exp(-1) #-&gt; 0
-
-## a fast way to generate *sorted*  U[0,1]  random numbers:
-rsunif &lt;- function(n) { n1 &lt;- n+1
-   cE &lt;- cumsum(rexp(n1)); cE[seq_len(n)]/cE[n1] }
-plot(rsunif(1000), ylim=0:1, pch=".")
-abline(0,1/(1000+1), col=adjustcolor(1, 0.5))
-</pre>
-
-<hr><div align="center">[Package <em>stats</em> version 3.0.0 <a href="00Index.html">Index</a>]</div>
+<hr>Loosely based on R documentation
 </body></html>
