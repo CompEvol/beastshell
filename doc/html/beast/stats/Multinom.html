@@ -19,20 +19,10 @@ compute multinomial probabilities.
 
 <pre>
 rmultinom(n, size, prob)
-dmultinom(x, size = NULL, prob)
-dmultinom(x, size = NULL, prob, log_p)
-
 </pre>
 
 
 <h3>Arguments</h3>
-
-<table summary="R argblock">
-<tr valign="top"><td><code>x</code></td>
-<td>
-<p>vector of length <i>K</i> of integers in <code>0:size</code>.</p>
-</td></tr>
-</table>
 
 <table summary="R argblock">
 <tr valign="top"><td><code>n</code></td>
@@ -43,17 +33,13 @@ dmultinom(x, size = NULL, prob, log_p)
 <td>
 <p>integer, say <i>N</i>, specifying the total number
 of objects that are put into <i>K</i> boxes in the typical multinomial
-experiment. For <code>dmultinom</code>, it defaults to <code>sum(x)</code>.</p>
+experiment. <!--For <code>dmultinom</code>, it defaults to <code>sum(x)</code>.--></p>
 </td></tr>
 <tr valign="top"><td><code>prob</code></td>
 <td>
 <p>numeric non-negative vector of length <i>K</i>, specifying
 the probability for the <i>K</i> classes; is internally normalized to
 sum 1.</p>
-</td></tr>
-<tr valign="top"><td><code>log</code></td>
-<td>
-<p>logical; if TRUE, log probabilities are computed.</p>
 </td></tr>
 </table>
 
@@ -94,13 +80,6 @@ efficient because of columnwise storage.
 </p>
 
 
-<h3>Note</h3>
-
-<p><code>dmultinom</code> is currently <EM>not vectorized</EM> at all and has
-no C interface (API); this may be amended in the future.
-</p>
-
-
 <h3>See Also</h3>
 
 <p><a href="Distributions.html">Distributions</a> for standard distributions, including
@@ -109,20 +88,5 @@ no C interface (API); this may be amended in the future.
 </p>
 
 
-<h3>Examples</h3>
-
-<pre>
-rmultinom(10, size = 12, prob = c(0.1,0.2,0.8))
-
-pr &lt;- c(1,3,6,10) # normalization not necessary for generation
-rmultinom(10, 20, prob = pr)
-
-## all possible outcomes of Multinom(N = 3, K = 3)
-X &lt;- t(as.matrix(expand.grid(0:3, 0:3))); X &lt;- X[, colSums(X) &lt;= 3]
-X &lt;- rbind(X, 3:3 - colSums(X)); dimnames(X) &lt;- list(letters[1:3], NULL)
-X
-round(apply(X, 2, function(x) dmultinom(x, prob = c(1,2,5))), 3)
-</pre>
-
-<hr><div align="center">[Package <em>stats</em> version 3.1.0 <a href="00Index.html">Index</a>]</div>
+<hr>Loosely based on R documentation
 </body></html>

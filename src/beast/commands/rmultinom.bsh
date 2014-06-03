@@ -1,4 +1,5 @@
 // @see(doc/html/beast/stats/Multinom.html) The Multinomial Distribution
 
-rmultinom(n, prob, K, rN) {return org.renjin.stats.internals.distributions.RNG.rmultinom(n, prob, K, rN);
+rmultinom(n, size, prob) {
+	return org.renjin.stats.internals.distributions.RNG.rmultinom(n, size, prob);
 }

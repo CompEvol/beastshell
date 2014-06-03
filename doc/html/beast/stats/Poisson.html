@@ -58,11 +58,11 @@ rpois(n, lambda)
 </td></tr>
 <tr valign="top"><td><code>log, log_p</code></td>
 <td>
-<p>logical; if TRUE, probabilities p are given as log(p).</p>
+<p>logical; if true, probabilities p are given as log(p).</p>
 </td></tr>
 <tr valign="top"><td><code>lower_tail</code></td>
 <td>
-<p>logical; if TRUE (default), probabilities are
+<p>logical; if true (default), probabilities are
 <i>P[X &le; x]</i>, otherwise, <i>P[X &gt; x]</i>.</p>
 </td></tr>
 </table>
@@ -86,8 +86,8 @@ is zero, with a warning.
 <p>The quantile is right continuous: <code>qpois(p, lambda)</code> is the smallest
 integer <i>x</i> such that <i>P(X &le; x) &ge; p</i>.
 </p>
-<p>Setting <code>lower_tail = FALSE</code> allows to get much more precise
-results when the default, <code>lower_tail = TRUE</code> would return 1, see
+<p>Setting <code>lower_tail = false</code> allows to get much more precise
+results when the default, <code>lower_tail = true</code> would return 1, see
 the example below.
 </p>
 
@@ -148,7 +148,7 @@ require(graphics)
 Ni &lt;- rpois(50, lambda = 4); table(factor(Ni, 0:max(Ni)))
 
 1 - ppois(10*(15:25), lambda = 100)  # becomes 0 (cancellation)
-    ppois(10*(15:25), lambda = 100, lower_tail = FALSE)  # no cancellation
+    ppois(10*(15:25), lambda = 100, lower_tail = false)  # no cancellation
 
 par(mfrow = c(2, 1))
 x &lt;- seq(-0.01, 5, 0.01)

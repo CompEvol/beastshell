@@ -14,23 +14,27 @@
 generation for the logistic distribution with parameters
 <code>location</code> and <code>scale</code>.
 </p>
-
+<p><code>dlogis</code> gives the density,
+<code>plogis</code> gives the distribution function,
+<code>qlogis</code> gives the quantile function, and
+<code>rlogis</code> generates random deviates.
+</p>
 
 <h3>Usage</h3>
 
 <pre>
-dlogis(x, location = 0, scale = 1)
-dlogis(x, location = 0, scale = 1, log_p)
+dlogis(x, location, scale)
+dlogis(x, location, scale, log_p)
 
-plogis(q, location = 0, scale = 1)
-plogis(q, location = 0, scale = 1, log_p)
-plogis(q, location = 0, scale = 1, lower_tail, log_p)
+plogis(q, location, scale)
+plogis(q, location, scale, log_p)
+plogis(q, location, scale, lower_tail, log_p)
 
-qlogis(p, location = 0, scale = 1)
-qlogis(p, location = 0, scale = 1, log_p)
-qlogis(p, location = 0, scale = 1, lower_tail, log_p)
+qlogis(p, location, scale)
+qlogis(p, location, scale, log_p)
+qlogis(p, location, scale, lower_tail, log_p)
 
-rlogis(n, location = 0, scale = 1)
+rlogis(n, location, scale)
 </pre>
 
 
@@ -47,8 +51,7 @@ rlogis(n, location = 0, scale = 1)
 </td></tr>
 <tr valign="top"><td><code>n</code></td>
 <td>
-<p>number of observations. If <code>length(n) &gt; 1</code>, the length
-is taken to be the number required.</p>
+<p>number of observations.</p>
 </td></tr>
 <tr valign="top"><td><code>location, scale</code></td>
 <td>
@@ -56,11 +59,11 @@ is taken to be the number required.</p>
 </td></tr>
 <tr valign="top"><td><code>log, log_p</code></td>
 <td>
-<p>logical; if TRUE, probabilities p are given as log(p).</p>
+<p>logical; if true, probabilities p are given as log(p).</p>
 </td></tr>
 <tr valign="top"><td><code>lower_tail</code></td>
 <td>
-<p>logical; if TRUE (default), probabilities are
+<p>logical; if true (default), probabilities are
 <i>P[X &le; x]</i>, otherwise, <i>P[X &gt; x]</i>.</p>
 </td></tr>
 </table>
@@ -95,41 +98,12 @@ default values of <code>0</code> and <code>1</code> respectively.
 <code>rlogis</code>, and is the maximum of the lengths of the
 numerical parameters for the other functions.  
 </p>
-<p>The numerical parameters other than <code>n</code> are recycled to the
-length of the result.  Only the first elements of the logical
-parameters are used.
-</p>
-
 
 <h3>Note</h3>
 
-<p><code>qlogis(p)</code> is the same as the well known &lsquo;<EM>logit</EM>&rsquo;
-function, <i>logit(p) = log(p/(1-p))</i>,
-and <code>plogis(x)</code> has consequently been called the &lsquo;inverse logit&rsquo;.
-</p>
 <p>The distribution function is a rescaled hyperbolic tangent,
-<code>plogis(x) == (1+ <a href="../../base/html/Hyperbolic.html">tanh</a>(x/2))/2</code>, and it is called a
+<code>plogis(x) == (1+ <a href="../base/Hyperbolic.html">tanh</a>(x/2))/2</code>, and it is called a
 <EM>sigmoid function</EM> in contexts such as neural networks.
-</p>
-
-
-<h3>Source</h3>
-
-<p><code>[dpq]logis</code> are calculated directly from the definitions.
-</p>
-<p><code>rlogis</code> uses inversion.
-</p>
-
-
-<h3>References</h3>
-
-<p>Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
-<EM>The New S Language</EM>.
-Wadsworth &amp; Brooks/Cole.
-</p>
-<p>Johnson, N. L., Kotz, S. and Balakrishnan, N. (1995)
-<EM>Continuous Univariate Distributions</EM>, volume 2, chapter 23.
-Wiley, New York.
 </p>
 
 
@@ -139,12 +113,7 @@ Wiley, New York.
 </p>
 
 
-<h3>Examples</h3>
 
-<pre>
-var(rlogis(4000, 0, scale = 5))  # approximately (+/- 3)
-pi^2/3 * 5^2
-</pre>
 
-<hr><div align="center">[Package <em>stats</em> version 3.0.0 <a href="00Index.html">Index</a>]</div>
+<hr>Loosely based on R documentation
 </body></html>

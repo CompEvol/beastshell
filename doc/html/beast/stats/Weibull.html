@@ -56,11 +56,11 @@ is taken to be the number required.</p>
 </td></tr>
 <tr valign="top"><td><code>log, log_p</code></td>
 <td>
-<p>logical; if TRUE, probabilities p are given as log(p).</p>
+<p>logical; if true, probabilities p are given as log(p).</p>
 </td></tr>
 <tr valign="top"><td><code>lower_tail</code></td>
 <td>
-<p>logical; if TRUE (default), probabilities are
+<p>logical; if true (default), probabilities are
 <i>P[X &le; x]</i>, otherwise, <i>P[X &gt; x]</i>.</p>
 </td></tr>
 </table>
@@ -105,7 +105,7 @@ parameters are used.
 <p>The cumulative hazard <i>H(t) = - log(1 - F(t))</i>
 is
 </p>
-<PRE>-pweibull(t, a, b, lower = FALSE, log = TRUE)
+<PRE>-pweibull(t, a, b, lower = false, log = true)
 </PRE>
 which is just <i>H(t) = (t/b)^a</i>.
 
@@ -139,7 +139,7 @@ x &lt;- c(0, rlnorm(50))
 all.equal(dweibull(x, shape = 1), dexp(x))
 all.equal(pweibull(x, shape = 1, scale = pi), pexp(x, rate = 1/pi))
 ## Cumulative hazard H():
-all.equal(pweibull(x, 2.5, pi, lower_tail = FALSE, log_p = TRUE),
+all.equal(pweibull(x, 2.5, pi, lower_tail = false, log_p = true),
           -(x/pi)^2.5, tolerance = 1e-15)
 all.equal(qweibull(x/11, shape = 1, scale = pi), qexp(x/11, rate = 1/pi))
 </pre>

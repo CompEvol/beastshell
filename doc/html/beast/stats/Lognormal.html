@@ -14,23 +14,27 @@
 generation for the log normal distribution whose logarithm has mean
 equal to <code>meanlog</code> and standard  deviation equal to <code>sdlog</code>.
 </p>
-
+<p><code>dlnorm</code> gives the density,
+<code>plnorm</code> gives the distribution function,
+<code>qlnorm</code> gives the quantile function, and
+<code>rlnorm</code> generates random deviates.
+</p>
 
 <h3>Usage</h3>
 
 <pre>
-dlnorm(x, meanlog = 0, sdlog = 1)
-dlnorm(x, meanlog = 0, sdlog = 1, log_p)
+dlnorm(x, meanlog, sdlog)
+dlnorm(x, meanlog, sdlog, log_p)
 
-plnorm(q, meanlog = 0, sdlog = 1)
-plnorm(q, meanlog = 0, sdlog = 1, log_p)
-plnorm(q, meanlog = 0, sdlog = 1, lower_tail, log_p)
+plnorm(q, meanlog, sdlog)
+plnorm(q, meanlog, sdlog, log_p)
+plnorm(q, meanlog, sdlog, lower_tail, log_p)
 
-qlnorm(p, meanlog = 0, sdlog = 1)
-qlnorm(p, meanlog = 0, sdlog = 1, log_p)
-qlnorm(p, meanlog = 0, sdlog = 1, lower_tail, log_p)
+qlnorm(p, meanlog, sdlog)
+qlnorm(p, meanlog, sdlog, log_p)
+qlnorm(p, meanlog, sdlog, lower_tail, log_p)
 
-rlnorm(n, meanlog = 0, sdlog = 1)
+rlnorm(n, meanlog, sdlog)
 </pre>
 
 
@@ -47,8 +51,7 @@ rlnorm(n, meanlog = 0, sdlog = 1)
 </td></tr>
 <tr valign="top"><td><code>n</code></td>
 <td>
-<p>number of observations. If <code>length(n) &gt; 1</code>, the length
-is taken to be the number required.</p>
+<p>number of observations. </p>
 </td></tr>
 <tr valign="top"><td><code>meanlog, sdlog</code></td>
 <td>
@@ -57,11 +60,11 @@ on the log scale with default values of <code>0</code> and <code>1</code> respec
 </td></tr>
 <tr valign="top"><td><code>log, log_p</code></td>
 <td>
-<p>logical; if TRUE, probabilities p are given as log(p).</p>
+<p>logical; if true, probabilities p are given as log(p).</p>
 </td></tr>
 <tr valign="top"><td><code>lower_tail</code></td>
 <td>
-<p>logical; if TRUE (default), probabilities are
+<p>logical; if true (default), probabilities are
 <i>P[X &le; x]</i>, otherwise, <i>P[X &gt; x]</i>.</p>
 </td></tr>
 </table>
@@ -104,26 +107,7 @@ parameters are used.
 <h3>Note</h3>
 
 <p>The cumulative hazard <i>H(t) = - log(1 - F(t))</i>
-is <code>-plnorm(t, r, lower = FALSE, log = TRUE)</code>.
-</p>
-
-
-<h3>Source</h3>
-
-<p><code>dlnorm</code> is calculated from the definition (in &lsquo;Details&rsquo;).
-<code>[pqr]lnorm</code> are based on the relationship to the normal.
-</p>
-
-
-<h3>References</h3>
-
-<p>Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
-<EM>The New S Language</EM>.
-Wadsworth &amp; Brooks/Cole.
-</p>
-<p>Johnson, N. L., Kotz, S. and Balakrishnan, N. (1995)
-<EM>Continuous Univariate Distributions</EM>, volume 1, chapter 14.
-Wiley, New York.
+is <code>-plnorm(t, r, lower = false, log = true)</code>.
 </p>
 
 
@@ -133,12 +117,5 @@ Wiley, New York.
 <code><a href="Normal.html">dnorm</a></code> for the normal distribution.
 </p>
 
-
-<h3>Examples</h3>
-
-<pre>
-dlnorm(1) == dnorm(0)
-</pre>
-
-<hr><div align="center">[Package <em>stats</em> version 3.0.0 <a href="00Index.html">Index</a>]</div>
+<hr>Loosely based on R documentation
 </body></html>
