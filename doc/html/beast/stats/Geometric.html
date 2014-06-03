@@ -13,6 +13,11 @@
 <p>Density, distribution function, quantile function and random
 generation for the geometric distribution with parameter <code>prob</code>.
 </p>
+<p><code>dgeom</code> gives the density,
+<code>pgeom</code> gives the distribution function,
+<code>qgeom</code> gives the quantile function, and
+<code>rgeom</code> generates random deviates.
+</p>
 
 
 <h3>Usage</h3>
@@ -47,8 +52,7 @@ a sequence of Bernoulli trials before success occurs.</p>
 </td></tr>
 <tr valign="top"><td><code>n</code></td>
 <td>
-<p>number of observations. If <code>length(n) &gt; 1</code>, the length
-is taken to be the number required.</p>
+<p>number of observations.</p>
 </td></tr>
 <tr valign="top"><td><code>prob</code></td>
 <td>
@@ -95,24 +99,6 @@ is zero, with a warning.
 <code>rgeom</code>, and is the maximum of the lengths of the
 numerical parameters for the other functions.  
 </p>
-<p>The numerical parameters other than <code>n</code> are recycled to the
-length of the result.  Only the first elements of the logical
-parameters are used.
-</p>
-
-
-<h3>Source</h3>
-
-<p><code>dgeom</code> computes via <code>dbinom</code>, using code contributed by
-Catherine Loader (see <code><a href="Binomial.html">dbinom</a></code>).
-</p>
-<p><code>pgeom</code> and <code>qgeom</code> are based on the closed-form formulae.
-</p>
-<p><code>rgeom</code> uses the derivation as an exponential mixture of Poissons, see
-</p>
-<p>Devroye, L. (1986) <EM>Non-Uniform Random Variate Generation.</EM>
-Springer-Verlag, New York. Page 480.
-</p>
 
 
 <h3>See Also</h3>
@@ -123,12 +109,5 @@ the geometric distribution.
 </p>
 
 
-<h3>Examples</h3>
-
-<pre>
-qgeom((1:9)/10, prob = .2)
-Ni &lt;- rgeom(20, prob = 1/4); table(factor(Ni, 0:max(Ni)))
-</pre>
-
-<hr><div align="center">[Package <em>stats</em> version 3.0.0 <a href="00Index.html">Index</a>]</div>
+<hr>Loosely based on R documentation
 </body></html>

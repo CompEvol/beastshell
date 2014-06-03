@@ -13,6 +13,11 @@
 <p>Density, distribution function, quantile function and random
 generation for the hypergeometric distribution.
 </p>
+<p><code>dhyper</code> gives the density,
+<code>phyper</code> gives the distribution function,
+<code>qhyper</code> gives the quantile function, and
+<code>rhyper</code> generates random deviates.
+</p>
 
 
 <h3>Usage</h3>
@@ -60,8 +65,7 @@ white balls.</p>
 </td></tr>
 <tr valign="top"><td><code>nn</code></td>
 <td>
-<p>number of observations. If <code>length(nn) &gt; 1</code>, the length
-is taken to be the number required.</p>
+<p>number of observations.</p>
 </td></tr>
 <tr valign="top"><td><code>log, log_p</code></td>
 <td>
@@ -104,38 +108,6 @@ replacement.  The density of this distribution with parameters
 <code>rhyper</code>, and is the maximum of the lengths of the
 numerical parameters for the other functions.  
 </p>
-<p>The numerical parameters other than <code>n</code> are recycled to the
-length of the result.  Only the first elements of the logical
-parameters are used.
-</p>
-
-
-<h3>Source</h3>
-
-<p><code>dhyper</code> computes via binomial probabilities, using code
-contributed by Catherine Loader (see <code><a href="Binomial.html">dbinom</a></code>).
-</p>
-<p><code>phyper</code> is based on calculating <code>dhyper</code> and
-<code>phyper(...)/dhyper(...)</code> (as a summation), based on ideas of Ian
-Smith and Morten Welinder.
-</p>
-<p><code>qhyper</code> is based on inversion.
-</p>
-<p><code>rhyper</code> is based on a corrected version of
-</p>
-<p>Kachitvichyanukul, V. and Schmeiser, B. (1985).
-Computer generation of hypergeometric random variates.
-<EM>Journal of Statistical Computation and Simulation</EM>,
-<B>22</B>, 127&ndash;145.
-</p>
-
-
-<h3>References</h3>
-
-<p>Johnson, N. L., Kotz, S., and Kemp, A. W. (1992)
-<EM>Univariate Discrete Distributions</EM>,
-Second Edition. New York: Wiley.
-</p>
 
 
 <h3>See Also</h3>
@@ -143,17 +115,5 @@ Second Edition. New York: Wiley.
 <p><a href="Distributions.html">Distributions</a> for other standard distributions.
 </p>
 
-
-<h3>Examples</h3>
-
-<pre>
-m &lt;- 10; n &lt;- 7; k &lt;- 8
-x &lt;- 0:(k+1)
-rbind(phyper(x, m, n, k), dhyper(x, m, n, k))
-all(phyper(x, m, n, k) == cumsum(dhyper(x, m, n, k)))  # FALSE
-## but error is very small:
-signif(phyper(x, m, n, k) - cumsum(dhyper(x, m, n, k)), digits = 3)
-</pre>
-
-<hr><div align="center">[Package <em>stats</em> version 3.0.0 <a href="00Index.html">Index</a>]</div>
+<hr>Loosely based on R documentation
 </body></html>

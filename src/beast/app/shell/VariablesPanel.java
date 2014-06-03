@@ -87,14 +87,25 @@ public class VariablesPanel extends JSplitPane {
 			public void mouseEntered(MouseEvent e) {
 			}
 
+			@SuppressWarnings("unchecked")
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int i = table.getSelectedRow();
 				if (data[i][1].getClass().isArray()) {
 	        		List list = new ArrayList();
-	        		for (Object o : (Object []) data[i][1]) {
-	        			list.add(o);
-	        		}
+	        		if (data[i][1] instanceof int[]) {
+		        		for (int o : (int []) data[i][1]) {
+		        			list.add(o);
+		        		}		        			
+	        		} else if (data[i][1] instanceof double[]) {
+		        		for (double o : (double []) data[i][1]) {
+		        			list.add(o);
+		        		}		        			
+					} else {
+		        		for (Object o : (Object []) data[i][1]) {
+		        			list.add(o);
+		        		}
+					}
 	        		textPane.setText(list.toString());
 				} else {
 					textPane.setText(data[i][1].toString());
