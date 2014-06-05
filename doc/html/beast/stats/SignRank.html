@@ -14,6 +14,11 @@
 generation for the distribution of the Wilcoxon Signed Rank statistic
 obtained from a sample with size <code>n</code>.
 </p>
+<p><code>dsignrank</code> gives the density,
+<code>psignrank</code> gives the distribution function,
+<code>qsignrank</code> gives the quantile function, and
+<code>rsignrank</code> generates random deviates.
+</p>
 
 
 <h3>Usage</h3>
@@ -47,13 +52,12 @@ rsignrank(nn, n)
 </td></tr>
 <tr valign="top"><td><code>nn</code></td>
 <td>
-<p>number of observations. If <code>length(nn) &gt; 1</code>, the length
-is taken to be the number required.</p>
+<p>number of observations. </p>
 </td></tr>
 <tr valign="top"><td><code>n</code></td>
 <td>
-<p>number(s) of observations in the sample(s).  A positive
-integer, or a vector of such integers.</p>
+<p>number of observations in the sample.  A positive
+integer.</p>
 </td></tr>
 <tr valign="top"><td><code>log, log_p</code></td>
 <td>
@@ -77,10 +81,6 @@ positive.  This statistic takes values between <i>0</i> and
 <i>n(n+1)/2</i>, and its mean and variance are <i>n(n+1)/4</i> and
 <i>n(n+1)(2n+1)/24</i>, respectively.
 </p>
-<p>If either of the first two arguments is a vector, the recycling rule is
-used to do the calculations for all combinations of the two up to
-the length of the longer vector.
-</p>
 
 
 <h3>Value</h3>
@@ -94,41 +94,15 @@ the length of the longer vector.
 <code>rsignrank</code>, and is the maximum of the lengths of the
 numerical parameters for the other functions.  
 </p>
-<p>The numerical parameters other than <code>nn</code> are recycled to the
-length of the result.  Only the first elements of the logical
-parameters are used.
-</p>
-
-
-<h3>Author(s)</h3>
-
-<p>Kurt Hornik; efficiency improvement by Ivo Ugrina.</p>
 
 
 <h3>See Also</h3>
 
-<p><code><a href="wilcox.test.html">wilcox.test</a></code> to calculate the statistic from data, find p
-values and so on.
-</p>
 <p><a href="Distributions.html">Distributions</a> for standard distributions, including
 <code><a href="Wilcoxon.html">dwilcox</a></code> for the distribution of <EM>two-sample</EM>
 Wilcoxon rank sum statistic.
 </p>
 
 
-<h3>Examples</h3>
-
-<pre>
-require(graphics)
-
-par(mfrow = c(2,2))
-for(n in c(4:5,10,40)) {
-  x &lt;- seq(0, n*(n+1)/2, length = 501)
-  plot(x, dsignrank(x, n = n), type = "l",
-       main = paste0("dsignrank(x, n = ", n, ")"))
-}
-
-</pre>
-
-<hr><div align="center">[Package <em>stats</em> version 3.0.0 <a href="00Index.html">Index</a>]</div>
+<hr>Loosely based on R documentation
 </body></html>

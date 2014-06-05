@@ -1,11 +1,38 @@
 // @see(doc/html/beast/stats/Tukey.html) The Studentized Range Distribution
 
-ptukey(q, rr, cc, df) {return org.renjin.Distributions.ptukey(q, rr, cc, df, false, false);
+ptukey(x, rr, cc, df) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.ptukey(i, rr, cc, df, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.ptukey(x, rr, cc, df, false, false);
+	}
 }
 
-ptukey(q, rr, cc, df, log) {return org.renjin.Distributions.ptukey(q, rr, cc, df, false, log);
+ptukey(x, rr, cc, df, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.ptukey(i, rr, cc, df, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.ptukey(x, rr, cc, df, false, log);
+	}
 }
 
-ptukey(q, rr, cc, df, lowerTail, log) {return org.renjin.Distributions.ptukey(q, rr, cc, df, lowerTail, log);
+ptukey(x, rr, cc, df, lowerTail, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.ptukey(i, rr, cc, df, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.ptukey(x, rr, cc, df, lowerTail, log);
+	}
 }
 
