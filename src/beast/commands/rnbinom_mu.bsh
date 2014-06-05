@@ -1,3 +1,5 @@
-// 
-rnbinom_mu(arg0, arg1, arg2) {return org.renjin.stats.internals.distributions.RNG.rnbinom_mu(arg0, arg1, arg2);
+// @see(doc/html/beast/stats/Binomial.html) The Binomial Distribution
+
+rbinom_mu(n, nin, mu) {
+    return org.renjin.stats.internals.distributions.RNG.rbinom_mu(n, nin, mu);
 }

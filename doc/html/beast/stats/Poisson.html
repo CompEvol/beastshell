@@ -13,7 +13,11 @@
 <p>Density, distribution function, quantile function and random
 generation for the Poisson distribution with parameter <code>lambda</code>.
 </p>
-
+<p><code>dpois</code> gives the (log) density,
+<code>ppois</code> gives the (log) distribution function,
+<code>qpois</code> gives the quantile function, and
+<code>rpois</code> generates random deviates.
+</p>
 
 <h3>Usage</h3>
 
@@ -105,28 +109,7 @@ the example below.
 <code>rpois</code>, and is the maximum of the lengths of the
 numerical parameters for the other functions.  
 </p>
-<p>The numerical parameters other than <code>n</code> are recycled to the
-length of the result.  Only the first elements of the logical
-parameters are used.
-</p>
 
-
-<h3>Source</h3>
-
-<p><code>dpois</code> uses C code contributed by Catherine Loader
-(see <code><a href="Binomial.html">dbinom</a></code>).
-</p>
-<p><code>ppois</code> uses <code>pgamma</code>.
-</p>
-<p><code>qpois</code> uses the Cornish&ndash;Fisher Expansion to include a skewness
-correction to a normal approximation, followed by a search.
-</p>
-<p><code>rpois</code> uses
-</p>
-<p>Ahrens, J. H. and Dieter, U. (1982).
-Computer generation of Poisson deviates from modified normal distributions.
-<EM>ACM Transactions on Mathematical Software</EM>, <B>8</B>, 163&ndash;179.
-</p>
 
 
 <h3>See Also</h3>
@@ -135,27 +118,6 @@ Computer generation of Poisson deviates from modified normal distributions.
 <code><a href="Binomial.html">dbinom</a></code> for the binomial and <code><a href="NegBinomial.html">dnbinom</a></code> for
 the negative binomial distribution.
 </p>
-<p><code><a href="poisson.test.html">poisson.test</a></code>.
-</p>
 
-
-<h3>Examples</h3>
-
-<pre>
-require(graphics)
-
--log(dpois(0:7, lambda = 1) * gamma(1+ 0:7)) # == 1
-Ni &lt;- rpois(50, lambda = 4); table(factor(Ni, 0:max(Ni)))
-
-1 - ppois(10*(15:25), lambda = 100)  # becomes 0 (cancellation)
-    ppois(10*(15:25), lambda = 100, lower_tail = false)  # no cancellation
-
-par(mfrow = c(2, 1))
-x &lt;- seq(-0.01, 5, 0.01)
-plot(x, ppois(x, 1), type = "s", ylab = "F(x)", main = "Poisson(1) CDF")
-plot(x, pbinom(x, 100, 0.01), type = "s", ylab = "F(x)",
-     main = "Binomial(100, 0.01) CDF")
-</pre>
-
-<hr><div align="center">[Package <em>stats</em> version 3.0.0 <a href="00Index.html">Index</a>]</div>
+<hr>Loosely based on R documentation
 </body></html>

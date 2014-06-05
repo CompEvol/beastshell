@@ -14,23 +14,28 @@
 generation for the normal distribution with mean equal to <code>mean</code>
 and standard deviation equal to <code>sd</code>.
 </p>
+<p><code>dnorm</code> gives the density,
+<code>pnorm</code> gives the distribution function,
+<code>qnorm</code> gives the quantile function, and
+<code>rnorm</code> generates random deviates.
+</p>
 
 
 <h3>Usage</h3>
 
 <pre>
-dnorm(x, mean = 0, sd = 1)
-dnorm(x, mean = 0, sd = 1, log_p)
+dnorm(x, mean, sd)
+dnorm(x, mean, sd, log_p)
 
-pnorm(q, mean = 0, sd = 1)
-pnorm(q, mean = 0, sd = 1, log_p)
-pnorm(q, mean = 0, sd = 1, lower_tail, log_p)
+pnorm(q, mean, sd)
+pnorm(q, mean, sd, log_p)
+pnorm(q, mean, sd, lower_tail, log_p)
 
-qnorm(p, mean = 0, sd = 1)
-qnorm(p, mean = 0, sd = 1, log_p)
-qnorm(p, mean = 0, sd = 1, lower_tail, log_p)
+qnorm(p, mean, sd)
+qnorm(p, mean, sd, log_p)
+qnorm(p, mean, sd, lower_tail, log_p)
 
-rnorm(n, mean = 0, sd = 1)
+rnorm(n, mean, sd)
 </pre>
 
 
@@ -39,16 +44,15 @@ rnorm(n, mean = 0, sd = 1)
 <table summary="R argblock">
 <tr valign="top"><td><code>x, q</code></td>
 <td>
-<p>vector of quantiles.</p>
+<p>number or list/array of numeric values (resp. quantiles).</p>
 </td></tr>
 <tr valign="top"><td><code>p</code></td>
 <td>
-<p>vector of probabilities.</p>
+<p>probability or list/array of probabilities.</p>
 </td></tr>
 <tr valign="top"><td><code>n</code></td>
 <td>
-<p>number of observations. If <code>length(n) &gt; 1</code>, the length
-is taken to be the number required.</p>
+<p>number of random values to return.</p>
 </td></tr>
 <tr valign="top"><td><code>mean</code></td>
 <td>
@@ -100,42 +104,7 @@ precise results up to about 16 digits.
 <code>rnorm</code>, and is the maximum of the lengths of the
 numerical parameters for the other functions.  
 </p>
-<p>The numerical parameters other than <code>n</code> are recycled to the
-length of the result.  Only the first elements of the logical
-parameters are used.
-</p>
 
-
-<h3>Source</h3>
-
-<p>For <code>pnorm</code>, based on
-</p>
-<p>Cody, W. D. (1993)
-Algorithm 715: SPECFUN &ndash; A portable FORTRAN package of special
-function routines and test drivers.
-<EM>ACM Transactions on Mathematical Software</EM> <B>19</B>, 22&ndash;32.
-</p>
-<p>For <code>qnorm</code>, the code is a C translation of
-</p>
-<p>Wichura, M. J. (1988)
-Algorithm AS 241: The percentage points of the normal distribution.
-<EM>Applied Statistics</EM>, <B>37</B>, 477&ndash;484.
-</p>
-<p>For <code>rnorm</code>, see <a href="../../base/html/Random.html">RNG</a> for how to select the algorithm and
-for references to the supplied methods.
-</p>
-
-
-<h3>References</h3>
-
-<p>Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
-<EM>The New S Language</EM>.
-Wadsworth &amp; Brooks/Cole.
-</p>
-<p>Johnson, N. L., Kotz, S. and Balakrishnan, N. (1995)
-<EM>Continuous Univariate Distributions</EM>, volume 1, chapter 13.
-Wiley, New York.
-</p>
 
 
 <h3>See Also</h3>
@@ -145,38 +114,5 @@ Wiley, New York.
 </p>
 
 
-<h3>Examples</h3>
-
-<pre>
-require(graphics)
-
-dnorm(0) == 1/sqrt(2*pi)
-dnorm(1) == exp(-1/2)/sqrt(2*pi)
-dnorm(1) == 1/sqrt(2*pi*exp(1))
-
-## Using "log = true" for an extended range :
-par(mfrow = c(2,1))
-plot(function(x) dnorm(x, log = true), -60, 50,
-     main = "log { Normal density }")
-curve(log(dnorm(x)), add = true, col = "red", lwd = 2)
-mtext("dnorm(x, log=true)", adj = 0)
-mtext("log(dnorm(x))", col = "red", adj = 1)
-
-plot(function(x) pnorm(x, log_p = true), -50, 10,
-     main = "log { Normal Cumulative }")
-curve(log(pnorm(x)), add = true, col = "red", lwd = 2)
-mtext("pnorm(x, log=true)", adj = 0)
-mtext("log(pnorm(x))", col = "red", adj = 1)
-
-## if you want the so-called 'error function'
-erf &lt;- function(x) 2 * pnorm(x * sqrt(2)) - 1
-## (see Abramowitz and Stegun 29.2.29)
-## and the so-called 'complementary error function'
-erfc &lt;- function(x) 2 * pnorm(x * sqrt(2), lower = false)
-## and the inverses
-erfinv &lt;- function (x) qnorm((1 + x)/2)/sqrt(2)
-erfcinv &lt;- function (x) qnorm(x/2, lower = false)/sqrt(2)
-</pre>
-
-<hr><div align="center">[Package <em>stats</em> version 3.0.0 <a href="00Index.html">Index</a>]</div>
+<hr>Loosely based on R documentation
 </body></html>

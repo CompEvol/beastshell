@@ -1,10 +1,38 @@
-// 
-pnbinom_mu(arg0, arg1, arg2) {return org.renjin.Distributions.pnbinom_mu(arg0, arg1, arg2, false, false);
+// @see(doc/html/beast/stats/Binomial.html) The Binomial Distribution
+
+pbinom_mu(x, n, mu) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pbinom_mu(i, n, mu, false, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pbinom_mu(x, n, mu, false, false);
+	}
 }
 
-pnbinom_mu(arg0, arg1, arg2, log) {return org.renjin.Distributions.pnbinom_mu(arg0, arg1, arg2, false, log);
+pbinom_mu(x, n, mu, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pbinom_mu(i, n, mu, false, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pbinom_mu(x, n, mu, false, log);
+	}
 }
 
-pnbinom_mu(arg0, arg1, arg2, lowerTail, log) {return org.renjin.Distributions.pnbinom_mu(arg0, arg1, arg2, lowerTail, log);
+pbinom_mu(x, n, mu, lowerTail, log) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.pbinom_mu(i, n, mu, lowerTail, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.pbinom_mu(x, n, mu, lowerTail, log);
+	}
 }
 

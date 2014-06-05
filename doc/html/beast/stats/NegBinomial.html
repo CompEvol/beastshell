@@ -15,22 +15,31 @@ generation for the negative binomial distribution with parameters
 <code>size</code> and <code>prob</code>.
 </p>
 
+<p><code>dnbinom</code> gives the density,
+<code>pnbinom</code> gives the distribution function,
+<code>qnbinom</code> gives the quantile function, and
+<code>rnbinom</code> generates random deviates.
+</p>
 
 <h3>Usage</h3>
 
 <pre>
-dnbinom(x, size, prob, mu)
-dnbinom(x, size, prob, mu, log_p)
+dnbinom(x, size, prob)
+dnbinom(x, size, prob, log_p)
+dnbinom_mu(...)
 
-pnbinom(q, size, prob, mu)
-pnbinom(q, size, prob, mu, log_p)
-pnbinom(q, size, prob, mu, lower_tail, log_p)
+pnbinom(q, size, prob)
+pnbinom(q, size, prob, log_p)
+pnbinom(q, size, prob, lower_tail, log_p)
+pnbinom_mu(...)
 
-qnbinom(p, size, prob, mu)
-qnbinom(p, size, prob, mu, log_p)
-qnbinom(p, size, prob, mu, lower_tail, log_p)
+qnbinom(p, size, prob)
+qnbinom(p, size, prob, log_p)
+qnbinom(p, size, prob, lower_tail, log_p)
+qnbinom_mu(...)
 
-rnbinom(n, size, prob, mu)
+rnbinom(n, size, prob)
+rnbinom_mu(...)
 </pre>
 
 
@@ -51,8 +60,7 @@ rnbinom(n, size, prob, mu)
 </td></tr>
 <tr valign="top"><td><code>n</code></td>
 <td>
-<p>number of observations. If <code>length(n) &gt; 1</code>, the length
-is taken to be the number required.</p>
+<p>number of random values to return.</p>
 </td></tr>
 <tr valign="top"><td><code>size</code></td>
 <td>
@@ -124,6 +132,7 @@ the mean of the limit distribution is 0, whatever the value of <code>mu</code>.
 <code>pnbinom</code> gives the distribution function,
 <code>qnbinom</code> gives the quantile function, and
 <code>rnbinom</code> generates random deviates.
+Variants with <code>_mu</code> use the alternative parameterisation.
 </p>
 <p>Invalid <code>size</code> or <code>prob</code> will result in return value
 <code>NaN</code>, with a warning.
@@ -132,27 +141,7 @@ the mean of the limit distribution is 0, whatever the value of <code>mu</code>.
 <code>rnbinom</code>, and is the maximum of the lengths of the
 numerical parameters for the other functions.  
 </p>
-<p>The numerical parameters other than <code>n</code> are recycled to the
-length of the result.  Only the first elements of the logical
-parameters are used.
-</p>
 
-
-<h3>Source</h3>
-
-<p><code>dnbinom</code> computes via binomial probabilities, using code
-contributed by Catherine Loader (see <code><a href="Binomial.html">dbinom</a></code>).
-</p>
-<p><code>pnbinom</code> uses <code><a href="Beta.html">pbeta</a></code>.
-</p>
-<p><code>qnbinom</code> uses the Cornish&ndash;Fisher Expansion to include a skewness
-correction to a normal approximation, followed by a search.
-</p>
-<p><code>rnbinom</code> uses the derivation as a gamma mixture of Poissons, see
-</p>
-<p>Devroye, L. (1986) <EM>Non-Uniform Random Variate Generation.</EM>
-Springer-Verlag, New York. Page 480.
-</p>
 
 
 <h3>See Also</h3>
@@ -163,39 +152,5 @@ Poisson and <code><a href="Geometric.html">dgeom</a></code> for the geometric di
 is a special case of the negative binomial.
 </p>
 
-
-<h3>Examples</h3>
-
-<pre>
-require(graphics)
-x &lt;- 0:11
-dnbinom(x, size = 1, prob = 1/2) * 2^(1 + x) # == 1
-126 /  dnbinom(0:8, size  = 2, prob  = 1/2) #- theoretically integer
-
-## Cumulative ('p') = Sum of discrete prob.s ('d');  Relative error :
-summary(1 - cumsum(dnbinom(x, size = 2, prob = 1/2)) /
-                  pnbinom(x, size  = 2, prob = 1/2))
-
-x &lt;- 0:15
-size &lt;- (1:20)/4
-persp(x, size, dnb &lt;- outer(x, size, function(x,s) dnbinom(x, s, prob = 0.4)),
-      xlab = "x", ylab = "s", zlab = "density", theta = 150)
-title(tit &lt;- "negative binomial density(x,s, pr = 0.4)  vs.  x &amp; s")
-
-image  (x, size, log10(dnb), main = paste("log [", tit, "]"))
-contour(x, size, log10(dnb), add = true)
-
-## Alternative parametrization
-x1 &lt;- rnbinom(500, mu = 4, size = 1)
-x2 &lt;- rnbinom(500, mu = 4, size = 10)
-x3 &lt;- rnbinom(500, mu = 4, size = 100)
-h1 &lt;- hist(x1, breaks = 20, plot = false)
-h2 &lt;- hist(x2, breaks = h1$breaks, plot = false)
-h3 &lt;- hist(x3, breaks = h1$breaks, plot = false)
-barplot(rbind(h1$counts, h2$counts, h3$counts),
-        beside = true, col = c("red","blue","cyan"),
-        names.arg = round(h1$breaks[-length(h1$breaks)]))
-</pre>
-
-<hr><div align="center">[Package <em>stats</em> version 3.1.0 <a href="00Index.html">Index</a>]</div>
+<hr>Loosely based on R documentation
 </body></html>

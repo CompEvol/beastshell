@@ -1,9 +1,28 @@
-// 
+// @see(doc/html/beast/stats/Binomial.html) The Binomial Distribution
 
-dnbinom_mu(arg0, arg1, arg2) {return org.renjin.Distributions.dnbinom_mu(arg0, arg1, arg2, false);
+
+dbinom_mu(x, n, mu) {
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.dbinom_mu(i, n, mu, false));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.dbinom_mu(x, n, mu, false);
+	}
 }
 
-dnbinom_mu(arg0, arg1, arg2, log) {
-return org.renjin.Distributions.dnbinom_mu(arg0, arg1, arg2, log);
+dbinom_mu(x, n, mu, log) {
+
+	if (x instanceof java.util.List || x.getClass().isArray()) {
+		java.util.List<Double> result = new ArrayList<Double>();
+		for (i : x) {
+			result.add(org.renjin.Distributions.dbinom_mu(i, n, mu, log));
+		}
+		return result;
+	} else {
+		return org.renjin.Distributions.dbinom_mu(x, n, mu, log);
+	}
 }
 
