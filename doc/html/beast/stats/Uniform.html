@@ -16,23 +16,28 @@ density, <code>punif</code> gives the distribution function <code>qunif</code>
 gives the quantile function and <code>runif</code> generates random
 deviates.
 </p>
+<p><code>dunif</code> gives the density,
+<code>punif</code> gives the distribution function,
+<code>qunif</code> gives the quantile function, and
+<code>runif</code> generates random deviates.
+</p>
 
 
 <h3>Usage</h3>
 
 <pre>
-dunif(x, min = 0, max = 1)
-dunif(x, min = 0, max = 1, log_p)
+dunif(x, min, min)
+dunif(x, min, min, log_p)
 
-punif(q, min = 0, max = 1)
-punif(q, min = 0, max = 1, log_p)
-punif(q, min = 0, max = 1, lower_tail, log_p)
+punif(q, min, min)
+punif(q, min, min, log_p)
+punif(q, min, min, lower_tail, log_p)
 
-qunif(p, min = 0, max = 1)
-qunif(p, min = 0, max = 1, log_p)
-qunif(p, min = 0, max = 1, lower_tail, log_p)
+qunif(p, min, min)
+qunif(p, min, min, log_p)
+qunif(p, min, min, lower_tail, log_p)
 
-runif(n, min = 0, max = 1)
+runif(n, min, min)
 </pre>
 
 
@@ -49,8 +54,7 @@ runif(n, min = 0, max = 1)
 </td></tr>
 <tr valign="top"><td><code>n</code></td>
 <td>
-<p>number of observations. If <code>length(n) &gt; 1</code>, the length
-is taken to be the number required.</p>
+<p>number of random values to generate.</p>
 </td></tr>
 <tr valign="top"><td><code>min, max</code></td>
 <td>
@@ -84,8 +88,7 @@ values of <code>0</code> and <code>1</code> respectively.
 that case and <code>dunif</code> will return <code>NaN</code> (the error condition).
 </p>
 <p><code>runif</code> will not generate either of the extreme values unless
-<code>max = min</code> or <code>max-min</code> is small compared to <code>min</code>,
-and in particular not for the default arguments.
+<code>max = min</code> or <code>max-min</code> is small compared to <code>min</code>.
 </p>
 
 
@@ -100,48 +103,13 @@ and in particular not for the default arguments.
 <code>runif</code>, and is the maximum of the lengths of the
 numerical parameters for the other functions.  
 </p>
-<p>The numerical parameters other than <code>n</code> are recycled to the
-length of the result.  Only the first elements of the logical
-parameters are used.
-</p>
-
-
-<h3>Note</h3>
-
-<p>The characteristics of output from pseudo-random number generators
-(such as precision and periodicity) vary widely.  See
-<code><a href="../../base/html/Random.html">.Random.seed</a></code> for more information on <font face="Courier New,Courier" color="#666666"><b>R</b></font>'s random number
-generation algorithms.
-</p>
-
-
-<h3>References</h3>
-
-<p>Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
-<EM>The New S Language</EM>.
-Wadsworth &amp; Brooks/Cole.
-</p>
 
 
 <h3>See Also</h3>
 
-<p><code><a href="../../base/html/Random.html">RNG</a></code> about random number generation in <font face="Courier New,Courier" color="#666666"><b>R</b></font>.
-</p>
 <p><a href="Distributions.html">Distributions</a> for other standard distributions.
 </p>
 
 
-<h3>Examples</h3>
-
-<pre>
-u &lt;- runif(20)
-
-## The following relations always hold :
-punif(u) == u
-dunif(u) == 1
-
-var(runif(10000))  #- ~ = 1/12 = .08333
-</pre>
-
-<hr><div align="center">[Package <em>stats</em> version 3.0.0 <a href="00Index.html">Index</a>]</div>
+<hr>Loosely based on R documentation
 </body></html>

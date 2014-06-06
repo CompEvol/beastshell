@@ -14,6 +14,11 @@
 generation for the distribution of the Wilcoxon rank sum statistic
 obtained from samples with size <code>m</code> and <code>n</code>, respectively.
 </p>
+<p><code>dwilcox</code> gives the density,
+<code>pwilcox</code> gives the distribution function,
+<code>qwilcox</code> gives the quantile function, and
+<code>rwilcox</code> generates random deviates.
+</p>
 
 
 <h3>Usage</h3>
@@ -47,8 +52,7 @@ rwilcox(nn, m, n)
 </td></tr>
 <tr valign="top"><td><code>nn</code></td>
 <td>
-<p>number of observations. If <code>length(nn) &gt; 1</code>, the length
-is taken to be the number required.</p>
+<p>number of random values to generate.</p>
 </td></tr>
 <tr valign="top"><td><code>m, n</code></td>
 <td>
@@ -77,10 +81,6 @@ Then the Wilcoxon rank sum statistic is the number of all pairs
 <code>m * n</code>, and its mean and variance are <code>m * n / 2</code> and
 <code>m * n * (m + n + 1) / 12</code>, respectively.
 </p>
-<p>If any of the first three arguments are vectors, the recycling rule is
-used to do the calculations for all combinations of the three up to
-the length of the longest vector.
-</p>
 
 
 <h3>Value</h3>
@@ -94,88 +94,13 @@ the length of the longest vector.
 <code>rwilcox</code>, and is the maximum of the lengths of the
 numerical parameters for the other functions.  
 </p>
-<p>The numerical parameters other than <code>nn</code> are recycled to the
-length of the result.  Only the first elements of the logical
-parameters are used.
-</p>
-
-
-<h3>Warning</h3>
-
-<p>These functions can use large amounts of memory and stack (and even crash
-<font face="Courier New,Courier" color="#666666"><b>R</b></font> if the stack limit is exceeded and stack-checking is not in place)
-if one sample is large (several thousands or more).
-</p>
-
-
-<h3>Note</h3>
-
-<p>S-PLUS uses a different (but equivalent) definition of the Wilcoxon
-statistic: see <code><a href="wilcox.test.html">wilcox.test</a></code> for details.
-</p>
-
-
-<h3>Author(s)</h3>
-
-<p>Kurt Hornik</p>
-
-
-<h3>Source</h3>
-
-<p>These are calculated via recursion, based on <code>cwilcox(k, m, n)</code>,
-the number of choices with statistic <code>k</code> from samples of size
-<code>m</code> and <code>n</code>, which is itself calculated recursively and the
-results cached.  Then <code>dwilcox</code> and <code>pwilcox</code> sum
-appropriate values of <code>cwilcox</code>, and <code>qwilcox</code> is based on
-inversion.
-</p>
-<p><code>rwilcox</code> generates a random permutation of ranks and evaluates
-the statistic.
-</p>
 
 
 <h3>See Also</h3>
 
-<p><code><a href="wilcox.test.html">wilcox.test</a></code> to calculate the statistic from data, find p
-values and so on.
-</p>
-<p><a href="Distributions.html">Distributions</a> for standard distributions, including
-<code><a href="SignRank.html">dsignrank</a></code> for the distribution of the
-<EM>one-sample</EM> Wilcoxon signed rank statistic.
+<p><a href="Distributions.html">Distributions</a> for standard distributions.
 </p>
 
 
-<h3>Examples</h3>
-
-<pre>
-require(graphics)
-
-x &lt;- -1:(4*6 + 1)
-fx &lt;- dwilcox(x, 4, 6)
-Fx &lt;- pwilcox(x, 4, 6)
-
-layout(rbind(1,2), widths = 1, heights = c(3,2))
-plot(x, fx, type = "h", col = "violet",
-     main =  "Probabilities (density) of Wilcoxon-Statist.(n=6, m=4)")
-plot(x, Fx, type = "s", col = "blue",
-     main =  "Distribution of Wilcoxon-Statist.(n=6, m=4)")
-abline(h = 0:1, col = "gray20", lty = 2)
-layout(1) # set back
-
-N &lt;- 200
-hist(U &lt;- rwilcox(N, m = 4,n = 6), breaks = 0:25 - 1/2,
-     border = "red", col = "pink", sub = paste("N =",N))
-mtext("N * f(x),  f() = true \"density\"", side = 3, col = "blue")
- lines(x, N*fx, type = "h", col = "blue", lwd = 2)
-points(x, N*fx, cex = 2)
-
-## Better is a Quantile-Quantile Plot
-qqplot(U, qw &lt;- qwilcox((1:N - 1/2)/N, m = 4, n = 6),
-       main = paste("Q-Q-Plot of empirical and theoretical quantiles",
-                     "Wilcoxon Statistic,  (m=4, n=6)", sep = "\n"))
-n &lt;- as.numeric(names(print(tU &lt;- table(U))))
-text(n+.2, n+.5, labels = tU, col = "red")
-</pre>
-
-<hr><div align="center">[Package <em>stats</em> version 3.0.0 <a href="00Index.html">Index</a>]</div>
+<hr>Loosely based on R documentation
 </body></html>
