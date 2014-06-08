@@ -283,7 +283,7 @@ public class Summary {
 	};
 	static public Number[] cumsum(Number[] x, boolean na_rm) {
 		if (na_rm) {
-			return cumsum(rmNaN(x), false).toArray(new Number[0]);
+			return (Number[]) cumsum(rmNaN(x), false).toArray(new Number[0]);
 		}
 		Double [] result = new Double[x.length];
 		double sum = 0;
@@ -335,7 +335,7 @@ public class Summary {
 	};
 	static public Number[] cumprod(Number[] x, boolean na_rm) {
 		if (na_rm) {
-			return cumprod(rmNaN(x), false).toArray(new Number[0]);
+			return (Number[]) cumprod(rmNaN(x), false).toArray(new Number[0]);
 		}
 		Double [] result = new Double[x.length];
 		double prod = 0;
@@ -387,7 +387,7 @@ public class Summary {
 	};
 	static public Number[] cummax(Number[] x, boolean na_rm) {
 		if (na_rm) {
-			return cummax(rmNaN(x), false).toArray(new Number[0]);
+			return (Number[]) cummax(rmNaN(x), false).toArray(new Number[0]);
 		}
 		Double [] result = new Double[x.length];
 		double max = x[0].doubleValue();
@@ -439,7 +439,7 @@ public class Summary {
 	};
 	static public Number[] cummin(Number[] x, boolean na_rm) {
 		if (na_rm) {
-			return cummin(rmNaN(x), false).toArray(new Number[0]);
+			return (Number[]) cummin(rmNaN(x), false).toArray(new Number[0]);
 		}
 		Double [] result = new Double[x.length];
 		double min = x[0].doubleValue();
