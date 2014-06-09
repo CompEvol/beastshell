@@ -9,16 +9,22 @@ Create BEASTObjects using
 
   bsh % x = new RealParameter(value="3.0", dimension=3);
 
-To install, add this repository to the
+To install, 
+- start BEAUti, which comes with BEAST (http://beast2.org)
+- select the "File/Manage pacakges" menu
+- select BEASTShell, and click the install button
 
-https://raw.githubusercontent.com/CompEvol/beastshell/master/package.xml
+Alternatively, use the pacakgemanager application in BEAST.
 
-This can be done in BEAUti in the Package Manager. Once this repository is added, install BEASTShell in the package manager.
+To run, 
+- open the BEAST AppStore, 
+- double click the BEASTStudio icon
 
-To run, open the BEAST AppStore, and select BEASTStudio.
+Getting started:
+- Introducing BEASTShell: http://blog.beast2.org/2014/05/26/introducing-beastshell/ is a quick-start guide to BEASShell
+- Simulation studies with BEASTShell: http://blog.beast2.org/2014/06/02/simulation-studies-with-beastshell shows how to use BEASTShell to run a simulation study in 50 lines of code.
+- Roll your own models with BEASTShell: http://blog.beast2.org/2014/06/09/roll-your-own-models-with-beastshell shows hot to define models using BEASTShell for some of the mostly used BEASTObjects.
+-Testing with BEASTShell: http://blog.beast2.org/2014/06/16/testing-with-beastshell shows how to test BEAST programs using BEASTShell.
 
 Feedback to remco@cs.auckland.ac.nz
-
-TODO
-- completely rewrite R-based docs, they are misleading at the moment
 
