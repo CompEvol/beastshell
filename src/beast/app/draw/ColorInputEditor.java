@@ -1,8 +1,6 @@
 package beast.app.draw;
 
-import java.awt.Button;
 import java.awt.Color;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 
 import beast.app.beauti.BeautiDoc;
-import beast.core.BEASTObject;
+import beast.core.BEASTInterface;
 import beast.core.Input;
 
 public class ColorInputEditor extends InputEditor.Base {
@@ -32,7 +30,7 @@ public class ColorInputEditor extends InputEditor.Base {
 	}
 
 	@Override
-	public void init(Input<?> input, BEASTObject plugin, int itemNr, ExpandOption bExpandOption, boolean bAddButtons) {
+	public void init(Input<?> input, BEASTInterface plugin, int itemNr, ExpandOption bExpandOption, boolean bAddButtons) {
         m_bAddButtons = bAddButtons;
         m_input = input;
         m_plugin = plugin;

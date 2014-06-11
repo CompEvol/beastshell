@@ -108,10 +108,14 @@ public class BEASTStudio extends JSplitPane {
 		}
 		//rightLowerPaneTab.addTab("Class Browser", classBrowser);
 
+	
+		
 		plotPane = new ChartPanel(this);
 		JScrollPane plotScrollPane = new JScrollPane(plotPane);
 		rightLowerPaneTab.addTab("Plots", plotScrollPane);
 		
+		PackagesPanel packagePanel = new PackagesPanel();
+		rightLowerPaneTab.addTab("Pacakges", packagePanel);
 		
 		
 		splitpaneright.add(rightLowerPaneTab);
