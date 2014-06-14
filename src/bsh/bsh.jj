@@ -379,6 +379,19 @@ TOKEN : /* LITERALS */
       "\""
   >
 |
+  < REGEXP_LITERAL:
+      "/"
+      (   (~["\"","\\","\n","\r","/"])
+        | ("\\"
+            ( ["n","t","b","r","f","\\","'","\"","/"]
+            | ["0"-"7"] ( ["0"-"7"] )?
+            | ["0"-"3"] ["0"-"7"] ["0"-"7"]
+            )
+          )
+      )*
+      "/"
+  >
+|
   < LONG_STRING_LITERAL:
       "\"\"\""
       ( ~["\""] ("\"")? ("\"")? )*
@@ -454,7 +467,7 @@ TOKEN : /* OPERATORS */
 | < LT: "<" >
 | < LTX: "@lt" >
 | < BANG: "!" >
-| < TILDE: "~" >
+| < TILDE: "~~" >
 | < HOOK: "?" >
 | < COLON: ":" >
 | < EQ: "==" >
@@ -485,6 +498,7 @@ TOKEN : /* OPERATORS */
 | < RSIGNEDSHIFTX: "@right_shift" >
 | < RUNSIGNEDSHIFT: ">>>" >
 | < RUNSIGNEDSHIFTX: "@right_unsigned_shift" >
+| < ASSIGNREGEXP: "=~" >
 | < PLUSASSIGN: "+=" >
 | < MINUSASSIGN: "-=" >
 | < STARASSIGN: "*=" >
@@ -765,13 +779,13 @@ void VariableDeclarator()                     :
 {/*@bgen(jjtree) VariableDeclarator */
         try {
 /*@egen*/
-	t=<IDENTIFIER> [ "=" VariableInitializer() ]/*@bgen(jjtree)*/
+	t=<IDENTIFIER> ([ "=" VariableInitializer() ] | [ "<-" VariableInitializer() ] )/*@bgen(jjtree)*/
         {
           jjtree.closeNodeScope(jjtn000, true);
           jjtc000 = false;
           jjtreeCloseNodeScope(jjtn000);
         }
-/*@egen*/ 
+/*@egen*/
 	{ 
   		jjtn000.name = t.image;
 	}/*@bgen(jjtree)*/
@@ -1201,7 +1215,7 @@ void Assignment()             :
 int AssignmentOperator() :
 { Token t; }
 {
-    ( "=" | "*=" | "/=" | "%=" | "+=" | "-=" | "&=" | "^=" | "|=" |
+    ( "=" | "=~" | "*=" | "/=" | "%=" | "+=" | "-=" | "&=" | "^=" | "|=" |
       "<<=" | "@left_shift_assign" | ">>=" | "@right_shift_assign" |
       ">>>=" | "@right_unsigned_shift_assign" )
     {
@@ -1662,7 +1676,7 @@ void PreDecrementExpression() :
 void UnaryExpressionNotPlusMinus() :
 { Token t = null; }
 {
-  ( t="~" | t="!" ) UnaryExpression()/*@bgen(jjtree) #UnaryExpression( 1) */
+  ( t="~~" | t="!" ) UnaryExpression()/*@bgen(jjtree) #UnaryExpression( 1) */
     {
       BSHUnaryExpression jjtn001 = new BSHUnaryExpression(JJTUNARYEXPRESSION);
       boolean jjtc001 = true;
@@ -1700,7 +1714,7 @@ void CastLookahead() : { }
 // SYNTACTIC_LOOKAHEAD
   LOOKAHEAD( "(" AmbiguousName() "[" ) "(" AmbiguousName() "[" "]"
 |
-  "(" AmbiguousName() ")" ( "~" | "!" | "(" | <IDENTIFIER> | /* "this" | "super" | */ "new" | Literal() )
+  "(" AmbiguousName() ")" ( "~~" | "!" | "(" | <IDENTIFIER> | /* "this" | "super" | */ "new" | Literal() )
 }
 
 void PostfixExpression() :

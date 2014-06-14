@@ -66,73 +66,75 @@ public interface ParserConstants {
   int EXPONENT = 65;
   int CHARACTER_LITERAL = 66;
   int STRING_LITERAL = 67;
-  int LONG_STRING_LITERAL = 68;
-  int FORMAL_COMMENT = 69;
-  int IDENTIFIER = 70;
-  int LETTER = 71;
-  int DIGIT = 72;
-  int LPAREN = 73;
-  int RPAREN = 74;
-  int LBRACE = 75;
-  int RBRACE = 76;
-  int LBRACKET = 77;
-  int RBRACKET = 78;
-  int SEMICOLON = 79;
-  int COMMA = 80;
-  int DOT = 81;
-  int ASSIGN = 82;
-  int GT = 83;
-  int GTX = 84;
-  int LT = 85;
-  int LTX = 86;
-  int BANG = 87;
-  int TILDE = 88;
-  int HOOK = 89;
-  int COLON = 90;
-  int EQ = 91;
-  int LE = 92;
-  int LEX = 93;
-  int GE = 94;
-  int GEX = 95;
-  int NE = 96;
-  int BOOL_OR = 97;
-  int BOOL_ORX = 98;
-  int BOOL_AND = 99;
-  int BOOL_ANDX = 100;
-  int INCR = 101;
-  int DECR = 102;
-  int PLUS = 103;
-  int MINUS = 104;
-  int STAR = 105;
-  int SLASH = 106;
-  int BIT_AND = 107;
-  int BIT_ANDX = 108;
-  int BIT_OR = 109;
-  int BIT_ORX = 110;
-  int XOR = 111;
-  int MOD = 112;
-  int LSHIFT = 113;
-  int LSHIFTX = 114;
-  int RSIGNEDSHIFT = 115;
-  int RSIGNEDSHIFTX = 116;
-  int RUNSIGNEDSHIFT = 117;
-  int RUNSIGNEDSHIFTX = 118;
-  int PLUSASSIGN = 119;
-  int MINUSASSIGN = 120;
-  int STARASSIGN = 121;
-  int SLASHASSIGN = 122;
-  int ANDASSIGN = 123;
-  int ANDASSIGNX = 124;
-  int ORASSIGN = 125;
-  int ORASSIGNX = 126;
-  int XORASSIGN = 127;
-  int MODASSIGN = 128;
-  int LSHIFTASSIGN = 129;
-  int LSHIFTASSIGNX = 130;
-  int RSIGNEDSHIFTASSIGN = 131;
-  int RSIGNEDSHIFTASSIGNX = 132;
-  int RUNSIGNEDSHIFTASSIGN = 133;
-  int RUNSIGNEDSHIFTASSIGNX = 134;
+  int REGEXP_LITERAL = 68;
+  int LONG_STRING_LITERAL = 69;
+  int FORMAL_COMMENT = 70;
+  int IDENTIFIER = 71;
+  int LETTER = 72;
+  int DIGIT = 73;
+  int LPAREN = 74;
+  int RPAREN = 75;
+  int LBRACE = 76;
+  int RBRACE = 77;
+  int LBRACKET = 78;
+  int RBRACKET = 79;
+  int SEMICOLON = 80;
+  int COMMA = 81;
+  int DOT = 82;
+  int ASSIGN = 83;
+  int GT = 84;
+  int GTX = 85;
+  int LT = 86;
+  int LTX = 87;
+  int BANG = 88;
+  int TILDE = 89;
+  int HOOK = 90;
+  int COLON = 91;
+  int EQ = 92;
+  int LE = 93;
+  int LEX = 94;
+  int GE = 95;
+  int GEX = 96;
+  int NE = 97;
+  int BOOL_OR = 98;
+  int BOOL_ORX = 99;
+  int BOOL_AND = 100;
+  int BOOL_ANDX = 101;
+  int INCR = 102;
+  int DECR = 103;
+  int PLUS = 104;
+  int MINUS = 105;
+  int STAR = 106;
+  int SLASH = 107;
+  int BIT_AND = 108;
+  int BIT_ANDX = 109;
+  int BIT_OR = 110;
+  int BIT_ORX = 111;
+  int XOR = 112;
+  int MOD = 113;
+  int LSHIFT = 114;
+  int LSHIFTX = 115;
+  int RSIGNEDSHIFT = 116;
+  int RSIGNEDSHIFTX = 117;
+  int RUNSIGNEDSHIFT = 118;
+  int RUNSIGNEDSHIFTX = 119;
+  int ASSIGNREGEXP = 120;
+  int PLUSASSIGN = 121;
+  int MINUSASSIGN = 122;
+  int STARASSIGN = 123;
+  int SLASHASSIGN = 124;
+  int ANDASSIGN = 125;
+  int ANDASSIGNX = 126;
+  int ORASSIGN = 127;
+  int ORASSIGNX = 128;
+  int XORASSIGN = 129;
+  int MODASSIGN = 130;
+  int LSHIFTASSIGN = 131;
+  int LSHIFTASSIGNX = 132;
+  int RSIGNEDSHIFTASSIGN = 133;
+  int RSIGNEDSHIFTASSIGNX = 134;
+  int RUNSIGNEDSHIFTASSIGN = 135;
+  int RUNSIGNEDSHIFTASSIGNX = 136;
 
   int DEFAULT = 0;
 
@@ -205,6 +207,7 @@ public interface ParserConstants {
     "<EXPONENT>",
     "<CHARACTER_LITERAL>",
     "<STRING_LITERAL>",
+    "<REGEXP_LITERAL>",
     "<LONG_STRING_LITERAL>",
     "<FORMAL_COMMENT>",
     "<IDENTIFIER>",
@@ -225,7 +228,7 @@ public interface ParserConstants {
     "\"<\"",
     "\"@lt\"",
     "\"!\"",
-    "\"~\"",
+    "\"~~\"",
     "\"?\"",
     "\":\"",
     "\"==\"",
@@ -256,6 +259,7 @@ public interface ParserConstants {
     "\"@right_shift\"",
     "\">>>\"",
     "\"@right_unsigned_shift\"",
+    "\"=~\"",
     "\"+=\"",
     "\"-=\"",
     "\"*=\"",
@@ -272,6 +276,7 @@ public interface ParserConstants {
     "\"@right_shift_assign\"",
     "\">>>=\"",
     "\"@right_unsigned_shift_assign\"",
+    "\"<-\"",
   };
 
 }
