@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>open command</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+<h1>"open" documentation</h1>
+
+<h2>Description:</h2>
+
+     <tt>open(filename)</tt> open a file for reading, writing or appending
+
+<h2>Usage:</h2>
+
+	open("beast.xml") -- open file "beast.xml" for reading. Returns a <tt>BufferedReader</tt> so the file can be ready line by line using
+<pre>
+while (fin.ready()) {
+	s = fin.readline();	
+}
+</pre>
+</p>
+	open(">beast.xml") -- open file "beast.xml" for writing. Returns a <tt>PrintStream</tt> so can be used with print and println, like so
+<pre>
+out = open(">beast.xml");
+out.println("&lt;beast version='2.2'/>");
+out.close();
+</pre>
+
+</p>
+	open(">>beast.xml") -- open file "beast.xml" for appending. Also returns a <tt>PrintStream</tt>.</p>
+
+</html>
+

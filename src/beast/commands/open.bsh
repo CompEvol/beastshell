@@ -1,0 +1,26 @@
+// @see(doc/html/beast/commands/open.html) File handline
+
+open(f) {
+	if (f instanceof String) {
+		f = f.trim();
+		if (f.startsWith(">>")) {
+			// open file for appending
+			f = f.substring(2).trim();
+			out = new PrintStream(new FileOutputStream(f, true));
+			return out;
+		} else if (f.startsWith(">")) {
+			// open file for writing
+			f = f.substring(1).trim();
+			out = new PrintStream(new FileOutputStream(f));
+			return out;
+		} else {
+			// open file for reading
+         	fin = new BufferedReader(new FileReader(new File(f)));
+			return fin;
+			// usage:
+			// while (fin.ready()) {
+			//     s = fin.readline();	
+			// }
+		}
+	}
+}
