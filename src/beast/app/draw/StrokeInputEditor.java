@@ -26,7 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
 import beast.app.beauti.BeautiDoc;
-import beast.core.BEASTInterface;
+import beast.core.BEASTObject;
 import beast.core.Input;
 
 public class StrokeInputEditor extends InputEditor.Base {
@@ -42,7 +42,7 @@ public class StrokeInputEditor extends InputEditor.Base {
 	}
 
 	@Override
-	public void init(Input<?> input, BEASTInterface plugin, int itemNr, ExpandOption bExpandOption, boolean bAddButtons) {
+	public void init(Input<?> input, BEASTObject plugin, int itemNr, ExpandOption bExpandOption, boolean bAddButtons) {
         m_bAddButtons = bAddButtons;
         m_input = input;
         m_plugin = plugin;

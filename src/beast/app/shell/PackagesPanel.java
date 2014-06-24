@@ -23,7 +23,7 @@ public class PackagesPanel extends JPanel {
 
 	private void init() {
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		panel = new JPackageDialog();
+		//panel = new JPackageDialog();
 		add(panel, BorderLayout.CENTER);
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
