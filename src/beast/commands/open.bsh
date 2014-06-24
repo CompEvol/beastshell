@@ -1,4 +1,4 @@
-// @see(doc/html/beast/commands/open.html) File handline
+// @see(doc/html/beast/commands/open.html) Opening a file 
 
 open(f) {
 	if (f instanceof String) {

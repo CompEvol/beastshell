@@ -1,0 +1,16 @@
+// @see(doc/html/beast/commands/regexp.html) Match a regular expression
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+regexp(str, regexp) {
+	result = new ArrayList();
+	p = Pattern.compile(regexp);
+	m = p.matcher(str);
+	while(m.find()) {
+		for (i = 0; i <= m.groupCount(); i++) {
+			result.add(str.substring(m.start(i), m.end(i)));
+			//result.add(m.group(i));
+		}
+	}
+	return result.toArray();
+}

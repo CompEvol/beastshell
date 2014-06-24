@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>regexp command</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+<h1>"regexp" documentation</h1>
+
+<h2>Description:</h2>
+
+     <tt>regexp(str, regexp)</tt> matches a regular expression and returns an array of matches.
+
+<h2>Usage:</h2>
+
+<pre>
+	matches = regexp(str, regexp);
+	matches[0]; // matches complete regular expression
+	matches[1]; // matches first group
+	matches[2]; // matches second group
+...
+</pre>
+If there are multiple matches, several blocks will be returned:
+
+<pre>
+	s = "dog doggie";
+	matches = regexp(s, "dog");
+	// matches is now [dog, dog]
+
+	matches = regexp(s, "(d)(og)");
+	// matches is now [dog, d, og, dog, d, og]
+</pre>
+	
+
+</html>
+
