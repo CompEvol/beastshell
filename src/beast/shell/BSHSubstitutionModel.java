@@ -42,7 +42,7 @@ public class BSHSubstitutionModel extends SubstitutionModel.Base {
 	}
 
 	@Override
-	public boolean canHandleDataType(DataType dataType) throws Exception {
+	public boolean canHandleDataType(DataType dataType) {
 		return true;
 	}
 
