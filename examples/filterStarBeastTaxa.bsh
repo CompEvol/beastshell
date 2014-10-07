@@ -1,0 +1,42 @@
+// select subset of taxa from *BEAST analysis
+
+s="""Cyanocorax_mystacalis = GU144828 GU144829 GU144831 GU144830 
+C.validus = JQ023974 
+Urocissa_erythrorhyncha = JQ864482 
+C.capensis = JQ023977 
+Cyanocorax_yucatanicus = DQ912613 GU144848 
+Perisoreus_canadensis = JQ655939 JQ656012 JQ656006 JQ655975 """;
+
+data = s.split("\n");
+
+filter ="""Urocissa_erythrorhyncha
+Perisoreus_canadensis
+Cyanocorax_yucatanicus""";
+
+newtaxon(s, filter) {
+	x = regexp(s, "(.*)=(.*)");
+	//if (!filter.matches("(?s).*\\b"+Matcher.quoteReplacement(x[1].trim())+"\\b.*")) {
+	if (!filter.matches("(?s).*\\b"+x[1].trim()+"\\b.*")) {
+		return;
+	}
+	print("<taxonset id='" + x[1].trim() + "'>");
+	for (id : x[2].trim().split("\\s+")) {
+		print("    <taxon id='" + id + "'/>");
+	}
+	print("</taxonset>");
+}
+
+newsequence(s, filter) {
+	x = regexp(s, "(.*)=(.*)");
+	if (!filter.matches("(?s).*\\b"+x[1].trim()+"\\b.*")) {
+		return;
+	}
+	for (id : x[2].trim().split("\\s+")) {
+		exec("grep "+ id + " source.xml | grep sequence");
+	}
+}
+
+
+for (s : data) {newtaxon(s, filter);}
+
+for (s : data) {newsequence(s, filter);}

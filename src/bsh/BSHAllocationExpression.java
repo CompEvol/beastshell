@@ -34,6 +34,7 @@
 
 package bsh;
 
+
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -114,6 +115,8 @@ class BSHAllocationExpression extends SimpleNode
 				Object[] args2 = new Object[names.length * 2];
 				BEASTObject bo = (BEASTObject) Class.forName(type.getName()).newInstance();
 				List<Input<?>> inputs = bo.listInputs();
+				int IDOffset = 0;
+				String ID = null;
 		        for (int i = 0; i < names.length; i++) {
 		        	args2[i*2] = (names[i] != null ? names[i] : inputs.get(i).getName());
 		        	if (args[i].getClass().isArray()) {
@@ -136,11 +139,22 @@ class BSHAllocationExpression extends SimpleNode
 		        	}
 	        		// attempt to convert to correct type
 	        		Input<?> input = null;
+	        		boolean done = false;
 	        		if (names[i] != null) {
-	        			input = bo.getInput(names[i].toString());
+	        			if (names[i].toString().equals("id")) {
+	        				ID = args[i].toString();
+	        				done = true;
+	        				Object[] tmp = new Object[names.length * 2 - 2];
+	        				System.arraycopy(args2, 0, tmp, 0, tmp.length);
+	        				args2 = tmp;
+	        				IDOffset = -2;
+	        			} else {
+	        				input = bo.getInput(names[i].toString());
+	        			}
 	        		} else {
 	        			input =  inputs.get(i);
 	        		}
+	        		if (!done) {
 	        		Class inputType = input.getType();
 	        		if (inputType == null) {
 	        			input.determineClass(bo);
@@ -192,12 +206,17 @@ class BSHAllocationExpression extends SimpleNode
 	        				args[i] = o.doubleValue();
 	        			}
 	        		}
+		        	args2[i*2+1 - IDOffset] = args[i];
+	        		}
 	        		// end type conversion
 
-		        	args2[i*2+1] = args[i];
 		        }
 		        
-				return constructObject( type, args2, callstack, interpreter );
+		        Object o = constructObject( type, args2, callstack, interpreter );
+		        if (ID != null){
+		        	((BEASTObject)o).setID(ID);
+		        }
+				return o;
 			} catch (Exception e) {
 				interpreter.print(e.getMessage());
 				//System.err.println(e.getMessage());
