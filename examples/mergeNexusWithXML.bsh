@@ -1,0 +1,98 @@
+// return ancestor object of BEASTObject o with given ID
+import beast.util.*;
+ 
+getWithID(o, id) {
+	for (o2 : o.listActivePlugins()) {
+		if (id.equals(o2.getID())) {
+			return o2;
+		}
+		o3 = getWithID(o2, id);
+		if (o3 != null) {
+			return o3;
+		}
+	}
+	return null;
+}
+
+// go through all objecst and rename ID if it contains 'source' with 'target'
+replaceID(o, source, target) {
+	for (o2 : o.listActivePlugins()) {
+		id = o2.getID();
+		if (id != null) {
+			i = id.indexOf(source);
+			if (i >= 0) {
+				id = id.substring(0, i) + target + id.substring(i + source.length(), id.length());
+				o2.setID(id);
+			}
+			replaceID(o2, source, target);
+		}
+	}
+}
+
+// go through all objecst and rename 'fileName' values if it contains 'source' with 'target'
+replaceInFileName(o, source, target) {
+	for (o2 : o.listActivePlugins()) {
+		try {
+			id = o2.getInput("fileName");
+			if (id != null) {
+				id = id.get();
+				if (id != null) {
+					i = id.indexOf(source);
+					if (i >= 0) {
+						print("got one" + id);
+						id = id.substring(0, i) + target + id.substring(i + source.length(), id.length());
+						print("=> " + id);
+						o2.setInputValue("fileName", id);
+						print("success!");
+					}
+					replaceInFileName(o2, source, target);
+				}
+			}
+		} catch (e) {
+			// ignore
+		}
+	}
+}
+
+
+// process BEAST specification, replacing its alignment
+// mcmc = BEAST specification containing a single Alignment
+// data = Alignment to replace the one in mcmc
+// source = id used by BEAUti to identify Alignment
+// target = id used for replacement of source
+process(mcmc, data, source, target) {
+	M = getWithID(mcmc, source);
+	seqs = M.sequenceInput.get();
+	seqs.clear();
+	seqs.addAll(data.sequenceInput.get());
+
+	replaceID(mcmc, source, target);
+	replaceInFileName(mcmc, source, target);
+
+	fout = open(">/tmp/" + target + ".xml");
+	prod = new XMLProducer();
+	fout.println(prod.toXML(mcmc));
+	fout.close();
+}
+
+// go through all nexus files in 'nexusdir' and merge with 'mcmc' specification
+// store in /tmp/$X.xml where $X the name of the alignment
+nexusdir = "/home/remco/research/oxygen/data/nucleotide/nexus";
+nexusdir = "/home/remco/research/oxygen/data/protein/nexus";
+parser = new beast.util.XMLParser();
+mcmc = parser.parseFile(new File(nexusdir + "/fshky4gi.ucln.yule.xml"));
+d = new File(nexusdir);
+nex = new beast.util.NexusParser();
+source = "M1067";
+source="M10430";
+
+for (f : d.listFiles()) {
+	if (f.getName().endsWith("nex")) {
+		print("parsing " + f);
+		nex.parseFile(f);
+		data = nex.m_alignment;
+		target = f.getName().replaceAll(".nex","");
+		process(mcmc, data, source, target);
+		source = target;
+	}
+}

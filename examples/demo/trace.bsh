@@ -23,7 +23,7 @@ pause();
 trace(f.getPath(), 30, "likelihood");
 
 
-
+/*
 import beast.util.*;
 import beast.app.shell.*; 
 doc = new beast.app.beauti.BeautiDoc();
@@ -38,5 +38,5 @@ dialog.accept(series, doc);
 for (input: series.listInputs()) {
 	print(input.getName() + " = " + input.get());
 }
-
+*/
 

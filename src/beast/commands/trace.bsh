@@ -9,7 +9,7 @@ trace(file, burnin) {
 }
 
 trace(file, burnin, var) {
-	df = new LogAnalyser(new String[]{file}, 2000, burnin);
+	df = new LogAnalyser(file, burnin);
 	df.print(this.interpreter.getOut());
 	x = df.getTrace(var);
 	new Plot(y=x, seriesName=var, yAxisMax=max(x), yAxisMin=min(x));

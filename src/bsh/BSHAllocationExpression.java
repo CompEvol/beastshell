@@ -218,9 +218,9 @@ class BSHAllocationExpression extends SimpleNode
 		        }
 				return o;
 			} catch (Exception e) {
-				interpreter.print(e.getMessage());
-				//System.err.println(e.getMessage());
-				// continue with the default assignment
+				//interpreter.print(e.getClass().getName() + " " + e.getMessage());
+				throw new EvalError(e.getClass().getName() + " " + e.getMessage(), nameNode, callstack);
+				// do not continue with the default assignment
 			}
 		}
 
