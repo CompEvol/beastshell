@@ -77,14 +77,16 @@ process(mcmc, data, source, target) {
 
 // go through all nexus files in 'nexusdir' and merge with 'mcmc' specification
 // store in /tmp/$X.xml where $X the name of the alignment
-nexusdir = "/home/remco/research/oxygen/data/nucleotide/nexus";
 nexusdir = "/home/remco/research/oxygen/data/protein/nexus";
+source = "M1067";
+
+nexusdir = "/home/remco/research/oxygen/data/nucleotide/nexus2";
+source="M10430";
+
 parser = new beast.util.XMLParser();
-mcmc = parser.parseFile(new File(nexusdir + "/fshky4gi.ucln.yule.xml"));
+mcmc = parser.parseFile(new File(nexusdir + "/hky4mgi.ucln.yule.xml"));
 d = new File(nexusdir);
 nex = new beast.util.NexusParser();
-source = "M1067";
-source="M10430";
 
 for (f : d.listFiles()) {
 	if (f.getName().endsWith("nex")) {
