@@ -1,5 +1,15 @@
 BEASTShell
 ==========
+BEASTShell is a BEAST 2 package (http://beast2.org)
+
+To use BEASTShell install BEAST first (requires Java 8)
+
+Then use the package manager to install BEASTShell (Start BEAUti from the BEAST package, then select the File/Manage packages menu item to start the package manager).
+
+To start BEASTStudio, start the BEAST AppStore application, select BEASTStudio to launch.
+
+
+
 
 BeanShell scripting for BEAST2. 
 Based on BeanShell 2 (http://code.google.com/p/beanshell2).
