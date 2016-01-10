@@ -45,7 +45,7 @@ public class StrokeInputEditor extends InputEditor.Base {
 	public void init(Input<?> input, BEASTInterface plugin, int itemNr, ExpandOption bExpandOption, boolean bAddButtons) {
         m_bAddButtons = bAddButtons;
         m_input = input;
-        m_plugin = plugin;
+        m_beastObject = plugin;
         this.itemNr= itemNr;
         
         addInputLabel();
@@ -78,7 +78,7 @@ public class StrokeInputEditor extends InputEditor.Base {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Stroke stroke = strokeChooser.getSelectedStroke();
-				m_input.setValue(stroke, m_plugin);
+				m_input.setValue(stroke, m_beastObject);
 			}
 		});
         

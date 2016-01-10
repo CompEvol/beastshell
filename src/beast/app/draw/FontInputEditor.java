@@ -32,7 +32,7 @@ public class FontInputEditor extends InputEditor.Base {
 	public void init(Input<?> input, BEASTInterface plugin, int itemNr, ExpandOption bExpandOption, boolean bAddButtons) {
         m_bAddButtons = bAddButtons;
         m_input = input;
-        m_plugin = plugin;
+        m_beastObject = plugin;
         this.itemNr= itemNr;
         
         addInputLabel();
@@ -84,7 +84,7 @@ public class FontInputEditor extends InputEditor.Base {
         }
         if (result != JOptionPane.CANCEL_OPTION) {
         	font = chooser.getFont();
-        	m_input.setValue(font, m_plugin);
+        	m_input.setValue(font, m_beastObject);
         }
         button.setFont(font);
 	}

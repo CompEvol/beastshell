@@ -33,7 +33,7 @@ public class ColorInputEditor extends InputEditor.Base {
 	public void init(Input<?> input, BEASTInterface plugin, int itemNr, ExpandOption bExpandOption, boolean bAddButtons) {
         m_bAddButtons = bAddButtons;
         m_input = input;
-        m_plugin = plugin;
+        m_beastObject = plugin;
         this.itemNr= itemNr;
         
         addInputLabel();
@@ -86,7 +86,7 @@ public class ColorInputEditor extends InputEditor.Base {
         }
         if (result != JOptionPane.CANCEL_OPTION) {
         	color = chooser.getColor();
-        	m_input.setValue(color, m_plugin);
+        	m_input.setValue(color, m_beastObject);
         }
         button.setBackground(color);
 	}
