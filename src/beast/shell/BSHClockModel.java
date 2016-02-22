@@ -21,11 +21,15 @@ public class BSHClockModel extends Base {
 	Interpreter interpreter;
 
 	@Override
-	public void initAndValidate() throws Exception {
+	public void initAndValidate() {
 		interpreter = new Interpreter();
 		NamedFunction.evalFunctionInputs(interpreter, functionInputs.get());
 		String script = valueInput.get();
-		interpreter.eval(script);
+		try {
+			interpreter.eval(script);
+		} catch (EvalError e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import org.apache.commons.math.MathException;
 import org.apache.commons.math.distribution.ContinuousDistribution;
 import org.apache.commons.math.distribution.Distribution;
 
+import bsh.EvalError;
 import bsh.Interpreter;
 import beast.core.Description;
 import beast.core.Function;
@@ -23,12 +24,16 @@ public class BSHParametricDistribution extends ParametricDistribution {
 	Distribution dist;
 	
 	@Override
-	public void initAndValidate() throws Exception {
+	public void initAndValidate() {
 		interpreter = new Interpreter();
 		NamedFunction.evalFunctionInputs(interpreter, functionInputs.get());
 		String script = valueInput.get();
-		interpreter.eval(script);
-		
+		try {
+			interpreter.eval(script);
+		} catch (EvalError e) {
+			throw new RuntimeException(e);
+		}
+
 		dist = new ContinuousDistribution() {
 			@Override
 			public double logDensity(double x) {

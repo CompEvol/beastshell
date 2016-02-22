@@ -192,8 +192,12 @@ public class Plot extends Series {
 	
 	
 	@Override
-	public void initAndValidate() throws Exception {
-		add(this);	    
+	public void initAndValidate() {
+		try {
+			add(this);
+		} catch (IOException e) {
+			throw new IllegalArgumentException (e);			
+		}
 	}
 
 	private double getMin(List<Double> x2) {

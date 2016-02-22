@@ -20,7 +20,7 @@ public class NamedFunction extends CalculationNode implements Function {
 
 	Function f;
 	@Override
-	public void initAndValidate() throws Exception {
+	public void initAndValidate() {
 		f = functionInput.get();
 	}
 	

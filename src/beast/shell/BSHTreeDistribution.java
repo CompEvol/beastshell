@@ -7,6 +7,7 @@ import beast.core.Description;
 import beast.core.Function;
 import beast.core.Input;
 import beast.evolution.tree.TreeDistribution;
+import bsh.EvalError;
 import bsh.Interpreter;
 
 @Description("Substitution model specified using BEASTScript "+
@@ -18,15 +19,19 @@ public class BSHTreeDistribution extends TreeDistribution {
 	Interpreter interpreter;
 
 	@Override
-	public void initAndValidate() throws Exception {
+	public void initAndValidate() {
 		interpreter = new Interpreter();
 		NamedFunction.evalFunctionInputs(interpreter, functionInputs.get());
 		String script = valueInput.get();
-		interpreter.eval(script);
+		try {
+			interpreter.eval(script);
+		} catch (EvalError e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
-	public double calculateLogP() throws Exception {
+	public double calculateLogP() {
 		logP = 0;
 		logP = NamedFunction.evalFunction(interpreter, functionInputs.get(), "calculateLogP", treeInput.get(), treeIntervalsInput.get());
 		return logP;

@@ -45,7 +45,7 @@ public class Series extends BEASTObject {
 
 	
 	@Override
-	public void initAndValidate() throws Exception {
+	public void initAndValidate() {
 	}
 
 	public Color getLineColor() {

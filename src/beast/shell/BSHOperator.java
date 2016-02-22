@@ -8,6 +8,7 @@ import beast.core.Description;
 import beast.core.Function;
 import beast.core.Input;
 import beast.core.Operator;
+import bsh.EvalError;
 import bsh.Interpreter;
 import bsh.This;
 
@@ -20,11 +21,15 @@ public class BSHOperator extends Operator {
 	Interpreter interpreter;
 	
 	@Override
-	public void initAndValidate() throws Exception {
+	public void initAndValidate() {
 		interpreter = new Interpreter();
 		NamedFunction.evalFunctionInputs(interpreter, functionInputs.get());
 		String script = valueInput.get();
-		interpreter.eval(script);
+		try {
+			interpreter.eval(script);
+		} catch (EvalError e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
