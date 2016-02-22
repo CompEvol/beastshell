@@ -33,7 +33,7 @@ public class BSHLogger extends BEASTObject implements Loggable {
 	}
 	
 	@Override
-	public void init(PrintStream out) throws Exception {
+	public void init(PrintStream out) {
 		NamedFunction.evalVoidFunction(interpreter, functionInputs.get(), "init", out);
 
 	}
