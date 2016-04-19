@@ -18,7 +18,7 @@ beagleFlags = beagle.BeagleFlag.VECTOR_SSE.getMask() | beagle.BeagleFlag.PROCESS
 System.setProperty("beagle.preferred.flags", Long.toString(beagleFlags));
 
 // draw gamma shape from the prior (exp(1.0))
-shapes = rexp(1, 1.0);
+shapes = rexp(100, 1.0);
 estimate = new ArrayList<Double>();
 
 // set up model to draw samples from
@@ -48,7 +48,7 @@ for (shape0 : shapes) {
 	mcmc.run();
 
 	// grab estimate from the analysis
-	log = new LogAnalyser(new String[]{"SequenceSimulator.log"}, 2000, 10);
+	log = new LogAnalyser(new String[]{"SequenceSimulator.log"}, 10);
 	s = log.getMean("gammaShape");
 	print("iteration: " + (k++) + " shape = " + shape0 + " estimate = " + s);
 	estimate.add(s);
