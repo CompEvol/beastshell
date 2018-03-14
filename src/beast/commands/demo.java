@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import beast.app.shell.BEASTStudio;
 import bsh.Interpreter;
 import beast.app.shell.Plot;
-import beast.util.AddOnManager;
+import beast.util.PackageManager;
 import bsh.CallStack;
 
 public class demo {
@@ -31,7 +31,7 @@ public class demo {
 		if (file.exists()) {
 			collectDemos(file, demos);
 		} else {
-			file = new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + DEMO_DIR);
+			file = new File(PackageManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + DEMO_DIR);
 			collectDemos(file, demos);
 		}
 		env.print("Use ");env.print("demo(demoname);", new Font("SansSerif", Font.BOLD, 12));
@@ -75,8 +75,8 @@ public class demo {
 			file = DEMO_DIR + file;
 			fileBsh = DEMO_DIR + fileBsh;
 			if (!(new File(file)).exists() && !(new File(fileBsh)).exists()) {
-				file = AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + file;
-				fileBsh = AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + fileBsh;
+				file = PackageManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + file;
+				fileBsh = PackageManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + fileBsh;
 			}
 		}
 		if (!(new File(file)).exists()) {

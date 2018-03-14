@@ -34,7 +34,7 @@
 
 package bsh;
 
-import beast.util.AddOnManager;
+import beast.util.PackageManager;
 import bsh.util.*;
 
 /**
@@ -44,7 +44,7 @@ public class Console
 {
 	public static void main( String args[] ) throws Exception {
 		// RRB: added for BEAST
-		AddOnManager.loadExternalJars();
+		PackageManager.loadExternalJars();
 
 		if ( !Capabilities.classExists( "bsh.util.Util" ) )
 			System.out.println("Can't find the BeanShell utilities...");

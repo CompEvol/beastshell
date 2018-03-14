@@ -13,7 +13,7 @@ import java.net.URL;
 
 import beast.app.DocMaker;
 import beast.core.BEASTObject;
-import beast.util.AddOnManager;
+import beast.util.PackageManager;
 import bsh.ClassIdentifier;
 import bsh.EvalError;
 import bsh.UtilEvalError;
@@ -216,9 +216,9 @@ help(beast.util.TreeParser);
 				e.printStackTrace();
 			}
            	return true;
-    	} else if(new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + page).exists()) {
+    	} else if(new File(PackageManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + page).exists()) {
         	try {
-        		studio.helpPane.setURL(new URL("file://" + AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + docPage));
+        		studio.helpPane.setURL(new URL("file://" + PackageManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + docPage));
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}

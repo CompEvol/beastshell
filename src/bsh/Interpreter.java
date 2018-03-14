@@ -52,7 +52,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 
 import beast.app.shell.BEASTStudio;
-import beast.util.AddOnManager;
+import beast.util.PackageManager;
 import bsh.util.JConsole;
 
 /**
@@ -1167,7 +1167,7 @@ public class Interpreter
 		}
 		// RRB: added for BEAST
 		try {
-			AddOnManager.loadExternalJars();
+			PackageManager.loadExternalJars();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

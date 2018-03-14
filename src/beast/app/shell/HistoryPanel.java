@@ -26,7 +26,7 @@ import javax.swing.event.DocumentListener;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 
-import beast.util.AddOnManager;
+import beast.util.PackageManager;
 
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -139,7 +139,7 @@ public class HistoryPanel extends JPanel implements KeyListener {
 	final static String BACKUP_FILE = "beastshell.history";
 	
 	void loadBackup() {
-		File backup = new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + BACKUP_FILE);
+		File backup = new File(PackageManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + BACKUP_FILE);
 		if (backup.exists()) {
 			try {
 		        BufferedReader fin = new BufferedReader(new FileReader(backup));
@@ -159,11 +159,11 @@ public class HistoryPanel extends JPanel implements KeyListener {
 	}
 
 	public void saveBackup() {
-		File backupdir = new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME);
+		File backupdir = new File(PackageManager.getPackageUserDir() + BEASTStudio.PACKAGENAME);
 		if (!backupdir.exists()) {
 			backupdir.mkdirs();
 		}
-		File backup = new File(AddOnManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + BACKUP_FILE);
+		File backup = new File(PackageManager.getPackageUserDir() + BEASTStudio.PACKAGENAME + BACKUP_FILE);
 		try {
 	        FileWriter outfile = new FileWriter(backup);
 	        for (String s : history) {

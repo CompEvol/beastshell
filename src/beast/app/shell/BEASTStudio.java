@@ -32,7 +32,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 
 import beast.app.draw.MyAction;
 import beast.app.util.Utils;
-import beast.util.AddOnManager;
+import beast.util.PackageManager;
 import bsh.BshClassManager;
 import bsh.ClassPathException;
 import bsh.NameSource;
@@ -385,19 +385,19 @@ public class BEASTStudio extends JSplitPane {
 			try {
 				String home = System.getenv("JAVA_HOME");
 				if (home != null) {
-					AddOnManager.addURL(new URL("file:" + home + "/jre/lib/jfxrt.jar"));
+					PackageManager.addURL(new URL("file:" + home + "/jre/lib/jfxrt.jar"));
 					Class.forName("javafx.embed.swing.JFXPanel");
 					return;
 				}
 				String jarfile = System.getenv("JAVAFX_JAR");
 				if (jarfile != null) {
-					AddOnManager.addURL(new URL("file:" + jarfile));
+					PackageManager.addURL(new URL("file:" + jarfile));
 					Class.forName("javafx.embed.swing.JFXPanel");
 					return;
 				}
 				File f = new File("/opt/java/jre/lib/jfxrt.jar"); 
 				if (f.exists()) {
-					AddOnManager.addURL(new URL("file:" + f.getPath()));
+					PackageManager.addURL(new URL("file:" + f.getPath()));
 					Class.forName("javafx.embed.swing.JFXPanel");
 					return;
 				}

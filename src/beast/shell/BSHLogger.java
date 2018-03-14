@@ -39,7 +39,7 @@ public class BSHLogger extends BEASTObject implements Loggable {
 	}
 
 	@Override
-	public void log(int nSample, PrintStream out) {
+	public void log(long nSample, PrintStream out) {
 		NamedFunction.evalVoidFunction(interpreter, functionInputs.get(), "log", nSample, out);
 	}
 
