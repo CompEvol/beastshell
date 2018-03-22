@@ -1,8 +1,8 @@
-<addon name='BEASTShell' version='1.3.0'>
-	<depends on='beast2' atleast='2.4.0'/>
-	<addonapp description="BEAST Studio"
+<package name='BEASTShell' version='1.4.0'>
+	<depends on='beast2' atleast='2.5.0'/>
+	<packageapp description="BEAST Studio"
 		class="beast.app.shell.BEASTStudio"
 		args=""
 		icon="/bsh/util/lib/splash.jpg"
 	/>
-</addon>
+</package>
